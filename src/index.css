@@ -197,10 +197,257 @@ header {
   visibility: hidden;
   word-wrap: break-word;
 }
-article {
-  background-color: #009900;
-  color: #fff;
-  padding: 20px;
+body {
+  margin: 0px;
+  background-image: url('../../account/images/index/bg.png');
+  background-position: center center;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: auto;
+  position: static;
+  left: auto;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+.tab-content {
+  height: 270px;
+}
+.tab-pannel {
+  height: 270px;
+}
+#container {
+  width: 580px;
+  padding: 10px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 0;
+}
+#example {
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  height: 350px;
+  position: relative;
+}
+#ribbon {
+  position: absolute;
+  top: -3px;
+  left: -15px;
+  z-index: 500;
+}
+#frame {
+  position: absolute;
+  z-index: 0;
+  width: 739px;
+  height: 341px;
+  top: -3px;
+  left: -80px;
+}
+#slides {
+  position: absolute;
+  top: 15px;
+  left: 4px;
+  z-index: 100;
+}
+#slides .next,
+#slides .prev {
+  position: absolute;
+  top: 107px;
+  left: -39px;
+  width: 24px;
+  height: 43px;
+  display: block;
+  z-index: 101;
+}
+.slides_container {
+  width: 570px;
+  height: 270px;
+  overflow: hidden;
+  position: relative;
+  /*display:none;*/
+}
+.slides_container a {
+  width: 570px;
+  height: 270px;
+  display: block;
+}
+#slides .next {
+  left: 585px;
+}
+#content {
+  float: left;
+  width: 350px;
+  font-size: 1.3em;
+  margin-right: 20px;
+}
+#content h1 {
+  margin: 0 0 0 -4px;
+}
+#download {
+  width: 190px;
+  padding: 10px;
+  float: left;
+  font-size: 1.3em;
+  background: url('http://jayli.github.io/gallery/yuislide/assets/download-background.png') no-repeat top center;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.pagination {
+  margin: 26px auto 0;
+  width: 100px;
+}
+.pagination li {
+  list-style: none;
+  magrin: 0 1px;
+  float: left;
+}
+.pagination li a {
+  display: block;
+  width: 12px;
+  height: 0;
+  padding-top: 12px;
+  background-image: url('http://jayli.github.io/gallery/yuislide/assets/pagination.png');
+  background-position: 0 0;
+  float: left;
+  overflow: hidden;
+}
+.pagination li.current a {
+  background-position: 0 -12px;
+}
+a:link.download,
+a:visited.download {
+  margin-left: -5px;
+  display: block;
+  width: 200px;
+  height: 0;
+  padding-top: 55px;
+  overflow: hidden;
+  background-image: url('http://jayli.github.io/gallery/yuislide/assets/btn-download.png');
+  background-position: 0 0;
+}
+a:hover.download,
+a:active.download {
+  background-position: 0 -55px;
+}
+#instructions {
+  float: left;
+  width: 580px;
+  font-size: 1.3em;
+}
+#footer {
+  float: left;
+  width: 580px;
+  margin-top: 9px;
+  margin-bottom: 9px;
+  padding: 4.5px 0 18px;
+  border-top: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+}
+#footer p {
+  margin: 4.5px 0;
+  font-size: 1.0em;
+}
+pre {
+  /*line-height:1.5em !important;*/
+  margin: 0 0 18px;
+  padding: .5em;
+  font: 12px Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+  text-shadow: none;
+  clear: both;
+}
+ul.examples {
+  list-style: disc;
+  margin: -9px 0 9px 14px;
+}
+.expand {
+  margin: 0 0 9px;
+  position: relative;
+}
+.expand pre {
+  margin: 9px 0;
+}
+.expand h4 {
+  font-size: 1.1em;
+}
+.expand .content {
+  display: none;
+  overflow: hidden;
+}
+.expand .content .inner {
+  margin: .56em 0;
+  display: none;
+}
+.expand p {
+  font-size: .9em;
+  margin: 0;
+}
+.expand small {
+  color: #838383;
+}
+#content .expand small {
+  position: static;
+}
+.expand h5 {
+  font-size: 1.1em;
+  padding: .88em 0 0;
+}
+strong {
+  font-weight: bold;
+}
+/* --------------------added by jayli--------------------- */
+.hidden {
+  display: none;
+}
+.DlHighlight {
+  margin-left: 10px;
+  background-color: transparent;
+  border-left: 1px solid #ccc;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.cutter-mojo {
+  width: 580px;
+  height: 270px;
+  overflow: hidden;
+  position: relative;
+  background: #FFFDF2;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.cutter-mojo .cutter-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.cutter-mojo .cutter-content p {
+  background: #F2EDDF;
+  color: #E41170;
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+  padding: 6px 5px 6px 8px;
+  text-decoration: underline;
+}
+.cutter-mojo .cutter-content span {
+  color: #333333;
+  display: block;
+  font-size: 90%;
+  line-height: 16px;
+  padding: 7px;
+  z-index: 0;
+}
+.cutter-mojo img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 .headertitle {
   font-family: 'Arial Normal', 'Arial';

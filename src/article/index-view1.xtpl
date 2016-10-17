@@ -1,0 +1,71 @@
+<div id="example">
+    <div id="slides"><!--Slide控件开始-->
+        <div class="slides_container tab-content">
+            <div class="tab-pannel">
+                <div class="cutter-mojo">
+                    <img src="http://jayli.github.com/gallery/yuislide/assets/slide-1.jpg">
+                    <div class="cutter-content">
+                        <p>content</p>
+							<span>
+								text info
+							</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pannel">
+                <div class="cutter-mojo">
+                    <img src="http://jayli.github.com/gallery/yuislide/assets/slide-2.jpg">
+                </div>
+            </div>
+            <div class="tab-pannel">
+                <div class="cutter-mojo">
+                    <img src="http://jayli.github.com/gallery/yuislide/assets/slide-3.jpg">
+                </div>
+            </div>
+            <div class="tab-pannel">
+                <div class="cutter-mojo">
+                    <img src="http://jayli.github.com/gallery/yuislide/assets/slide-4.jpg">
+                </div>
+            </div>
+            <div class="tab-pannel">
+                <div class="cutter-mojo">
+                    <img src="http://jayli.github.com/gallery/yuislide/assets/slide-5.jpg">
+                </div>
+            </div>
+            <div class="tab-pannel">
+                <div class="cutter-mojo">
+                    <img src="http://jayli.github.com/gallery/yuislide/assets/slide-6.jpg">
+                </div>
+            </div>
+        </div>
+        <a href="javascript:void(0);" class="prev" id="J_pre"><img
+                src="http://jayli.github.com/gallery/yuislide/assets/arrow-prev.png" width="24" height="43"
+                alt="Arrow Prev"></a>
+        <a href="javascript:void(0);" class="next" id="J_next"><img
+                src="http://jayli.github.com/gallery/yuislide/assets/arrow-next.png" width="24" height="43"
+                alt="Arrow Next"></a>
+        <ul class="tab-nav pagination">
+            <li>
+                <a href="javascript:void(0);">1</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">2</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">3</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">4</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">5</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">6</a>
+            </li>
+        </ul>
+    </div>
+    <!--Slide控件结束-->
+    <img src="http://jayli.github.com/gallery/yuislide/assets/example-frame.png" width="739" height="341"
+         alt="Example Frame" id="frame">
+</div>
