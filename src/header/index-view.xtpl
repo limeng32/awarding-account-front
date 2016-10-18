@@ -32,7 +32,8 @@
                 </div>
 
                 <div id="u37" class="ax_text_field logininput">
-                    <input id="u37_input" type="password" value="" placeholder="请输入密码" iRequired="密码"/>
+                    <input id="u37_input" type="password" value="" placeholder="请输入密码" iRequired="密码"
+                           safe-password="safe-password" password-min-len="6" password-max-len="10"/>
                 </div>
 
                 <div id="u38" class="ax_shape">

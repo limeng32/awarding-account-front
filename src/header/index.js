@@ -46,7 +46,44 @@ module.exports = {
                 } else {
                     new AD({
                         type: 'alert',
-                        content: '邮件地址不要超过' + Number(attr) + '个字符'
+                        content: '邮件地址不要多于' + Number(attr) + '个字符'
+                    });
+                    defer.reject(self);
+                }
+                return defer.promise;
+            }).register('safe-password', function (value, attr, defer, field) {
+                var self = this;
+                var reg = /^(?!.*?&).*$/;
+                if (value.match(reg)) {
+                    defer.resolve(self);
+                } else {
+                    new AD({
+                        type: 'alert',
+                        content: '密码不能含有字符”&“'
+                    });
+                    defer.reject(self);
+                }
+                return defer.promise;
+            }).register('password-max-len', function (value, attr, defer, field) {
+                var self = this;
+                if (value.length<=Number(attr)) {
+                    defer.resolve(self);
+                } else {
+                    new AD({
+                        type: 'alert',
+                        content: '密码不要多于' + Number(attr) + '个字符'
+                    });
+                    defer.reject(self);
+                }
+                return defer.promise;
+            }).register('password-min-len', function (value, attr, defer, field) {
+                var self = this;
+                if (value.length>=Number(attr)) {
+                    defer.resolve(self);
+                } else {
+                    new AD({
+                        type: 'alert',
+                        content: '密码不要少于' + Number(attr) + '个字符'
                     });
                     defer.reject(self);
                 }
