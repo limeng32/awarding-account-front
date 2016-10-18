@@ -13,6 +13,7 @@ module.exports = {
         KISSY.use('kg/auth/2.0.6/plugin/msgs/style.css', function (S) {
             var formAuth = new Auth('#formAuth');
             formAuth.plug(new AuthMsgs());
+            formAuth.set('stopOnError',true);
             formAuth.register('iRequired', function (value, attr, defer, field) {
                 var self = this;
                 if (value != '') {
@@ -25,8 +26,36 @@ module.exports = {
                     defer.reject(self);
                 }
                 return defer.promise;
+            }).register('iEmail', function (value, attr, defer, field) {
+                var self = this;
+                var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                if (value.match(reg)) {
+                    defer.resolve(self);
+                } else {
+                    new AD({
+                        type: 'alert',
+                        content: '请输入正确的邮件地址'
+                    });
+                    defer.reject(self);
+                }
+                return defer.promise;
+            }).register('email-max-len', function (value, attr, defer, field) {
+                var self = this;
+                if (value.length<=Number(attr)) {
+                    defer.resolve(self);
+                } else {
+                    new AD({
+                        type: 'alert',
+                        content: '邮件地址不要超过' + Number(attr) + '个字符'
+                    });
+                    defer.reject(self);
+                }
+                return defer.promise;
             });
             formAuth.render();
         })
+        $('#u39').on('click',function(){
+            $('#submitButton').getDOMNode().click();
+        });
     }
 }
