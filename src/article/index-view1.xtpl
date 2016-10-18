@@ -1,13 +1,16 @@
 <div id="example">
-    <div id="slides"><!--Slide�ؼ���ʼ-->
+    <div id="slides">
         <div class="slides_container tab-content">
             <div class="tab-pannel">
                 <div class="cutter-mojo">
                     <img src="http://jayli.github.com/gallery/yuislide/assets/slide-1.jpg">
                     <div class="cutter-content">
-                        <p>content</p>
+                        <p>新型IP移动网络时间同步及回传网络地面定时传送技术研究及应用</p>
 							<span>
-								text info
+								荣获2015年科技进步一等奖（网络类）
+							</span>
+                            <span>
+								完成单位：北京分公司
 							</span>
                     </div>
                 </div>
@@ -15,26 +18,71 @@
             <div class="tab-pannel">
                 <div class="cutter-mojo">
                     <img src="http://jayli.github.com/gallery/yuislide/assets/slide-2.jpg">
+                    <div class="cutter-content">
+                        <p>“多接入网络协同和融合”3项ITU-T国际标准</p>
+							<span>
+								荣获2015年技术标准一等奖
+							</span>
+                            <span>
+								完成单位：联通研究院
+							</span>
+                    </div>
                 </div>
             </div>
             <div class="tab-pannel">
                 <div class="cutter-mojo">
                     <img src="http://jayli.github.com/gallery/yuislide/assets/slide-3.jpg">
+                    <div class="cutter-content">
+                        <p>《基于语义的物联网需求和框架》等16项ITU国际标准/企业标准/行业标准</p>
+							<span>
+								荣获2015年技术标准二等奖
+							</span>
+                            <span>
+								完成单位：联通系统集成公司
+							</span>
+                    </div>
                 </div>
             </div>
             <div class="tab-pannel">
                 <div class="cutter-mojo">
                     <img src="http://jayli.github.com/gallery/yuislide/assets/slide-4.jpg">
+                    <div class="cutter-content">
+                        <p>《VoLTE/VoWiFi/RCS系列标准》等31项GSMA国际/行业/企业标准</p>
+							<span>
+								荣获2015年技术标准一等奖
+							</span>
+                            <span>
+								完成单位：上海分公司
+							</span>
+                    </div>
                 </div>
             </div>
             <div class="tab-pannel">
                 <div class="cutter-mojo">
                     <img src="http://jayli.github.com/gallery/yuislide/assets/slide-5.jpg">
+                    <div class="cutter-content">
+                        <p>中国联通全光网络用户感知提升及业务创新应用部署</p>
+							<span>
+								荣获2015年科技进步一等奖（网络类）
+							</span>
+                            <span>
+								完成单位：山东分公司
+							</span>
+                    </div>
                 </div>
             </div>
             <div class="tab-pannel">
                 <div class="cutter-mojo">
                     <img src="http://jayli.github.com/gallery/yuislide/assets/slide-6.jpg">
+                    <div class="cutter-content">
+                        <p>中国联通科技评奖系统</p>
+							<span>
+								荣获2015年科技进步一等奖（IT类）
+							</span>
+                            <span>
+								完成单位：联通软件研究院
+							</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -65,7 +113,7 @@
             </li>
         </ul>
     </div>
-    <!--Slide�ؼ�����-->
+    <!--Slide控件结束-->
     <img src="http://jayli.github.com/gallery/yuislide/assets/example-frame.png" width="739" height="341"
          alt="Example Frame" id="frame">
 </div>

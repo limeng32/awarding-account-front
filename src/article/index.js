@@ -41,14 +41,6 @@ module.exports = {
                 in_speed: 0.5
             });
         }
-       // new Cutter(cutterDivs[6], {
-       //     animout_easing: 'easeOut',
-       //     in_speed: 0.5
-       // });
-       // new Cutter(cutterDivs[7], {
-       //     animout_easing: 'easeOut',
-       //     in_speed: 0.5
-       // });
         cutterContents.on('mouseover', function (e) {
             C.stop();
         }).on('mouseout', function (e) {
