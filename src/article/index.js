@@ -35,7 +35,6 @@ module.exports = {
         var cutterDivs = KISSY.all('#slides .cutter-mojo');
         var cutterContents = KISSY.all('#slides .cutter-content');
         for (var j = 0; j < cutterDivs.length; j++) {
-          console.log(cutterDivs[j])
           var c = new Cutter(cutterDivs[j], {
                 animout_easing: 'easeOut',
                 in_speed: 0.5
