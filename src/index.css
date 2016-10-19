@@ -198,6 +198,36 @@ header {
   visibility: hidden;
   word-wrap: break-word;
 }
+#v33 {
+  position: absolute;
+  left: 640px;
+  top: 12px;
+}
+#v33_img {
+  height: 28px;
+  width: 120px;
+}
+#v37 {
+  position: absolute;
+  left: 765px;
+  top: 11px;
+  width: 60px;
+  height: 20px;
+}
+#v37_input {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 110px;
+  height: 20px;
+  font-family: 'Arial Normal', 'Arial';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
+  text-decoration: none;
+  color: #000000;
+  text-align: left;
+}
 body {
   margin: 0px;
   background-image: url('../../account/images/index/bg.png');
@@ -425,6 +455,7 @@ strong {
   top: 0;
   width: 100%;
   height: 100%;
+  cursor: default;
 }
 .cutter-mojo .cutter-content p {
   background: #F2EDDF;

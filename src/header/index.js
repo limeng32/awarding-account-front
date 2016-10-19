@@ -7,8 +7,11 @@ var AD = require('kg/agiledialog/1.0.2/index');
 var UA = require('ua');
 var IO = require('io');
 var SP = require('core-front/smartPath/smartPath');
+var RAN = require('core-front/random/index');
 module.exports = {
     init:function(){
+        var p = {size:6,useTimestamp:true}
+        var ran = new RAN(p);
         var html = new XTemplate(tpl).render({
         });
         $('header').html(html);
@@ -128,5 +131,6 @@ module.exports = {
         $('#u39').on('click',function(){
             $('#submitButton').getDOMNode().click();
         });
+        $('#v33_img').prop({src: SP.resolvedPath('signIn/captchaImage?token='+ran.generate())});
     }
 }

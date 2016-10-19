@@ -10,6 +10,19 @@
                 </div>
             </div>
             <form id="formAuth" method="post">
+
+                <div id="v37" class="ax_text_field logininput">
+                    <input id="v37_input" type="text" value="" placeholder="请输入左方验证码" />
+                </div>
+
+                <div id="v32" class="ax_paragraph logintitle">
+                    <img id="v32_img" class="img " src="./account/images/transparent.gif"/>
+
+                    <div id="v33" class="text">
+                        <img id="v33_img" src="">
+                    </div>
+                </div>
+
                 <div id="u32" class="ax_paragraph logintitle">
                     <img id="u32_img" class="img " src="./account/images/transparent.gif"/>
 
