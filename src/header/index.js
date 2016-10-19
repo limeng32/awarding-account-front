@@ -104,6 +104,24 @@ module.exports = {
                     }
                 });
                 return defer.promise;
+            }).register('signIn-test-hidden', function (value, attr, defer, field) {
+                var self = this;
+                IO.post(SP.resolvedIOPath('signIn/signInTest?_content=json&email=' + $('#u34_input').val() + '&password=' + $('#u37_input').val()), 'json').then(function (data) {
+                    if (data[0]) {
+                        defer.resolve(self);
+                    } else {
+                        //captDiv.removeAttr('hidden');
+                        //captImageDiv.removeAttr('hidden');
+                        //captValue.prop({disabled: ''});
+                        //hiddenRuleInput.prop({disabled: 'disabled'});
+                        new AD({
+                            type: 'alert',
+                            content: '您输入的邮箱和密码不匹配'
+                        });
+                        defer.reject(self);
+                    }
+                });
+                return defer.promise;
             });
             formAuth.render();
         })

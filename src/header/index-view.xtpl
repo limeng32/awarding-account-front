@@ -43,7 +43,8 @@
                         <p><span>提交</span></p>
                     </div>
                 </div>
-                <input type="submit" value="a" id="submitButton" hidden="hidden">
+                <input type="submit" value="a" id="submitButton" hidden="hidden"/>
+                <input type="hidden" signIn-test-hidden="signIn-test-hidden"/>
             </form>
             <div id="u40" class="ax_image">
                 <img id="u40_img" class="img " src="./account/images/index/u40.png"/>
