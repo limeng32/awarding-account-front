@@ -20,7 +20,7 @@
 
                 <div id="u34" class="ax_text_field logininput">
                     <input id="u34_input" type="text" value="" name="email" iRequired="您的邮件地址" placeholder="您的邮件地址"
-                           iEmail="iEmail" email-max-len="100"/>
+                           iEmail="iEmail" email-max-len="100" email-exist="email-exist"/>
                 </div>
 
                 <div id="u35" class="ax_paragraph logintitle">

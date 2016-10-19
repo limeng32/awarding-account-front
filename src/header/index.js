@@ -5,6 +5,8 @@ var Auth = require('kg/auth/2.0.6/');
 var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/');
 var AD = require('kg/agiledialog/1.0.2/index');
 var UA = require('ua');
+var IO = require('io');
+var SP = require('core-front/smartPath/smartPath');
 module.exports = {
     init:function(){
         var html = new XTemplate(tpl).render({
@@ -87,6 +89,20 @@ module.exports = {
                     });
                     defer.reject(self);
                 }
+                return defer.promise;
+            }).register('email-exist', function (value, attr, defer, field) {
+                var self = this;
+                IO.post(SP.resolvedIOPath('signIn/checkExist?_content=json&email=' + value), 'json').then(function (data) {
+                    if (data[0]) {
+                        defer.resolve(self);
+                    } else {
+                        new AD({
+                            type: 'alert',
+                            content: '您输入的邮箱并不存在'
+                        });
+                        defer.reject(self);
+                    }
+                });
                 return defer.promise;
             });
             formAuth.render();
