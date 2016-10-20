@@ -1,5 +1,5 @@
 var $ = require('node').all;
-var tpl = require('./index-view1');
+var tpl = require('./index-view');
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Node = require('node');
 var Slide = require('kg/slide/2.0.2/');
