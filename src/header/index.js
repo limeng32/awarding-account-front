@@ -114,10 +114,8 @@ module.exports = {
                     if (data[0]) {
                         defer.resolve(self);
                     } else {
-                        //captDiv.removeAttr('hidden');
-                        //captImageDiv.removeAttr('hidden');
-                        //captValue.prop({disabled: ''});
-                        //hiddenRuleInput.prop({disabled: 'disabled'});
+                        needCaptcha();
+                        refreshCaptcha();
                         new AD({
                             type: 'alert',
                             content: '您输入的邮箱和密码不匹配'
@@ -143,15 +141,25 @@ module.exports = {
             });
             formAuth.render();
         })
+        var refreshCaptcha = function(){
+            oldToken = token;
+            token = ran.generate();
+            $('#v33_img').prop({src: SP.resolvedPath('signIn/captchaImage?token='+token+'&oldToken='+oldToken)});
+        }
+        var needCaptcha = function(){
+            if($('#v37_input').attr('disabled') == 'disabled'){
+                $('#v33').removeAttr('hidden');
+                $('#v37_input').removeAttr('hidden');
+                $('#v37_input').prop({disabled: ''});
+            }
+        }
         $('#u39').on('click',function(){
             $('#submitButton').getDOMNode().click();
         });
         token = ran.generate();
         $('#v33_img').prop({src: SP.resolvedPath('signIn/captchaImage?token='+token+'&oldToken=')});
         $('#v33_img').on('click',function(){
-            oldToken = token;
-            token = ran.generate();
-            $('#v33_img').prop({src: SP.resolvedPath('signIn/captchaImage?token='+token+'&oldToken='+oldToken)});
+            refreshCaptcha();
         })
     }
 }
