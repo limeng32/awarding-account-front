@@ -14,6 +14,7 @@ module.exports = {
         var ran = new RAN(p);
         var html = new XTemplate(tpl).render({
         });
+        var token = '',oldToken = '';
         $('header').html(html);
         KISSY.use('kg/auth/2.0.6/plugin/msgs/style.css', function (S) {
             var formAuth = new Auth('#formAuth');
@@ -125,12 +126,32 @@ module.exports = {
                     }
                 });
                 return defer.promise;
+            }).register('checkCaptcha', function (value, attr, defer, field) {
+                var self = this;
+                IO.post(SP.resolvedIOPath('signIn/testCaptcha?_content=json&value=' + $('#v37_input').val() + '&token=' + token), 'json').then(function (data) {
+                    if (data[0]) {
+                        defer.resolve(self);
+                    } else {
+                        new AD({
+                            type: 'alert',
+                            content: '您输入的验证码有误'
+                        });
+                        defer.reject(self);
+                    }
+                });
+                return defer.promise;
             });
             formAuth.render();
         })
         $('#u39').on('click',function(){
             $('#submitButton').getDOMNode().click();
         });
-        $('#v33_img').prop({src: SP.resolvedPath('signIn/captchaImage?token='+ran.generate())});
+        token = ran.generate();
+        $('#v33_img').prop({src: SP.resolvedPath('signIn/captchaImage?token='+token+'&oldToken=')});
+        $('#v33_img').on('click',function(){
+            oldToken = token;
+            token = ran.generate();
+            $('#v33_img').prop({src: SP.resolvedPath('signIn/captchaImage?token='+token+'&oldToken='+oldToken)});
+        })
     }
 }

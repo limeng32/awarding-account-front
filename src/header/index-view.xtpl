@@ -12,14 +12,14 @@
             <form id="formAuth" method="post">
 
                 <div id="v37" class="ax_text_field logininput">
-                    <input id="v37_input" type="text" value="" placeholder="请输入左方验证码" />
+                    <input id="v37_input" type="text" value="" placeholder="请输入左方验证码" iRequired="验证码" checkCaptcha="checkCaptcha"/>
                 </div>
 
                 <div id="v32" class="ax_paragraph logintitle">
                     <img id="v32_img" class="img " src="./account/images/transparent.gif"/>
 
                     <div id="v33" class="text">
-                        <img id="v33_img" src="">
+                        <img id="v33_img" src="" title="点我可刷新">
                     </div>
                 </div>
 
