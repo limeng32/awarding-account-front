@@ -269,6 +269,9 @@ body {
   font-size: small;
   cursor: pointer;
 }
+.focus {
+  font-weight: 700;
+}
 .form-horizontal .control-group {
   *zoom: 1;
   padding-top: 5px;

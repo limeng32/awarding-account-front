@@ -74,10 +74,13 @@ module.exports = {
             closeAction: 'hide'
         });
         ol.show();
+        ol.close();
         $('#v2').on('click', function (e) {
             if(ol.get('visible')){
+                $('#v3').removeClass('focus');
                 ol.close();
             }else{
+                $('#v3').addClass('focus');
                 ol.show();
             }
         })
