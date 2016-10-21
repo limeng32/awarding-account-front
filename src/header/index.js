@@ -16,7 +16,7 @@ module.exports = {
         });
         var token = '',oldToken = '';
         $('header').html(html);
-        KISSY.use('kg/auth/2.0.6/plugin/msgs/style.css', function (S) {
+        KISSY.use('', function (S) {
             var formAuth = new Auth('#formAuth');
             formAuth.plug(new AuthMsgs());
             formAuth.set('stopOnError',true);

@@ -1,1 +1,27 @@
-<input type="text">
+<form class="form-horizontal" method="post" action="" id="J_Auth">
+    <div class="control-group">
+        <label class="control-label">邮件地址：</label>
+
+        <div class="controls">
+            <input type="text" required="" required-msg="邮件地址不能为空" max-len="100" email="email"
+                   changePass-email-exist="changePass-email-exist" id="changePassEmail">
+        </div>
+    </div>
+    <div class="control-group" id="bidi-form-17">
+        <label class="control-label">验证码：</label>
+
+        <div class="controls">
+            <input type="text" required="" required-msg="验证码不能为空" id="changePassCaptchaValue"
+                   changePass-checkCaptcha="changePass-checkCaptcha">
+            <span id="getChangePassCaptcha">获取验证码</span>
+            <span id="changePassCaptcha">
+                <img id="changePassCaptcha_img" src="" title="点我可刷新" hidden="hidden">
+            </span>
+        </div>
+    </div>
+    <input hidden="hidden" id="sendEmail" sendEmail="sendEmail" sendEmail-msg="#sendEmailMsg">
+    <input id="needAFail" hidden="hidden" needAFail="needAFail"/>
+    <div class="form-actions">
+        <input class="ks-button ks-button-primary ks-button-shown" type="submit" value="提交">
+    </div>
+</form>

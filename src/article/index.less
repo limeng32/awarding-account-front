@@ -41,6 +41,97 @@ body {
   font-size: small;
   cursor: pointer;
 }
+
+.form-horizontal .control-group {
+  *zoom: 1;
+  padding-top: 5px;
+  margin-bottom: 1px;
+}
+
+.form-horizontal .control-group:before,
+.form-horizontal .control-group:after {
+  display: table;
+  content: "";
+}
+
+.form-horizontal .control-group:after {
+  clear: both;
+}
+
+.form-horizontal .control-label {
+  float: left;
+  width: 100px;
+  padding-top: 5px;
+  text-align: right;
+}
+
+.form-horizontal .controls {
+  margin-left: 100px;
+}
+
+.form-horizontal .help-block {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.form-horizontal .form-actions {
+  margin-top: 8px;
+  padding-left: 100px;
+}
+
+#J_UseMsg {
+}
+
+.auth-msg {
+  margin-top: 18px;
+  padding: 8px 36px;
+  font-size: 12px;
+  line-height: 13px;
+  color: #333;
+  background: url("http://a.tbcdn.cn/sys/common/img/msg_bg.png") no-repeat;
+}
+
+.auth-error {
+  border: 1px solid #ffe1cc;
+  background-position: 8px 6px;
+  background-color: #fff2f2;
+}
+
+.auth-success {
+  background-position: 8px -245px;
+  border: 1px solid #a4da2e;
+  background-color: #f0ffe5;
+}
+
+.auth-warn {
+  background-position: 8px -145px;
+  border: 1px solid #9bc9e8;
+  background-color: #e6f1f9;
+}
+
+#changePassCaptchaValue {
+  width: 50px;
+}
+
+#changePassEmail {
+  width: 220px;
+  font-weight: 700;
+  color: #000000;
+}
+
+#getChangePassCaptcha {
+  cursor: pointer;
+}
+#changePassCaptcha {
+}
+#changePassCaptcha_img{
+  cursor: pointer;
+  height: 25px;
+  width: 130px;
+  padding-bottom: 0px;
+  margin-bottom: 2px;
+  vertical-align: bottom;
+}
 @import '../slider/slider';
 @import '../cutter/cutter';
 @import '../overlay/overlay';
