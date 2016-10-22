@@ -1,3 +1,4 @@
+<div id="base">
 <div id="v1" class="ax_paragraph">
     <img id="v1_img" class="img " src="./account/images/transparent.gif"/>
 
@@ -105,4 +106,5 @@
     </div>
     <img src="./account/images/index/u12.png" width="739" height="341"
          alt="Example Frame" id="frame">
+</div>
 </div>

@@ -139,6 +139,7 @@ module.exports = {
         }).register('needAFail', function (value, attr, defer, field) {
             var self = this;
             $('#icpv5').getDOMNode().click();
+            authMsgs.getMsg('icpv3').hide();
             authMsgs.getMsg('icpv3').show('success','修改密码的邮件已发送,请您查收');
             defer.reject(self);
             return defer.promise;
