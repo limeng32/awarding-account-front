@@ -68,9 +68,9 @@ module.exports = {
             target:'#v2',
             content: index_changePass,
             visible: true,
-            xy: [1000, 85],
-            width: '340px',
-            height:'320px',
+            xy: [1050, 85],
+            width: '290px',
+            height:'256px',
             closeAction: 'hide'
         });
         ol.show();
@@ -115,7 +115,7 @@ module.exports = {
             return defer.promise;
         }).register('changePass-checkCaptcha', function (value, attr, defer, field) {
             var self = this;
-            IO.post(SP.resolvedIOPath('signIn/testCaptcha?_content=json&value=' + $('#changePassCaptchaValue').val() + '&token=' + changePasstoken), 'json').then(function (data) {
+            IO.post(SP.resolvedIOPath('signIn/testCaptcha?_content=json&value=' + $('#icpv1').val() + '&token=' + changePasstoken), 'json').then(function (data) {
                 if (data[0]) {
                     defer.resolve(self);
                 } else {
@@ -126,7 +126,7 @@ module.exports = {
             return defer.promise;
         }).register('sendEmail', function (value, attr, defer, field) {
             var self = this;
-            //IO.post(SP.resolvedIOPath('signIn/testCaptcha?_content=json&value=' + $('#changePassCaptchaValue').val() + '&token=' + changePasstoken), 'json').then(function (data) {
+            //IO.post(SP.resolvedIOPath('signIn/testCaptcha?_content=json&value=' + $('#icpv1').val() + '&token=' + changePasstoken), 'json').then(function (data) {
             //    if (data[0]) {
             //        defer.resolve(self);
             //    } else {
@@ -138,8 +138,8 @@ module.exports = {
             return defer.promise;
         }).register('needAFail', function (value, attr, defer, field) {
             var self = this;
-            $('#getChangePassCaptcha').getDOMNode().click();
-            authMsgs.getMsg('sendEmail').show('success','修改密码的邮件已发送，请您注意查收！');
+            $('#icpv5').getDOMNode().click();
+            authMsgs.getMsg('icpv3').show('success','修改密码的邮件已发送,请您查收');
             defer.reject(self);
             return defer.promise;
         });
@@ -147,20 +147,20 @@ module.exports = {
         var refreshCaptcha = function(){
             oldChangePassToken = changePasstoken;
             changePasstoken = ran.generate();
-            $('#changePassCaptcha_img').prop({src: SP.resolvedPath('signIn/captchaImage?token='+changePasstoken+'&oldToken='+oldChangePassToken)});
+            $('#icpv6_img').prop({src: SP.resolvedPath('signIn/captchaImage?token='+changePasstoken+'&oldToken='+oldChangePassToken)});
         }
-        $('#getChangePassCaptcha').on('click',function(){
-            if($('#getChangePassCaptcha').attr('hidden') != 'hidden'){
-                $('#changePassCaptcha_img').removeAttr('hidden');
-                $('#getChangePassCaptcha').attr('hidden','hidden');
+        $('#icpv5').on('click',function(){
+            if($('#icpv5').attr('hidden') != 'hidden'){
+                $('#icpv6_img').removeAttr('hidden');
+                $('#icpv5').attr('hidden','hidden');
                 refreshCaptcha();
             }else{
-                 $('#getChangePassCaptcha').removeAttr('hidden');
-                 $('#changePassCaptcha_img').attr('hidden','hidden');
-                 $('#changePassCaptchaValue').getDOMNode().value = '';
+                 $('#icpv5').removeAttr('hidden');
+                 $('#icpv6_img').attr('hidden','hidden');
+                 $('#icpv1').getDOMNode().value = '';
             }
         })
-        $('#changePassCaptcha_img').on('click',function(){
+        $('#icpv6_img').on('click',function(){
             refreshCaptcha();
         })
     })
