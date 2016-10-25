@@ -19,14 +19,14 @@
             </span>
         </div>
     </div>
-    <input id="icpv4" hidden="hidden" needAFail="needAFail"/>
-    <div class="form-actions">
-        <input class="ks-button ks-button-primary ks-button-shown" type="submit" value="提交">
-    </div>
     <div class="">
         <label class="control-label"></label>
         <div class="controls-hidden">
             <input hidden="hidden" id="icpv3" sendEmail="sendEmail" sendEmail-msg="#sendEmailMsg">
         </div>
+    </div>
+    <input id="icpv4" hidden="hidden" needAFail="needAFail"/>
+    <div class="form-actions">
+        <input class="ks-button ks-button-primary ks-button-shown" type="submit" value="提交">
     </div>
 </form>

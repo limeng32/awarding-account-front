@@ -126,20 +126,20 @@ module.exports = {
             return defer.promise;
         }).register('sendEmail', function (value, attr, defer, field) {
             var self = this;
-            //IO.post(SP.resolvedIOPath('signIn/testCaptcha?_content=json&value=' + $('#icpv1').val() + '&token=' + changePasstoken), 'json').then(function (data) {
-            //    if (data[0]) {
-            //        defer.resolve(self);
-            //    } else {
-            //        self.msg('error', '您输入的验证码有误');
-            //        defer.reject(self);
-            //    }
-            //});
+            IO.post(SP.resolvedIOPath('signIn/resetPassword?_content=json&email=' + $('#icpv2').val() + '&token=' + changePasstoken), 'json').then(function (data) {
+                if (data[0]) {
+                    defer.resolve(self);
+                } else {
+                    self.msg('error', '发送邮件失败');
+                    defer.reject(self);
+                }
+            });
             defer.resolve(self);
             return defer.promise;
         }).register('needAFail', function (value, attr, defer, field) {
             var self = this;
             $('#icpv5').getDOMNode().click();
-            authMsgs.getMsg('icpv3').hide();
+            //authMsgs.getMsg('icpv3').hide();
             authMsgs.getMsg('icpv3').show('success','修改密码的邮件已发送,请您查收');
             defer.reject(self);
             return defer.promise;
