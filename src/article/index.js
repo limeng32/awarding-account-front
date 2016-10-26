@@ -70,7 +70,7 @@ module.exports = {
             visible: true,
             xy: [1050, 85],
             width: '290px',
-            height:'256px',
+            height:'270px',
             closeAction: 'hide'
         });
         ol.show();
@@ -140,7 +140,7 @@ module.exports = {
                     defer.resolve(self);
                 } else {
                     if(data[0].message!=null){
-                        self.msg('error', data[0].message);
+                        authMsgs.getMsg(field.get('name')).show('error',data[0].message);
                     }
                     defer.reject(self);
                 }
