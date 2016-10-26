@@ -27,6 +27,6 @@
     </div>
     <input id="icpv4" hidden="hidden" needAFail="needAFail"/>
     <div class="form-actions">
-        <input class="ks-button ks-button-primary ks-button-shown" type="submit" value="提交">
+        <input class="ks-button ks-button-primary ks-button-shown" type="submit" value="发送">
     </div>
 </form>

@@ -132,10 +132,16 @@ module.exports = {
         }).register('sendEmail', function (value, attr, defer, field) {
             var self = this;
             IO.post(SP.resolvedIOPath('signIn/resetPassword?_content=json&email=' + $('#icpv2').val() + '&token=' + changePasstoken), 'json').then(function (data) {
-                if (data[0]) {
+                if (data[0].flag) {
+                    if(data[0].message!=null){
+                        self.msg('success', data[0].message);
+                        authMsgs.getMsg(field.get('name')).show('success',data[0].message);
+                    }
                     defer.resolve(self);
                 } else {
-                    self.msg('error', '发送邮件失败');
+                    if(data[0].message!=null){
+                        self.msg('error', data[0].message);
+                    }
                     defer.reject(self);
                 }
             });
@@ -144,8 +150,6 @@ module.exports = {
         }).register('needAFail', function (value, attr, defer, field) {
             var self = this;
             $('#icpv5').getDOMNode().click();
-            authMsgs.getMsg('icpv3').hide();
-            authMsgs.getMsg('icpv3').show('success','修改密码的邮件已发送,请您查收');
             defer.reject(self);
             return defer.promise;
         });
