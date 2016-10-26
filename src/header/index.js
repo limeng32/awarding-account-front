@@ -127,12 +127,15 @@ module.exports = {
             }).register('checkCaptcha', function (value, attr, defer, field) {
                 var self = this;
                 IO.post(SP.resolvedIOPath('signIn/testCaptcha?_content=json&value=' + $('#v37_input').val() + '&token=' + token), 'json').then(function (data) {
-                    if (data[0]) {
-                        defer.resolve(self);
-                    } else {
+                   if (data[0].flag) {
+                       if(data[0].message!=null){
+                           self.msg('success', data[0].message);
+                       }
+                       defer.resolve(self);
+                   } else {
                         new AD({
                             type: 'alert',
-                            content: '您输入的验证码有误'
+                            content: data[0].message
                         });
                         defer.reject(self);
                     }
