@@ -11,7 +11,7 @@
         <div class="slides_container tab-content">
             <div class="tab-pannel">
                 <div class="cutter-mojo">
-                    <img src="./account/images/index/u2.jpg">
+                    <img class="img" src="./account/images/index/u2.jpg">
                     <div class="cutter-content">
                         <p>新型IP移动网络时间同步及回传网络地面定时传送技术研究及应用</p>
 							<span>
@@ -25,7 +25,7 @@
             </div>
             <div class="tab-pannel">
                 <div class="cutter-mojo">
-                    <img src="./account/images/index/u4.jpg">
+                    <img class="img" src="./account/images/index/u4.jpg">
                     <div class="cutter-content">
                         <p>“多接入网络协同和融合”3项ITU-T国际标准</p>
 							<span>
@@ -39,7 +39,7 @@
             </div>
             <div class="tab-pannel">
                 <div class="cutter-mojo">
-                    <img src="./account/images/index/u6.jpg">
+                    <img class="img" src="./account/images/index/u6.jpg">
                     <div class="cutter-content">
                         <p>《基于语义的物联网需求和框架》等16项ITU国际标准/企业标准/行业标准</p>
 							<span>
@@ -53,7 +53,7 @@
             </div>
             <div class="tab-pannel">
                 <div class="cutter-mojo">
-                    <img src="./account/images/index/u8.jpg">
+                    <img class="img" src="./account/images/index/u8.jpg">
                     <div class="cutter-content">
                         <p>《VoLTE/VoWiFi/RCS系列标准》等31项GSMA国际/行业/企业标准</p>
 							<span>
@@ -67,7 +67,7 @@
             </div>
             <div class="tab-pannel">
                 <div class="cutter-mojo">
-                    <img src="./account/images/index/u10.jpg">
+                    <img class="img" src="./account/images/index/u10.jpg">
                     <div class="cutter-content">
                         <p>中国联通全光网络用户感知提升及业务创新应用部署</p>
 							<span>
@@ -80,10 +80,10 @@
                 </div>
             </div>
         </div>
-        <a href="javascript:void(0);" class="prev" id="J_pre"><img
+        <a href="javascript:void(0);" class="prev" id="J_pre"><img class="img"
                 src="./account/images/index/u14.png" width="24" height="43"
                 alt="Arrow Prev"></a>
-        <a href="javascript:void(0);" class="next" id="J_next"><img
+        <a href="javascript:void(0);" class="next" id="J_next"><img class="img"
                 src="./account/images/index/u16.png" width="24" height="43"
                 alt="Arrow Next"></a>
         <ul class="tab-nav pagination">
@@ -104,7 +104,7 @@
             </li>
         </ul>
     </div>
-    <img src="./account/images/index/u12.png" width="739" height="341"
+    <img class="img" src="./account/images/index/u12.png" width="739" height="341"
          alt="Example Frame" id="frame">
 </div>
 </div>

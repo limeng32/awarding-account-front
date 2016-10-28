@@ -25,6 +25,7 @@ module.exports = {
         });
         var changePasstoken = '',oldChangePassToken = '';
         $('article').html(html);
+        SP.resolveImgSrc('.img');
         var C = new Slide('slides', {
             autoSlide: true,
             effect: 'hSlide',
