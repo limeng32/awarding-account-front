@@ -4,6 +4,6 @@ KISSY.use('awarding-account-front/error.css', function (S) {
     header.init();
 
 //初始化article模块
-    var article = require('./article/index');
+    var article = require('./article/error');
     article.init();
 })

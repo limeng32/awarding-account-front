@@ -229,20 +229,6 @@ header {
   color: #000000;
   text-align: left;
 }
-body {
-  margin: 0px;
-  background-image: url('../../account/images/index/bg.png');
-  background-position: center center;
-  background-repeat: repeat;
-  background-attachment: fixed;
-  background-size: auto;
-  position: static;
-  left: auto;
-  width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-  text-align: left;
-}
 #base {
   margin-top: 100px;
 }
@@ -353,6 +339,20 @@ body {
   padding-bottom: 0px;
   margin-bottom: 2px;
   vertical-align: bottom;
+}
+body {
+  margin: 0px;
+  background-image: url('../../account/images/index/bg.png');
+  background-position: center center;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: auto;
+  position: static;
+  left: auto;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
 }
 .tab-content {
   height: 270px;
