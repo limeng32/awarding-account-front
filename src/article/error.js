@@ -16,11 +16,11 @@ var SP = require('core-front/smartPath/smartPath');
 var AD = require('kg/agiledialog/1.0.2/index');
 module.exports = {
     init: function () {
-        //SP.resolveImgSrc('.img');
+        SP.resolveImgSrc('.img');
         var mainDiv = new Node('<div>').addClass('articleMiddle');
         $('article').append(mainDiv);
         if (reason == '') {
-            reason = '您的帐号遇到了问题，请联系管理员';
+            reason = '鏈煡寮傚父';
         }
         mainDiv.html(reason);
     }
