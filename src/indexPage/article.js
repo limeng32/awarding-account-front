@@ -1,6 +1,7 @@
 var $ = require('node').all;
 var tpl = require('./article-view');
 var index_changePassTpl = require('./index_changePass-view');
+var signUpTpl = require('./signUp-view');
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Node = require('node');
 var Slide = require('kg/slide/2.0.2/');
@@ -23,6 +24,7 @@ module.exports = {
         });
         var index_changePass = new XTemplate(index_changePassTpl).render({
         });
+        var signUp = new XTemplate(signUpTpl).render({});
         var changePasstoken = '',oldChangePassToken = '';
         $('article').html(html);
         SP.resolveImgSrc('.img');
@@ -83,6 +85,10 @@ module.exports = {
             }else{
                 $('#v3').addClass('focus');
                 ol.show();
+            }
+            if (ol2.get('visible')) {
+                $('#v6').removeClass('focus');
+                ol2.close();
             }
         })
         var auth = new Auth('#J_Auth',{
@@ -173,6 +179,34 @@ module.exports = {
         })
         $('#icpv6_img').on('click',function(){
             refreshCaptcha();
+        })
+
+        var ol2 = new OVL({
+            effect: 'slide',    // {String} - 可选, 默认为'none', 'none'(无特效), 'fade'(渐隐显示), 'slide'(滑动显示).
+            easing: 'linear',        // {String} - 可选, 同 KISSY.Anim 的 easing 参数配置.
+            duration: 10,        // {Number} - 可选, 动画持续时间, 以秒为单位.
+            target: '#v5',
+            content: signUp,
+            visible: true,
+            xy: [1040, 85],
+            width: '290px',
+            height: '370px',
+            closeAction: 'hide'
+        });
+        ol2.show();
+        ol2.close();
+        $('#v5').on('click', function (e) {
+            if (ol2.get('visible')) {
+                $('#v6').removeClass('focus');
+                ol2.close();
+            } else {
+                $('#v6').addClass('focus');
+                ol2.show();
+            }
+            if (ol.get('visible')) {
+                $('#v3').removeClass('focus');
+                ol.close();
+            }
         })
     })
     }
