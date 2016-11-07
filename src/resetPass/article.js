@@ -20,7 +20,9 @@ module.exports = {
         if (ai.existChecked()) {
             ai.acquireAccount(SP.resolvedIOPath('getAccount?_content=json'), function (account) {
                 var html = new XTemplate(tpl).render({
-                    account: account
+                    account: account,
+                    rplId: rplId,
+                    rplToken: rplToken
                 });
                 var mainDiv = new Node('<div>').addClass('articleMiddle');
                 $('article').append(mainDiv);
@@ -33,8 +35,39 @@ module.exports = {
                 var authMsgs = new AuthMsgs();
                 auth.plug(authMsgs);
                 auth.set('stopOnError',true);
-
+                auth.register('safe-password', function (value, attr, defer, field) {
+                    var self = this;
+                    var reg = /^(?!.*?&).*$/;
+                    if (value.match(reg)) {
+                        defer.resolve(self);
+                    } else {
+                        self.msg('error', '密码不能含有字符”&“');
+                        defer.reject(self);
+                    }
+                    return defer.promise;
+                }).register('password-max-len', function (value, attr, defer, field) {
+                    var self = this;
+                    if (value.length <= Number(attr)) {
+                        defer.resolve(self);
+                    } else {
+                        self.msg('error', '密码不要多于' + Number(attr) + '个字符');
+                        defer.reject(self);
+                    }
+                    return defer.promise;
+                }).register('password-min-len', function (value, attr, defer, field) {
+                    var self = this;
+                    if (value.length >= Number(attr)) {
+                        defer.resolve(self);
+                    } else {
+                        self.msg('error', '密码不要少于' + Number(attr) + '个字符');
+                        defer.reject(self);
+                    }
+                    return defer.promise;
+                });
                 auth.render();
+                $('#resetPass').prop({
+                    action: SP.resolvedPath('account/resetPassword')
+                })
             });
             SP.resolveImgSrc('.img');
         }
