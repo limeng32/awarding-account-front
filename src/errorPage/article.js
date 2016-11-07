@@ -1,6 +1,4 @@
 var $ = require('node').all;
-var tpl = require('./index-view');
-var index_changePassTpl = require('./index_changePass-view');
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Node = require('node');
 var Slide = require('kg/slide/2.0.2/');

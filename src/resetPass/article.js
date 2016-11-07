@@ -1,5 +1,5 @@
 var $ = require('node').all;
-var tpl = require('./resetPassword-view');
+var tpl = require('./../resetPass/resetPassword-view');
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Node = require('node');
 var Slide = require('kg/slide/2.0.2/');
@@ -25,6 +25,16 @@ module.exports = {
                 var mainDiv = new Node('<div>').addClass('articleMiddle');
                 $('article').append(mainDiv);
                 mainDiv.append(html);
+                var auth = new Auth('#resetPass',{
+                    fnFilter:function($field){
+                        return $field.attr('type') == 'hidden';
+                    }
+                });
+                var authMsgs = new AuthMsgs();
+                auth.plug(authMsgs);
+                auth.set('stopOnError',true);
+
+                auth.render();
             });
             SP.resolveImgSrc('.img');
         }

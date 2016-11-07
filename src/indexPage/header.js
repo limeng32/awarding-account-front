@@ -1,5 +1,5 @@
 var $ = require('node').all;
-var tpl = require('./index-view');
+var tpl = require('./header-view');
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Auth = require('kg/auth/2.0.6/');
 var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/');
