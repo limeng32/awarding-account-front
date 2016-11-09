@@ -39,10 +39,10 @@
         <label class="control-label"></label>
 
         <div class="controls-hidden">
-            <input hidden="hidden" id="isuv3" sendEmail="sendEmail" sendEmail-msg="#sendEmailMsg">
+            <input hidden="hidden" id="isuv3" sendEmail2="sendEmail2" sendEmail-msg="#sendEmailMsg">
         </div>
     </div>
-    <input id="isuv4" hidden="hidden" needAFail="needAFail"/>
+    <input id="isuv4" hidden="hidden" needAFail2="needAFail2"/>
 
     <div class="form-actions">
         <input class="ks-button ks-button-primary ks-button-shown" type="submit" value="发送">

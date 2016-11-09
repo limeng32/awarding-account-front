@@ -252,6 +252,40 @@ module.exports = {
                     }
                 });
                 return defer.promise;
+            }).register('email-not-exist', function (value, attr, defer, field) {
+                var self = this;
+                IO.post(SP.resolvedIOPath('signUp/checkNotExist?_content=json&email=' + value), 'json').then(function (data) {
+                    if (data[0].flag) {
+                        defer.resolve(self);
+                    } else {
+                        self.msg('error', data[0].message);
+                        defer.reject(self);
+                    }
+                });
+                return defer.promise;
+            }).register('needAFail2', function (value, attr, defer, field) {
+                var self = this;
+                $('#isuv5').getDOMNode().click();
+                defer.reject(self);
+                return defer.promise;
+            }).register('sendEmail2', function (value, attr, defer, field) {
+                var self = this;
+                IO.post(SP.resolvedIOPath('signUp/sendEmail?_content=json&email=' + $('#isuv2').val() + '&password=' + $('#isuv7').val() + '&token=' + signUptoken), 'json').then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            self.msg('success', data[0].message);
+                            authMsgs2.getMsg(field.get('name')).show('success', data[0].message);
+                        }
+                        defer.resolve(self);
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs2.getMsg(field.get('name')).show('error', data[0].message);
+                        }
+                        defer.reject(self);
+                    }
+                });
+                defer.resolve(self);
+                return defer.promise;
             });
             auth2.render();
             $('#isuv5').on('click', function () {
