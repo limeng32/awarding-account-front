@@ -24,6 +24,7 @@ module.exports = {
             var index_changePass = new XTemplate(index_changePassTpl).render({});
             var signUp = new XTemplate(signUpTpl).render({});
             var changePasstoken = '', oldChangePassToken = '', signUptoken = '', oldSignUpToken = '';
+            var token = '', oldToken = '';
             $('article').html(html);
             SP.resolveImgSrc('.img');
             var C = new Slide('slides', {
@@ -69,7 +70,7 @@ module.exports = {
                 target: '#v2',
                 content: index_changePass,
                 visible: true,
-                xy: [1050, 85],
+                xy: [1050, 105],
                 width: '290px',
                 height: '270px',
                 closeAction: 'hide'
@@ -188,7 +189,7 @@ module.exports = {
                 target: '#v5',
                 content: signUp,
                 visible: true,
-                xy: [1040, 85],
+                xy: [1040, 105],
                 width: '290px',
                 height: '420px',
                 closeAction: 'hide'
@@ -308,6 +309,129 @@ module.exports = {
             }
             $('#isuv6_img').on('click', function () {
                 refreshCaptcha2();
+            })
+
+            var formAuth = new Auth('#formAuth');
+            formAuth.plug(new AuthMsgs());
+            formAuth.set('stopOnError', true);
+            formAuth.register('iRequired', function (value, attr, defer, field) {
+                var self = this;
+                if (value != '') {
+                    defer.resolve(self);
+                } else {
+                    self.msg('error', attr + '不可以为空');
+                    defer.reject(self);
+                }
+                return defer.promise;
+            }).register('iEmail', function (value, attr, defer, field) {
+                var self = this;
+                var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                if (value.match(reg)) {
+                    defer.resolve(self);
+                } else {
+                    self.msg('error', '请输入正确的邮件地址');
+                    defer.reject(self);
+                }
+                return defer.promise;
+            }).register('email-max-len', function (value, attr, defer, field) {
+                var self = this;
+                if (value.length <= Number(attr)) {
+                    defer.resolve(self);
+                } else {
+                    self.msg('error', '邮件地址不要多于' + Number(attr) + '个字符');
+                    defer.reject(self);
+                }
+                return defer.promise;
+            }).register('safe-password', function (value, attr, defer, field) {
+                var self = this;
+                var reg = /^(?!.*?&).*$/;
+                if (value.match(reg)) {
+                    defer.resolve(self);
+                } else {
+                    self.msg('error', '密码不能含有字符”&“');
+                    defer.reject(self);
+                }
+                return defer.promise;
+            }).register('password-max-len', function (value, attr, defer, field) {
+                var self = this;
+                if (value.length <= Number(attr)) {
+                    defer.resolve(self);
+                } else {
+                    self.msg('error', '密码不要多于' + Number(attr) + '个字符');
+                    defer.reject(self);
+                }
+                return defer.promise;
+            }).register('password-min-len', function (value, attr, defer, field) {
+                var self = this;
+                if (value.length >= Number(attr)) {
+                    defer.resolve(self);
+                } else {
+                    self.msg('error', '密码不要少于' + Number(attr) + '个字符');
+                    defer.reject(self);
+                }
+                return defer.promise;
+            }).register('email-exist', function (value, attr, defer, field) {
+                var self = this;
+                IO.post(SP.resolvedIOPath('signIn/checkExist?_content=json&email=' + value), 'json').then(function (data) {
+                    if (data[0]) {
+                        defer.resolve(self);
+                    } else {
+                        self.msg('error', '您输入的邮箱并不存在');
+                        defer.reject(self);
+                    }
+                });
+                return defer.promise;
+            }).register('signIn-test-hidden', function (value, attr, defer, field) {
+                var self = this;
+                IO.post(SP.resolvedIOPath('signIn/signInTest?_content=json&email=' + $('#u134_input').val() + '&password=' + $('#u137_input').val()), 'json').then(function (data) {
+                    if (data[0]) {
+                        defer.resolve(self);
+                    } else {
+                        needCaptcha3();
+                        refreshCaptcha3();
+                        new AD({
+                            type: 'alert',
+                            content: '您输入的邮箱和密码不匹配'
+                        });
+                        defer.reject(self);
+                    }
+                });
+                return defer.promise;
+            }).register('checkCaptcha', function (value, attr, defer, field) {
+                var self = this;
+                IO.post(SP.resolvedIOPath('signIn/testCaptcha?_content=json&value=' + $('#v137_input').val() + '&token=' + token), 'json').then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            self.msg('success', data[0].message);
+                        }
+                        defer.resolve(self);
+                    } else {
+                        self.msg('error', data[0].message);
+                        defer.reject(self);
+                    }
+                });
+                return defer.promise;
+            });
+            formAuth.render();
+            $('#u139').on('click', function () {
+                $('#submitButton1').getDOMNode().click();
+            });
+            var refreshCaptcha3 = function () {
+                oldToken = token;
+                token = ran.generate();
+                $('#v133_img').prop({src: SP.resolvedPath('signIn/captchaImage?token=' + token + '&oldToken=' + oldToken)});
+            }
+            var needCaptcha3 = function () {
+                if ($('#v137_input').attr('disabled') == 'disabled') {
+                    $('#v133').removeAttr('hidden');
+                    $('#v137_input').removeAttr('hidden');
+                    $('#v137_input').prop({disabled: ''});
+                }
+            }
+            token = ran.generate();
+            $('#v133_img').prop({src: SP.resolvedPath('signIn/captchaImage?token=' + token + '&oldToken=')});
+            $('#v133_img').on('click', function () {
+                refreshCaptcha3();
             })
         })
     }

@@ -122,3 +122,76 @@
              alt="Example Frame" id="frame">
     </div>
 </div>
+
+<form id="formAuth" method="post">
+
+    <div id="v137" class="ax_text_field logininput">
+        <input id="v137_input" type="text" value="" placeholder="请输入验证码" iRequired="验证码"
+               checkCaptcha="checkCaptcha" disabled="disabled" hidden="hidden" msg-wrapper="#u149"/>
+    </div>
+
+    <div id="v132" class="ax_paragraph logintitle">
+        <img id="v132_img" class="img " src="./account/images/transparent.gif"/>
+
+        <div id="v133" class="text" hidden="hidden">
+            <img id="v133_img" src="" title="点我可刷新">
+        </div>
+    </div>
+
+    <div id="u132" class="ax_paragraph logintitle">
+        <img id="u132_img" class="img " src="./account/images/transparent.gif"/>
+
+        <div id="u133" class="text">
+            <p><span style="font-family:'幼圆 Bold', '幼圆';font-weight:700;color: #fff;">账号</span></p>
+        </div>
+    </div>
+
+    <div id="u134" class="ax_text_field logininput">
+        <input id="u134_input" type="text" value="" name="email" iRequired="您的邮件地址" placeholder="您的邮件地址"
+               iEmail="iEmail" email-max-len="100" email-exist="email-exist" msg-wrapper="#u146"/>
+    </div>
+
+    <div id="u135" class="ax_paragraph logintitle">
+        <img id="u135_img" class="img " src="./account/images/transparent.gif"/>
+
+        <div id="u136" class="text">
+            <p><span style="font-family:'幼圆 Bold', '幼圆';font-weight:700;color: #fff;">密码</span></p>
+        </div>
+    </div>
+
+    <div id="u137" class="ax_text_field logininput">
+        <input id="u137_input" type="password" value="" placeholder="请输入密码" iRequired="密码"
+               safe-password="safe-password" password-min-len="6" password-max-len="10" msg-wrapper="#u147"/>
+    </div>
+
+    <div id="u138" class="ax_shape">
+        <img id="u138_img" class="img " src="./account/images/index/u38.png"/>
+
+        <div id="u139" class="text">
+            <p><span>提交</span></p>
+        </div>
+    </div>
+    <input type="submit" value="a" id="submitButton1" hidden="hidden"/>
+    <input type="hidden" signIn-test-hidden="signIn-test-hidden"/>
+</form>
+<div id="u145" class="ax_paragraph logintitle">
+    <img id="u145_img" class="img " src="./account/images/transparent.gif"/>
+
+    <div id="u146" class="text">
+        <p><span style="font-family:'幼圆 Bold', '幼圆';font-weight:700;"></span></p>
+    </div>
+</div>
+<div id="u147" class="ax_paragraph logintitle">
+    <img id="u147_img" class="img " src="./account/images/transparent.gif"/>
+
+    <div id="u148" class="text">
+        <p><span style="font-family:'幼圆 Bold', '幼圆';font-weight:700;"></span></p>
+    </div>
+</div>
+<div id="u149" class="ax_paragraph logintitle">
+    <img id="u149_img" class="img " src="./account/images/transparent.gif"/>
+
+    <div id="u150" class="text">
+        <p><span style="font-family:'幼圆 Bold', '幼圆';font-weight:700;"></span></p>
+    </div>
+</div>

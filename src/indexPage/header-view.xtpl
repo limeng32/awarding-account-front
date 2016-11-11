@@ -9,57 +9,6 @@
                     <p><span style="font-family:'幼圆 Bold', '幼圆';">联通评奖系统</span></p>
                 </div>
             </div>
-            <form id="formAuth" method="post">
-
-                <div id="v37" class="ax_text_field logininput">
-                    <input id="v37_input" type="text" value="" placeholder="请输入验证码" iRequired="验证码"
-                           checkCaptcha="checkCaptcha" disabled="disabled" hidden="hidden"/>
-                </div>
-
-                <div id="v32" class="ax_paragraph logintitle">
-                    <img id="v32_img" class="img " src="./account/images/transparent.gif"/>
-
-                    <div id="v33" class="text" hidden="hidden">
-                        <img id="v33_img" src="" title="点我可刷新">
-                    </div>
-                </div>
-
-                <div id="u32" class="ax_paragraph logintitle">
-                    <img id="u32_img" class="img " src="./account/images/transparent.gif"/>
-
-                    <div id="u33" class="text">
-                        <p><span style="font-family:'幼圆 Bold', '幼圆';font-weight:700;">账号</span></p>
-                    </div>
-                </div>
-
-                <div id="u34" class="ax_text_field logininput">
-                    <input id="u34_input" type="text" value="" name="email" iRequired="您的邮件地址" placeholder="您的邮件地址"
-                           iEmail="iEmail" email-max-len="100" email-exist="email-exist"/>
-                </div>
-
-                <div id="u35" class="ax_paragraph logintitle">
-                    <img id="u35_img" class="img " src="./account/images/transparent.gif"/>
-
-                    <div id="u36" class="text">
-                        <p><span style="font-family:'幼圆 Bold', '幼圆';font-weight:700;">密码</span></p>
-                    </div>
-                </div>
-
-                <div id="u37" class="ax_text_field logininput">
-                    <input id="u37_input" type="password" value="" placeholder="请输入密码" iRequired="密码"
-                           safe-password="safe-password" password-min-len="6" password-max-len="10"/>
-                </div>
-
-                <div id="u38" class="ax_shape">
-                    <img id="u38_img" class="img " src="./account/images/index/u38.png"/>
-
-                    <div id="u39" class="text">
-                        <p><span>提交</span></p>
-                    </div>
-                </div>
-                <input type="submit" value="a" id="submitButton" hidden="hidden"/>
-                <input type="hidden" signIn-test-hidden="signIn-test-hidden"/>
-            </form>
             <div id="u40" class="ax_image">
                 <img id="u40_img" class="img " src="./account/images/index/u40.png"/>
 
