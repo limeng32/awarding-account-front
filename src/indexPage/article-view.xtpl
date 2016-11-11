@@ -160,7 +160,7 @@
     </div>
 
     <div id="u137" class="ax_text_field logininput">
-        <input id="u137_input" type="password" value="" placeholder="请输入密码" iRequired="密码"
+        <input id="u137_input" name="password" type="password" value="" placeholder="请输入密码" iRequired="密码"
                safe-password="safe-password" password-min-len="6" password-max-len="10" msg-wrapper="#u147"/>
     </div>
 

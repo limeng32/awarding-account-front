@@ -412,6 +412,9 @@ module.exports = {
                 });
                 return defer.promise;
             });
+            $('#formAuth').prop({
+                action: SP.resolvedPath('signIn/submit')
+            });
             formAuth.render();
             $('#u139').on('click', function () {
                 $('#submitButton1').getDOMNode().click();
