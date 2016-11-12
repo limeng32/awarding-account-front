@@ -136,49 +136,6 @@
                     </div>
                 </div>
 
-                <!-- menu (Dynamic Panel) -->
-                <div id="home_u32" class="ax_dynamic_panel" data-label="menu">
-                    <div id="home_u32_state0" class="panel_state" data-label="State1">
-                        <div id="home_u32_state0_content" class="panel_state_content">
-
-                            <!-- Unnamed (Shape) -->
-                            <div id="home_u33" class="ax_shape">
-                                <img id="home_u33_img" class="img " src="./account/images/home/home_u33.png"/>
-                                <!-- Unnamed () -->
-                                <div id="home_u34" class="text">
-                                    <p><span>个人中心</span></p>
-                                </div>
-                            </div>
-
-                            <!-- Unnamed (Shape) -->
-                            <div id="home_u35" class="ax_shape">
-                                <img id="home_u35_img" class="img " src="./account/images/home/home_u33.png"/>
-                                <!-- Unnamed () -->
-                                <div id="home_u36" class="text">
-                                    <p><span>私信</span></p>
-                                </div>
-                            </div>
-
-                            <!-- Unnamed (Shape) -->
-                            <div id="home_u37" class="ax_shape">
-                                <img id="home_u37_img" class="img " src="./account/images/home/home_u37.png"/>
-                                <!-- Unnamed () -->
-                                <div id="home_u38" class="text">
-                                    <p><span>离开</span></p>
-                                </div>
-                            </div>
-
-                            <!-- Unnamed (Shape) -->
-                            <div id="home_u39" class="ax_shape">
-                                <img id="home_u39_img" class="img " src="./account/images/home/home_u33.png"/>
-                                <!-- Unnamed () -->
-                                <div id="home_u40" class="text">
-                                    <p><span>设置</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

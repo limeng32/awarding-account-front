@@ -1,0 +1,30 @@
+<div id="home_u32" class="ax_dynamic_panel" data-label="menu">
+    <div id="home_u32_state0" class="panel_state" data-label="State1">
+        <div id="home_u32_state0_content" class="panel_state_content">
+
+            <div id="home_u33" class="ax_shape home_cc_img">
+                <div id="home_u34" class="text">
+                    <p><span id="home_u1134">修改头像</span></p>
+                </div>
+            </div>
+
+            <div id="home_u35" class="ax_shape home_cc_img">
+                <div id="home_u36" class="text">
+                    <p><span>私信</span></p>
+                </div>
+            </div>
+
+            <div id="home_u37" class="ax_shape home_cc_img2">
+                <div id="home_u38" class="text">
+                    <p><span>离开</span></p>
+                </div>
+            </div>
+
+            <div id="home_u39" class="ax_shape home_cc_img">
+                <div id="home_u40" class="text">
+                    <p><span>设置</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
