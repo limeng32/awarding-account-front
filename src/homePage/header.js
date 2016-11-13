@@ -16,13 +16,22 @@ var ProBars = require('kg/uploader/2.0.3/plugins/proBars/proBars');
 var Filedrop = require('kg/uploader/2.0.3/plugins/filedrop/filedrop');
 var ImgCrop = require('kg/uploader/2.0.3/plugins/imgcrop/imgcrop');
 var AliUploader = require('gallery/uploader/kissyuploader/5.0.0/index');
+var JSONX = require('core-front/jsonx/jsonx');
 module.exports = {
     init: function () {
         var ai = new AI(token);
+        var portraitUrl = function (account) {
+            if (account.accountBucket[0].originalPortrait == null) {
+                return SP.resolvedPath('./account/images/home/home_u28.png');
+            } else {
+                return account.accountBucket[0].middlePortrait;
+            }
+        }
         if (ai.existChecked()) {
-            ai.acquireAccount(SP.resolvedIOPath('getAccount?_content=json'), function (account) {
+            ai.acquireAccount(SP.resolvedIOPath('getAccountWithBucket?_content=json'), function (account) {
                 var html = new XTemplate(tpl).render({
-                    account: account
+                    account: account,
+                    portraitUrl: portraitUrl(account)
                 });
                 var ccHtml = new XTemplate(ccTpl).render({});
                 var cpHtml = new XTemplate(cpTpl).render({
@@ -67,7 +76,7 @@ module.exports = {
                     width: '400px',
                     height: '390px',
                     closable: true,
-                    closeAction: 'hide'
+                    closeAction: 'close'
                 });
                 ol2.show();
                 ol2.close();
@@ -75,7 +84,7 @@ module.exports = {
 
                 KISSY.use('kg/uploader/2.0.3/themes/cropUploader/index,kg/uploader/2.0.3/themes/imageUploader/style.css,kg/uploader/2.0.3/themes/cropUploader/style.css', function (S, ImageUploader) {
                     var uploader = new AliUploader('#J_UploaderBtn', {
-                        action: SP.resolvedIOPath('uploadPortrait?_content=json'),
+                        action: SP.resolvedIOPath('account/uploadPortrait?_content=json'),
                         multiple: false,
                         type: 'ajax',
                         name: 'Filedata'
@@ -123,28 +132,40 @@ module.exports = {
                         return parseInt(crop.getCropCoords().y * crop.getOriginalSize().height / crop.getDisplaySize().height);
                     };
                     $('.submitPortrait').on('click', function () {
-                        //if (imgCrop.get('crop').get('url') != '') {
-                        //    IO.post(SP.resolvedIOPath('edit/savePortraitModify?_content=json'),
-                        //        {
-                        //            id: account.accountBucket[0].id,
-                        //            portraitModify: account.accountBucket[0].portraitModify,
-                        //            portraitModifyH: computeModifyH(),
-                        //            portraitModifyW: computeModifyW(),
-                        //            portraitModifyX: computeModifyX(),
-                        //            portraitModifyY: computeModifyY()
-                        //        },
-                        //        function (d) {
-                        //            d = JSONX.decode(d);
-                        //            $('.portrait').prop('src', d.portrait);
-                        //        }, "json");
-                        //} else {
-                        //    new AD({
-                        //        type: 'alert',
-                        //        content: "您还没有上传新头像"
-                        //    });
-                        //}
+                        if (imgCrop.get('crop').get('url') != '') {
+                            IO.post(SP.resolvedIOPath('account/savePortraitModify?_content=json'),
+                                {
+                                    id: account.accountBucket[0].id,
+                                    portraitModify: account.accountBucket[0].portraitModify,
+                                    portraitModifyH: computeModifyH(),
+                                    portraitModifyW: computeModifyW(),
+                                    portraitModifyX: computeModifyX(),
+                                    portraitModifyY: computeModifyY()
+                                },
+                                function (d) {
+                                    d = JSONX.decode(d);
+                                    $('#home_u28_img').prop('src', portraitUrl(d.account));
+                                }, "json");
+                        } else {
+                            new AD({
+                                type: 'alert',
+                                content: "您还没有上传新头像"
+                            });
+                        }
+                    })
+                    $('#J_DefaultBtn').on('click', function () {
+                        uploader.get('queue').clear();
+                        IO.post(SP.resolvedIOPath('account/deletePortrait?_content=json'),
+                            {
+                                id: account.accountBucket[0].id,
+                            },
+                            function (d) {
+                                d = JSONX.decode(d);
+                                $('#home_u28_img').prop('src', portraitUrl(d.account));
+                            }, "json");
                     })
                 })
+
 
                 SP.resolveImgSrc('.img');
             });

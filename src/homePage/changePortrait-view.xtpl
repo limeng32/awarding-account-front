@@ -1,11 +1,11 @@
 <div id="J_Uploader">
-    <img src="{{portrait}}" class="portrait">
+   <!-- <img src="{{portrait}}" class="portrait">-->
 
     <div class="uploader-wrapper">
         <div class="grid">
+            <input type="button" class="ks-button ks-button-info ks-button-shown" id="J_DefaultBtn" value="使用默认头像" >
             <input type="file" class="g-u" id="J_UploaderBtn" value="上传" name="Filedata" accept="image/*">
             <input type="hidden" id="J_Urls" name="urls"/>
-
             <div class="g-u">
                 <input type="button" value="确定"
                        class="ks-button ks-button-success ks-button-shown signButton submitPortrait">

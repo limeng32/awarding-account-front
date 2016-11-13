@@ -120,7 +120,7 @@
 
                 <!-- Unnamed (Image) -->
                 <div id="home_u28" class="ax_image portraitheader">
-                    <img id="home_u28_img" class="img " src="./account/images/home/home_u28.png"/>
+                    <img id="home_u28_img" class="" src="{{portraitUrl}}"/>
                     <!-- Unnamed () -->
                     <div id="home_u29" class="text">
                         <p><span></span></p>
