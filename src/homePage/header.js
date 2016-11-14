@@ -154,18 +154,40 @@ module.exports = {
                         }
                     })
                     $('#J_DefaultBtn').on('click', function () {
-                        uploader.get('queue').clear();
-                        IO.post(SP.resolvedIOPath('account/deletePortrait?_content=json'),
-                            {
-                                id: account.accountBucket[0].id,
+                        new AD({
+                            title: '温馨提示',
+                            content: '您确定要恢复为默认头像？',
+                            onConfirm: function () {
+                                uploader.get('queue').clear();
+                                IO.post(SP.resolvedIOPath('account/deletePortrait?_content=json'),
+                                    {
+                                        id: account.accountBucket[0].id,
+                                    },
+                                    function (d) {
+                                        d = JSONX.decode(d);
+                                        $('#home_u28_img').prop('src', portraitUrl(d.account));
+                                    }, "json");
                             },
-                            function (d) {
-                                d = JSONX.decode(d);
-                                $('#home_u28_img').prop('src', portraitUrl(d.account));
-                            }, "json");
+                            onCancel: function () {
+                            }
+                        });
                     })
                 })
-
+                $('#home_u37').on('click', function () {
+                    new AD({
+                        title: '温馨提示',
+                        content: '您确定要退出评奖系统？',
+                        onConfirm: function () {
+                            IO.post(SP.resolvedIOPath('account/signOut?_content=json'), {}, function (data) {
+                                if (data) {
+                                    window.location.assign(SP.resolvedPath('.'));
+                                }
+                            }, 'json');
+                        },
+                        onCancel: function () {
+                        }
+                    });
+                })
 
                 SP.resolveImgSrc('.img');
             });
