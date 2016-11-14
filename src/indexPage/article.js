@@ -166,18 +166,19 @@ module.exports = {
                 $('#icpv6_img').prop({src: SP.resolvedPath('signIn/captchaImage?token=' + changePasstoken + '&oldToken=' + oldChangePassToken)});
             }
             $('#icpv5').on('click', function () {
-                if ($('#icpv5').attr('hidden') != 'hidden') {
-                    $('#icpv6_img').removeAttr('hidden');
-                    $('#icpv5').attr('hidden', 'hidden');
-                    $('#icpv1').removeAttr('disabled');
-                    refreshCaptcha();
-                } else {
+                if ($('#icpv5').hasAttr('hidden')) {
                     $('#icpv5').removeAttr('hidden');
                     $('#icpv6_img').attr('hidden', 'hidden');
                     $('#icpv1').getDOMNode().value = '';
                     $('#icpv1').attr('disabled', 'disabled');
+                } else {
+                    $('#icpv6_img').removeAttr('hidden');
+                    $('#icpv5').attr('hidden', 'hidden');
+                    $('#icpv1').removeAttr('disabled');
+                    refreshCaptcha();
                 }
             })
+
             $('#icpv6_img').on('click', function () {
                 refreshCaptcha();
             })
@@ -290,16 +291,16 @@ module.exports = {
             });
             auth2.render();
             $('#isuv5').on('click', function () {
-                if ($('#isuv5').attr('hidden') != 'hidden') {
-                    $('#isuv6_img').removeAttr('hidden');
-                    $('#isuv5').attr('hidden', 'hidden');
-                    $('#isuv1').removeAttr('disabled');
-                    refreshCaptcha2();
-                } else {
+                if ($('#isuv5').hasAttr('hidden')) {
                     $('#isuv5').removeAttr('hidden');
                     $('#isuv6_img').attr('hidden', 'hidden');
                     $('#isuv1').getDOMNode().value = '';
                     $('#isuv1').attr('disabled', 'disabled');
+                } else {
+                    $('#isuv6_img').removeAttr('hidden');
+                    $('#isuv5').attr('hidden', 'hidden');
+                    $('#isuv1').removeAttr('disabled');
+                    refreshCaptcha2();
                 }
             })
             var refreshCaptcha2 = function () {
@@ -425,10 +426,9 @@ module.exports = {
                 $('#v133_img').prop({src: SP.resolvedPath('signIn/captchaImage?token=' + token + '&oldToken=' + oldToken)});
             }
             var needCaptcha3 = function () {
-                if ($('#v137_input').attr('disabled') == 'disabled') {
+                if ($('#v137_input').hasAttr('disabled')) {
                     $('#v133').removeAttr('hidden');
-                    $('#v137_input').removeAttr('hidden');
-                    $('#v137_input').prop({disabled: ''});
+                    $('#v137_input').removeAttr('disabled').removeAttr('hidden');
                 }
             }
             token = ran.generate();
