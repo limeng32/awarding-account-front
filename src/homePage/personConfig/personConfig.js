@@ -39,7 +39,6 @@ module.exports = {
                 return $field.attr('type') == 'hidden';
             }
         });
-        console.log(auth)
         var authMsgs = new AuthMsgs();
         auth.plug(authMsgs);
         auth.set('stopOnError', true);

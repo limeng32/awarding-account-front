@@ -209,15 +209,15 @@ module.exports = {
                     });
                 })
                 var pop = function (_ol) {
-                    var overlays = [ol2, personConfig.ol(), editProject.ol()];
+                    var overlays = [ol2, editProject.ol(), personConfig.ol()];
                     for (var i = 0; i < overlays.length; i++) {
                         overlays[i].close();
                     }
                     _ol.show();
                 }
 
-                personConfig.init({account: account});
                 editProject.init({account: account});
+                personConfig.init({account: account});
                 SP.resolveImgSrc('.img');
             });
         }
