@@ -1,11 +1,11 @@
-<form class="form-horizontal" id="resetPass" method="post" action="">
+<form class="form-horizontal" id="personConfig" method="post" action="a">
     <div class="control-group">
-        <label class="control-label" for="eamil">账号</label>
+        <label class="control-label" for="eamil">账号，角色，所在单位</label>
         <div class="controls">
             <input type="text" class="input-small" name="email" id="eamil" value="{{account.email}}" readonly="readonly">
             <input type="text" class="input-small" name="role" id="role" value="{{account.accountRole[0].role.name}}"
                    readonly="readonly">
-            <input type="text" class="input-small" name="company" id="company" value="{{account.companyName}}"
+            <input type="text" class="input-mini" name="company" id="company" value="{{account.companyName}}"
                    readonly="readonly">
         </div>
     </div>
@@ -13,27 +13,44 @@
         <label class="control-label" for="eamil">名称</label>
 
         <div class="controls">
-            <input type="text" class="input" name="name" id="name" value="{{account.name}}">
+            <input type="text" class="input-medium" name="personConfig_name" id="personConfig_name" required=""
+                   required-msg="邮件地址不能为空"
+                   value="{{account.name}}" readonly="readonly">
+        </div>
+
+        <div id="personConfig_u102" class="ax_shape">
+            <img id="personConfig_u102_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
+            <!-- Unnamed () -->
+            <div id="personConfig_u103" class="text">
+                <p><span id="personConfig_u103_txt">编辑</span></p>
+            </div>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="password">输入密码</label>
 
         <div class="controls">
-            <input type="password" class="input" required="required" required-msg="密码不能为空" name="password"
+            <input type="password" class="input-medium" required="required" required-msg="密码不能为空" name="password"
                    id="password" placeholder="请输入密码" safe-password="safe-password" password-min-len="6"
-                   password-max-len="10">
+                   password-max-len="10" readonly="readonly" value="00000000">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="again-password">再次输入密码</label>
 
         <div class="controls">
-            <input type="password" class="input" id="again-password" name="again-password"
-                   equal-field="password" required="required" required-msg="再次输入密码不能为空" placeholder="请再次输入密码">
+            <input type="password" class="input-medium" id="again-password" name="again-password"
+                   equal-field="password" required="required" required-msg="再次输入密码不能为空" placeholder="请再次输入密码"
+                   readonly="readonly" value="00000000">
         </div>
     </div>
-    <div class="form-actions">
-        <input class="ks-button ks-button-primary ks-button-shown" type="submit" value="提交">
+    <div id="personConfig_u104" class="ax_shape">
+        <img id="personConfig_u104_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
+        <!-- Unnamed () -->
+        <div id="personConfig_u105" class="text">
+            <p><span id="personConfig_u105_txt">编辑</span></p>
+        </div>
     </div>
+    <input id="personConfig_v1" hidden="hidden" needAFail="needAFail"/>
+    <input type="submit" value="a" id="submitButton1" hidden="hidden"/>
 </form>

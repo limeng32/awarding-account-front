@@ -18,23 +18,51 @@ module.exports = {
         var pcHtml = new XTemplate(pcTpl).render({
             account: p.account
         });
-        var _ol3 = new OVL({
-            effect: 'slide',    // {String} - 可选, 默认为'none', 'none'(无特效), 'fade'(渐隐显示), 'slide'(滑动显示).
-            easing: 'linear',        // {String} - 可选, 同 KISSY.Anim 的 easing 参数配置.
-            duration: 10,        // {Number} - 可选, 动画持续时间, 以秒为单位.
+        var ol = new OVL({
+            effect: 'slide',
+            easing: 'linear',
+            duration: 10,
             target: '',
             content: pcHtml,
             visible: true,
             xy: [400, 140],
-            width: '500px',
-            height: '400px',
+            width: '600px',
+            height: '250px',
             closable: true,
-            closeAction: 'close'
+            zIndex: 5,
+            visible: false,
+            closeAction: 'hide'
         });
-        _ol3.show();
-        _ol3.close();
-        this.ol3 = function () {
-            return _ol3;
+        ol.render();
+        var auth = new Auth('#personConfig', {
+            fnFilter: function ($field) {
+                return $field.attr('type') == 'hidden';
+            }
+        });
+        console.log(auth)
+        var authMsgs = new AuthMsgs();
+        auth.plug(authMsgs);
+        auth.set('stopOnError', true);
+        auth.register('needAFail', function (value, attr, defer, field) {
+            var self = this;
+            //$('#icpv5').getDOMNode().click();
+            defer.reject(self);
+            return defer.promise;
+        });
+        auth.render();
+        $('#personConfig_u102').on('click', function () {
+            var name = $('#personConfig_name');
+            if (name.hasAttr('readonly')) {
+                $('#personConfig_u103_txt').html('保存');
+                name.removeAttr('readonly');
+            } else {
+                $('#submitButton1').getDOMNode().click();
+                $('#personConfig_u103_txt').html('编辑');
+                name.attr('readonly', 'readonly');
+            }
+        });
+        this.ol = function () {
+            return ol;
         };
     }
 }

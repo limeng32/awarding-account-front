@@ -15,9 +15,11 @@ var UrlsInput = require('kg/uploader/2.0.3/plugins/urlsInput/urlsInput');
 var ProBars = require('kg/uploader/2.0.3/plugins/proBars/proBars');
 var Filedrop = require('kg/uploader/2.0.3/plugins/filedrop/filedrop');
 var ImgCrop = require('kg/uploader/2.0.3/plugins/imgcrop/imgcrop');
+var UploaderAuth = require('kg/uploader/2.0.3/plugins/auth/auth');
 var AliUploader = require('gallery/uploader/kissyuploader/5.0.0/index');
 var JSONX = require('core-front/jsonx/jsonx');
 var personConfig = require('./personConfig/personConfig');
+var editProject = require('./editProject/editProject');
 module.exports = {
     init: function () {
         var ai = new AI(token);
@@ -49,10 +51,11 @@ module.exports = {
                     xy: [890, 10],
                     width: '0px',
                     height: '0px',
+                    zIndex: 10,
+                    visible: false,
                     closeAction: 'hide'
                 });
-                ol.show();
-                ol.close();
+                ol.render();
                 $('#home_u28').on('mouseover', function () {
                     ol.show();
                 }).on('mouseout', function () {
@@ -68,11 +71,14 @@ module.exports = {
                 }).on('mouseout', function () {
                     ol.close();
                 });
-                $('#home_u34').on('click', function () {
+                $('#home_u33').on('click', function () {
                     pop(ol2);
                 })
+                $('#home_u35').on('click', function () {
+                    pop(editProject.ol());
+                })
                 $('#home_u39').on('click', function () {
-                    pop(personConfig.ol3());
+                    pop(personConfig.ol());
                 })
                 var ol2 = new OVL({
                     effect: 'slide',    // {String} - 可选, 默认为'none', 'none'(无特效), 'fade'(渐隐显示), 'slide'(滑动显示).
@@ -85,11 +91,11 @@ module.exports = {
                     width: '400px',
                     height: '390px',
                     closable: true,
-                    closeAction: 'close'
+                    zIndex: 5,
+                    visible: false,
+                    closeAction: 'hide'
                 });
-                ol2.show();
-                ol2.close();
-
+                ol2.render();
 
                 KISSY.use('kg/uploader/2.0.3/themes/cropUploader/index,kg/uploader/2.0.3/themes/imageUploader/style.css,kg/uploader/2.0.3/themes/cropUploader/style.css', function (S, ImageUploader) {
                     var uploader = new AliUploader('#J_UploaderBtn', {
@@ -113,14 +119,19 @@ module.exports = {
                         ratio: true, //固定比例缩放
                         resizable: true//可以缩放
                     });
-                    uploader.plug(new UrlsInput({target: '#J_Urls'}))
+                    uploader.plug(new UploaderAuth({
+                        maxSize: 1024,
+                        required: true,
+                        allowExts: 'jpg,png,gif,bmp,jpeg'
+                    })).plug(new UrlsInput({target: '#J_Urls'}))
                         .plug(new ProBars())
                         .plug(new Filedrop())
-                        .plug(imgCrop)
-                    ;
+                        .plug(imgCrop);
                     uploader.on('error', function (ev) {
-                        var result = ev.result;
-                        alert('上传失败,错误消息为' + result);
+                        new AD({
+                            type: 'alert',
+                            content: ev.msg
+                        });
                     });
                     uploader.on('success', function (ev) {
                     });
@@ -198,7 +209,7 @@ module.exports = {
                     });
                 })
                 var pop = function (_ol) {
-                    var overlays = [ol2, personConfig.ol3()];
+                    var overlays = [ol2, personConfig.ol(), editProject.ol()];
                     for (var i = 0; i < overlays.length; i++) {
                         overlays[i].close();
                     }
@@ -206,6 +217,7 @@ module.exports = {
                 }
 
                 personConfig.init({account: account});
+                editProject.init({account: account});
                 SP.resolveImgSrc('.img');
             });
         }
