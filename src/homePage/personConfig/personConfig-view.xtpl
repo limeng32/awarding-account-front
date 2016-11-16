@@ -1,24 +1,11 @@
 <form class="form-horizontal" id="resetPass" method="post" action="">
     <div class="control-group">
         <label class="control-label" for="eamil">账号</label>
-
         <div class="controls">
-            <input type="text" class="input" name="email" id="eamil" value="{{account.email}}" readonly="readonly">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="eamil">角色</label>
-
-        <div class="controls">
-            <input type="text" class="input" name="role" id="role" value="{{account.accountRole[0].role.name}}"
+            <input type="text" class="input-small" name="email" id="eamil" value="{{account.email}}" readonly="readonly">
+            <input type="text" class="input-small" name="role" id="role" value="{{account.accountRole[0].role.name}}"
                    readonly="readonly">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="eamil">所属单位</label>
-
-        <div class="controls">
-            <input type="text" class="input" name="company" id="company" value="{{account.companyName}}"
+            <input type="text" class="input-small" name="company" id="company" value="{{account.companyName}}"
                    readonly="readonly">
         </div>
     </div>

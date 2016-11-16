@@ -2,7 +2,6 @@ var $ = require('node').all;
 var tpl = require('./header-view');
 var ccTpl = require('./controlCenter-view');
 var cpTpl = require('./changePortrait-view');
-var pcTpl = require('./personConfig-view');
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Auth = require('kg/auth/2.0.6/');
 var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/');
@@ -18,6 +17,7 @@ var Filedrop = require('kg/uploader/2.0.3/plugins/filedrop/filedrop');
 var ImgCrop = require('kg/uploader/2.0.3/plugins/imgcrop/imgcrop');
 var AliUploader = require('gallery/uploader/kissyuploader/5.0.0/index');
 var JSONX = require('core-front/jsonx/jsonx');
+var personConfig = require('./personConfig/personConfig');
 module.exports = {
     init: function () {
         var ai = new AI(token);
@@ -36,9 +36,6 @@ module.exports = {
                 });
                 var ccHtml = new XTemplate(ccTpl).render({});
                 var cpHtml = new XTemplate(cpTpl).render({
-                    account: account
-                });
-                var pcHtml = new XTemplate(pcTpl).render({
                     account: account
                 });
                 $('header').html(html);
@@ -73,6 +70,9 @@ module.exports = {
                 });
                 $('#home_u34').on('click', function () {
                     pop(ol2);
+                })
+                $('#home_u39').on('click', function () {
+                    pop(personConfig.ol3());
                 })
                 var ol2 = new OVL({
                     effect: 'slide',    // {String} - 可选, 默认为'none', 'none'(无特效), 'fade'(渐隐显示), 'slide'(滑动显示).
@@ -197,33 +197,15 @@ module.exports = {
                         }
                     });
                 })
-
-                var ol3 = new OVL({
-                    effect: 'slide',    // {String} - 可选, 默认为'none', 'none'(无特效), 'fade'(渐隐显示), 'slide'(滑动显示).
-                    easing: 'linear',        // {String} - 可选, 同 KISSY.Anim 的 easing 参数配置.
-                    duration: 10,        // {Number} - 可选, 动画持续时间, 以秒为单位.
-                    target: '',
-                    content: pcHtml,
-                    visible: true,
-                    xy: [400, 140],
-                    width: '500px',
-                    height: '400px',
-                    closable: true,
-                    closeAction: 'close'
-                });
-                ol3.show();
-                ol3.close();
-                $('#home_u39').on('click', function () {
-                    pop(ol3);
-                })
-
                 var pop = function (_ol) {
-                    var overlays = [ol2, ol3];
+                    var overlays = [ol2, personConfig.ol3()];
                     for (var i = 0; i < overlays.length; i++) {
                         overlays[i].close();
                     }
                     _ol.show();
                 }
+
+                personConfig.init({account: account});
                 SP.resolveImgSrc('.img');
             });
         }
