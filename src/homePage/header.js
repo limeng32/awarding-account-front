@@ -165,6 +165,7 @@ module.exports = {
                                 function (d) {
                                     d = JSONX.decode(d);
                                     $('#home_u28_img').prop('src', portraitUrl(d.account));
+                                    ol2.close();
                                 }, "json");
                         } else {
                             new AD({
@@ -186,6 +187,7 @@ module.exports = {
                                     function (d) {
                                         d = JSONX.decode(d);
                                         $('#home_u28_img').prop('src', portraitUrl(d.account));
+                                        ol2.close();
                                     }, "json");
                             },
                             onCancel: function () {

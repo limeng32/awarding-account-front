@@ -54,12 +54,21 @@ module.exports = {
             if (name.hasAttr('readonly')) {
                 $('#personConfig_u103_txt').html('保存');
                 name.removeAttr('readonly');
+                disableAllFieldsExcept('.personConfigName')
             } else {
                 $('#submitButton1').getDOMNode().click();
                 $('#personConfig_u103_txt').html('编辑');
                 name.attr('readonly', 'readonly');
+                enableAllFields()
             }
         });
+        var disableAllFieldsExcept = function (selector) {
+            $('.personConfigField').attr('disabled', 'disabled')
+            $(selector).removeAttr('disabled')
+        }
+        var enableAllFields = function () {
+            $('.personConfigField').removeAttr('disabled')
+        }
         this.ol = function () {
             return ol;
         };
