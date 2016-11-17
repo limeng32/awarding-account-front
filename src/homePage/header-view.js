@@ -44,7 +44,7 @@ buffer.data += '<div id="u29" class="ax_dynamic_panel">\r\n    <div id="u29_stat
 pos.line = 123;
 var id0 = ((t=(affix.portraitUrl)) !== undefined ? t:((t = data.portraitUrl) !== undefined ? t :scope.resolveLooseUp(["portraitUrl"])));
 buffer = buffer.writeEscaped(id0);
-buffer.data += '"/>\r\n                    <!-- Unnamed () -->\r\n                    <div id="home_u29" class="text">\r\n                        <p><span></span></p>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- user_name (Shape) -->\r\n                <div id="home_u30" class="ax_paragraph usernameheader" data-label="user_name">\r\n                    <img id="home_u30_img" class="img " src="./account/images/transparent.gif"/>\r\n                    <!-- Unnamed () -->\r\n                    <div id="home_u31" class="text">\r\n                        <p><span>';
+buffer.data += '"/>\r\n                    <!-- Unnamed () -->\r\n                    <div id="home_u29" class="text">\r\n                        <p><span></span></p>\r\n                    </div>\r\n                </div>\r\n\r\n                <!-- user_name (Shape) -->\r\n                <div id="home_u30" class="ax_paragraph usernameheader" data-label="user_name">\r\n                    <img id="home_u30_img" class="img " src="./account/images/transparent.gif"/>\r\n                    <!-- Unnamed () -->\r\n                    <div id="home_u31" class="text">\r\n                        <p><span id="home_u31_txt">';
 pos.line = 135;
 var id1 = ((t=(affix.account)) !== undefined ? affix.account.name:((t = data.account) !== undefined ? (t.name) :scope.resolveLooseUp(["account","name"])));
 buffer = buffer.writeEscaped(id1);

@@ -132,7 +132,7 @@
                     <img id="home_u30_img" class="img " src="./account/images/transparent.gif"/>
                     <!-- Unnamed () -->
                     <div id="home_u31" class="text">
-                        <p><span>{{account.name}}</span></p>
+                        <p><span id="home_u31_txt">{{account.name}}</span></p>
                     </div>
                 </div>
 

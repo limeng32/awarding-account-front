@@ -42,12 +42,60 @@ module.exports = {
         var authMsgs = new AuthMsgs();
         auth.plug(authMsgs);
         auth.set('stopOnError', true);
-        auth.register('needAFail', function (value, attr, defer, field) {
+        auth.register('safe-name', function (value, attr, defer, field) {
+            var self = this;
+            var reg = '^[\u4e00-\u9fa5_a-zA-Z0-9]+$';
+            if (value.match(reg)) {
+                defer.resolve(self);
+            } else {
+                self.msg('error', '只能输入中文英文字母和下横线');
+                defer.reject(self);
+            }
+            return defer.promise;
+        }).register('needAFail', function (value, attr, defer, field) {
             var self = this;
             //$('#icpv5').getDOMNode().click();
             defer.reject(self);
             return defer.promise;
-        });
+        }).register('updateName', function (value, attr, defer, field) {
+            var self = this;
+            IO.post(SP.resolvedIOPath('personConfig/updateName?_content=json&name=' + $('#personConfig_name').val()), 'json').then(function (data) {
+                if (data[0].flag) {
+                    self.msg('success', data[0].message);
+                    if (data[0].message != null) {
+                        authMsgs.getMsg(field.get('name')).show('success', data[0].message);
+                    } else {
+                        authMsgs.getMsg(field.get('name')).show('success', '用户名称修改成功');
+                    }
+                    $('#home_u31_txt').html($('#personConfig_name').val());
+                } else {
+                    if (data[0].message != null) {
+                        authMsgs.getMsg(field.get('name')).show('error', data[0].message);
+                    }
+                }
+            });
+            defer.reject(self);
+            return defer.promise;
+        }).register('resumeName', function (value, attr, defer, field) {
+            var self = this;
+            IO.post(SP.resolvedIOPath('personConfig/resumeName?_content=json&name=' + $('#personConfig_name').val()), 'json').then(function (data) {
+                if (data[0].flag) {
+                    self.msg('success', data[0].message);
+                    if (data[0].message != null) {
+                        authMsgs.getMsg(field.get('name')).show('success', data[0].message);
+                    } else {
+                        authMsgs.getMsg(field.get('name')).show('success', '用户名称已经恢复');
+                    }
+                    $('#personConfig_name').val(data[0].data.name);
+                } else {
+                    if (data[0].message != null) {
+                        authMsgs.getMsg(field.get('name')).show('error', data[0].message);
+                    }
+                }
+            });
+            defer.reject(self);
+            return defer.promise;
+        })
         auth.render();
         $('#personConfig_u102').on('click', function () {
             var name = $('#personConfig_name');
@@ -56,7 +104,18 @@ module.exports = {
                 name.removeAttr('readonly');
                 disableAllFieldsExcept('.personConfigName')
             } else {
-                $('#submitButton1').getDOMNode().click();
+                new AD({
+                    title: '温馨提示',
+                    content: '您确定要保存新的名称？',
+                    onConfirm: function () {
+                        auth.field('personConfig_name_hidden').set('exclude', 'resumeName')
+                        auth.test()
+                    },
+                    onCancel: function () {
+                        auth.field('personConfig_name_hidden').set('exclude', '')
+                        auth.field('personConfig_name_hidden').test('resumeName')
+                    }
+                });
                 $('#personConfig_u103_txt').html('编辑');
                 name.attr('readonly', 'readonly');
                 enableAllFields()
