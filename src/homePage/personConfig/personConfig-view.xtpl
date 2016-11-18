@@ -32,31 +32,32 @@
     </div>
     <input hidden="hidden" needAFail="needAFail"/>
 
-    <div id="personConfig_u145" class="ax_paragraph logintitle">
-    </div>
+    <div id="personConfig_u145" class="ax_paragraph logintitle"/>
 </form>
 <form class="form-horizontal" id="personConfig2" method="post" action="a">
     <div class="control-group">
-        <label class="control-label" for="password">输入密码</label>
+        <label class="control-label" for="personConfig_password">输入新密码</label>
 
         <div class="controls">
             <input type="password" class="input-medium" required="required"
-                   required-msg="密码不能为空" name="password"
-                   id="password" placeholder="请输入密码" safe-password="safe-password" min-len="6" min-len-msg="密码不能少于10个字符"
-                   max-len="10" max-len-msg="密码不能多于10个字符" readonly="readonly" msg-wrapper="#personConfig_u147">
+                   required-msg="密码不能为空" name="personConfig_password"
+                   id="personConfig_password" placeholder="请输入密码" safe-password="safe-password" min-len="6"
+                   min-len-msg="密码不能少于6个字符"
+                   max-len="10" max-len-msg="密码不能多于10个字符" disabled="disabled" msg-wrapper="#personConfig_u146">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="again-password">再次输入密码</label>
+        <label class="control-label" for="personConfig_again-password">再次输入新密码</label>
 
         <div class="controls">
-            <input type="password" class="input-medium" id="again-password"
-                   name="again-password"
-                   equal-field="password" required="required" required-msg="再次输入密码不能为空" placeholder="请再次输入密码"
-                   readonly="readonly" msg-wrapper="#personConfig_u147">
-            <input hidden="hidden" name="personConfig_again-password_hidden"
-                   updateName-Cancel="updateName-Cancel" updateName-confirm="updateName-confirm"
-                   class="" msg-wrapper="#personConfig_u147"/>
+            <input type="password" class="input-medium" id="personConfig_again-password"
+                   name="personConfig_again-password"
+                   equal-field="personConfig_password" required="required" required-msg="再次输入密码不能为空"
+                   placeholder="请再次输入密码"
+                   disabled="disabled" msg-wrapper="#personConfig_u146">
+            <input hidden="hidden" name="personConfig_password_hidden"
+                   updatePassword-Cancel="updatePassword-Cancel" updatePassword-confirm="updatePassword-confirm"
+                   class="" msg-wrapper="#personConfig_u146"/>
         </div>
     </div>
     <div id="personConfig_u104" class="ax_shape">
@@ -67,4 +68,6 @@
         </div>
     </div>
     <input hidden="hidden" needAFail="needAFail"/>
+
+    <div id="personConfig_u146" class="ax_paragraph logintitle"/>
 </form>

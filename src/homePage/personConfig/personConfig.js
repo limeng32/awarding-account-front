@@ -81,11 +81,10 @@ module.exports = {
             var self = this;
             IO.post(SP.resolvedIOPath('personConfig/resumeName?_content=json'), 'json').then(function (data) {
                 if (data[0].flag) {
-                    self.msg('success', data[0].message);
                     if (data[0].message != null) {
                         authMsgs.getMsg(field.get('name')).show('success', data[0].message);
                     } else {
-                        authMsgs.getMsg(field.get('name')).show('success', '用户名称已经恢复');
+                        authMsgs.getMsg(field.get('name')).show('success', '用户名称没有改变');
                     }
                     $('#personConfig_name').val(data[0].data.name);
                 } else {
@@ -137,9 +136,9 @@ module.exports = {
                         auth.field('personConfig_name_hidden').set('exclude', '')
                         auth.field('personConfig_name_hidden').test('updateName-Cancel')
                         $('#personConfig_u103_txt').html('编辑');
-                        $('#personConfig_name').attr('readonly', 'readonly');
+                        name.attr('readonly', 'readonly');
                     }
-                });
+                })
             }
         });
         var auth2 = new Auth('#personConfig2', {
@@ -149,8 +148,71 @@ module.exports = {
         });
         var authMsgs2 = new AuthMsgs();
         auth2.plug(authMsgs2);
-
-
+        auth2.set('stopOnError', true);
+        auth2.register('safe-password', function (value, attr, defer, field) {
+            var self = this;
+            var reg = /^(?!.*?&).*$/;
+            if (value.match(reg)) {
+                defer.resolve(self);
+            } else {
+                self.msg('error', '密码不能含有字符”&“');
+                defer.reject(self);
+            }
+            return defer.promise;
+        }).register('updatePassword-confirm', function (value, attr, defer, field) {
+            var self = this;
+            IO.post(SP.resolvedIOPath('personConfig/updatePassword?_content=json&password=' + encodeURIComponent($('#personConfig_password').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs2.getMsg(field.get('name')).show('success', data[0].message);
+                        } else {
+                            authMsgs2.getMsg(field.get('name')).show('success', '用户密码修改成功');
+                        }
+                        $('#personConfig_password').val('').attr('disabled', 'disabled')
+                        $('#personConfig_again-password').val('').attr('disabled', 'disabled')
+                        $('#personConfig_u105_txt').html('编辑');
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs.getMsg(field.get('name')).show('error', data[0].message);
+                        }
+                    }
+                });
+            defer.reject(self);
+            return defer.promise;
+        }).register('updatePassword-Cancel', function (value, attr, defer, field) {
+            field.set('exclude', 'updatePassword-Cancel')
+            var self = this;
+            authMsgs2.getMsg(field.get('name')).show('success', '用户密码没有修改');
+            defer.reject(self);
+            return defer.promise;
+        })
+        auth2.render();
+        $('#personConfig_u105').on('click', function () {
+            var password = $('#personConfig_password');
+            var passwordAgain = $('#personConfig_again-password');
+            if (password.hasAttr('disabled')) {
+                $('#personConfig_u105_txt').html('保存');
+                password.removeAttr('disabled');
+                passwordAgain.removeAttr('disabled');
+            } else {
+                new AD({
+                    title: '温馨提示',
+                    content: '您确定要保存新的密码？',
+                    onConfirm: function () {
+                        auth2.field('personConfig_password_hidden').set('exclude', 'updatePassword-Cancel')
+                        auth2.test()
+                    }
+                    , onCancel: function () {
+                        auth2.field('personConfig_password_hidden').set('exclude', '')
+                        auth2.field('personConfig_password_hidden').test('updatePassword-Cancel')
+                        $('#personConfig_u105_txt').html('编辑')
+                        password.val('').attr('disabled', 'disabled')
+                        passwordAgain.val('').attr('disabled', 'disabled')
+                    }
+                })
+            }
+        });
 
         this.ol = function () {
             return ol;
