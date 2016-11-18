@@ -18,19 +18,6 @@
             </div>
         </div>
     </div>
-    <!-- Unnamed (Text Field) -->
-    <div id="home_u8" class="ax_text_field">
-        <input id="home_u8_input" type="text" value=""/>
-    </div>
-
-    <!-- Unnamed (Shape) -->
-    <div id="home_u9" class="ax_shape">
-        <img id="home_u9_img" class="img " src="./account/images/home/home_u9.png"/>
-        <!-- Unnamed () -->
-        <div id="home_u10" class="text">
-            <p><span>搜索</span></p>
-        </div>
-    </div>
 
     <!-- menuProject (Shape) -->
     <div id="home_u11" class="ax_paragraph headershift" data-label="menuProject" selectiongroup="u7menu">

@@ -20,6 +20,7 @@ var AliUploader = require('gallery/uploader/kissyuploader/5.0.0/index');
 var JSONX = require('core-front/jsonx/jsonx');
 var personConfig = require('./personConfig/personConfig');
 var editProject = require('./editProject/editProject');
+var searchBar = require('./searchBar/searchBar');
 module.exports = {
     init: function () {
         var ai = new AI(token);
@@ -220,6 +221,7 @@ module.exports = {
 
                 editProject.init({account: account});
                 personConfig.init({account: account});
+                searchBar.init({})
                 SP.resolveImgSrc('.img');
             });
         }
