@@ -59,7 +59,8 @@ module.exports = {
             return defer.promise;
         }).register('updateName', function (value, attr, defer, field) {
             var self = this;
-            IO.post(SP.resolvedIOPath('personConfig/updateName?_content=json&name=' + $('#personConfig_name').val()), 'json').then(function (data) {
+            IO.post(SP.resolvedIOPath('personConfig/updateName?_content=json&name=' + encodeURIComponent($('#personConfig_name').val())), 'json')
+                .then(function (data) {
                 if (data[0].flag) {
                     self.msg('success', data[0].message);
                     if (data[0].message != null) {
@@ -67,7 +68,7 @@ module.exports = {
                     } else {
                         authMsgs.getMsg(field.get('name')).show('success', '用户名称修改成功');
                     }
-                    $('#home_u31_txt').html($('#personConfig_name').val());
+                    $('#home_u31_txt').html(data[0].data.name);
                 } else {
                     if (data[0].message != null) {
                         authMsgs.getMsg(field.get('name')).show('error', data[0].message);
@@ -78,7 +79,7 @@ module.exports = {
             return defer.promise;
         }).register('resumeName', function (value, attr, defer, field) {
             var self = this;
-            IO.post(SP.resolvedIOPath('personConfig/resumeName?_content=json&name=' + $('#personConfig_name').val()), 'json').then(function (data) {
+            IO.post(SP.resolvedIOPath('personConfig/resumeName?_content=json'), 'json').then(function (data) {
                 if (data[0].flag) {
                     self.msg('success', data[0].message);
                     if (data[0].message != null) {
