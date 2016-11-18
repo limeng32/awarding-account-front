@@ -42,7 +42,27 @@ module.exports = {
         var authMsgs = new AuthMsgs();
         auth.plug(authMsgs);
         auth.set('stopOnError', true);
-        auth.register('safe-name', function (value, attr, defer, field) {
+        auth.register('max-len', function (value, attr, defer, field) {
+            var self = this;
+            var max = Number(attr);
+            if (value.length <= max) {
+                defer.resolve(self);
+            } else {
+                //self.msg('error', '请您输入不超过' + max + '个字符');
+                defer.reject(self);
+            }
+            return defer.promise;
+        }).register('min-len', function (value, attr, defer, field) {
+            var self = this;
+            var min = Number(attr);
+            if (value.length >= min) {
+                defer.resolve(self);
+            } else {
+                //self.msg('error', '请您输入不少于' + min + '个字符');
+                defer.reject(self);
+            }
+            return defer.promise;
+        }).register('safe-name', function (value, attr, defer, field) {
             var self = this;
             var reg = '^[\u4e00-\u9fa5_a-zA-Z0-9]+$';
             if (value.match(reg)) {
@@ -54,30 +74,10 @@ module.exports = {
             return defer.promise;
         }).register('needAFail', function (value, attr, defer, field) {
             var self = this;
-            //$('#icpv5').getDOMNode().click();
             defer.reject(self);
             return defer.promise;
-        }).register('updateName', function (value, attr, defer, field) {
-            var self = this;
-            IO.post(SP.resolvedIOPath('personConfig/updateName?_content=json&name=' + encodeURIComponent($('#personConfig_name').val())), 'json')
-                .then(function (data) {
-                if (data[0].flag) {
-                    self.msg('success', data[0].message);
-                    if (data[0].message != null) {
-                        authMsgs.getMsg(field.get('name')).show('success', data[0].message);
-                    } else {
-                        authMsgs.getMsg(field.get('name')).show('success', '用户名称修改成功');
-                    }
-                    $('#home_u31_txt').html(data[0].data.name);
-                } else {
-                    if (data[0].message != null) {
-                        authMsgs.getMsg(field.get('name')).show('error', data[0].message);
-                    }
-                }
-            });
-            defer.reject(self);
-            return defer.promise;
-        }).register('resumeName', function (value, attr, defer, field) {
+        }).register('updateName-Cancel', function (value, attr, defer, field) {
+            field.set('exclude', 'updateName-Cancel')
             var self = this;
             IO.post(SP.resolvedIOPath('personConfig/resumeName?_content=json'), 'json').then(function (data) {
                 if (data[0].flag) {
@@ -96,6 +96,28 @@ module.exports = {
             });
             defer.reject(self);
             return defer.promise;
+        }).register('updateName-confirm', function (value, attr, defer, field) {
+            var self = this;
+            IO.post(SP.resolvedIOPath('personConfig/updateName?_content=json&name=' + encodeURIComponent($('#personConfig_name').val())), 'json')
+                .then(function (data) {
+                if (data[0].flag) {
+                    self.msg('success', data[0].message);
+                    if (data[0].message != null) {
+                        authMsgs.getMsg(field.get('name')).show('success', data[0].message);
+                    } else {
+                        authMsgs.getMsg(field.get('name')).show('success', '用户名称修改成功');
+                    }
+                    $('#home_u31_txt').html(data[0].data.name);
+                    $('#personConfig_u103_txt').html('编辑');
+                    $('#personConfig_name').attr('readonly', 'readonly');
+                } else {
+                    if (data[0].message != null) {
+                        authMsgs.getMsg(field.get('name')).show('error', data[0].message);
+                    }
+                }
+            });
+            defer.reject(self);
+            return defer.promise;
         })
         auth.render();
         $('#personConfig_u102').on('click', function () {
@@ -103,32 +125,33 @@ module.exports = {
             if (name.hasAttr('readonly')) {
                 $('#personConfig_u103_txt').html('保存');
                 name.removeAttr('readonly');
-                disableAllFieldsExcept('.personConfigName')
             } else {
                 new AD({
                     title: '温馨提示',
                     content: '您确定要保存新的名称？',
                     onConfirm: function () {
-                        auth.field('personConfig_name_hidden').set('exclude', 'resumeName')
+                        auth.field('personConfig_name_hidden').set('exclude', 'updateName-Cancel')
                         auth.test()
-                    },
-                    onCancel: function () {
+                    }
+                    , onCancel: function () {
                         auth.field('personConfig_name_hidden').set('exclude', '')
-                        auth.field('personConfig_name_hidden').test('resumeName')
+                        auth.field('personConfig_name_hidden').test('updateName-Cancel')
+                        $('#personConfig_u103_txt').html('编辑');
+                        $('#personConfig_name').attr('readonly', 'readonly');
                     }
                 });
-                $('#personConfig_u103_txt').html('编辑');
-                name.attr('readonly', 'readonly');
-                enableAllFields()
             }
         });
-        var disableAllFieldsExcept = function (selector) {
-            $('.personConfigField').attr('disabled', 'disabled')
-            $(selector).removeAttr('disabled')
-        }
-        var enableAllFields = function () {
-            $('.personConfigField').removeAttr('disabled')
-        }
+        var auth2 = new Auth('#personConfig2', {
+            fnFilter: function ($field) {
+                return $field.attr('type') == 'hidden';
+            }
+        });
+        var authMsgs2 = new AuthMsgs();
+        auth2.plug(authMsgs2);
+
+
+
         this.ol = function () {
             return ol;
         };

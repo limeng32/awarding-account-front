@@ -13,13 +13,13 @@
         <label class="control-label" for="eamil">名称</label>
 
         <div class="controls">
-            <input type="text" class="input-medium personConfigField personConfigName" name="personConfig_name"
+            <input type="text" class="input-medium" name="personConfig_name" max-len="8" max-len-msg="名称不能多于8个字符"
                    id="personConfig_name" required="" safe-name="safe-name"
                    required-msg="名称不能为空" msg-wrapper="#personConfig_u145"
                    value="{{account.name}}" readonly="readonly">
-            <input hidden="hidden" id="personConfig_name_hidden"  resumeName="resumeName" updateName="updateName"
-                   class="personConfigField personConfigName"
-                   msg-wrapper="#personConfig_u145"/>
+            <input hidden="hidden" id="personConfig_name_hidden" name="personConfig_name_hidden"
+                   updateName-Cancel="updateName-Cancel" updateName-confirm="updateName-confirm"
+                   class="" msg-wrapper="#personConfig_u145"/>
         </div>
 
         <div id="personConfig_u102" class="ax_shape">
@@ -30,24 +30,33 @@
             </div>
         </div>
     </div>
+    <input hidden="hidden" needAFail="needAFail"/>
+
+    <div id="personConfig_u145" class="ax_paragraph logintitle">
+    </div>
+</form>
+<form class="form-horizontal" id="personConfig2" method="post" action="a">
     <div class="control-group">
         <label class="control-label" for="password">输入密码</label>
 
         <div class="controls">
-            <input type="password" class="input-medium personConfigField personConfigPassword" required="required"
+            <input type="password" class="input-medium" required="required"
                    required-msg="密码不能为空" name="password"
-                   id="password" placeholder="请输入密码" safe-password="safe-password" password-min-len="6"
-                   password-max-len="10" readonly="readonly" msg-wrapper="">
+                   id="password" placeholder="请输入密码" safe-password="safe-password" min-len="6" min-len-msg="密码不能少于10个字符"
+                   max-len="10" max-len-msg="密码不能多于10个字符" readonly="readonly" msg-wrapper="#personConfig_u147">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="again-password">再次输入密码</label>
 
         <div class="controls">
-            <input type="password" class="input-medium personConfigField personConfigPassword" id="again-password"
+            <input type="password" class="input-medium" id="again-password"
                    name="again-password"
                    equal-field="password" required="required" required-msg="再次输入密码不能为空" placeholder="请再次输入密码"
-                   readonly="readonly" msg-wrapper="">
+                   readonly="readonly" msg-wrapper="#personConfig_u147">
+            <input hidden="hidden" name="personConfig_again-password_hidden"
+                   updateName-Cancel="updateName-Cancel" updateName-confirm="updateName-confirm"
+                   class="" msg-wrapper="#personConfig_u147"/>
         </div>
     </div>
     <div id="personConfig_u104" class="ax_shape">
@@ -57,12 +66,5 @@
             <p><span id="personConfig_u105_txt">编辑</span></p>
         </div>
     </div>
-    <input id="personConfig_v1" hidden="hidden" needAFail="needAFail"/>
+    <input hidden="hidden" needAFail="needAFail"/>
 </form>
-<div id="personConfig_u145" class="ax_paragraph logintitle">
-    <img id="personConfig_u145_img" class="img " src="./account/images/transparent.gif"/>
-
-    <div id="personConfig_u146" class="text">
-        <p><span style="font-family:'幼圆 Bold', '幼圆';font-weight:700;"></span></p>
-    </div>
-</div>
