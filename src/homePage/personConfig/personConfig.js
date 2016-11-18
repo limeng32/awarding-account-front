@@ -100,7 +100,6 @@ module.exports = {
             IO.post(SP.resolvedIOPath('personConfig/updateName?_content=json&name=' + encodeURIComponent($('#personConfig_name').val())), 'json')
                 .then(function (data) {
                 if (data[0].flag) {
-                    self.msg('success', data[0].message);
                     if (data[0].message != null) {
                         authMsgs.getMsg(field.get('name')).show('success', data[0].message);
                     } else {
