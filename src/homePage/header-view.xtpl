@@ -23,8 +23,8 @@
     <div id="home_u11" class="ax_paragraph headershift" data-label="menuProject" selectiongroup="u7menu">
         <img id="home_u11_img" class="img " src="./account/images/transparent.gif"/>
         <!-- Unnamed () -->
-        <div id="home_u12" class="text">
-            <p><span>项目</span></p>
+        <div id="home_u12" class="text menu menu-unfocus">
+            <p><span class="">项目</span></p>
         </div>
     </div>
 
@@ -32,7 +32,7 @@
     <div id="home_u13" class="ax_paragraph headershift" selectiongroup="u7menu">
         <img id="home_u13_img" class="img " src="./account/images/transparent.gif"/>
         <!-- Unnamed () -->
-        <div id="home_u14" class="text">
+        <div id="home_u14" class="text menu menu-unfocus">
             <p><span>消息</span></p>
         </div>
     </div>
@@ -41,7 +41,7 @@
     <div id="home_u15" class="ax_paragraph headershift" selectiongroup="u7menu">
         <img id="home_u15_img" class="img " src="./account/images/transparent.gif"/>
         <!-- Unnamed () -->
-        <div id="home_u16" class="text">
+        <div id="home_u16" class="text menu menu-unfocus">
             <p><span>指定</span></p>
         </div>
     </div>
@@ -50,7 +50,7 @@
     <div id="home_u17" class="ax_paragraph headershift" selectiongroup="u7menu">
         <img id="home_u17_img" class="img " src="./account/images/transparent.gif"/>
         <!-- Unnamed () -->
-        <div id="home_u18" class="text">
+        <div id="home_u18" class="text menu menu-unfocus">
             <p><span>专家</span></p>
         </div>
     </div>
@@ -59,7 +59,7 @@
     <div id="home_u19" class="ax_paragraph headershift" selectiongroup="u7menu">
         <img id="home_u19_img" class="img " src="./account/images/transparent.gif"/>
         <!-- Unnamed () -->
-        <div id="home_u20" class="text">
+        <div id="home_u20" class="text menu menu-unfocus">
             <p><span>管理</span></p>
         </div>
     </div>
@@ -68,7 +68,7 @@
     <div id="home_u21" class="ax_paragraph headershift" data-label="menuAppraisal" selectiongroup="u7menu">
         <img id="home_u21_img" class="img " src="./account/images/transparent.gif"/>
         <!-- Unnamed () -->
-        <div id="home_u22" class="text">
+        <div id="home_u22" class="text menu menu-unfocus">
             <p><span>分组</span></p>
         </div>
     </div>
@@ -77,7 +77,7 @@
     <div id="home_u23" class="ax_paragraph headershift" selectiongroup="u7menu">
         <img id="home_u23_img" class="img " src="./account/images/transparent.gif"/>
         <!-- Unnamed () -->
-        <div id="home_u24" class="text">
+        <div id="home_u24" class="text menu menu-unfocus">
             <p><span>评审</span></p>
         </div>
     </div>
@@ -86,7 +86,7 @@
     <div id="home_u41" class="ax_paragraph headershift" data-label="menuAppraisal" selectiongroup="u7menu">
         <img id="home_u41_img" class="img " src="./account/images/transparent.gif"/>
         <!-- Unnamed () -->
-        <div id="home_u42" class="text">
+        <div id="home_u42" class="text menu menu-unfocus">
             <p><span>审查</span></p>
         </div>
     </div>

@@ -49,7 +49,7 @@ module.exports = {
                     target: '#home_u28',
                     content: ccHtml,
                     visible: true,
-                    xy: [890, 10],
+                    xy: [990, 10],
                     width: '0px',
                     height: '0px',
                     zIndex: 10,
@@ -218,6 +218,16 @@ module.exports = {
                     }
                     _ol.show();
                 }
+                /*处理顶层菜单逻辑*/
+                $('.menu').on('click', function (e) {
+                    if ($(e.currentTarget).hasClass('menu-unfocus')) {
+                        $('.menu').replaceClass('menu-focus', 'menu-unfocus')
+                        $(e.currentTarget).replaceClass('menu-unfocus', 'menu-focus')
+                    }
+                })
+
+                $('#home_u12').on('click',function(){
+                })
 
                 editProject.init({account: account});
                 personConfig.init({account: account});
