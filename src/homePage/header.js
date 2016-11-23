@@ -227,6 +227,7 @@ module.exports = {
                 })
 
                 $('#home_u12').on('click',function(){
+                    window.location.assign(SP.resolvedPath('project'))
                 })
 
                 editProject.init({account: account});
