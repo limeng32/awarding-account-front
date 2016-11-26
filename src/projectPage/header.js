@@ -19,7 +19,6 @@ var UploaderAuth = require('kg/uploader/2.0.3/plugins/auth/auth');
 var AliUploader = require('gallery/uploader/kissyuploader/5.0.0/index');
 var JSONX = require('core-front/jsonx/jsonx');
 var personConfig = require('./personConfig/personConfig');
-var editProject = require('./editProject/editProject');
 var searchBar = require('./searchBar/searchBar');
 module.exports = {
     init: function () {
@@ -75,9 +74,6 @@ module.exports = {
                 });
                 $('#home_u33').on('click', function () {
                     pop(ol2);
-                })
-                $('#home_u35').on('click', function () {
-                    pop(editProject.ol());
                 })
                 $('#home_u39').on('click', function () {
                     pop(personConfig.ol());
@@ -213,7 +209,7 @@ module.exports = {
                     });
                 })
                 var pop = function (_ol) {
-                    var overlays = [ol2, editProject.ol(), personConfig.ol()];
+                    var overlays = [ol2, personConfig.ol()];
                     for (var i = 0; i < overlays.length; i++) {
                         overlays[i].close();
                     }
@@ -228,10 +224,8 @@ module.exports = {
                 })
 
                 $('#home_u12').on('click',function(){
-                    window.location.assign(SP.resolvedPath('project'))
                 })
 
-                editProject.init({account: account});
                 personConfig.init({account: account});
                 searchBar.init({})
                 SP.resolveImgSrc('.img');

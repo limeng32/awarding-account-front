@@ -1,0 +1,17 @@
+<span class="ks-combobox" id="home_u8">
+    <div class="ks-combobox-input-wrap"  id="home_u8_input">
+        <input style="width:600px;height:12px;" aria-haspopup="true"
+               aria-combobox="list" role="combobox" combobox="off"
+               class="ks-combobox-input" tabindex="0"
+               placeholder=" 多个关键字可用空格分隔"
+                />
+    </div>
+</span>
+<!-- Unnamed (Shape) -->
+<div id="home_u9" class="ax_shape">
+    <img id="home_u9_img" class="img " src="./account/images/home/home_u9.png"/>
+    <!-- Unnamed () -->
+    <div id="home_u10" class="text">
+        <p><span>搜索</span></p>
+    </div>
+</div>

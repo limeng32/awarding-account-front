@@ -1,0 +1,95 @@
+<input id="editProject_id" name="editProject_id" type="hidden">
+<form class="form-horizontal" id="project_name" method="post" action="a">
+    <!-- project_name (Text Field) -->
+    <div id="editProject_u40" class="ax_text_field" data-label="project_name">
+        <input id="editProject_u40_input" type="text" readonly="readonly" value="" placeholder="请输入项目名称"
+               msg-wrapper="#editProject_v1" max-len="50" max-len-msg="项目名称不能多于50个字符" required="required"
+               required-msg="项目名称不能为空"/>
+        <input hidden="hidden" id="editProject_name_hidden" name="editProject_name_hidden"
+               updateProjectName-cancel="updateProjectName-cancel" updateProjectName-confirm="updateProjectName-confirm"
+               class="" msg-wrapper="#editProject_v1"/>
+    </div>
+
+    <!-- border (Shape) -->
+    <div id="editProject_u38" class="ax_shape" data-label="border">
+        <img id="editProject_u38_img" class="img " src="./account/images/editProject/border_u38.png"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u39" class="text">
+            <p><span></span></p>
+        </div>
+    </div>
+
+
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u41" class="ax_paragraph">
+        <img id="editProject_u41_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u42" class="text">
+            <p><span>项目名称</span></p>
+        </div>
+    </div>
+
+    <!-- project_name_button (Dynamic Panel) -->
+                <!-- Unnamed (Shape) -->
+    <div id="editProject_u102" class="ax_shape">
+        <img id="editProject_u102_img" class="img "
+             src="./account/images/editProject/add_project_button_u73.png"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u103" class="text">
+            <p><span id="editProject_u103_txt">编辑</span></p>
+        </div>
+    </div>
+    <input hidden="hidden" needAFail="needAFail"/>
+
+    <div id="editProject_v1" class="ax_paragraph "/>
+</form>
+<form class="form-horizontal" id="project_lxbj" method="post" action="b">
+<!-- Unnamed (Shape) -->
+<div id="editProject_u43" class="ax_paragraph">
+    <img id="editProject_u43_img" class="img " src="./account/images/transparent.gif"/>
+    <!-- Unnamed () -->
+    <div id="editProject_u44" class="text">
+        <p><span>立项背景</span></p>
+    </div>
+</div>
+
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u55" class="ax_paragraph">
+        <img id="editProject_u55_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u56" class="text">
+            <p><span>（5000字以内）</span></p>
+        </div>
+    </div>
+
+<!-- lxbj_border (Shape) -->
+<div id="editProject_u11" class="ax_shape" data-label="lxbj_border">
+    <img id="editProject_u11_img" class="img " src="./account/images/editProject/tjyj_border_u0.png"/>
+    <!-- Unnamed () -->
+    <div id="editProject_u12" class="text">
+        <p><span></span></p>
+    </div>
+</div>
+
+<!-- lxbj (Text Area) -->
+<div id="editProject_u45" class="ax_text_area" data-label="lxbj">
+    <textarea type="text" id="editProject_u45_input" value="" readonly="readonly" placeholder="请输入立项背景"
+              msg-wrapper="#editProject_v2" required="required" required-msg="立项背景不能为空" max-len="5000"
+              max-len-msg="立项背景不能多于5000个字符"/>
+    <input hidden="hidden" id="editProject_lxbj_hidden" name="editProject_lxbj_hidden"
+           updateProjectLxbj-cancel="updateProjectLxbj-cancel" updateProjectLxbj-confirm="updateProjectLxbj-confirm"
+           class="" msg-wrapper="#editProject_v2"/>
+</div>
+
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u77" class="ax_shape">
+        <img id="editProject_u77_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u78" class="text">
+            <p><span id="editProject_u78_txt">编辑</span></p>
+        </div>
+    </div>
+    <input hidden="hidden" needAFail="needAFail"/>
+
+    <div id="editProject_v2" class="ax_paragraph "/>
+</form>
