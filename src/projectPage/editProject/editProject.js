@@ -152,28 +152,23 @@ module.exports = {
         }).register('updateProjectLxbj-cancel', function (value, attr, defer, field) {
             field.set('exclude', 'updateProjectLxbj-cancel')
             var self = this;
-            //if ($('#editProject_id').val() == '') {
-            //    authMsgs_lxbj.getMsg(field.get('name')).show('success', '项目没有建立');
-            //    $('#editProject_u40_input').val('')
-            //} else {
-            //    IO.post(SP.resolvedIOPath('submitProject/resumeName?_content=json&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
-            //        .then(function (data) {
-            //            if (data[0].flag) {
-            //                if (data[0].message != null) {
-            //                    authMsgs_lxbj.getMsg(field.get('name')).show('success', data[0].message);
-            //                } else {
-            //                    authMsgs_lxbj.getMsg(field.get('name')).show('success', '项目名称没有改变');
-            //                }
-            //                $('#editProject_u40_input').val(data[0].data.name)
-            //            } else {
-            //                if (data[0].message != null) {
-            //                    authMsgs_lxbj.getMsg(field.get('name')).show('error', data[0].message);
-            //                }
-            //            }
-            //        })
-            //}
-            defer.reject(self);
-            return defer.promise;
+            IO.post(SP.resolvedIOPath('submitProject/resumeBucket?_content=json&fieldName=lxbj&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs_lxbj.getMsg(field.get('name')).show('success', data[0].message)
+                        } else {
+                            authMsgs_lxbj.getMsg(field.get('name')).show('success', '立项背景没有改变')
+                        }
+                        $('#editProject_u45_input').val(data[0].data)
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs_lxbj.getMsg(field.get('name')).show('error', data[0].message)
+                        }
+                    }
+                })
+            defer.reject(self)
+            return defer.promise
         })
         auth_lxbj.render()
         $('#editProject_u77').on('click', function () {
@@ -229,26 +224,21 @@ module.exports = {
         }).register('updateProjectCxd-cancel', function (value, attr, defer, field) {
             field.set('exclude', 'updateProjectCxd-cancel')
             var self = this;
-            //if ($('#editProject_id').val() == '') {
-            //    authMsgs_lxbj.getMsg(field.get('name')).show('success', '项目没有建立');
-            //    $('#editProject_u40_input').val('')
-            //} else {
-            //    IO.post(SP.resolvedIOPath('submitProject/resumeName?_content=json&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
-            //        .then(function (data) {
-            //            if (data[0].flag) {
-            //                if (data[0].message != null) {
-            //                    authMsgs_lxbj.getMsg(field.get('name')).show('success', data[0].message);
-            //                } else {
-            //                    authMsgs_lxbj.getMsg(field.get('name')).show('success', '项目名称没有改变');
-            //                }
-            //                $('#editProject_u40_input').val(data[0].data.name)
-            //            } else {
-            //                if (data[0].message != null) {
-            //                    authMsgs_lxbj.getMsg(field.get('name')).show('error', data[0].message);
-            //                }
-            //            }
-            //        })
-            //}
+            IO.post(SP.resolvedIOPath('submitProject/resumeBucket?_content=json&fieldName=cxd&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs_cxd.getMsg(field.get('name')).show('success', data[0].message)
+                        } else {
+                            authMsgs_cxd.getMsg(field.get('name')).show('success', '创新亮点没有改变')
+                        }
+                        $('#editProject_u48_input').val(data[0].data)
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs_cxd.getMsg(field.get('name')).show('error', data[0].message)
+                        }
+                    }
+                })
             defer.reject(self);
             return defer.promise;
         })
