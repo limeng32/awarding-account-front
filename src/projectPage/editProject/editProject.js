@@ -265,6 +265,78 @@ module.exports = {
                 })
             }
         })
+        var auth_zhbj = new Auth('#project_zhbj', {
+            fnFilter: function ($field) {
+                return $field.attr('type') == 'hidden';
+            }
+        })
+        var authMsgs_zhbj = new AuthMsgs()
+        auth_zhbj.plug(authMsgs_zhbj)
+        auth_zhbj.set('stopOnError', true)
+        auth_zhbj.register('updateProjectZhbj-confirm', function (value, attr, defer, field) {
+            var self = this;
+            IO.post(SP.resolvedIOPath('submitProject/updateBucket?_content=json&fieldName=zhbj&fieldValue=' + encodeURIComponent($('#editProject_u10_input').val()) + '&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs_zhbj.getMsg(field.get('name')).show('success', data[0].message);
+                        } else {
+                            authMsgs_zhbj.getMsg(field.get('name')).show('success', '综合背景修改成功');
+                        }
+                        $('#editProject_u88_txt').html('编辑')
+                        $('#editProject_u10_input').attr('readonly', 'readonly')
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs_zhbj.getMsg(field.get('name')).show('error', data[0].message)
+                        }
+                    }
+                })
+            defer.reject(self);
+            return defer.promise;
+        }).register('updateProjectZhbj-cancel', function (value, attr, defer, field) {
+            field.set('exclude', 'updateProjectZhbj-cancel')
+            var self = this;
+            IO.post(SP.resolvedIOPath('submitProject/resumeBucket?_content=json&fieldName=zhbj&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs_zhbj.getMsg(field.get('name')).show('success', data[0].message)
+                        } else {
+                            authMsgs_zhbj.getMsg(field.get('name')).show('success', '综合背景没有改变')
+                        }
+                        $('#editProject_u10_input').val(data[0].data)
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs_zhbj.getMsg(field.get('name')).show('error', data[0].message)
+                        }
+                    }
+                })
+            defer.reject(self);
+            return defer.promise;
+        })
+        auth_zhbj.render()
+        $('#editProject_u88').on('click', function () {
+            var zhbj = $('#editProject_u10_input')
+            if (zhbj.hasAttr('readonly')) {
+                $('#editProject_u88_txt').html('保存');
+                zhbj.removeAttr('readonly');
+            } else {
+                new AD({
+                    title: '温馨提示',
+                    content: '您确定要保存综合背景？',
+                    onConfirm: function () {
+                        auth_zhbj.field('editProject_zhbj_hidden').set('exclude', 'updateProjectZhbj-cancel')
+                        auth_zhbj.test()
+                    }
+                    , onCancel: function () {
+                        auth_zhbj.field('editProject_zhbj_hidden').set('exclude', '')
+                        auth_zhbj.field('editProject_zhbj_hidden').test('updateProjectZhbj-cancel')
+                        $('#editProject_u88_txt').html('编辑')
+                        zhbj.attr('readonly', 'readonly')
+                    }
+                })
+            }
+        })
         this.ol = function () {
             return ol
         }
