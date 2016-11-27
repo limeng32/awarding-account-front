@@ -153,3 +153,52 @@
 
     <div id="editProject_v3" class="ax_paragraph "/>
 </form>
+<form class="form-horizontal" id="project_zhbj" method="post" action="d">
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u51" class="ax_paragraph">
+        <img id="editProject_u51_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u52" class="text">
+            <p><span>综合背景</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u57" class="ax_paragraph">
+        <img id="editProject_u57_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u58" class="text">
+            <p><span>（5000字以内）</span></p>
+        </div>
+    </div>
+
+
+    <!-- zhbj_border (Shape) -->
+    <div id="editProject_u8" class="ax_shape" data-label="zhbj_border">
+        <img id="editProject_u8_img" class="img " src="./account/images/editProject/tjyj_border_u0.png"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u9" class="text">
+            <p><span></span></p>
+        </div>
+    </div>
+
+    <!-- zhbj (Text Area) -->
+    <div id="editProject_u10" class="ax_text_area" data-label="zhbj">
+        <textarea id="editProject_u10_input" placeholder="请输入综合背景" msg-wrapper="#editProject_v4" readonly="readonly"
+                  required="required"
+                  required-msg="综合背景不能为空" max-len="5000" max-len-msg="综合背景不能多于5000个字符"/>
+        <input hidden="hidden" id="editProject_zhbj_hidden" name="editProject_zhbj_hidden"
+               updateProjectZhbj-cancel="updateProjectZhbj-cancel" updateProjectZhbj-confirm="updateProjectZhbj-confirm"
+               class="" msg-wrapper="#editProject_v4"/>
+    </div>
+    <div id="editProject_u87" class="ax_shape">
+        <img id="editProject_u87_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u88" class="text">
+            <p><span id="editProject_u88_txt">编辑</span></p>
+        </div>
+    </div>
+    <input hidden="hidden" needAFail="needAFail"/>
+
+    <div id="editProject_v4" class="ax_paragraph "/>
+</form>

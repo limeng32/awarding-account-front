@@ -167,8 +167,8 @@
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 510px;
-  height: 97px;
+  width: 500px;
+  height: 86px;
   font-family: 'Arial Normal', 'Arial';
   font-weight: 400;
   font-style: normal;
@@ -1202,11 +1202,12 @@
 }
 #editProject_u87 {
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 680px;
+  top: 508px;
   width: 55px;
   height: 34px;
   color: #FFFFFF;
+  cursor: pointer;
 }
 #editProject_u87_img {
   position: absolute;
@@ -1217,8 +1218,8 @@
 }
 #editProject_u88 {
   position: absolute;
-  left: 2px;
-  top: 10px;
+  left: 15px;
+  top: -5px;
   width: 51px;
   word-wrap: break-word;
 }
