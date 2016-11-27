@@ -202,3 +202,59 @@
 
     <div id="editProject_v4" class="ax_paragraph "/>
 </form>
+<form class="form-horizontal" id="project_yyqk" method="post" action="e">
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u59" class="ax_paragraph">
+        <img id="editProject_u59_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u60" class="text">
+            <p><span>应用情况</span></p>
+        </div>
+    </div>
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u61" class="ax_paragraph">
+        <img id="editProject_u61_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u62" class="text">
+            <p><span>（5000字以内）</span></p>
+        </div>
+    </div>
+    <!-- yyqk_border (Shape) -->
+    <div id="editProject_u5" class="ax_shape" data-label="yyqk_border">
+        <img id="editProject_u5_img" class="img " src="./account/images/editProject/tjyj_border_u0.png"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u6" class="text">
+            <p><span></span></p>
+        </div>
+    </div>
+
+    <!-- yyqk (Text Area) -->
+    <div id="editProject_u7" class="ax_text_area" data-label="yyqk">
+    <textarea id="editProject_u7_input" placeholder="请输入应用情况" msg-wrapper="#editProject_v5" readonly="readonly"
+              required="required"
+              required-msg="应用情况不能为空" max-len="5000" max-len-msg="应用情况不能多于5000个字符"/>
+        <input hidden="hidden" id="editProject_yyqk_hidden" name="editProject_yyqk_hidden"
+               updateProjectYyqk-cancel="updateProjectYyqk-cancel" updateProjectYyqk-confirm="updateProjectYyqk-confirm"
+               class="" msg-wrapper="#editProject_v5"/>
+    </div>
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u92" class="ax_shape">
+        <img id="editProject_u92_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u93" class="text">
+            <p><span>编辑</span></p>
+        </div>
+    </div>
+    <input hidden="hidden" needAFail="needAFail"/>
+
+    <div id="editProject_v5" class="ax_paragraph "/>
+</form>
+
+
+<div id="editProject_u3" class="ax_shape" data-label="yyqk_border">
+    <img id="editProject_u3_img" class="img " src="./account/images/editProject/yyqk_border_u3.png"/>
+    <!-- Unnamed () -->
+    <div id="editProject_u4" class="text">
+        <p><span></span></p>
+    </div>
+</div>
