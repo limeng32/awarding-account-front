@@ -337,6 +337,78 @@ module.exports = {
                 })
             }
         })
+        var auth_yyqk = new Auth('#project_yyqk', {
+            fnFilter: function ($field) {
+                return $field.attr('type') == 'hidden';
+            }
+        })
+        var authMsgs_yyqk = new AuthMsgs()
+        auth_yyqk.plug(authMsgs_yyqk)
+        auth_yyqk.set('stopOnError', true)
+        auth_yyqk.register('updateProjectYyqk-confirm', function (value, attr, defer, field) {
+            var self = this;
+            IO.post(SP.resolvedIOPath('submitProject/updateBucket?_content=json&fieldName=yyqk&fieldValue=' + encodeURIComponent($('#editProject_u7_input').val()) + '&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs_yyqk.getMsg(field.get('name')).show('success', data[0].message);
+                        } else {
+                            authMsgs_yyqk.getMsg(field.get('name')).show('success', '应用情况修改成功');
+                        }
+                        $('#editProject_u93_txt').html('编辑')
+                        $('#editProject_u7_input').attr('readonly', 'readonly')
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs_yyqk.getMsg(field.get('name')).show('error', data[0].message)
+                        }
+                    }
+                })
+            defer.reject(self);
+            return defer.promise;
+        }).register('updateProjectYyqk-cancel', function (value, attr, defer, field) {
+            field.set('exclude', 'updateProjectYyqk-cancel')
+            var self = this;
+            IO.post(SP.resolvedIOPath('submitProject/resumeBucket?_content=json&fieldName=yyqk&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs_yyqk.getMsg(field.get('name')).show('success', data[0].message)
+                        } else {
+                            authMsgs_yyqk.getMsg(field.get('name')).show('success', '应用情况没有改变')
+                        }
+                        $('#editProject_u7_input').val(data[0].data)
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs_yyqk.getMsg(field.get('name')).show('error', data[0].message)
+                        }
+                    }
+                })
+            defer.reject(self);
+            return defer.promise;
+        })
+        auth_yyqk.render()
+        $('#editProject_u93').on('click', function () {
+            var yyqk = $('#editProject_u7_input')
+            if (yyqk.hasAttr('readonly')) {
+                $('#editProject_u93_txt').html('保存');
+                yyqk.removeAttr('readonly');
+            } else {
+                new AD({
+                    title: '温馨提示',
+                    content: '您确定要保存应用情况？',
+                    onConfirm: function () {
+                        auth_yyqk.field('editProject_yyqk_hidden').set('exclude', 'updateProjectYyqk-cancel')
+                        auth_yyqk.test()
+                    }
+                    , onCancel: function () {
+                        auth_yyqk.field('editProject_yyqk_hidden').set('exclude', '')
+                        auth_yyqk.field('editProject_yyqk_hidden').test('updateProjectYyqk-cancel')
+                        $('#editProject_u93_txt').html('编辑')
+                        yyqk.attr('readonly', 'readonly')
+                    }
+                })
+            }
+        })
         this.ol = function () {
             return ol
         }

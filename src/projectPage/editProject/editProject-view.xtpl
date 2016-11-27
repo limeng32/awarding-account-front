@@ -242,7 +242,7 @@
         <img id="editProject_u92_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
         <!-- Unnamed () -->
         <div id="editProject_u93" class="text">
-            <p><span>编辑</span></p>
+            <p><span id="editProject_u93_txt">编辑</span></p>
         </div>
     </div>
     <input hidden="hidden" needAFail="needAFail"/>
