@@ -93,3 +93,64 @@
 
     <div id="editProject_v2" class="ax_paragraph "/>
 </form>
+<form class="form-horizontal" id="project_cxd" method="post" action="c">
+    <!-- cxd_border (Shape) -->
+    <div id="editProject_u46" class="ax_shape" data-label="cxd_border">
+        <img id="editProject_u46_img" class="img " src="./account/images/editProject/tjyj_border_u0.png"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u47" class="text">
+            <p><span></span></p>
+        </div>
+    </div>
+
+    <!-- cxd (Text Area) -->
+    <div id="editProject_u48" class="ax_text_area" data-label="cxd">
+        <textarea id="editProject_u48_input" placeholder="请输入创新亮点" msg-wrapper="#editProject_v3" required="required"
+                  required-msg="创新亮点不能为空"
+                  max-len="5000"
+                  max-len-msg="创新亮点不能多于5000个字符"/>
+        <input hidden="hidden" id="editProject_cxd_hidden" name="editProject_cxd_hidden"
+               updateProjectCxd-cancel="updateProjectCxd-cancel" updateProjectCxd-confirm="updateProjectCxd-confirm"
+               class="" msg-wrapper="#editProject_v3"/>
+    </div>
+
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u49" class="ax_paragraph">
+        <img id="editProject_u49_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u50" class="text">
+            <p><span>创新亮点</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u53" class="ax_paragraph">
+        <img id="editProject_u53_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u54" class="text">
+            <p><span>（5000字以内）</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u82" class="ax_shape">
+        <img id="editProject_u82_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u83" class="text">
+            <p><span>编辑</span></p>
+        </div>
+    </div>
+
+
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u71" class="ax_paragraph">
+        <img id="editProject_u71_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u72" class="text">
+            <p><span>（5000字以内）</span></p>
+        </div>
+    </div>
+    <input hidden="hidden" needAFail="needAFail"/>
+
+    <div id="editProject_v3" class="ax_paragraph "/>
+</form>

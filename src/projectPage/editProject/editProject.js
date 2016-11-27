@@ -198,6 +198,36 @@ module.exports = {
                 })
             }
         })
+        var auth_cxd = new Auth('#project_cxd', {
+            fnFilter: function ($field) {
+                return $field.attr('type') == 'hidden';
+            }
+        })
+        var authMsgs_cxd = new AuthMsgs()
+        auth_cxd.plug(authMsgs_cxd)
+        auth_cxd.set('stopOnError', true)
+        auth_cxd.register('updateProjectCxd-confirm', function (value, attr, defer, field) {
+            var self = this;
+            //IO.post(SP.resolvedIOPath('submitProject/updateBucket?_content=json&fieldName=lxbj&fieldValue=' + encodeURIComponent($('#editProject_u45_input').val()) + '&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+            //    .then(function (data) {
+            //        if (data[0].flag) {
+            //            if (data[0].message != null) {
+            //                authMsgs_lxbj.getMsg(field.get('name')).show('success', data[0].message);
+            //            } else {
+            //                authMsgs_lxbj.getMsg(field.get('name')).show('success', '立项背景修改成功');
+            //            }
+            //            $('#editProject_u77_txt').html('编辑')
+            //            $('#editProject_u45_input').attr('readonly', 'readonly')
+            //        } else {
+            //            if (data[0].message != null) {
+            //                authMsgs_lxbj.getMsg(field.get('name')).show('error', data[0].message)
+            //            }
+            //        }
+            //    })
+            defer.reject(self);
+            return defer.promise;
+        })
+        auth_cxd.render()
         this.ol = function () {
             return ol
         }
