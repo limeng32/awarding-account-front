@@ -150,7 +150,7 @@ module.exports = {
             defer.reject(self);
             return defer.promise;
         }).register('updateProjectLxbj-cancel', function (value, attr, defer, field) {
-            field.set('exclude', 'updateProjectName-cancel')
+            field.set('exclude', 'updateProjectLxbj-cancel')
             var self = this;
             //if ($('#editProject_id').val() == '') {
             //    authMsgs_lxbj.getMsg(field.get('name')).show('success', '项目没有建立');
@@ -208,26 +208,73 @@ module.exports = {
         auth_cxd.set('stopOnError', true)
         auth_cxd.register('updateProjectCxd-confirm', function (value, attr, defer, field) {
             var self = this;
-            //IO.post(SP.resolvedIOPath('submitProject/updateBucket?_content=json&fieldName=lxbj&fieldValue=' + encodeURIComponent($('#editProject_u45_input').val()) + '&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
-            //    .then(function (data) {
-            //        if (data[0].flag) {
-            //            if (data[0].message != null) {
-            //                authMsgs_lxbj.getMsg(field.get('name')).show('success', data[0].message);
+            IO.post(SP.resolvedIOPath('submitProject/updateBucket?_content=json&fieldName=cxd&fieldValue=' + encodeURIComponent($('#editProject_u48_input').val()) + '&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs_cxd.getMsg(field.get('name')).show('success', data[0].message);
+                        } else {
+                            authMsgs_cxd.getMsg(field.get('name')).show('success', '创新亮点修改成功');
+                        }
+                        $('#editProject_u83_txt').html('编辑')
+                        $('#editProject_u48_input').attr('readonly', 'readonly')
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs_cxd.getMsg(field.get('name')).show('error', data[0].message)
+                        }
+                    }
+                })
+            defer.reject(self);
+            return defer.promise;
+        }).register('updateProjectCxd-cancel', function (value, attr, defer, field) {
+            field.set('exclude', 'updateProjectCxd-cancel')
+            var self = this;
+            //if ($('#editProject_id').val() == '') {
+            //    authMsgs_lxbj.getMsg(field.get('name')).show('success', '项目没有建立');
+            //    $('#editProject_u40_input').val('')
+            //} else {
+            //    IO.post(SP.resolvedIOPath('submitProject/resumeName?_content=json&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+            //        .then(function (data) {
+            //            if (data[0].flag) {
+            //                if (data[0].message != null) {
+            //                    authMsgs_lxbj.getMsg(field.get('name')).show('success', data[0].message);
+            //                } else {
+            //                    authMsgs_lxbj.getMsg(field.get('name')).show('success', '项目名称没有改变');
+            //                }
+            //                $('#editProject_u40_input').val(data[0].data.name)
             //            } else {
-            //                authMsgs_lxbj.getMsg(field.get('name')).show('success', '立项背景修改成功');
+            //                if (data[0].message != null) {
+            //                    authMsgs_lxbj.getMsg(field.get('name')).show('error', data[0].message);
+            //                }
             //            }
-            //            $('#editProject_u77_txt').html('编辑')
-            //            $('#editProject_u45_input').attr('readonly', 'readonly')
-            //        } else {
-            //            if (data[0].message != null) {
-            //                authMsgs_lxbj.getMsg(field.get('name')).show('error', data[0].message)
-            //            }
-            //        }
-            //    })
+            //        })
+            //}
             defer.reject(self);
             return defer.promise;
         })
         auth_cxd.render()
+        $('#editProject_u83').on('click', function () {
+            var cxd = $('#editProject_u48_input')
+            if (cxd.hasAttr('readonly')) {
+                $('#editProject_u83_txt').html('保存');
+                cxd.removeAttr('readonly');
+            } else {
+                new AD({
+                    title: '温馨提示',
+                    content: '您确定要保存创新亮点？',
+                    onConfirm: function () {
+                        auth_cxd.field('editProject_cxd_hidden').set('exclude', 'updateProjectCxd-cancel')
+                        auth_cxd.test()
+                    }
+                    , onCancel: function () {
+                        auth_cxd.field('editProject_cxd_hidden').set('exclude', '')
+                        auth_cxd.field('editProject_cxd_hidden').test('updateProjectCxd-cancel')
+                        $('#editProject_u83_txt').html('编辑')
+                        cxd.attr('readonly', 'readonly')
+                    }
+                })
+            }
+        })
         this.ol = function () {
             return ol
         }

@@ -105,10 +105,9 @@
 
     <!-- cxd (Text Area) -->
     <div id="editProject_u48" class="ax_text_area" data-label="cxd">
-        <textarea id="editProject_u48_input" placeholder="请输入创新亮点" msg-wrapper="#editProject_v3" required="required"
-                  required-msg="创新亮点不能为空"
-                  max-len="5000"
-                  max-len-msg="创新亮点不能多于5000个字符"/>
+        <textarea id="editProject_u48_input" placeholder="请输入创新亮点" msg-wrapper="#editProject_v3" readonly="readonly"
+                  required="required"
+                  required-msg="创新亮点不能为空" max-len="5000" max-len-msg="创新亮点不能多于5000个字符"/>
         <input hidden="hidden" id="editProject_cxd_hidden" name="editProject_cxd_hidden"
                updateProjectCxd-cancel="updateProjectCxd-cancel" updateProjectCxd-confirm="updateProjectCxd-confirm"
                class="" msg-wrapper="#editProject_v3"/>
@@ -137,7 +136,7 @@
         <img id="editProject_u82_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
         <!-- Unnamed () -->
         <div id="editProject_u83" class="text">
-            <p><span>编辑</span></p>
+            <p><span id="editProject_u83_txt">编辑</span></p>
         </div>
     </div>
 
