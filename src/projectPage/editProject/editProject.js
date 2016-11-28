@@ -409,6 +409,78 @@ module.exports = {
                 })
             }
         })
+        var auth_tjyj = new Auth('#project_tjyj', {
+            fnFilter: function ($field) {
+                return $field.attr('type') == 'hidden';
+            }
+        })
+        var authMsgs_tjyj = new AuthMsgs()
+        auth_tjyj.plug(authMsgs_tjyj)
+        auth_tjyj.set('stopOnError', true)
+        auth_tjyj.register('updateProjectTjyj-confirm', function (value, attr, defer, field) {
+            var self = this;
+            IO.post(SP.resolvedIOPath('submitProject/updateBucket?_content=json&fieldName=tjyj&fieldValue=' + encodeURIComponent($('#editProject_u2_input').val()) + '&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs_tjyj.getMsg(field.get('name')).show('success', data[0].message);
+                        } else {
+                            authMsgs_tjyj.getMsg(field.get('name')).show('success', '推荐意见修改成功');
+                        }
+                        $('#editProject_u98_txt').html('编辑')
+                        $('#editProject_u2_input').attr('readonly', 'readonly')
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs_tjyj.getMsg(field.get('name')).show('error', data[0].message)
+                        }
+                    }
+                })
+            defer.reject(self);
+            return defer.promise;
+        }).register('updateProjectTjyj-cancel', function (value, attr, defer, field) {
+            field.set('exclude', 'updateProjectTjyj-cancel')
+            var self = this;
+            IO.post(SP.resolvedIOPath('submitProject/resumeBucket?_content=json&fieldName=tjyj&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs_tjyj.getMsg(field.get('name')).show('success', data[0].message)
+                        } else {
+                            authMsgs_tjyj.getMsg(field.get('name')).show('success', '推荐意见没有改变')
+                        }
+                        $('#editProject_u2_input').val(data[0].data)
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs_tjyj.getMsg(field.get('name')).show('error', data[0].message)
+                        }
+                    }
+                })
+            defer.reject(self);
+            return defer.promise;
+        })
+        auth_tjyj.render()
+        $('#editProject_u98').on('click', function () {
+            var tjyj = $('#editProject_u2_input')
+            if (tjyj.hasAttr('readonly')) {
+                $('#editProject_u98_txt').html('保存');
+                tjyj.removeAttr('readonly');
+            } else {
+                new AD({
+                    title: '温馨提示',
+                    content: '您确定要保存推荐意见？',
+                    onConfirm: function () {
+                        auth_tjyj.field('editProject_tjyj_hidden').set('exclude', 'updateProjectTjyj-cancel')
+                        auth_tjyj.test()
+                    }
+                    , onCancel: function () {
+                        auth_tjyj.field('editProject_tjyj_hidden').set('exclude', '')
+                        auth_tjyj.field('editProject_tjyj_hidden').test('updateProjectTjyj-cancel')
+                        $('#editProject_u98_txt').html('编辑')
+                        tjyj.attr('readonly', 'readonly')
+                    }
+                })
+            }
+        })
         this.ol = function () {
             return ol
         }

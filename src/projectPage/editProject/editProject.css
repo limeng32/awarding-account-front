@@ -1375,6 +1375,7 @@
   top: -5px;
   width: 51px;
   word-wrap: break-word;
+  cursor: pointer;
 }
 #editProject_u96_state1 {
   position: relative;
