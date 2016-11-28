@@ -1902,8 +1902,8 @@ body {
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 510px;
-  height: 97px;
+  width: 500px;
+  height: 86px;
   font-family: 'Arial Normal', 'Arial';
   font-weight: 400;
   font-style: normal;
@@ -3221,8 +3221,8 @@ body {
 }
 #editProject_u97 {
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 680px;
+  top: 800px;
   width: 55px;
   height: 34px;
   color: #FFFFFF;
@@ -3236,8 +3236,8 @@ body {
 }
 #editProject_u98 {
   position: absolute;
-  left: 2px;
-  top: 10px;
+  left: 15px;
+  top: -5px;
   width: 51px;
   word-wrap: break-word;
 }
@@ -3434,6 +3434,13 @@ body {
   position: absolute;
   left: 151px;
   top: 752px;
+  width: 28px;
+  height: 14px;
+}
+#editProject_v6 {
+  position: absolute;
+  left: 151px;
+  top: 898px;
   width: 28px;
   height: 14px;
 }

@@ -139,16 +139,6 @@
             <p><span id="editProject_u83_txt">编辑</span></p>
         </div>
     </div>
-
-
-    <!-- Unnamed (Shape) -->
-    <div id="editProject_u71" class="ax_paragraph">
-        <img id="editProject_u71_img" class="img " src="./account/images/transparent.gif"/>
-        <!-- Unnamed () -->
-        <div id="editProject_u72" class="text">
-            <p><span>（5000字以内）</span></p>
-        </div>
-    </div>
     <input hidden="hidden" needAFail="needAFail"/>
 
     <div id="editProject_v3" class="ax_paragraph "/>
@@ -249,7 +239,55 @@
 
     <div id="editProject_v5" class="ax_paragraph "/>
 </form>
+<form class="form-horizontal" id="project_tjyj" method="post" action="f">
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u69" class="ax_paragraph">
+        <img id="editProject_u69_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u70" class="text">
+            <p><span>推荐意见</span></p>
+        </div>
+    </div>
 
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u71" class="ax_paragraph">
+        <img id="editProject_u71_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u72" class="text">
+            <p><span>（5000字以内）</span></p>
+        </div>
+    </div>
+
+    <!-- tjyj_border (Shape) -->
+    <div id="editProject_u0" class="ax_shape" data-label="tjyj_border">
+        <img id="editProject_u0_img" class="img " src="./account/images/editProject/tjyj_border_u0.png"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u1" class="text">
+            <p><span></span></p>
+        </div>
+    </div>
+
+    <!-- tjyj (Text Area) -->
+    <div id="editProject_u2" class="ax_text_area" data-label="tjyj">
+    <textarea id="editProject_u2_input" placeholder="请输入推荐意见" msg-wrapper="#editProject_v6" readonly="readonly"
+              required="required"
+              required-msg="推荐意见不能为空" max-len="5000" max-len-msg="推荐意见不能多于5000个字符"/>
+        <input hidden="hidden" id="editProject_tjyj_hidden" name="editProject_tjyj_hidden"
+               updateProjectTjyj-cancel="updateProjectTjyj-cancel" updateProjectTjyj-confirm="updateProjectTjyj-confirm"
+               class="" msg-wrapper="#editProject_v6"/>
+    </div>
+    <!-- Unnamed (Shape) -->
+    <div id="editProject_u97" class="ax_shape">
+        <img id="editProject_u97_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
+        <!-- Unnamed () -->
+        <div id="editProject_u98" class="text">
+            <p><span id="editProject_u98_txt">编辑</span></p>
+        </div>
+    </div>
+    <input hidden="hidden" needAFail="needAFail"/>
+
+    <div id="editProject_v6" class="ax_paragraph "/>
+</form>
 
 <div id="editProject_u3" class="ax_shape" data-label="yyqk_border">
     <img id="editProject_u3_img" class="img " src="./account/images/editProject/yyqk_border_u3.png"/>
