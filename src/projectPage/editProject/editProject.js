@@ -12,6 +12,7 @@ var RAN = require('core-front/random/index');
 var SP = require('core-front/smartPath/smartPath');
 var AD = require('kg/agiledialog/1.0.2/index');
 var epTpl = require('./editProject-view');
+var uploadAttachment = require('./uploadAttachment/uploadAttachment');
 module.exports = {
     init: function (p) {
         var epHtml = new XTemplate(epTpl).render({
@@ -484,5 +485,7 @@ module.exports = {
         this.ol = function () {
             return ol
         }
+        uploadAttachment.init()
+        uploadAttachment.ol().show()
     }
 }
