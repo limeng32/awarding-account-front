@@ -72,30 +72,17 @@ module.exports = {
             })
             uploader.theme(new DefaultTheme({
                 queueTarget: '#J_UploaderQueue_uploadAtta'
-                , fileTpl: '<li id="queue-file-{id}" class="grid" data-name="{name}">' +
-                '<div class="g-u sprite file-icon"></div>' +
-                '<div class="g-u">{name}</div>' +
-                '<div class="g-u status-wrapper grid">' +
-                '<div class="status waiting-status">等待上传，<a class="J_Upload_{id}" href="#Upload">点此上传</a> </div>' +
-                '<div class="status start-status progress-status success-status clearfix">' +
-                '<div class="J_ProgressBar_{id} g-u uploader-progress"><img class="loading" src="http://img01.taobaocdn.com/tps/i1/T1F5tVXjRfXXXXXXXX-16-16.gif" alt="loading" /></div>' +
-                ' <a  class="J_Cancel_{id} g-u upload-cancel" href="#uploadCancel">取消</a>' +
-                '<a href="#fileDel" class=" g-u J_Del_{id}" style="display:none;">删除11</a>' +
-                '</div> ' +
-                '<div class="status cancel-status">已经取消上传，<a href="#reUpload" id="J_ReUpload_{id}" class="J_Upload_{id}">点此重新上传</a> </div>' +
-                '<div class="status error-status upload-error"><span class="J_ErrorMsg_{id}"></span><a href="#fileDel" class="J_Del_{id}">删除</a></div>' +
-                '</div>' +
-                '</li>'
+                , fileTpl: ''
             }))
             uploader.plug(new UploaderAuth({
                 maxSize: 102400,
                 required: true,
-                allowExts: ''
+                //allowExts: ''
             })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
                 .plug(new ProBars())
             uploader.on('success', function (ev) {
                 console.log(ev.file)
-                $('.J_Del_' + ev.file.id).html('asd')
+                $('.J_Del_' + ev.file.id).html('asdf')
             })
         })
         this.ol = function () {
