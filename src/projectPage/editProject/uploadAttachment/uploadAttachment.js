@@ -60,7 +60,7 @@ module.exports = {
             closeAction: 'hide'
         });
         ol.render();
-        KISSY.use('kg/uploader/2.0.3/index,kg/uploader/2.0.3/themes/default/index,kg/uploader/2.0.3/themes/default/style.css', function (S, Uploader, DefaultTheme) {
+        KISSY.use('kg/uploader/2.0.3/index,kg/uploader/2.0.3/themes/default/index', function (S, Uploader, DefaultTheme) {
             var uploader = new Uploader('#J_UploaderBtn_uploadAtta', {
                 action: SP.resolvedIOPath('project/uploadAttachment?_content=json'),
                 type: 'auto',
@@ -75,14 +75,16 @@ module.exports = {
                 , fileTpl: ''
             }))
             uploader.plug(new UploaderAuth({
-                maxSize: 102400,
-                required: true,
-                //allowExts: ''
+                maxSize: 102400
+                , required: true
+                //,allowExts: ''
             })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
                 .plug(new ProBars())
             uploader.on('success', function (ev) {
-                console.log(ev.file)
-                $('.J_Del_' + ev.file.id).html('asdf')
+                console.log(ev.file.result.url)
+                $('.J_Download_' + ev.file.id).prop({
+                    href: ev.file.result.url
+                })
             })
         })
         this.ol = function () {
