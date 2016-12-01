@@ -35,6 +35,7 @@
   letter-spacing: -0.31em;
   *letter-spacing: normal;
   word-spacing: -0.43em;
+  white-space: nowrap;
 }
 
 button::-moz-focus-inner {
@@ -51,11 +52,19 @@ button::-moz-focus-inner {
   word-spacing: normal;
   vertical-align: top;
   _vertical-align: text-bottom;
-  margin-left: 10px;
+  margin-left: 5px;
+  margin-right: 10px;
 }
 
 .grid .g-u input {
   *vertical-align: middle;
+}
+
+.grid .g-u-button {
+}
+
+.grid .g-u-download {
+  cursor: pointer;
 }
 
 .file-input-wrapper {
@@ -210,4 +219,13 @@ button::-moz-focus-inner {
   background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#E5E5E5));
   background: -moz-linear-gradient(top, #FAFAFA, #E5E5E5);
   filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FAFAFA', endColorstr = '#E5E5E5');"
+}
+
+#uploadAttachmentContainer {
+  height: 123px;
+  width: 510px;
+  overflow: auto;
+  background-color: #fff;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

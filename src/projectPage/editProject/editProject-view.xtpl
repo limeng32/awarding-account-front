@@ -289,8 +289,17 @@
     <div id="editProject_v6" class="ax_paragraph "/>
 </form>
 
+<!-- Unnamed (Shape) -->
+<div id="editProject_u67" class="ax_paragraph">
+    <img id="editProject_u67_img" class="img " src="./account/images/transparent.gif"/>
+    <!-- Unnamed () -->
+    <div id="editProject_u68" class="text">
+        <p><span>相关附件</span></p>
+    </div>
+</div>
+
 <div id="editProject_u3" class="ax_shape" data-label="yyqk_border">
-    <img id="editProject_u3_img" class="img " src="./account/images/editProject/yyqk_border_u3.png"/>
+    <img id="editProject_u3_img" class="img " width="" src="./account/images/editProject/yyqk_border_u3.png"/>
     <!-- Unnamed () -->
     <div id="editProject_u4" class="text">
         <p><span></span></p>

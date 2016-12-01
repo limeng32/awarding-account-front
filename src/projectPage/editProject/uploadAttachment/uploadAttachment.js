@@ -16,33 +16,6 @@ var ProBars = require('kg/uploader/2.0.3/plugins/proBars/proBars');
 var AliUploader = require('gallery/uploader/kissyuploader/5.0.0/index');
 module.exports = {
     init: function (p) {
-        //S.use('kg/uploader/6.2.7/index,kg/uploader/6.2.7/themes/default/index,kg/uploader/6.2.7/themes/default/style.css', function (S, Uploader, DefaultTheme) {
-        //    //上传组件插件
-        //    var plugins = 'kg/uploader/6.2.7/plugins/auth/auth,' +
-        //        'kg/uploader/6.2.7/plugins/urlsInput/urlsInput,' +
-        //        'kg/uploader/6.2.7/plugins/proBars/proBars';
-        //
-        //    S.use(plugins, function (S, Auth, UrlsInput, ProBars) {
-        //        var uploader = new Uploader('#J_UploaderBtn', {
-        //            //处理上传的服务器端脚本路径
-        //            action: "upload"
-        //        });
-        //        //使用主题
-        //        uploader.theme(new DefaultTheme({
-        //            queueTarget: '#J_UploaderQueue'
-        //        }));
-        //        //验证插件
-        //        uploader.plug(new Auth({
-        //            //最多上传个数
-        //            max: 3
-        //        }))
-        //            //url保存插件
-        //            .plug(new UrlsInput({target: '#J_Urls'}))
-        //            //进度条集合
-        //            .plug(new ProBars())
-        //        ;
-        //    });
-        //})
         var uaHtml = new XTemplate(uaTpl).render({})
         var ol = new OVL({
             effect: 'slide',
@@ -51,12 +24,13 @@ module.exports = {
             target: '',
             content: uaHtml,
             visible: true,
-            xy: [400, 440],
-            width: '600px',
-            height: '250px',
-            closable: true,
-            zIndex: 5,
-            visible: false,
+            xy: [150, 1010],
+            width: '0',
+            height: '0',
+            closable: false,
+            zIndex: -1,
+            prefixCls: 'absolute-',
+            visible: true,
             closeAction: 'hide'
         });
         ol.render();

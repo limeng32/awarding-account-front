@@ -53,7 +53,7 @@
   position: absolute;
   left: 150px;
   top: 952px;
-  width: 289px;
+  width: 520px;
   height: 139px;
   margin-bottom: 20px;
 }
@@ -61,7 +61,7 @@
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 289px;
+  width: 520px;
   height: 139px;
 }
 #editProject_u3_img.selected {
@@ -290,7 +290,7 @@
   top: 0px;
   width: 112px;
   height: 20px;
-  font-family: '΢���ź� Regular', '΢���ź�';
+  font-family: 'Microsoft YaHei';
   font-weight: 400;
   font-style: normal;
 }
@@ -321,7 +321,7 @@
   top: 0px;
   width: 200px;
   height: 60px;
-  font-family: '΢���ź� Regular', '΢���ź�';
+  font-family: 'Microsoft YaHei';
   font-weight: 400;
   font-style: normal;
   color: #FFFFFF;
@@ -348,7 +348,7 @@
   top: 30px;
   width: 200px;
   height: 24px;
-  font-family: '΢���ź� Regular', '΢���ź�';
+  font-family: 'Microsoft YaHei';
   font-weight: 400;
   font-style: normal;
   color: #FFFFFF;
@@ -437,14 +437,14 @@
   position: absolute;
   left: 280px;
   top: 54px;
-  width: 130px;
+  width: 330px;
   height: 30px;
 }
 #editProject_u30_img {
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 130px;
+  width: 330px;
   height: 30px;
 }
 #editProject_u31 {
@@ -608,7 +608,7 @@
   top: 224px;
   width: 70px;
   height: 20px;
-  font-family: '΢���ź� Regular', '΢���ź�';
+  font-family: 'Microsoft YaHei';
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
@@ -708,7 +708,7 @@
   top: 372px;
   width: 70px;
   height: 20px;
-  font-family: '΢���ź� Regular', '΢���ź�';
+  font-family: 'Microsoft YaHei';
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
@@ -734,7 +734,7 @@
   top: 511px;
   width: 70px;
   height: 20px;
-  font-family: '΢���ź� Regular', '΢���ź�';
+  font-family: 'Microsoft YaHei';
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
@@ -826,7 +826,7 @@
   top: 655px;
   width: 70px;
   height: 20px;
-  font-family: '΢���ź� Regular', '΢���ź�';
+  font-family: 'Microsoft YaHei';
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
@@ -918,7 +918,7 @@
   top: 956px;
   width: 70px;
   height: 20px;
-  font-family: '΢���ź� Regular', '΢���ź�';
+  font-family: 'Microsoft YaHei';
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
@@ -944,7 +944,7 @@
   top: 803px;
   width: 70px;
   height: 20px;
-  font-family: '΢���ź� Regular', '΢���ź�';
+  font-family: 'Microsoft YaHei';
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
@@ -1497,7 +1497,7 @@
   top: 40px;
   width: 112px;
   height: 20px;
-  font-family: '΢���ź� Regular', '΢���ź�';
+  font-family: 'Microsoft YaHei';
   font-weight: 400;
   font-style: normal;
 }
@@ -1521,7 +1521,7 @@
   top: 78px;
   width: 103px;
   height: 20px;
-  font-family: '΢���ź� Regular', '΢���ź�';
+  font-family: 'Microsoft YaHei';
   font-weight: 400;
   font-style: normal;
 }
@@ -1585,6 +1585,7 @@
   letter-spacing: -0.31em;
   *letter-spacing: normal;
   word-spacing: -0.43em;
+  white-space: nowrap;
 }
 button::-moz-focus-inner {
   border: 0;
@@ -1600,10 +1601,14 @@ button::-moz-focus-inner {
   word-spacing: normal;
   vertical-align: top;
   _vertical-align: text-bottom;
-  margin-left: 10px;
+  margin-left: 5px;
+  margin-right: 10px;
 }
 .grid .g-u input {
   *vertical-align: middle;
+}
+.grid .g-u-download {
+  cursor: pointer;
 }
 .file-input-wrapper {
   width: 120px;
@@ -1745,4 +1750,12 @@ button::-moz-focus-inner {
   background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#e5e5e5));
   background: -moz-linear-gradient(top, #fafafa, #e5e5e5);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FAFAFA', endColorstr = '#E5E5E5');;
+}
+#uploadAttachmentContainer {
+  height: 123px;
+  width: 510px;
+  overflow: auto;
+  background-color: #fff;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

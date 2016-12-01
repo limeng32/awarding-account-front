@@ -486,6 +486,5 @@ module.exports = {
             return ol
         }
         uploadAttachment.init()
-        uploadAttachment.ol().show()
     }
 }
