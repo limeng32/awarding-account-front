@@ -36,9 +36,12 @@ module.exports = {
         ol.render();
         KISSY.use('kg/uploader/2.0.3/index,kg/uploader/2.0.3/themes/default/index', function (S, Uploader, DefaultTheme) {
             var uploader = new Uploader('#J_UploaderBtn_uploadAtta', {
-                action: SP.resolvedIOPath('project/uploadAttachment?_content=json'),
-                type: 'auto',
-                name: 'Filedata'
+                action: SP.resolvedIOPath('project/uploadAttachment?_content=json&')
+                , type: 'auto'
+                , data: {
+                    projectId: encodeURIComponent(p.projectId)
+                }
+                , name: 'Filedata'
             });
             uploader.set('filter', function (data) {
                 data.success = 1;
@@ -55,7 +58,6 @@ module.exports = {
             })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
                 .plug(new ProBars())
             uploader.on('success', function (ev) {
-                console.log(ev.file.result.url)
                 $('.J_Download_' + ev.file.id).prop({
                     href: ev.file.result.url
                 })

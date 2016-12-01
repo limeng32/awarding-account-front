@@ -65,6 +65,10 @@ module.exports = {
                         $('#editProject_id').val(data[0].data.id)
                         $('#editProject_u103_txt').html('编辑')
                         $('#editProject_u40_input').attr('readonly', 'readonly')
+                        var _p = {
+                            projectId: $('#editProject_id').val()
+                        }
+                        uploadAttachment.init(_p)
                     } else {
                         if (data[0].message != null) {
                             authMsgs_name.getMsg(field.get('name')).show('error', data[0].message)
@@ -485,6 +489,5 @@ module.exports = {
         this.ol = function () {
             return ol
         }
-        uploadAttachment.init()
     }
 }
