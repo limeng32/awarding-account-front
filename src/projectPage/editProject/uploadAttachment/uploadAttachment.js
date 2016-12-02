@@ -63,6 +63,13 @@ module.exports = {
             $('.J_Download_' + ev.file.id).prop({
                 href: ev.file.result.url
             })
+            $('.J_Del_' + ev.file.id).detach('click', {
+                '': {
+                    deep: true
+                }
+            }).on('click', function () {
+                alert('asd')
+            })
         })
         this.ol = function () {
             return ol;
