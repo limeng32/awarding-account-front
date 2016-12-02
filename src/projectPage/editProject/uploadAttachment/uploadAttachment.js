@@ -14,6 +14,8 @@ var UploaderAuth = require('kg/uploader/2.0.3/plugins/auth/auth');
 var UrlsInput = require('kg/uploader/2.0.3/plugins/urlsInput/urlsInput');
 var ProBars = require('kg/uploader/2.0.3/plugins/proBars/proBars');
 var AliUploader = require('gallery/uploader/kissyuploader/5.0.0/index');
+var Uploader = require('kg/uploader/2.0.3/index')
+var DefaultTheme = require('kg/uploader/2.0.3/themes/default/index')
 module.exports = {
     init: function (p) {
         var uaHtml = new XTemplate(uaTpl).render({})
@@ -32,39 +34,43 @@ module.exports = {
             prefixCls: 'absolute-',
             visible: true,
             closeAction: 'hide'
+        })
+        ol.render()
+        var projectId = null
+        var uploader = new Uploader('#J_UploaderBtn_uploadAtta', {
+            action: SP.resolvedIOPath('project/uploadAttachment?_content=json&')
+            , type: 'auto'
+            , data: {
+                projectId: p == null ? null : p.projectId
+            }
+            , name: 'Filedata'
         });
-        ol.render();
-        KISSY.use('kg/uploader/2.0.3/index,kg/uploader/2.0.3/themes/default/index', function (S, Uploader, DefaultTheme) {
-            var uploader = new Uploader('#J_UploaderBtn_uploadAtta', {
-                action: SP.resolvedIOPath('project/uploadAttachment?_content=json&')
-                , type: 'auto'
-                , data: {
-                    projectId: encodeURIComponent(p.projectId)
-                }
-                , name: 'Filedata'
-            });
-            uploader.set('filter', function (data) {
-                data.success = 1;
-                return data;
-            })
-            uploader.theme(new DefaultTheme({
-                queueTarget: '#J_UploaderQueue_uploadAtta'
-                , fileTpl: ''
-            }))
-            uploader.plug(new UploaderAuth({
-                maxSize: 102400
-                , required: true
-                //,allowExts: ''
-            })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
-                .plug(new ProBars())
-            uploader.on('success', function (ev) {
-                $('.J_Download_' + ev.file.id).prop({
-                    href: ev.file.result.url
-                })
+        uploader.set('filter', function (data) {
+            data.success = 1;
+            return data;
+        })
+        uploader.theme(new DefaultTheme({
+            queueTarget: '#J_UploaderQueue_uploadAtta'
+            , fileTpl: ''
+        }))
+        uploader.plug(new UploaderAuth({
+            maxSize: 102400
+            , required: true
+            //,allowExts: ''
+        })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
+            .plug(new ProBars())
+        uploader.on('success', function (ev) {
+            $('.J_Download_' + ev.file.id).prop({
+                href: ev.file.result.url
             })
         })
         this.ol = function () {
             return ol;
-        };
+        }
+        this.setProjectId = function (_projectId) {
+            uploader.set('data', {
+                projectId: encodeURIComponent(_projectId)
+            })
+        }
     }
 }
