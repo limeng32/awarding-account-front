@@ -8,7 +8,7 @@
                 <ul id="J_UploaderQueue_uploadAtta">
                     <script type="text/uploader-theme">
                     <li id="queue-file-{id}" class="grid" data-name="{name}">
-                        <div class="g-u sprite file-icon g-u-download"></div>
+                        <div class="g-u sprite file-icon"></div>
                         <div class="g-u"><a class="g-u-download J_Download_{id}" target="_blank">{name}</a></div>
                         <div class="g-u status-wrapper grid">
                             <div class="status waiting-status">正在上传，请您等待</div>

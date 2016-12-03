@@ -60,8 +60,8 @@ module.exports = {
         })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
             .plug(new ProBars())
         uploader.on('success', function (ev) {
-            $('.J_Download_' + ev.file.id).prop({
-                href: ev.file.result.url
+            $('.J_Download_' + ev.file.id).append('&nbsp;').append(formatSize(ev.file.size)).on('click', function () {
+                window.location.assign(SP.resolvedPath('project/downloadAttachment?attachmentId=' + ev.result.data.id));
             })
             $('.J_Del_' + ev.file.id).detach('click', {
                 '': {
@@ -90,6 +90,23 @@ module.exports = {
                 })
             })
         })
+        var formatSize = function (fileSize) {
+            if (fileSize < 1024) {
+                return fileSize + 'B';
+            } else if (fileSize < (1024 * 1024)) {
+                var temp = fileSize / 1024;
+                temp = temp.toFixed(2);
+                return temp + 'KB';
+            } else if (fileSize < (1024 * 1024 * 1024)) {
+                var temp = fileSize / (1024 * 1024);
+                temp = temp.toFixed(2);
+                return temp + 'MB';
+            } else {
+                var temp = fileSize / (1024 * 1024 * 1024);
+                temp = temp.toFixed(2);
+                return temp + 'GB';
+            }
+        }
         this.ol = function () {
             return ol;
         }
