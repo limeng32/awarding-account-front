@@ -1771,8 +1771,11 @@ button::-moz-focus-inner {
   background: -moz-linear-gradient(top, #fafafa, #e5e5e5);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FAFAFA', endColorstr = '#E5E5E5');;
 }
-.uploadAttachmentErrorMsg {
+.uploadErrorMsg {
   margin-right: 5px;
+}
+.uploadDelete {
+  cursor: pointer;
 }
 #uploadAttachmentContainer {
   height: 123px;

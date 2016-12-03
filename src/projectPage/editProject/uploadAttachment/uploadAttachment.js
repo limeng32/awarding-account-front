@@ -4,6 +4,7 @@ var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Node = require('node');
 var IO = require('io');
 var JSONX = require('core-front/jsonx/jsonx');
+var CBD = require('core-front/callbackDialog/index')
 var OVL = require('overlay');
 var Auth = require('kg/auth/2.0.6/');
 var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/');
@@ -56,7 +57,6 @@ module.exports = {
         uploader.plug(new UploaderAuth({
             maxSize: 102400
             , required: true
-            //,allowExts: ''
         })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
             .plug(new ProBars())
         uploader.on('success', function (ev) {
@@ -68,7 +68,26 @@ module.exports = {
                     deep: true
                 }
             }).on('click', function () {
-                alert('asd')
+                new AD({
+                    title: '温馨提示',
+                    content: '您确定要删除附件 ' + ev.file.name + ' ？',
+                    onConfirm: function () {
+                        IO.post(SP.resolvedIOPath('project/deleteAttachment?_content=json'),
+                            {
+                                attachmentId: ev.result.data.id
+                            },
+                            function (d) {
+                                var deleteSuccess = function () {
+                                    ev.preventDefault()
+                                    var index = ev.file.id
+                                    uploader.get('queue').remove(index)
+                                }
+                                new CBD(d, deleteSuccess)
+                            }, "json")
+                    }
+                    , onCancel: function () {
+                    }
+                })
             })
         })
         this.ol = function () {
