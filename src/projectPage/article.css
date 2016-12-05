@@ -1777,6 +1777,13 @@ button::-moz-focus-inner {
 .uploadDelete {
   cursor: pointer;
 }
+.uploadAuthMsg {
+  color: #FD7316;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  font-size: 14px;
+  margin-left: -8px;
+}
 #uploadAttachmentContainer {
   height: 123px;
   width: 510px;

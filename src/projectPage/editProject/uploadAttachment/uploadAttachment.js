@@ -1,4 +1,5 @@
 var uaTpl = require('./uploadAttachment-view');
+var uamTpl = require('./uploadAuthMsg-view')
 var $ = require('node').all;
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Node = require('node');
@@ -19,7 +20,10 @@ var Uploader = require('kg/uploader/2.0.3/index')
 var DefaultTheme = require('kg/uploader/2.0.3/themes/default/index')
 module.exports = {
     init: function (p) {
-        var uaHtml = new XTemplate(uaTpl).render({})
+        var uamHtml = new XTemplate(uamTpl).render({})
+        var uaHtml = new XTemplate(uaTpl).render({
+            p: {uamHtml: uamHtml}
+        })
         var ol = new OVL({
             effect: 'slide',
             easing: 'linear',
@@ -60,6 +64,10 @@ module.exports = {
         })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
             .plug(new ProBars())
         uploader.on('success', function (ev) {
+            $('.uploadAuthMsg').html(new XTemplate(uamTpl).render({
+                projectRemainNumber: ev.result.data.uploadAuth.projectRemainNumber
+                , accountRemainCapacity: formatSize(ev.result.data.uploadAuth.accountRemainCapacity)
+            }))
             $('.J_Download_' + ev.file.id).append('&nbsp;').append(formatSize(ev.file.size)).on('click', function () {
                 window.location.assign(SP.resolvedPath('project/downloadAttachment?attachmentId=' + ev.result.data.id));
             })
@@ -81,6 +89,11 @@ module.exports = {
                                     ev.preventDefault()
                                     var index = ev.file.id
                                     uploader.get('queue').remove(index)
+                                    $('.uploadAuthMsg').html(new XTemplate(uamTpl).render({
+                                        projectRemainNumber: d.data.projectRemainNumber
+                                        ,
+                                        accountRemainCapacity: formatSize(d.data.accountRemainCapacity)
+                                    }))
                                 }
                                 new CBD(d, deleteSuccess)
                             }, "json")

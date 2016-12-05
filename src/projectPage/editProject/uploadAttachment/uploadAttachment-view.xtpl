@@ -3,7 +3,7 @@
         <div class="uploader-wrapper">
             <div class="grid">
                 <input type="file" class="g-u g-u-button" id="J_UploaderBtn_uploadAtta" value="上传" name="Filedata"
-                       accept="image/*">
+                       accept="image/*"><span class="uploadAuthMsg">{{p.uamHtml}}</span>
                 <input type="hidden" id="J_Urls_uploadAtta" name="urls"/>
                 <ul id="J_UploaderQueue_uploadAtta">
                     <script type="text/uploader-theme">
