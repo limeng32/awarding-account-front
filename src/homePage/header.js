@@ -21,7 +21,7 @@ var JSONX = require('core-front/jsonx/jsonx');
 var personConfig = require('./personConfig/personConfig');
 var searchBar = require('./searchBar/searchBar');
 module.exports = {
-    init: function () {
+    init: function (focusId) {
         var ai = new AI(token);
         var portraitUrl = function (account) {
             if (account.accountBucket[0].originalPortrait == null) {
@@ -226,7 +226,9 @@ module.exports = {
                 $('#home_u12').on('click',function(){
                     window.location.assign(SP.resolvedPath('project'))
                 })
-
+                if (focusId != null) {
+                    $('#' + focusId).replaceClass('menu-unfocus', 'menu-focus')
+                }
                 personConfig.init({account: account});
                 searchBar.init({})
                 SP.resolveImgSrc('.img');

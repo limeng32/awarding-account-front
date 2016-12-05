@@ -66,6 +66,7 @@ module.exports = {
                         $('#editProject_u103_txt').html('编辑')
                         $('#editProject_u40_input').attr('readonly', 'readonly')
                         uploadAttachment.setProjectId($('#editProject_id').val())
+                        enableTextarea()
                     } else {
                         if (data[0].message != null) {
                             authMsgs_name.getMsg(field.get('name')).show('error', data[0].message)
@@ -174,6 +175,9 @@ module.exports = {
         })
         auth_lxbj.render()
         $('#editProject_u77').on('click', function () {
+            if (!judgeProjectId()) {
+                return
+            }
             var lxbj = $('#editProject_u45_input')
             if (lxbj.hasAttr('readonly')) {
                 $('#editProject_u78_txt').html('保存');
@@ -246,6 +250,9 @@ module.exports = {
         })
         auth_cxd.render()
         $('#editProject_u83').on('click', function () {
+            if (!judgeProjectId()) {
+                return
+            }
             var cxd = $('#editProject_u48_input')
             if (cxd.hasAttr('readonly')) {
                 $('#editProject_u83_txt').html('保存');
@@ -318,6 +325,9 @@ module.exports = {
         })
         auth_zhbj.render()
         $('#editProject_u88').on('click', function () {
+            if (!judgeProjectId()) {
+                return
+            }
             var zhbj = $('#editProject_u10_input')
             if (zhbj.hasAttr('readonly')) {
                 $('#editProject_u88_txt').html('保存');
@@ -390,6 +400,9 @@ module.exports = {
         })
         auth_yyqk.render()
         $('#editProject_u93').on('click', function () {
+            if (!judgeProjectId()) {
+                return
+            }
             var yyqk = $('#editProject_u7_input')
             if (yyqk.hasAttr('readonly')) {
                 $('#editProject_u93_txt').html('保存');
@@ -462,6 +475,9 @@ module.exports = {
         })
         auth_tjyj.render()
         $('#editProject_u98').on('click', function () {
+            if (!judgeProjectId()) {
+                return
+            }
             var tjyj = $('#editProject_u2_input')
             if (tjyj.hasAttr('readonly')) {
                 $('#editProject_u98_txt').html('保存');
@@ -483,6 +499,23 @@ module.exports = {
                 })
             }
         })
+        if ($('#editProject_id').val() == '') {
+            $('.J_editProject_textaera').attr('disabled', 'disabled')
+        }
+        var enableTextarea = function () {
+            $('.J_editProject_textaera').removeAttr('disabled')
+        }
+        var judgeProjectId = function () {
+            var ret = true;
+            if ($('#editProject_id').val() == '') {
+                new AD({
+                    type: 'alert',
+                    content: '项目还没有建立'
+                });
+                ret = false;
+            }
+            return ret;
+        }
         this.ol = function () {
             return ol
         }
