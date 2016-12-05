@@ -20,7 +20,27 @@ var Uploader = require('kg/uploader/2.0.3/index')
 var DefaultTheme = require('kg/uploader/2.0.3/themes/default/index')
 module.exports = {
     init: function (p) {
-        var uamHtml = new XTemplate(uamTpl).render({})
+        var formatSize = function (fileSize) {
+            if (fileSize < 1024) {
+                return fileSize + 'B';
+            } else if (fileSize < (1024 * 1024)) {
+                var temp = fileSize / 1024;
+                temp = temp.toFixed(2);
+                return temp + 'KB';
+            } else if (fileSize < (1024 * 1024 * 1024)) {
+                var temp = fileSize / (1024 * 1024);
+                temp = temp.toFixed(2);
+                return temp + 'MB';
+            } else {
+                var temp = fileSize / (1024 * 1024 * 1024);
+                temp = temp.toFixed(2);
+                return temp + 'GB';
+            }
+        }
+        var uamHtml = new XTemplate(uamTpl).render({
+            projectRemainNumber: p.projectRemainNumber
+            , accountRemainCapacity: formatSize(p.accountRemainCapacity)
+        })
         var uaHtml = new XTemplate(uaTpl).render({
             p: {uamHtml: uamHtml}
         })
@@ -103,23 +123,6 @@ module.exports = {
                 })
             })
         })
-        var formatSize = function (fileSize) {
-            if (fileSize < 1024) {
-                return fileSize + 'B';
-            } else if (fileSize < (1024 * 1024)) {
-                var temp = fileSize / 1024;
-                temp = temp.toFixed(2);
-                return temp + 'KB';
-            } else if (fileSize < (1024 * 1024 * 1024)) {
-                var temp = fileSize / (1024 * 1024);
-                temp = temp.toFixed(2);
-                return temp + 'MB';
-            } else {
-                var temp = fileSize / (1024 * 1024 * 1024);
-                temp = temp.toFixed(2);
-                return temp + 'GB';
-            }
-        }
         this.ol = function () {
             return ol;
         }

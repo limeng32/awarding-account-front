@@ -519,6 +519,12 @@ module.exports = {
         this.ol = function () {
             return ol
         }
-        uploadAttachment.init()
+        IO.post(SP.resolvedIOPath('project/initAttachment?_content=json'),
+            {
+                projectId: $('#editProject_id').val()
+            },
+            function (d) {
+                uploadAttachment.init(d.data)
+            }, "json")
     }
 }
