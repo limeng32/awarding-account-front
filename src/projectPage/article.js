@@ -14,12 +14,10 @@ var SP = require('core-front/smartPath/smartPath');
 var AD = require('kg/agiledialog/1.0.2/index');
 var epTpl = require('./editProject/editProject-view');
 var editProject = require('./editProject/editProject');
+var sideBar = require('../homePage/sideBar/sideBar')
 module.exports = {
     init: function () {
-        //var epHtml = new XTemplate(epTpl).render({
-        //})
-        //$('article').html(epHtml)
         editProject.init({account:null})
-        editProject.ol().show()
+        sideBar.init({})
     }
 }

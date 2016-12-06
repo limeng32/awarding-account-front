@@ -30,7 +30,7 @@ module.exports = {
             height: '0px',
             closable: false,
             zIndex: -1,
-            visible: false,
+            visible: true,
             prefixCls: 'absolute-',
             closeAction: 'hide'
         })
