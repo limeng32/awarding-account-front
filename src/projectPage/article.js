@@ -15,9 +15,11 @@ var AD = require('kg/agiledialog/1.0.2/index');
 var epTpl = require('./editProject/editProject-view');
 var editProject = require('./editProject/editProject');
 var sideBar = require('../homePage/sideBar/sideBar')
+var subMenu = require('./subMenu/subMenu');
 module.exports = {
     init: function () {
         editProject.init({account:null})
         sideBar.init({})
+        subMenu.init({})
     }
 }
