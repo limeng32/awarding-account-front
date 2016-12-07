@@ -23,3 +23,11 @@
         <p><span>本届申报项目列表</span></p>
     </div>
 </div>
+
+<div id="subMenu_u22" class="ax_shape">
+    <img id="subMenu_u22_img" class="img " src="./account/images/editProject/subMenu_u22.png"/>
+    <!-- Unnamed () -->
+    <div id="subMenu_u23" class="text">
+        <p><span>申报新项目</span></p>
+    </div>
+</div>

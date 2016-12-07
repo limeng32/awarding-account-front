@@ -40,7 +40,7 @@ var macroCommand = nativeCommands["macro"];
 var debuggerCommand = nativeCommands["debugger"];
 
 
-buffer.data += '您的剩余上传容量还有';
+buffer.data += '您的上传容量还有';
 pos.line = 1;
 var id0 = ((t=(affix.accountRemainCapacity)) !== undefined ? t:((t = data.accountRemainCapacity) !== undefined ? t :scope.resolveLooseUp(["accountRemainCapacity"])));
 buffer = buffer.writeEscaped(id0);

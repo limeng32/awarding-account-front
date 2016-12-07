@@ -1762,7 +1762,7 @@ button::-moz-focus-inner {
   letter-spacing: 0px;
   vertical-align: middle;
   font-size: 14px;
-  margin-left: -8px;
+  margin-left: -5px;
 }
 #uploadAttachmentContainer {
   height: 123px;

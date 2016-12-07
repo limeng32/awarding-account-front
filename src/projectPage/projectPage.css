@@ -3627,7 +3627,7 @@ button::-moz-focus-inner {
   letter-spacing: 0px;
   vertical-align: middle;
   font-size: 14px;
-  margin-left: -8px;
+  margin-left: -5px;
 }
 #uploadAttachmentContainer {
   height: 123px;
@@ -3684,6 +3684,34 @@ button::-moz-focus-inner {
   width: 122px;
   word-wrap: break-word;
 }
+#subMenu_u22 {
+  position: absolute;
+  left: 830px;
+  top: 164px;
+  width: 200px;
+  height: 24px;
+  font-family: 'Microsoft YaHei';
+  font-weight: 400;
+  font-style: normal;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+#subMenu_u22_img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 200px;
+  height: 24px;
+}
+#subMenu_u23 {
+  position: absolute;
+  left: 0px;
+  top: -13px;
+  width: 196px;
+  word-wrap: break-word;
+  text-align: center;
+  font-size: larger;
+}
 #subMenu_u106 {
   position: absolute;
   left: 837px;
@@ -3733,4 +3761,47 @@ button::-moz-focus-inner {
   top: 0px;
   width: 103px;
   white-space: nowrap;
+}
+#listProject_u19 {
+  position: absolute;
+  left: 0px;
+  top: 60px;
+  width: 200px;
+  height: 320px;
+  cursor: pointer;
+}
+.listProject_u20 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 200px;
+  height: 60px;
+  font-family: 'Microsoft YaHei';
+  font-weight: 400;
+  font-style: normal;
+  color: #FFFFFF;
+  line-height: 16px;
+}
+.listProject_u20_img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 200px;
+  height: 60px;
+}
+.listProject_u21 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 196px;
+  word-wrap: break-word;
+  font-size: larger;
+}
+.listProject_u21_txt {
+  height: 60px;
+  display: table-cell;
+  vertical-align: middle;
+}
+.listProject_u21_span {
+  text-align: center;
 }
