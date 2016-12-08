@@ -13,3 +13,4 @@
     </div>
 </div>
 {{/each}}
+<div class="demo-con skin-tb" id="projectPaginationContainer"></div>

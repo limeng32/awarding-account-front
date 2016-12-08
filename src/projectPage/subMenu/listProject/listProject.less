@@ -73,6 +73,7 @@
   top: 0px;
   width: 196px;
   word-wrap: break-word;
+  word-break: break-all;
   font-size: larger;
 }
 
@@ -85,3 +86,13 @@
 .listProject_u21_span {
   text-align: center;
 }
+
+#projectPaginationContainer {
+  position: absolute;
+  left: 0px;
+  top: @top+@filler*5;
+  width: 250px;
+  height: 30px;
+}
+
+@import './pagination';
