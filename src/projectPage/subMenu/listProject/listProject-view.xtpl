@@ -1,3 +1,4 @@
+<div id="listProjectContainer">
 {{#each(data.pageItems)}}
 <div id="listProject_u19_{{xindex}}" class="ax_repeater">
     <!-- Unnamed (Shape) -->
@@ -13,4 +14,5 @@
     </div>
 </div>
 {{/each}}
+</div>
 <div class="demo-con skin-tb" id="projectPaginationContainer"></div>

@@ -19,7 +19,32 @@ module.exports = {
                 postposePagesCount: 0, // 当前页的紧邻后置页为?页
                 lastPagesCount: 0, // 显示最后面的?页
                 render: true
-            });
+            })
+            var renderProject = function (p) {
+                var xtpl = new XTemplate(lpTpl)
+                var html
+                html = xtpl.render({
+                    data: p
+                })
+                $('#listProjectContainer').html(html)
+            }
+            var reRenderPage2 = function (p) {
+                if (p.maxPageNum < p.pageNo) {
+                    projectPagination.set('currentPage', p.pageNo)
+                    projectPagination.set('totalPage', p.pageNo)
+                    projectPagination.renderUI()
+                }
+            }
+            projectPagination.on('switch', function (e) {
+                IO.post(SP.resolvedIOPath('project/listProject?_content=json'), {
+                    pageNo: e.toPage
+                    , phase: 'editing'
+                }, function (d) {
+                    d = JSONX.decode(d);
+                    renderProject(d.data)
+                    reRenderPage2(d.data);
+                }, "json");
+            })
         }
         IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
             {
@@ -34,7 +59,6 @@ module.exports = {
                     duration: 10,
                     target: '',
                     content: lpHtml,
-                    visible: true,
                     xy: [880, 135],
                     width: '0px',
                     height: '0px',
