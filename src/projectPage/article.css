@@ -68,6 +68,7 @@ body {
   text-align: left;
   border-color: transparent;
   outline-style: none;
+  resize: none;
 }
 #editProject_u3 {
   position: absolute;
@@ -148,6 +149,7 @@ body {
   text-align: left;
   border-color: transparent;
   outline-style: none;
+  resize: none;
 }
 #editProject_u8 {
   position: absolute;
@@ -199,6 +201,7 @@ body {
   text-align: left;
   border-color: transparent;
   outline-style: none;
+  resize: none;
 }
 #editProject_u11 {
   position: absolute;
@@ -670,6 +673,7 @@ body {
   text-align: left;
   border-color: transparent;
   outline-style: none;
+  resize: none;
 }
 #editProject_u46 {
   position: absolute;
@@ -721,6 +725,7 @@ body {
   text-align: left;
   border-color: transparent;
   outline-style: none;
+  resize: none;
 }
 #editProject_u49 {
   position: absolute;

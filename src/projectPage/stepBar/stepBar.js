@@ -10,7 +10,7 @@ var stbTpl = require('./stepBar-view')
 module.exports = {
     init: function (p) {
         var renderStep = function (p) {
-            var step = new STB('#projectPhase', {'act': 1, 'color': 'blue'})
+            var step = new STB('#projectPhase', {'color': 'blue'})
             step.render()
         }
         var stbHtml = new XTemplate(stbTpl).render({})
