@@ -10,6 +10,7 @@ var lpTpl = require('./listProject-view')
 module.exports = {
     init: function (p) {
         var projectPagination = null
+        var xtpl = new XTemplate(lpTpl)
         var renderPage = function (p) {
             projectPagination = new PG($('#projectPaginationContainer'), {
                 currentPage: p.pageNo, // 默认选中第?页
@@ -21,9 +22,7 @@ module.exports = {
                 render: true
             })
             var renderProject = function (p) {
-                var xtpl = new XTemplate(lpTpl)
-                var html
-                html = xtpl.render({
+                var html = xtpl.render({
                     data: p
                 })
                 $('#listProjectContainer').html(html)
@@ -45,6 +44,15 @@ module.exports = {
                     reRenderPage2(d.data);
                 }, "json");
             })
+        }
+        var refreshPage = function (p) {
+            projectPagination.set('currentPage', p.pageNo)
+            projectPagination.set('totalPage', p.maxPageNum < p.pageNo ? p.pageNo : p.maxPageNum)
+            projectPagination.renderUI()
+            var html = xtpl.render({
+                data: p
+            })
+            $('#listProjectContainer').html(html)
         }
         IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
             {
@@ -71,5 +79,15 @@ module.exports = {
                 ol.render()
                 renderPage(d.data)
             }, "json")
+        this.refresh = function () {
+            IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
+                {
+                    phase: 'editing'
+                },
+                function (d) {
+                    d = JSONX.decode(d)
+                    refreshPage(d.data)
+                }, "json")
+        }
     }
 }
