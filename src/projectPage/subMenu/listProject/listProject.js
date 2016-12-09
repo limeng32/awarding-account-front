@@ -7,10 +7,17 @@ var SP = require('core-front/smartPath/smartPath')
 var JSONX = require('core-front/jsonx/jsonx')
 var PG = require('kg/pagination/2.0.0/index')
 var lpTpl = require('./listProject-view')
+var editProject = require('../../editProject/editProject')
 module.exports = {
     init: function (p) {
         var projectPagination = null
         var xtpl = new XTemplate(lpTpl)
+        var renderAction = function () {
+            $('.J_listProjectRepeater').on('click', function (e) {
+                var id = $(e.currentTarget).attr('data')
+                editProject.render(id)
+            })
+        }
         var renderPage = function (p) {
             projectPagination = new PG($('#projectPaginationContainer'), {
                 currentPage: p.pageNo, // 默认选中第?页
@@ -26,6 +33,7 @@ module.exports = {
                     data: p
                 })
                 $('#listProjectContainer').html(html)
+                renderAction()
             }
             var reRenderPage2 = function (p) {
                 if (p.maxPageNum < p.pageNo) {
@@ -44,6 +52,7 @@ module.exports = {
                     reRenderPage2(d.data);
                 }, "json");
             })
+            renderAction()
         }
         var refreshPage = function (p) {
             projectPagination.set('currentPage', p.pageNo)
@@ -53,6 +62,7 @@ module.exports = {
                 data: p
             })
             $('#listProjectContainer').html(html)
+            renderAction()
         }
         IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
             {
@@ -89,5 +99,6 @@ module.exports = {
                     refreshPage(d.data)
                 }, "json")
         }
+        editProject.setListProjectCallback(this.refresh)
     }
 }

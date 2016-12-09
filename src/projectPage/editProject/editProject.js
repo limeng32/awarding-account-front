@@ -13,10 +13,10 @@ var SP = require('core-front/smartPath/smartPath');
 var AD = require('kg/agiledialog/1.0.2/index');
 var epTpl = require('./editProject-view');
 var uploadAttachment = require('./uploadAttachment/uploadAttachment');
-var listProject = require('../subMenu/listProject/listProject')
 var stepBar = require('../stepBar/stepBar')
 module.exports = {
     init: function (p) {
+        var listProjectCallback = null;
         var epHtml = new XTemplate(epTpl).render({
             account: p.account
         })
@@ -70,7 +70,7 @@ module.exports = {
                         uploadAttachment.setProjectId($('#editProject_id').val())
                         enableTextarea()
                         //刷新右边的项目列表
-                        listProject.refresh()
+                        listProjectCallback();
                         //进度条变为“编辑中”
                         stepBar.step(1)
                     } else {
@@ -522,9 +522,6 @@ module.exports = {
             }
             return ret;
         }
-        this.ol = function () {
-            return ol
-        }
         IO.post(SP.resolvedIOPath('project/initAttachment?_content=json'),
             {
                 projectId: $('#editProject_id').val()
@@ -532,5 +529,14 @@ module.exports = {
             function (d) {
                 uploadAttachment.init(d.data)
             }, "json")
+        this.ol = function () {
+            return ol
+        }
+        this.render = function (id) {
+            alert(id)
+        }
+        this.setListProjectCallback = function (f) {
+            listProjectCallback = f;
+        }
     }
 }
