@@ -14,6 +14,7 @@ var AD = require('kg/agiledialog/1.0.2/index');
 var epTpl = require('./editProject-view');
 var uploadAttachment = require('./uploadAttachment/uploadAttachment');
 var listProject = require('../subMenu/listProject/listProject')
+var stepBar = require('../stepBar/stepBar')
 module.exports = {
     init: function (p) {
         var epHtml = new XTemplate(epTpl).render({
@@ -68,8 +69,10 @@ module.exports = {
                         $('#editProject_u40_input').attr('readonly', 'readonly')
                         uploadAttachment.setProjectId($('#editProject_id').val())
                         enableTextarea()
+                        //刷新右边的项目列表
                         listProject.refresh()
-                        //刷新右方
+                        //进度条变为“编辑中”
+                        stepBar.step(1)
                     } else {
                         if (data[0].message != null) {
                             authMsgs_name.getMsg(field.get('name')).show('error', data[0].message)

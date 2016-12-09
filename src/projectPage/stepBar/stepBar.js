@@ -9,9 +9,10 @@ var JSONX = require('core-front/jsonx/jsonx')
 var stbTpl = require('./stepBar-view')
 module.exports = {
     init: function (p) {
+        var _step
         var renderStep = function (p) {
-            var step = new STB('#projectPhase', {'color': 'blue'})
-            step.render()
+            _step = new STB('#projectPhase', {'color': 'blue'})
+            _step.render()
         }
         var stbHtml = new XTemplate(stbTpl).render({})
         var ol = new OVL({
@@ -32,5 +33,10 @@ module.exports = {
         })
         ol.render()
         renderStep()
+        this.step = function (n) {
+            if (_step.get('act') != n) {
+                _step.set('act', n);
+            }
+        }
     }
 }
