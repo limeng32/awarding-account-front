@@ -10,6 +10,12 @@ var stbTpl = require('./stepBar-view')
 module.exports = {
     init: function (p) {
         var _step
+        var _relation = $({
+            editing: 1
+            , submited: 2
+            , checking: 3
+            , pass: 4
+        })
         var renderStep = function (p) {
             _step = new STB('#projectPhase', {'color': 'blue'})
             _step.render()
@@ -34,8 +40,9 @@ module.exports = {
         ol.render()
         renderStep()
         this.step = function (n) {
-            if (_step.get('act') != n) {
-                _step.set('act', n);
+            var a = _relation.prop(n)
+            if (_step.get('act') != a) {
+                _step.set('act', a);
             }
         }
     }

@@ -11,13 +11,14 @@ var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/');
 var RAN = require('core-front/random/index');
 var SP = require('core-front/smartPath/smartPath');
 var AD = require('kg/agiledialog/1.0.2/index');
-var epTpl = require('./editProject-view');
+var epView = require('./editProject-view');
 var uploadAttachment = require('./uploadAttachment/uploadAttachment');
 var stepBar = require('../stepBar/stepBar')
 module.exports = {
     init: function (p) {
+        var epTpl = new XTemplate(epView)
         var listProjectCallback = null;
-        var epHtml = new XTemplate(epTpl).render({
+        var epHtml = epTpl.render({
             account: p.account
         })
         var ol = new OVL({
@@ -72,7 +73,7 @@ module.exports = {
                         //刷新右边的项目列表
                         listProjectCallback();
                         //进度条变为“编辑中”
-                        stepBar.step(1)
+                        stepBar.step('editing')
                     } else {
                         if (data[0].message != null) {
                             authMsgs_name.getMsg(field.get('name')).show('error', data[0].message)
@@ -108,7 +109,7 @@ module.exports = {
             return defer.promise;
         })
         auth_name.render()
-        $('#editProject_u102').on('click', function () {
+        var handleNameButton = function () {
             var name = $('#editProject_u40_input')
             if (name.hasAttr('readonly')) {
                 $('#editProject_u103_txt').html('保存');
@@ -129,7 +130,8 @@ module.exports = {
                     }
                 })
             }
-        })
+        }
+        $('#editProject_u102').on('click', handleNameButton)
         var auth_lxbj = new Auth('#project_lxbj', {
             fnFilter: function ($field) {
                 return $field.attr('type') == 'hidden';
@@ -180,7 +182,7 @@ module.exports = {
             return defer.promise
         })
         auth_lxbj.render()
-        $('#editProject_u77').on('click', function () {
+        var handleLxbjButton = function () {
             if (!judgeProjectId()) {
                 return
             }
@@ -204,7 +206,8 @@ module.exports = {
                     }
                 })
             }
-        })
+        }
+        $('#editProject_u77').on('click', handleLxbjButton)
         var auth_cxd = new Auth('#project_cxd', {
             fnFilter: function ($field) {
                 return $field.attr('type') == 'hidden';
@@ -255,7 +258,7 @@ module.exports = {
             return defer.promise;
         })
         auth_cxd.render()
-        $('#editProject_u83').on('click', function () {
+        var handleCxdButton = function () {
             if (!judgeProjectId()) {
                 return
             }
@@ -279,7 +282,8 @@ module.exports = {
                     }
                 })
             }
-        })
+        }
+        $('#editProject_u83').on('click', handleCxdButton)
         var auth_zhbj = new Auth('#project_zhbj', {
             fnFilter: function ($field) {
                 return $field.attr('type') == 'hidden';
@@ -330,7 +334,7 @@ module.exports = {
             return defer.promise;
         })
         auth_zhbj.render()
-        $('#editProject_u88').on('click', function () {
+        var handleZhbjButton = function () {
             if (!judgeProjectId()) {
                 return
             }
@@ -354,7 +358,8 @@ module.exports = {
                     }
                 })
             }
-        })
+        }
+        $('#editProject_u88').on('click', handleZhbjButton)
         var auth_yyqk = new Auth('#project_yyqk', {
             fnFilter: function ($field) {
                 return $field.attr('type') == 'hidden';
@@ -405,7 +410,7 @@ module.exports = {
             return defer.promise;
         })
         auth_yyqk.render()
-        $('#editProject_u93').on('click', function () {
+        var handleYyqkButton = function () {
             if (!judgeProjectId()) {
                 return
             }
@@ -429,7 +434,8 @@ module.exports = {
                     }
                 })
             }
-        })
+        }
+        $('#editProject_u93').on('click', handleYyqkButton)
         var auth_tjyj = new Auth('#project_tjyj', {
             fnFilter: function ($field) {
                 return $field.attr('type') == 'hidden';
@@ -480,7 +486,7 @@ module.exports = {
             return defer.promise;
         })
         auth_tjyj.render()
-        $('#editProject_u98').on('click', function () {
+        var handleTjyjButton = function () {
             if (!judgeProjectId()) {
                 return
             }
@@ -504,7 +510,8 @@ module.exports = {
                     }
                 })
             }
-        })
+        }
+        $('#editProject_u98').on('click', handleTjyjButton)
         if ($('#editProject_id').val() == '') {
             $('.J_editProject_textaera').attr('disabled', 'disabled')
         }
@@ -533,7 +540,32 @@ module.exports = {
             return ol
         }
         this.render = function (id) {
-            alert(id)
+            IO.post(SP.resolvedIOPath('project/getProjectWithBucket?_content=json'),
+                {
+                    id: id
+                },
+                function (d) {
+                    d = JSONX.decode(d)
+                    epHtml = epTpl.render({
+                        account: d.data.account,
+                        project: d.data
+                    })
+                    ol.set('content', epHtml)
+                    auth_name.render()
+                    $('#editProject_u102').on('click', handleNameButton)
+                    auth_lxbj.render()
+                    $('#editProject_u77').on('click', handleLxbjButton)
+                    auth_cxd.render()
+                    $('#editProject_u83').on('click', handleCxdButton)
+                    auth_zhbj.render()
+                    $('#editProject_u88').on('click', handleZhbjButton)
+                    auth_yyqk.render()
+                    $('#editProject_u93').on('click', handleYyqkButton)
+                    auth_tjyj.render()
+                    $('#editProject_u98').on('click', handleTjyjButton)
+                    console.log(d.data)
+                    stepBar.step(d.data.phase)
+                }, "json")
         }
         this.setListProjectCallback = function (f) {
             listProjectCallback = f;
