@@ -2,7 +2,7 @@
 <form class="form-horizontal" id="project_name" method="post" action="a">
     <!-- project_name (Text Field) -->
     <div id="editProject_u40" class="ax_text_field" data-label="project_name">
-        <input id="editProject_u40_input" type="text" readonly="readonly" value="" placeholder="请输入项目名称"
+        <input id="editProject_u40_input" type="text" readonly="readonly" value="{{project.name}}" placeholder="请输入项目名称"
                msg-wrapper="#editProject_v1" max-len="48" max-len-msg="项目名称不能多于48个字符" required="required"
                required-msg="项目名称不能为空" class=""/>
         <input hidden="hidden" id="editProject_name_hidden" name="editProject_name_hidden"
@@ -75,7 +75,7 @@
 <div id="editProject_u45" class="ax_text_area" data-label="lxbj">
     <textarea type="text" id="editProject_u45_input" value="" readonly="readonly" placeholder="请输入立项背景"
               msg-wrapper="#editProject_v2" required="required" required-msg="立项背景不能为空" max-len="5000"
-              max-len-msg="立项背景不能多于5000个字符" class="J_editProject_textaera"/>
+              max-len-msg="立项背景不能多于5000个字符" class="J_editProject_textaera"></textarea>
     <input hidden="hidden" id="editProject_lxbj_hidden" name="editProject_lxbj_hidden"
            updateProjectLxbj-cancel="updateProjectLxbj-cancel" updateProjectLxbj-confirm="updateProjectLxbj-confirm"
            class="" msg-wrapper="#editProject_v2"/>
@@ -107,7 +107,7 @@
     <div id="editProject_u48" class="ax_text_area" data-label="cxd">
         <textarea id="editProject_u48_input" placeholder="请输入创新亮点" msg-wrapper="#editProject_v3" readonly="readonly"
                   required="required"
-                  required-msg="创新亮点不能为空" max-len="5000" max-len-msg="创新亮点不能多于5000个字符" class="J_editProject_textaera"/>
+                  required-msg="创新亮点不能为空" max-len="5000" max-len-msg="创新亮点不能多于5000个字符" class="J_editProject_textaera"></textarea>
         <input hidden="hidden" id="editProject_cxd_hidden" name="editProject_cxd_hidden"
                updateProjectCxd-cancel="updateProjectCxd-cancel" updateProjectCxd-confirm="updateProjectCxd-confirm"
                class="" msg-wrapper="#editProject_v3"/>
@@ -176,7 +176,7 @@
     <div id="editProject_u10" class="ax_text_area" data-label="zhbj">
         <textarea id="editProject_u10_input" placeholder="请输入综合背景" msg-wrapper="#editProject_v4" readonly="readonly"
                   required="required"
-                  required-msg="综合背景不能为空" max-len="5000" max-len-msg="综合背景不能多于5000个字符" class="J_editProject_textaera"/>
+                  required-msg="综合背景不能为空" max-len="5000" max-len-msg="综合背景不能多于5000个字符" class="J_editProject_textaera"></textarea>
         <input hidden="hidden" id="editProject_zhbj_hidden" name="editProject_zhbj_hidden"
                updateProjectZhbj-cancel="updateProjectZhbj-cancel" updateProjectZhbj-confirm="updateProjectZhbj-confirm"
                class="" msg-wrapper="#editProject_v4"/>
@@ -222,7 +222,7 @@
     <div id="editProject_u7" class="ax_text_area" data-label="yyqk">
     <textarea id="editProject_u7_input" placeholder="请输入应用情况" msg-wrapper="#editProject_v5" readonly="readonly"
               required="required"
-              required-msg="应用情况不能为空" max-len="5000" max-len-msg="应用情况不能多于5000个字符" class="J_editProject_textaera"/>
+              required-msg="应用情况不能为空" max-len="5000" max-len-msg="应用情况不能多于5000个字符" class="J_editProject_textaera"></textarea>
         <input hidden="hidden" id="editProject_yyqk_hidden" name="editProject_yyqk_hidden"
                updateProjectYyqk-cancel="updateProjectYyqk-cancel" updateProjectYyqk-confirm="updateProjectYyqk-confirm"
                class="" msg-wrapper="#editProject_v5"/>
@@ -271,7 +271,7 @@
     <div id="editProject_u2" class="ax_text_area" data-label="tjyj">
     <textarea id="editProject_u2_input" placeholder="请输入推荐意见" msg-wrapper="#editProject_v6" readonly="readonly"
               required="required"
-              required-msg="推荐意见不能为空" max-len="5000" max-len-msg="推荐意见不能多于5000个字符" class="J_editProject_textaera"/>
+              required-msg="推荐意见不能为空" max-len="5000" max-len-msg="推荐意见不能多于5000个字符" class="J_editProject_textaera"></textarea>
         <input hidden="hidden" id="editProject_tjyj_hidden" name="editProject_tjyj_hidden"
                updateProjectTjyj-cancel="updateProjectTjyj-cancel" updateProjectTjyj-confirm="updateProjectTjyj-confirm"
                class="" msg-wrapper="#editProject_v6"/>
