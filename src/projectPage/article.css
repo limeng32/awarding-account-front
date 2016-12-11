@@ -1797,6 +1797,9 @@ button::-moz-focus-inner {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+.J_uploaded_Del {
+  cursor: pointer;
+}
 #aside_u14 {
   position: fixed;
   left: 810px;

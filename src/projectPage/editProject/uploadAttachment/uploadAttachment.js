@@ -140,10 +140,55 @@ module.exports = {
             })
         }
         this.reRender = function (project) {
+            var getTheAttachment = function (o) {
+                var ret = null
+                for (var i = 0; i < project.attachment.length; i++) {
+                    if (project.attachment[i].id == o.attr('data-id')) {
+                        ret = project.attachment[i]
+                        break
+                    }
+                }
+                return ret
+            }
+            var handleDelete = function (o) {
+                var _attachment = getTheAttachment(o)
+                new AD({
+                    title: '温馨提示',
+                    content: '您确定要删除附件 ' + _attachment.name + ' ？',
+                    onConfirm: function () {
+                        IO.post(SP.resolvedIOPath('project/deleteAttachment?_content=json'),
+                            {
+                                attachmentId: _attachment.id
+                            },
+                            function (d) {
+                                var deleteSuccess = function () {
+                                    $('#queue-file-' + _attachment.id).fadeOut(0.4, function () {
+                                        $('#queue-file-' + _attachment.id).remove()
+                                    })
+                                    $('.uploadAuthMsg').html(uamTpl.render({
+                                        projectRemainNumber: d.data.projectRemainNumber
+                                        , accountRemainCapacity: formatSize(d.data.accountRemainCapacity)
+                                    }))
+                                }
+                                new CBD(d, deleteSuccess)
+                            }, "json")
+                    }
+                    , onCancel: function () {
+                    }
+                })
+            }
             uedaHtml = uedaTpl.render({
-
+                project: project
+                , formatSize: formatSize
             })
             $('#J_UploaderQueue_uploadAtta').html(uedaHtml)
+            $('.J_uploaded_Del').on('click', function (e) {
+                handleDelete($(e.currentTarget))
+            })
+            $('.J_uploaded_Download').on('click', function (e) {
+                var _attachment = getTheAttachment($(e.currentTarget))
+                window.location.assign(SP.resolvedPath('project/downloadAttachment?attachmentId=' + _attachment.id));
+            })
             IO.post(SP.resolvedIOPath('project/initAttachment?_content=json'),
                 {
                     projectId: project.id
