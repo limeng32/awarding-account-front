@@ -1,5 +1,6 @@
 var uaView = require('./uploadAttachment-view');
 var uamView = require('./uploadAuthMsg-view')
+var uedaView = require('./uploadedAttachment-view')
 var $ = require('node').all;
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Node = require('node');
@@ -42,9 +43,14 @@ module.exports = {
             projectRemainNumber: p.projectRemainNumber
             , accountRemainCapacity: formatSize(p.accountRemainCapacity)
         })
+        var uedaTpl = new XTemplate(uedaView)
+        var uedaHtml = null
         var uaTpl = new XTemplate(uaView)
         var uaHtml = uaTpl.render({
-            p: {uamHtml: uamHtml}
+            p: {
+                uamHtml: uamHtml
+                , uedaHtml: uedaHtml
+            }
         })
         var ol = new OVL({
             effect: 'slide',
@@ -134,11 +140,21 @@ module.exports = {
             })
         }
         this.reRender = function (project) {
-            uamHtml = uamTpl.render({
-                projectRemainNumber: 8
-                , accountRemainCapacity: formatSize(100000)
+            uedaHtml = uedaTpl.render({
+
             })
-            $('.uploadAuthMsg').html(uamHtml)
+            $('#J_UploaderQueue_uploadAtta').html(uedaHtml)
+            IO.post(SP.resolvedIOPath('project/initAttachment?_content=json'),
+                {
+                    projectId: project.id
+                },
+                function (cb) {
+                    uamHtml = uamTpl.render({
+                        projectRemainNumber: cb.data.projectRemainNumber
+                        , accountRemainCapacity: formatSize(cb.data.accountRemainCapacity)
+                    })
+                    $('.uploadAuthMsg').html(uamHtml)
+                }, "json")
         }
     }
 }

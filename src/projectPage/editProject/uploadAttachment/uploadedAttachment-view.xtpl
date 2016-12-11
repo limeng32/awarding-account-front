@@ -1,0 +1,15 @@
+<li id="queue-file-0" class="grid" data-name="asd">
+    <div class="g-u sprite file-icon"></div>
+    <div class="g-u"><a class="g-u-download J_Download_{id}" target="_blank">& .jpg 58.93KB</a>&nbsp;</div>
+    <div class="g-u status-wrapper grid">
+        <div class="status waiting-status">正在上传，请您等待</div>
+        <div class="status start-status progress-status success-status clearfix">
+            <div class="J_ProgressBar_0 g-u uploader-progress"><img class="loading" src="http://img01.taobaocdn.com/tps/i1/T1F5tVXjRfXXXXXXXX-16-16.gif" alt="loading" /></div>
+            <a class="J_Cancel_0 g-u upload-cancel" href="#uploadCancel">取消</a>
+            <a class="uploadDelete g-u J_Del_0" >删除</a>
+        </div>
+        <div class="status cancel-status">已经取消上传，<a href="#reUpload" id="J_ReUpload_0" class="J_Upload_0">点此重新上传</a> </div>
+        <div class="status error-status upload-error"><span class="J_ErrorMsg_0 uploadErrorMsg"></span><a href="#fileDel" class="J_Del_0">删除</a></div>
+        <a class="" >删除</a>
+    </div>
+</li>
