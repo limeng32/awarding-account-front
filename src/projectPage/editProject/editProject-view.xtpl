@@ -4,7 +4,7 @@
     <div id="editProject_u40" class="ax_text_field" data-label="project_name">
         <input id="editProject_u40_input" type="text" readonly="readonly" value="{{project.name}}" placeholder="请输入项目名称"
                msg-wrapper="#editProject_v1" max-len="48" max-len-msg="项目名称不能多于48个字符" required="required"
-               required-msg="项目名称不能为空" class=""/>
+               required-msg="项目名称不能为空" class="J_editProject_textaera"/>
         <input hidden="hidden" id="editProject_name_hidden" name="editProject_name_hidden"
                updateProjectName-cancel="updateProjectName-cancel" updateProjectName-confirm="updateProjectName-confirm"
                class="" msg-wrapper="#editProject_v1"/>

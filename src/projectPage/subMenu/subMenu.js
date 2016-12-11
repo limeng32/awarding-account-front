@@ -1,11 +1,15 @@
-var $ = require('node').all;
-var XTemplate = require("kg/xtemplate/3.3.3/runtime");
-var Node = require('node');
-var OVL = require('overlay');
-var sbTpl = require('./subMenu-view');
-var listProject = require('./listProject/listProject');
+var $ = require('node').all
+var XTemplate = require("kg/xtemplate/3.3.3/runtime")
+var Node = require('node')
+var OVL = require('overlay')
+var sbTpl = require('./subMenu-view')
+var listProject = require('./listProject/listProject')
+var editProject = require('../editProject/editProject')
 module.exports = {
     init: function (p) {
+        var handleNewProject = function () {
+            editProject.render()
+        }
         var sbHtml = new XTemplate(sbTpl).render({})
         var ol = new OVL({
             effect: 'slide',
@@ -24,6 +28,7 @@ module.exports = {
             closeAction: 'hide'
         })
         ol.render()
+        $('.J_newProject').on('click', handleNewProject)
         listProject.init({})
     }
 }

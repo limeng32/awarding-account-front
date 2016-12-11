@@ -38,6 +38,38 @@ module.exports = {
             closeAction: 'hide'
         })
         ol.render()
+        var allFieLdsReadonly = function () {
+            var ret = true
+            var editProjectFields = $('.J_editProject_textaera')
+            for (var i = 0; i < editProjectFields.length; i++) {
+                if (!$(editProjectFields[i]).hasAttr('readonly')) {
+                    ret = false
+                    break
+                }
+            }
+            return ret
+        }
+        var clearProject = function (project) {
+            epHtml = epTpl.render({
+                account: p.account
+                , project: project
+            })
+            ol.set('content', epHtml)
+            $('#editProject_u102').on('click', handleNameButton)
+            auth_lxbj.render()
+            $('#editProject_u77').on('click', handleLxbjButton)
+            auth_cxd.render()
+            $('#editProject_u83').on('click', handleCxdButton)
+            auth_zhbj.render()
+            $('#editProject_u88').on('click', handleZhbjButton)
+            auth_yyqk.render()
+            $('#editProject_u93').on('click', handleYyqkButton)
+            auth_tjyj.render()
+            $('#editProject_u98').on('click', handleTjyjButton)
+            stepBar.step(project.phase)
+            uploadAttachment.setProjectId(project.id)
+            uploadAttachment.reRender(project)
+        }
         var auth_name = new Auth('#project_name', {
             fnFilter: function ($field) {
                 return $field.attr('type') == 'hidden';
@@ -540,34 +572,29 @@ module.exports = {
             return ol
         }
         this.render = function (id) {
+            if (id == null) {
+                var _continue = true
+                if (!allFieLdsReadonly()) {
+                    new AD({
+                        title: '温馨提示',
+                        content: '当前项目有处于编辑状态的内容，您确定忽略它并建立新项目么？'
+                        , onConfirm: function () {
+                            clearProject({})
+                        }
+                    })
+                } else {
+                    clearProject({})
+                }
+            } else {
             IO.post(SP.resolvedIOPath('project/getProjectWithBucket?_content=json'),
                 {
                     id: id
                 },
                 function (d) {
                     d = JSONX.decode(d)
-                    epHtml = epTpl.render({
-                        account: d.data.account,
-                        project: d.data
-                    })
-                    ol.set('content', epHtml)
-                    auth_name.render()
-                    $('#editProject_u102').on('click', handleNameButton)
-                    auth_lxbj.render()
-                    $('#editProject_u77').on('click', handleLxbjButton)
-                    auth_cxd.render()
-                    $('#editProject_u83').on('click', handleCxdButton)
-                    auth_zhbj.render()
-                    $('#editProject_u88').on('click', handleZhbjButton)
-                    auth_yyqk.render()
-                    $('#editProject_u93').on('click', handleYyqkButton)
-                    auth_tjyj.render()
-                    $('#editProject_u98').on('click', handleTjyjButton)
-                    stepBar.step(d.data.phase)
-                    //uploadAttachment.init(d.data)
-                    uploadAttachment.setProjectId(d.data.id)
-                    uploadAttachment.reRender(d.data)
+                    clearProject(d.data)
                 }, "json")
+            }
         }
         this.setListProjectCallback = function (f) {
             listProjectCallback = f;
