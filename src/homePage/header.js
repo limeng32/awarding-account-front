@@ -90,6 +90,7 @@ module.exports = {
                     height: '390px',
                     closable: true,
                     zIndex: 5,
+                    prefixCls: 'ks-fixed-',
                     visible: false,
                     closeAction: 'hide'
                 });
