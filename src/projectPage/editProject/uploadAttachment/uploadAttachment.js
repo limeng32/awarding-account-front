@@ -1,5 +1,5 @@
-var uaTpl = require('./uploadAttachment-view');
-var uamTpl = require('./uploadAuthMsg-view')
+var uaView = require('./uploadAttachment-view');
+var uamView = require('./uploadAuthMsg-view')
 var $ = require('node').all;
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Node = require('node');
@@ -37,11 +37,13 @@ module.exports = {
                 return temp + 'GB';
             }
         }
-        var uamHtml = new XTemplate(uamTpl).render({
+        var uamTpl = new XTemplate(uamView)
+        var uamHtml = uamTpl.render({
             projectRemainNumber: p.projectRemainNumber
             , accountRemainCapacity: formatSize(p.accountRemainCapacity)
         })
-        var uaHtml = new XTemplate(uaTpl).render({
+        var uaTpl = new XTemplate(uaView)
+        var uaHtml = uaTpl.render({
             p: {uamHtml: uamHtml}
         })
         var ol = new OVL({
@@ -84,7 +86,7 @@ module.exports = {
         })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
             .plug(new ProBars())
         uploader.on('success', function (ev) {
-            $('.uploadAuthMsg').html(new XTemplate(uamTpl).render({
+            $('.uploadAuthMsg').html(uamTpl.render({
                 projectRemainNumber: ev.result.data.uploadAuth.projectRemainNumber
                 , accountRemainCapacity: formatSize(ev.result.data.uploadAuth.accountRemainCapacity)
             }))
@@ -109,7 +111,7 @@ module.exports = {
                                     ev.preventDefault()
                                     var index = ev.file.id
                                     uploader.get('queue').remove(index)
-                                    $('.uploadAuthMsg').html(new XTemplate(uamTpl).render({
+                                    $('.uploadAuthMsg').html(uamTpl.render({
                                         projectRemainNumber: d.data.projectRemainNumber
                                         ,
                                         accountRemainCapacity: formatSize(d.data.accountRemainCapacity)
@@ -130,6 +132,13 @@ module.exports = {
             uploader.set('data', {
                 projectId: encodeURIComponent(_projectId)
             })
+        }
+        this.reRender = function (project) {
+            uamHtml = uamTpl.render({
+                projectRemainNumber: 8
+                , accountRemainCapacity: formatSize(100000)
+            })
+            $('.uploadAuthMsg').html(uamHtml)
         }
     }
 }

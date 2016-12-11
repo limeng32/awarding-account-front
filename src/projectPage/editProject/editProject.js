@@ -563,8 +563,10 @@ module.exports = {
                     $('#editProject_u93').on('click', handleYyqkButton)
                     auth_tjyj.render()
                     $('#editProject_u98').on('click', handleTjyjButton)
-                    console.log(d.data)
                     stepBar.step(d.data.phase)
+                    //uploadAttachment.init(d.data)
+                    uploadAttachment.setProjectId(d.data.id)
+                    uploadAttachment.reRender(d.data)
                 }, "json")
         }
         this.setListProjectCallback = function (f) {
