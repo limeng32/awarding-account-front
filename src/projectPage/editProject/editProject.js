@@ -50,11 +50,15 @@ module.exports = {
             return ret
         }
         var clearProject = function (project) {
+            $('#editProject_u40_input').val('')
+            $('#editProject_u40_input').attr('readonly', 'readonly')
+            $('#editProject_id').val('')
             epHtml = epTpl.render({
                 account: p.account
                 , project: project
             })
             ol.set('content', epHtml)
+            auth_name.render()
             $('#editProject_u102').on('click', handleNameButton)
             auth_lxbj.render()
             $('#editProject_u77').on('click', handleLxbjButton)
@@ -66,6 +70,8 @@ module.exports = {
             $('#editProject_u93').on('click', handleYyqkButton)
             auth_tjyj.render()
             $('#editProject_u98').on('click', handleTjyjButton)
+            $('.J_editProject_textaera').attr('disabled', 'disabled')
+            $('#editProject_u103_txt').html('编辑');
             stepBar.step(project.phase)
             uploadAttachment.setProjectId(project.id)
             uploadAttachment.reRender(project)
@@ -146,6 +152,7 @@ module.exports = {
             if (name.hasAttr('readonly')) {
                 $('#editProject_u103_txt').html('保存');
                 name.removeAttr('readonly');
+                name.removeAttr('disabled')
             } else {
                 new AD({
                     title: '温馨提示',
@@ -222,6 +229,7 @@ module.exports = {
             if (lxbj.hasAttr('readonly')) {
                 $('#editProject_u78_txt').html('保存');
                 lxbj.removeAttr('readonly');
+                lxbj.removeAttr('disabled')
             } else {
                 new AD({
                     title: '温馨提示',
@@ -298,6 +306,7 @@ module.exports = {
             if (cxd.hasAttr('readonly')) {
                 $('#editProject_u83_txt').html('保存');
                 cxd.removeAttr('readonly');
+                cxd.removeAttr('disabled')
             } else {
                 new AD({
                     title: '温馨提示',
@@ -374,6 +383,7 @@ module.exports = {
             if (zhbj.hasAttr('readonly')) {
                 $('#editProject_u88_txt').html('保存');
                 zhbj.removeAttr('readonly');
+                zhbj.removeAttr('disabled')
             } else {
                 new AD({
                     title: '温馨提示',
@@ -450,6 +460,7 @@ module.exports = {
             if (yyqk.hasAttr('readonly')) {
                 $('#editProject_u93_txt').html('保存');
                 yyqk.removeAttr('readonly');
+                yyqk.removeAttr('disabled')
             } else {
                 new AD({
                     title: '温馨提示',
@@ -526,6 +537,7 @@ module.exports = {
             if (tjyj.hasAttr('readonly')) {
                 $('#editProject_u98_txt').html('保存');
                 tjyj.removeAttr('readonly');
+                tjyj.removeAttr('disabled')
             } else {
                 new AD({
                     title: '温馨提示',

@@ -20,25 +20,29 @@ module.exports = {
             _step = new STB('#projectPhase', {'color': 'blue'})
             _step.render()
         }
-        var stbHtml = new XTemplate(stbTpl).render({})
-        var ol = new OVL({
-            effect: 'slide',
-            easing: 'linear',
-            duration: 10,
-            target: '',
-            content: stbHtml,
-            visible: true,
-            xy: [25, 115],
-            width: '0px',
-            height: '0px',
-            closable: false,
-            zIndex: -1,
-            visible: true,
-            prefixCls: 'absolute-',
-            closeAction: 'hide'
+        KISSY.use('kg/stepbar/2.1.0/stepbar.css', function (KISSY) {
+            KISSY.use('awarding-account-front/projectPage/stepBar/stepBarAffix.css', function (KISSY) {
+                var stbHtml = new XTemplate(stbTpl).render({})
+                var ol = new OVL({
+                    effect: 'slide',
+                    easing: 'linear',
+                    duration: 10,
+                    target: '',
+                    content: stbHtml,
+                    visible: true,
+                    xy: [25, 115],
+                    width: '0px',
+                    height: '0px',
+                    closable: false,
+                    zIndex: -1,
+                    visible: true,
+                    prefixCls: 'absolute-',
+                    closeAction: 'hide'
+                })
+                ol.render()
+                renderStep()
+            })
         })
-        ol.render()
-        renderStep()
         this.step = function (n) {
             var a = _relation.prop(n)
             if (a == null) {
