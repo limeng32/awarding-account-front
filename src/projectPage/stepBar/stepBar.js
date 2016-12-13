@@ -21,7 +21,7 @@ module.exports = {
             _step.render()
         }
         KISSY.use('kg/stepbar/2.1.0/stepbar.css', function (KISSY) {
-            KISSY.use('awarding-account-front/projectPage/stepBar/stepBarAffix.css', function (KISSY) {
+            KISSY.use('awarding-account-front/projectPage/stepBar/stepBar.css', function (KISSY) {
                 var stbHtml = new XTemplate(stbTpl).render({})
                 var ol = new OVL({
                     effect: 'slide',
