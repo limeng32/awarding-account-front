@@ -50,9 +50,6 @@ module.exports = {
             return ret
         }
         var clearProject = function (project) {
-            $('#editProject_u40_input').val('')
-            $('#editProject_u40_input').attr('readonly', 'readonly')
-            $('#editProject_id').val('')
             epHtml = epTpl.render({
                 account: p.account
                 , project: project
@@ -71,8 +68,7 @@ module.exports = {
             $('#editProject_u93').on('click', handleYyqkButton)
             auth_tjyj.render()
             $('#editProject_u98').on('click', handleTjyjButton)
-            $('.J_editProject_textaera').attr('disabled', 'disabled')
-            $('#editProject_u103_txt').html('编辑');
+            //$('.J_editProject_textaera').attr('disabled', 'disabled')
             stepBar.step(project.phase)
             uploadAttachment.setProjectId(project.id)
             uploadAttachment.reRender(project)
@@ -557,9 +553,6 @@ module.exports = {
             }
         }
         $('#editProject_u98').on('click', handleTjyjButton)
-        if ($('#editProject_id').val() == '') {
-            $('.J_editProject_textaera').attr('disabled', 'disabled')
-        }
         var enableTextarea = function () {
             $('.J_editProject_textaera').removeAttr('disabled')
         }
