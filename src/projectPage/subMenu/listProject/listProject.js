@@ -77,7 +77,7 @@ module.exports = {
                     duration: 10,
                     target: '',
                     content: lpHtml,
-                    xy: [880, 135],
+                    xy: [880, 155],
                     width: '0px',
                     height: '0px',
                     closable: false,

@@ -18,7 +18,7 @@ module.exports = {
             target: '',
             content: sbHtml,
             visible: true,
-            xy: [50, 20],
+            xy: [50, 40],
             width: '0px',
             height: '0px',
             closable: false,

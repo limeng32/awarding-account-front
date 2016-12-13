@@ -54,8 +54,7 @@ module.exports = {
                 account: p.account
                 , project: project
             })
-            ol.set('content', null)
-            ol.set('content', epHtml)
+            ol.set('content', epHtml, {force: true})
             auth_name.render()
             $('#editProject_u102').on('click', handleNameButton)
             auth_lxbj.render()
