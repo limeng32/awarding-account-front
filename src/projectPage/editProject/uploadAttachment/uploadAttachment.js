@@ -58,7 +58,6 @@ module.exports = {
             duration: 10,
             target: '',
             content: uaHtml,
-            visible: true,
             xy: [150, 1010],
             width: '0',
             height: '0',
@@ -72,7 +71,7 @@ module.exports = {
         var projectId = null
         var uploader = new Uploader('#J_UploaderBtn_uploadAtta', {
             action: SP.resolvedIOPath('project/uploadAttachment?_content=json&')
-            , type: 'auto'
+            , type: 'ajax'
             , data: {
                 projectId: p == null ? null : p.projectId
             }
@@ -88,6 +87,7 @@ module.exports = {
         }))
         uploader.plug(new UploaderAuth({
             maxSize: 102400
+            , allowRepeat: false
             , required: true
         })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
             .plug(new ProBars())
