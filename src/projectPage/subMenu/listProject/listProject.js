@@ -18,7 +18,17 @@ module.exports = {
                 editProject.render(id)
             })
         }
+        var initListProjectButton = function () {
+            $('.listProject_u20').on('mouseover', function (e) {
+                $(e.currentTarget).one('.listProject_u21_txt').hide()
+                $(e.currentTarget).one('.listProject_button').show()
+            }).on('mouseout', function (e) {
+                $(e.currentTarget).one('.listProject_u21_txt').show()
+                $(e.currentTarget).one('.listProject_button').hide()
+            })
+        }
         var renderPage = function (p) {
+            initListProjectButton()
             projectPagination = new PG($('#projectPaginationContainer'), {
                 currentPage: p.pageNo, // 默认选中第?页
                 totalPage: p.maxPageNum, // 一共有?页
@@ -50,6 +60,7 @@ module.exports = {
                     d = JSONX.decode(d);
                     renderProject(d.data)
                     reRenderPage2(d.data);
+                    initListProjectButton()
                 }, "json");
             })
             renderAction()
@@ -62,6 +73,7 @@ module.exports = {
                 data: p
             })
             $('#listProjectContainer').html(html)
+            initListProjectButton()
             renderAction()
         }
         IO.post(SP.resolvedIOPath('project/listProject?_content=json'),

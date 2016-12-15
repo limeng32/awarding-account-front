@@ -1,11 +1,8 @@
 <div id="listProjectContainer">
 {{#each(data.pageItems)}}
 <div id="listProject_u19_{{xindex}}" class="ax_repeater J_listProjectRepeater" data="{{this.id}}">
-    <!-- Unnamed (Shape) -->
     <div id="listProject_u20" class="ax_shape listProject_u20" selectiongroup="projects">
-        <img id="listProject_u20_img" class="img listProject_u20_img"
-             src="./account/images/editProject/listProject_u20.png"/>
-        <!-- Unnamed () -->
+        <input type="button" value="asd" class="listProject_button"/>
         <div id="listProject_u21" class="listProject_u21 text">
             <div class="listProject_u21_txt">
                 <span class="listProject_u21_span">{{this.name}}</span>
