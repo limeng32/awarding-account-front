@@ -185,7 +185,7 @@ module.exports = {
                         } else {
                             authMsgs_lxbj.getMsg(field.get('name')).show('success', '立项背景修改成功');
                         }
-                        $('#editProject_u77_txt').html('编辑')
+                        $('#editProject_u78_txt').html('编辑')
                         $('#editProject_u45_input').attr('readonly', 'readonly')
                     } else {
                         if (data[0].message != null) {
