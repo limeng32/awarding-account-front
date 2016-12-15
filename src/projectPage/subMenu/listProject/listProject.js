@@ -21,10 +21,10 @@ module.exports = {
         var initListProjectButton = function () {
             $('.listProject_u20').on('mouseover', function (e) {
                 $(e.currentTarget).one('.listProject_u21_txt').hide()
-                $(e.currentTarget).one('.listProject_button').show()
+                $(e.currentTarget).all('.listProject_button').show()
             }).on('mouseout', function (e) {
                 $(e.currentTarget).one('.listProject_u21_txt').show()
-                $(e.currentTarget).one('.listProject_button').hide()
+                $(e.currentTarget).all('.listProject_button').hide()
             })
         }
         var renderPage = function (p) {
