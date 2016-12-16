@@ -31,13 +31,11 @@ module.exports = {
             })
             $('.J_listProjectSubmiter').on('click', function (e) {
                 var id = $(e.currentTarget).attr('data-id')
+                $('#listProject_u99_' + id).getDOMNode().click()
                 new AD({
                     title: '温馨提示',
                     content: '您确定要提交此项目？提交后将不能再进行编辑操作。',
                     onConfirm: function () {
-                        if (id == editProject.projectIdVal()) {
-                            editProject.render()
-                        }
                         IO.post(SP.resolvedIOPath('submitProject/submitProject?_content=json'),
                             {
                                 id: id
@@ -50,6 +48,7 @@ module.exports = {
                                         content: '项目 ' + d.data.name + ' 已经加入到已申报项目列表中'
                                     })
                                     refresh()
+                                    editProject.render()
                                 })
                             }, "json")
                     }
@@ -59,13 +58,11 @@ module.exports = {
             })
             $('.J_listProjectDeleter').on('click', function (e) {
                 var id = $(e.currentTarget).attr('data-id')
+                $('#listProject_u99_' + id).getDOMNode().click()
                 new AD({
                     title: '温馨提示',
                     content: '您确定要删除此项目？删除时项目的相关附件会一并删除。',
                     onConfirm: function () {
-                        if (id == editProject.projectIdVal()) {
-                            editProject.render()
-                        }
                         IO.post(SP.resolvedIOPath('submitProject/deleteProject?_content=json'),
                             {
                                 id: id
@@ -78,6 +75,7 @@ module.exports = {
                                         content: '项目 ' + d.data.name + ' 和相关附件已经被删除'
                                     })
                                     refresh()
+                                    editProject.render()
                                 })
                             }, "json")
                     }

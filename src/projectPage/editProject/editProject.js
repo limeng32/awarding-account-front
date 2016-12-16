@@ -67,7 +67,6 @@ module.exports = {
             $('#editProject_u93').on('click', handleYyqkButton)
             auth_tjyj.render()
             $('#editProject_u98').on('click', handleTjyjButton)
-            //$('.J_editProject_textaera').attr('disabled', 'disabled')
             stepBar.step(project.phase)
             uploadAttachment.setProjectId(project.id)
             uploadAttachment.reRender(project)

@@ -87,7 +87,6 @@ module.exports = {
         }))
         uploader.plug(new UploaderAuth({
             maxSize: 102400
-            , allowRepeat: false
             , required: true
         })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
             .plug(new ProBars())
