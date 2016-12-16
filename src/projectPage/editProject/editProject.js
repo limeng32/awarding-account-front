@@ -604,5 +604,8 @@ module.exports = {
         this.setListProjectCallback = function (f) {
             listProjectCallback = f;
         }
+        this.projectIdVal = function () {
+            return $('#editProject_id').val()
+        }
     }
 }
