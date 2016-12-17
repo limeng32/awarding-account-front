@@ -32,10 +32,29 @@ module.exports = {
             }
             return uploadAttachment.formatSize(sum)
         }
+        var dealSelectedProject = function (e, projectId) {
+            if (e == null) {
+                if (projectId == editProject.projectIdVal()) {
+                    return 'focus'
+                } else {
+                    return ''
+                }
+            } else {
+                var projects = $('.listProject_u20')
+                for (var i = 0; i < projects.length; i++) {
+                    if ($(e.currentTarget).attr('data-id') == $(projects[i]).attr('data-id')) {
+                        $(projects[i]).addClass('focus')
+                    } else {
+                        $(projects[i]).removeClass('focus')
+                    }
+                }
+            }
+        }
         var renderAction = function () {
             $('.J_listProjectOpener').on('click', function (e) {
                 var id = $(e.currentTarget).attr('data-id')
                 editProject.render(id)
+                dealSelectedProject(e)
             })
             $('.J_listProjectSubmiter').on('click', function (e) {
                 var id = $(e.currentTarget).attr('data-id')
@@ -116,6 +135,7 @@ module.exports = {
                 var html = xtpl.render({
                     data: p
                     , computeAttachmentCapacity: computeAttachmentCapacity
+                    , dealSelectedProject: dealSelectedProject
                 })
                 $('#listProjectContainer').html(html)
                 renderAction()
@@ -147,6 +167,7 @@ module.exports = {
             var html = xtpl.render({
                 data: p
                 , computeAttachmentCapacity: computeAttachmentCapacity
+                , dealSelectedProject: dealSelectedProject
             })
             $('#listProjectContainer').html(html)
             initListProjectButton()
@@ -161,6 +182,7 @@ module.exports = {
                 var lpHtml = xtpl.render({
                     data: d.data
                     , computeAttachmentCapacity: computeAttachmentCapacity
+                    , dealSelectedProject: dealSelectedProject
                 })
                 var ol = new OVL({
                     effect: 'slide',
