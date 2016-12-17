@@ -10,6 +10,7 @@ var AD = require('kg/agiledialog/1.0.2/index')
 var CBD = require('core-front/callbackDialog/index')
 var lpTpl = require('./listProject-view')
 var editProject = require('../../editProject/editProject')
+var uploadAttachment = require('../../editProject/uploadAttachment/uploadAttachment')
 module.exports = {
     init: function (p) {
         var projectPagination = null
@@ -23,6 +24,13 @@ module.exports = {
                     d = JSONX.decode(d)
                     refreshPage(d.data)
                 }, "json")
+        }
+        var computeAttachmentCapacity = function (attachmentA) {
+            var sum = 0
+            for (var i = 0; i < attachmentA.length; i++) {
+                sum += attachmentA[i].size
+            }
+            return uploadAttachment.formatSize(sum)
         }
         var renderAction = function () {
             $('.J_listProjectOpener').on('click', function (e) {
@@ -107,6 +115,7 @@ module.exports = {
             var renderProject = function (p) {
                 var html = xtpl.render({
                     data: p
+                    , computeAttachmentCapacity: computeAttachmentCapacity
                 })
                 $('#listProjectContainer').html(html)
                 renderAction()
@@ -137,6 +146,7 @@ module.exports = {
             projectPagination.renderUI()
             var html = xtpl.render({
                 data: p
+                , computeAttachmentCapacity: computeAttachmentCapacity
             })
             $('#listProjectContainer').html(html)
             initListProjectButton()
@@ -148,7 +158,10 @@ module.exports = {
             },
             function (d) {
                 d = JSONX.decode(d)
-                var lpHtml = new XTemplate(lpTpl).render({data: d.data})
+                var lpHtml = xtpl.render({
+                    data: d.data
+                    , computeAttachmentCapacity: computeAttachmentCapacity
+                })
                 var ol = new OVL({
                     effect: 'slide',
                     easing: 'linear',

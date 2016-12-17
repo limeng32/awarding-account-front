@@ -200,5 +200,8 @@ module.exports = {
                     $('.uploadAuthMsg').html(uamHtml)
                 }, "json")
         }
+        this.formatSize = function (o) {
+            return formatSize(o)
+        }
     }
 }
