@@ -31,6 +31,11 @@ module.exports = {
         $('.subMenu_txt').on('click', function (e) {
             $('.subMenu_txt').replaceClass('subMenuFocus', 'subMenuUnfocus')
             $(e.currentTarget).replaceClass('subMenuUnfocus', 'subMenuFocus')
+            if ('true' == $(e.currentTarget).attr('data-showNewProject')) {
+                $('#subMenu_u22').show()
+            } else if ('false' == $(e.currentTarget).attr('data-showNewProject')) {
+                $('#subMenu_u22').hide()
+            }
         })
         $('.J_newProject').on('click', handleNewProject)
         listProject.init({})
