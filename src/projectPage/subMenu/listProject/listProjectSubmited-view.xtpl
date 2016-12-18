@@ -34,4 +34,4 @@
     </div>
     {{/each}}
 </div>
-<div class="demo-con skin-tb" id="projectPaginationSubmitedContainer"></div>
+<div class="demo-con skin-tb projectPaginationContainer" id="projectPaginationSubmitedContainer"></div>

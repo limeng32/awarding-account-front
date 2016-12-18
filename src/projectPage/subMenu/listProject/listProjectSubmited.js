@@ -18,7 +18,7 @@ module.exports = {
         var refresh = function () {
             IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
                 {
-                    phase: 'editing'
+                    phase: 'submited'
                 },
                 function (d) {
                     d = JSONX.decode(d)
@@ -137,7 +137,7 @@ module.exports = {
                     , computeAttachmentCapacity: computeAttachmentCapacity
                     , dealSelectedProject: dealSelectedProject
                 })
-                $('#listProjectContainer').html(html)
+                $('#listProjectSubmitedContainer').html(html)
                 renderAction()
             }
             var reRenderPage2 = function (p) {
@@ -150,7 +150,7 @@ module.exports = {
             projectPagination.on('switch', function (e) {
                 IO.post(SP.resolvedIOPath('project/listProject?_content=json'), {
                     pageNo: e.toPage
-                    , phase: 'editing'
+                    , phase: 'submited'
                 }, function (d) {
                     d = JSONX.decode(d);
                     renderProject(d.data)
@@ -169,13 +169,13 @@ module.exports = {
                 , computeAttachmentCapacity: computeAttachmentCapacity
                 , dealSelectedProject: dealSelectedProject
             })
-            $('#listProjectContainer').html(html)
+            $('#listProjectSubmitedContainer').html(html)
             initListProjectButton()
             renderAction()
         }
         IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
             {
-                phase: 'editing'
+                phase: 'submited'
             },
             function (d) {
                 d = JSONX.decode(d)
