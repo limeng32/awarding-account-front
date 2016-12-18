@@ -4,6 +4,7 @@ var Node = require('node')
 var OVL = require('overlay')
 var sbTpl = require('./subMenu-view')
 var listProject = require('./listProject/listProject')
+var listProjectSubmited = require('./listProject/listProjectSubmited')
 var editProject = require('../editProject/editProject')
 module.exports = {
     init: function (p) {
@@ -33,8 +34,12 @@ module.exports = {
             $(e.currentTarget).replaceClass('subMenuUnfocus', 'subMenuFocus')
             if ('true' == $(e.currentTarget).attr('data-showNewProject')) {
                 $('#subMenu_u22').show()
+                listProject.init({})
+                listProjectSubmited.hide()
             } else if ('false' == $(e.currentTarget).attr('data-showNewProject')) {
                 $('#subMenu_u22').hide()
+                listProjectSubmited.init({})
+                listProject.hide()
             }
         })
         $('.J_newProject').on('click', handleNewProject)

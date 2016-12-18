@@ -1,0 +1,37 @@
+<div id="listProjectSubmitedContainer">
+    {{#each(data.pageItems)}}
+    <div id="listProject_u19_{{xindex}}" class="ax_repeater">
+        <div id="listProject_u20" class="ax_shape listProject_u20 {{root.dealSelectedProject(null,this.id)}}"
+             selectiongroup="projects" data-id="{{this.id}}">
+            <div id="listProject_u98_{{this.id}}" class="text listProject_button listProject_u98_txt">
+                <p><span>附件数量 {{this.attachment.length}}，附件大小 {{root.computeAttachmentCapacity(this.attachment)}}</span>
+                </p>
+            </div>
+            <div id="listProject_u99_{{this.id}}"
+                 class="ax_image listProject_button listProject_u99_button J_listProjectOpener" data-id="{{this.id}}">
+                <img id="listProject_u99_img_{{this.id}}" class="img listProject_u99_img"
+                     src="./account/images/listProject/listProject_u22.png"/>
+
+                <div id="listProject_u100_{{this.id}}" class="text listProject_u100_txt">
+                    <p><span>打开</span></p>
+                </div>
+            </div>
+            <div id="listProject_u101_{{this.id}}"
+                 class="ax_image listProject_button listProject_u101_button J_listProjectViewer" data-id="{{this.id}}">
+                <img id="listProject_u101_img_{{this.id}}" class="img listProject_u101_img"
+                     src="./account/images/listProject/listProject_u15.png"/>
+
+                <div id="listProject_u102_{{this.id}}" class="text listProject_u102_txt">
+                    <p><span>预览</span></p>
+                </div>
+            </div>
+            <div id="listProject_u21_{{this.id}}" class="listProject_u21 text">
+                <div class="listProject_u21_txt">
+                    <span class="listProject_u21_span">{{this.name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<div class="demo-con skin-tb" id="projectPaginationSubmitedContainer"></div>

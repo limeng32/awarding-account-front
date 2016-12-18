@@ -8,7 +8,7 @@ var JSONX = require('core-front/jsonx/jsonx')
 var PG = require('kg/pagination/2.0.0/index')
 var AD = require('kg/agiledialog/1.0.2/index')
 var CBD = require('core-front/callbackDialog/index')
-var lpTpl = require('./listProject-view')
+var lpTpl = require('./listProjectSubmited-view')
 var editProject = require('../../editProject/editProject')
 var uploadAttachment = require('../../editProject/uploadAttachment/uploadAttachment')
 module.exports = {
@@ -122,7 +122,7 @@ module.exports = {
         }
         var renderPage = function (p) {
             initListProjectButton()
-            projectPagination = new PG($('#projectPaginationContainer'), {
+            projectPagination = new PG($('#projectPaginationSubmitedContainer'), {
                 currentPage: p.pageNo, // 默认选中第?页
                 totalPage: p.maxPageNum, // 一共有?页
                 firstPagesCount: 0, // 显示最前面的?页
@@ -206,11 +206,11 @@ module.exports = {
             refresh()
         }
         this.hide = function () {
-            $('#listProjectContainer').remove()
-            $('#projectPaginationContainer').remove()
+            $('#listProjectSubmitedContainer').remove()
+            $('#projectPaginationSubmitedContainer').remove()
         }
         this.show = function () {
-            $('#listProjectContainer').show()
+            $('#listProjectSubmitedContainer').show()
         }
         editProject.setListProjectCallback(this.refresh)
     }
