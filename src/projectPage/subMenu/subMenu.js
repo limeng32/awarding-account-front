@@ -28,6 +28,10 @@ module.exports = {
             closeAction: 'hide'
         })
         ol.render()
+        $('.subMenu_txt').on('click', function (e) {
+            $('.subMenu_txt').replaceClass('subMenuFocus', 'subMenuUnfocus')
+            $(e.currentTarget).replaceClass('subMenuUnfocus', 'subMenuFocus')
+        })
         $('.J_newProject').on('click', handleNewProject)
         listProject.init({})
     }

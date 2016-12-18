@@ -35,7 +35,7 @@ module.exports = {
         var dealSelectedProject = function (e, projectId) {
             if (e == null) {
                 if (projectId == editProject.projectIdVal()) {
-                    return 'focus'
+                    return 'listProjectFocus'
                 } else {
                     return ''
                 }
@@ -43,9 +43,9 @@ module.exports = {
                 var projects = $('.listProject_u20')
                 for (var i = 0; i < projects.length; i++) {
                     if ($(e.currentTarget).attr('data-id') == $(projects[i]).attr('data-id')) {
-                        $(projects[i]).addClass('focus')
+                        $(projects[i]).addClass('listProjectFocus')
                     } else {
-                        $(projects[i]).removeClass('focus')
+                        $(projects[i]).removeClass('listProjectFocus')
                     }
                 }
             }

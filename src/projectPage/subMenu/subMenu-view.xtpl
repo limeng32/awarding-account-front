@@ -1,8 +1,8 @@
 <div id="subMenu_u106" class="ax_paragraph" selectiongroup="projectSubMenu">
     <img id="subMenu_u106_img" class="img " src="./account/images/transparent.gif"/>
     <!-- Unnamed () -->
-    <div id="subMenu_u107" class="text">
-        <p><span>往届申报项目列表</span></p>
+    <div id="subMenu_u107" class="text subMenu_txt subMenuUnfocus">
+        <p><span>本届已提交项目列表</span></p>
     </div>
 </div>
 
@@ -10,8 +10,8 @@
 <div id="subMenu_u108" class="ax_paragraph" selectiongroup="projectSubMenu">
     <img id="subMenu_u108_img" class="img " src="./account/images/transparent.gif"/>
     <!-- Unnamed () -->
-    <div id="subMenu_u109" class="text">
-        <p><span>本届退回项目列表</span></p>
+    <div id="subMenu_u109" class="text subMenu_txt subMenuUnfocus">
+        <p><span>本届被退回项目列表</span></p>
     </div>
 </div>
 
@@ -19,8 +19,8 @@
 <div id="subMenu_u17" class="ax_paragraph" data-label="projectInitMenu" selectiongroup="projectSubMenu">
     <img id="subMenu_u17_img" class="img " src="./account/images/transparent.gif"/>
     <!-- Unnamed () -->
-    <div id="subMenu_u18" class="text">
-        <p><span>本届申报项目列表</span></p>
+    <div id="subMenu_u18" class="text subMenu_txt subMenuFocus">
+        <p><span>本届编辑中项目列表</span></p>
     </div>
 </div>
 
