@@ -53,7 +53,7 @@ module.exports = {
         var renderAction = function () {
             $('.J_listProjectOpener').on('click', function (e) {
                 var id = $(e.currentTarget).attr('data-id')
-                editProject.render(id)
+                editProject.render(id, true)
                 dealSelectedProject(e)
             })
             $('.J_listProjectSubmiter').on('click', function (e) {
@@ -75,7 +75,7 @@ module.exports = {
                                         content: '项目 ' + d.data.name + ' 已经加入到 本届提交项目列表 中'
                                     })
                                     refresh()
-                                    editProject.render()
+                                    editProject.render(null, true)
                                 })
                             }, "json")
                     }
@@ -102,7 +102,7 @@ module.exports = {
                                         content: '项目 ' + d.data.name + ' 和相关附件已经被删除'
                                     })
                                     refresh()
-                                    editProject.render()
+                                    editProject.render(null, true)
                                 })
                             }, "json")
                     }
@@ -202,7 +202,7 @@ module.exports = {
                         duration: 10,
                         target: '',
                         content: lpHtml,
-                        xy: [880, 155],
+                        xy: [$('#subMenu_u22').offset().left, $('#subMenu_u22').offset().top - 32],
                         width: '0px',
                         height: '0px',
                         closable: false,

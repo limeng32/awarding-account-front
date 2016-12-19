@@ -30,8 +30,7 @@
         </div>
     </div>
 
-    <!-- project_name_button (Dynamic Panel) -->
-                <!-- Unnamed (Shape) -->
+    {{#if( editAble )}}
     <div id="editProject_u102" class="ax_shape">
         <img id="editProject_u102_img" class="img "
              src="./account/images/editProject/add_project_button_u73.png"/>
@@ -40,6 +39,7 @@
             <p><span id="editProject_u103_txt">编辑</span></p>
         </div>
     </div>
+    {{/if}}
     <input hidden="hidden" needAFail="needAFail"/>
 
     <div id="editProject_v1" class="ax_paragraph "></div>
@@ -82,8 +82,7 @@
            updateProjectLxbj-cancel="updateProjectLxbj-cancel" updateProjectLxbj-confirm="updateProjectLxbj-confirm"
            class="" msg-wrapper="#editProject_v2"/>
 </div>
-
-    <!-- Unnamed (Shape) -->
+    {{#if( editAble )}}
     <div id="editProject_u77" class="ax_shape">
         <img id="editProject_u77_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
         <!-- Unnamed () -->
@@ -91,6 +90,7 @@
             <p><span id="editProject_u78_txt">编辑</span></p>
         </div>
     </div>
+    {{/if}}
     <input hidden="hidden" needAFail="needAFail"/>
 
     <div id="editProject_v2" class="ax_paragraph "></div>
@@ -134,7 +134,7 @@
         </div>
     </div>
 
-    <!-- Unnamed (Shape) -->
+    {{#if( editAble )}}
     <div id="editProject_u82" class="ax_shape">
         <img id="editProject_u82_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
         <!-- Unnamed () -->
@@ -142,6 +142,7 @@
             <p><span id="editProject_u83_txt">编辑</span></p>
         </div>
     </div>
+    {{/if}}
     <input hidden="hidden" needAFail="needAFail"/>
 
     <div id="editProject_v3" class="ax_paragraph "></div>
@@ -185,6 +186,7 @@
                updateProjectZhbj-cancel="updateProjectZhbj-cancel" updateProjectZhbj-confirm="updateProjectZhbj-confirm"
                class="" msg-wrapper="#editProject_v4"/>
     </div>
+    {{#if( editAble )}}
     <div id="editProject_u87" class="ax_shape">
         <img id="editProject_u87_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
         <!-- Unnamed () -->
@@ -192,6 +194,7 @@
             <p><span id="editProject_u88_txt">编辑</span></p>
         </div>
     </div>
+    {{/if}}
     <input hidden="hidden" needAFail="needAFail"/>
 
     <div id="editProject_v4" class="ax_paragraph "></div>
@@ -232,7 +235,7 @@
                updateProjectYyqk-cancel="updateProjectYyqk-cancel" updateProjectYyqk-confirm="updateProjectYyqk-confirm"
                class="" msg-wrapper="#editProject_v5"/>
     </div>
-    <!-- Unnamed (Shape) -->
+    {{#if( editAble )}}
     <div id="editProject_u92" class="ax_shape">
         <img id="editProject_u92_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
         <!-- Unnamed () -->
@@ -240,6 +243,7 @@
             <p><span id="editProject_u93_txt">编辑</span></p>
         </div>
     </div>
+    {{/if}}
     <input hidden="hidden" needAFail="needAFail"/>
 
     <div id="editProject_v5" class="ax_paragraph "></div>
@@ -282,7 +286,7 @@
                updateProjectTjyj-cancel="updateProjectTjyj-cancel" updateProjectTjyj-confirm="updateProjectTjyj-confirm"
                class="" msg-wrapper="#editProject_v6"/>
     </div>
-    <!-- Unnamed (Shape) -->
+    {{#if( editAble )}}
     <div id="editProject_u97" class="ax_shape">
         <img id="editProject_u97_img" class="img " src="./account/images/editProject/add_project_button_u73.png"/>
         <!-- Unnamed () -->
@@ -290,6 +294,7 @@
             <p><span id="editProject_u98_txt">编辑</span></p>
         </div>
     </div>
+    {{/if}}
     <input hidden="hidden" needAFail="needAFail"/>
 
     <div id="editProject_v6" class="ax_paragraph "></div>

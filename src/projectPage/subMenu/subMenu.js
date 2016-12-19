@@ -10,7 +10,7 @@ var editProject = require('../editProject/editProject')
 module.exports = {
     init: function (p) {
         var handleNewProject = function () {
-            editProject.render()
+            editProject.render(null, true)
         }
         var sbHtml = new XTemplate(sbTpl).render({})
         var ol = new OVL({

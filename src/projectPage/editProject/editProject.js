@@ -49,10 +49,11 @@ module.exports = {
             }
             return ret
         }
-        var clearProject = function (project) {
+        var clearProject = function (project, editAble) {
             epHtml = epTpl.render({
                 account: p.account
                 , project: project
+                , editAble: editAble
             })
             ol.set('content', epHtml, {force: true})
             auth_name.render()
@@ -575,7 +576,10 @@ module.exports = {
         this.ol = function () {
             return ol
         }
-        this.render = function (id) {
+        this.render = function (id, editAble) {
+            if (editAble == null) {
+                editAble = false
+            }
             if (id == null) {
                 var _continue = true
                 if (!allFieLdsReadonly()) {
@@ -583,11 +587,11 @@ module.exports = {
                         title: '温馨提示',
                         content: '当前项目有处于编辑状态的内容，您确定忽略它并建立新项目么？'
                         , onConfirm: function () {
-                            clearProject({})
+                            clearProject({}, editAble)
                         }
                     })
                 } else {
-                    clearProject({})
+                    clearProject({}, editAble)
                 }
             } else {
             IO.post(SP.resolvedIOPath('project/getProjectWithBucket?_content=json'),
@@ -596,7 +600,7 @@ module.exports = {
                 },
                 function (d) {
                     d = JSONX.decode(d)
-                    clearProject(d.data)
+                    clearProject(d.data, editAble)
                 }, "json")
             }
         }

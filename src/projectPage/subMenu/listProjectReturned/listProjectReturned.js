@@ -202,7 +202,7 @@ module.exports = {
                         duration: 10,
                         target: '',
                         content: lpHtml,
-                        xy: [880, 155],
+                        xy: [$('#subMenu_u22').offset().left, $('#subMenu_u22').offset().top - 32],
                         width: '0px',
                         height: '0px',
                         closable: false,
