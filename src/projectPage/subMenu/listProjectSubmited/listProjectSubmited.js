@@ -56,60 +56,6 @@ module.exports = {
                 editProject.render(id)
                 dealSelectedProject(e)
             })
-            $('.J_listProjectSubmiter').on('click', function (e) {
-                var id = $(e.currentTarget).attr('data-id')
-                $('#listProject_u99_' + id).getDOMNode().click()
-                new AD({
-                    title: '温馨提示',
-                    content: '您确定要提交此项目？提交后将不能再进行编辑操作。',
-                    onConfirm: function () {
-                        IO.post(SP.resolvedIOPath('submitProject/submitProject?_content=json'),
-                            {
-                                id: id
-                            },
-                            function (d) {
-                                d = JSONX.decode(d)
-                                new CBD(d, function () {
-                                    new AD({
-                                        type: 'alert',
-                                        content: '项目 ' + d.data.name + ' 已经加入到已申报项目列表中'
-                                    })
-                                    refresh()
-                                    editProject.render()
-                                })
-                            }, "json")
-                    }
-                    , onCancel: function () {
-                    }
-                })
-            })
-            $('.J_listProjectDeleter').on('click', function (e) {
-                var id = $(e.currentTarget).attr('data-id')
-                $('#listProject_u99_' + id).getDOMNode().click()
-                new AD({
-                    title: '温馨提示',
-                    content: '您确定要删除此项目？删除时项目的相关附件会一并删除。',
-                    onConfirm: function () {
-                        IO.post(SP.resolvedIOPath('submitProject/deleteProject?_content=json'),
-                            {
-                                id: id
-                            },
-                            function (d) {
-                                d = JSONX.decode(d)
-                                new CBD(d, function () {
-                                    new AD({
-                                        type: 'alert',
-                                        content: '项目 ' + d.data.name + ' 和相关附件已经被删除'
-                                    })
-                                    refresh()
-                                    editProject.render()
-                                })
-                            }, "json")
-                    }
-                    , onCancel: function () {
-                    }
-                })
-            })
         }
         var initListProjectButton = function () {
             $('.listProject_u20').on('mouseover', function (e) {

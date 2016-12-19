@@ -56,14 +56,14 @@ module.exports = {
                 editProject.render(id)
                 dealSelectedProject(e)
             })
-            $('.J_listProjectSubmiter').on('click', function (e) {
+            $('.J_listProjectReediter').on('click', function (e) {
                 var id = $(e.currentTarget).attr('data-id')
                 $('#listProject_u99_' + id).getDOMNode().click()
                 new AD({
                     title: '温馨提示',
-                    content: '您确定要提交此项目？提交后将不能再进行编辑操作。',
+                    content: '您确定要重新编辑此退回项目？',
                     onConfirm: function () {
-                        IO.post(SP.resolvedIOPath('submitProject/submitProject?_content=json'),
+                        IO.post(SP.resolvedIOPath('submitProject/reeditProject?_content=json'),
                             {
                                 id: id
                             },
@@ -72,7 +72,7 @@ module.exports = {
                                 new CBD(d, function () {
                                     new AD({
                                         type: 'alert',
-                                        content: '项目 ' + d.data.name + ' 已经加入到已申报项目列表中'
+                                        content: '项目 ' + d.data.name + ' 已经加入到 本届编辑项目列表 中'
                                     })
                                     refresh()
                                     editProject.render()

@@ -72,7 +72,7 @@ module.exports = {
                                 new CBD(d, function () {
                                     new AD({
                                         type: 'alert',
-                                        content: '项目 ' + d.data.name + ' 已经加入到已申报项目列表中'
+                                        content: '项目 ' + d.data.name + ' 已经加入到 本届提交项目列表 中'
                                     })
                                     refresh()
                                     editProject.render()
