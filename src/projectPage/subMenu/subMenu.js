@@ -4,7 +4,8 @@ var Node = require('node')
 var OVL = require('overlay')
 var sbTpl = require('./subMenu-view')
 var listProject = require('./listProject/listProject')
-var listProjectSubmited = require('./listProject/listProjectSubmited')
+var listProjectSubmited = require('./listProjectSubmited/listProjectSubmited')
+var listProjectReturned = require('./listProjectReturned/listProjectReturned')
 var editProject = require('../editProject/editProject')
 module.exports = {
     init: function (p) {
@@ -32,15 +33,25 @@ module.exports = {
         $('.subMenu_txt').on('click', function (e) {
             $('.subMenu_txt').replaceClass('subMenuFocus', 'subMenuUnfocus')
             $(e.currentTarget).replaceClass('subMenuUnfocus', 'subMenuFocus')
-            if ('true' == $(e.currentTarget).attr('data-showNewProject')) {
-                listProject.init({})
+            var view = $(e.currentTarget).attr('data-show')
+            if ('editing' == view) {
+                listProject.show({})
                 listProjectSubmited.hide()
-            } else if ('false' == $(e.currentTarget).attr('data-showNewProject')) {
-                listProjectSubmited.init({})
+                listProjectReturned.hide()
+            } else if ('submited' == view) {
+                listProjectReturned.hide({})
                 listProject.hide()
+                listProjectSubmited.show()
+            } else if ('returned' == view) {
+                listProjectReturned.show({})
+                listProject.hide()
+                listProjectSubmited.hide()
             }
         })
         $('.J_newProject').on('click', handleNewProject)
         listProject.init({})
+        listProject.show()
+        listProjectSubmited.init({})
+        listProjectReturned.init({})
     }
 }

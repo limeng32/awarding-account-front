@@ -8,7 +8,7 @@ var JSONX = require('core-front/jsonx/jsonx')
 var PG = require('kg/pagination/2.0.0/index')
 var AD = require('kg/agiledialog/1.0.2/index')
 var CBD = require('core-front/callbackDialog/index')
-var lpTpl = require('./listProject-view')
+var lpTpl = require('./../listProjectSubmited/listProjectSubmited-view')
 var editProject = require('../../editProject/editProject')
 var uploadAttachment = require('../../editProject/uploadAttachment/uploadAttachment')
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
         var refresh = function () {
             IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
                 {
-                    phase: 'editing'
+                    phase: 'submited'
                 },
                 function (d) {
                     d = JSONX.decode(d)
@@ -122,7 +122,7 @@ module.exports = {
         }
         var renderPage = function (p) {
             initListProjectButton()
-            projectPagination = new PG($('#projectPaginationContainer'), {
+            projectPagination = new PG($('#projectPaginationSubmitedContainer'), {
                 currentPage: p.pageNo, // 默认选中第?页
                 totalPage: p.maxPageNum, // 一共有?页
                 firstPagesCount: 0, // 显示最前面的?页
@@ -137,7 +137,7 @@ module.exports = {
                     , computeAttachmentCapacity: computeAttachmentCapacity
                     , dealSelectedProject: dealSelectedProject
                 })
-                $('#listProjectContainer').html(html)
+                $('#listProjectSubmitedContainer').html(html)
                 renderAction()
             }
             var reRenderPage2 = function (p) {
@@ -150,7 +150,7 @@ module.exports = {
             projectPagination.on('switch', function (e) {
                 IO.post(SP.resolvedIOPath('project/listProject?_content=json'), {
                     pageNo: e.toPage
-                    , phase: 'editing'
+                    , phase: 'submited'
                 }, function (d) {
                     d = JSONX.decode(d);
                     renderProject(d.data)
@@ -169,7 +169,7 @@ module.exports = {
                 , computeAttachmentCapacity: computeAttachmentCapacity
                 , dealSelectedProject: dealSelectedProject
             })
-            $('#listProjectContainer').html(html)
+            $('#listProjectSubmitedContainer').html(html)
             initListProjectButton()
             renderAction()
         }
@@ -177,17 +177,17 @@ module.exports = {
             refresh()
         }
         this.hide = function () {
-            if ($('#listProjectContainer')) {
-                $('#listProjectContainer').remove()
+            if ($('#listProjectSubmitedContainer')) {
+                $('#listProjectSubmitedContainer').remove()
             }
-            if ($('#projectPaginationContainer')) {
-                $('#projectPaginationContainer').remove()
+            if ($('#projectPaginationSubmitedContainer')) {
+                $('#projectPaginationSubmitedContainer').remove()
             }
         }
         this.show = function () {
             IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
                 {
-                    phase: 'editing'
+                    phase: 'submited'
                 },
                 function (d) {
                     d = JSONX.decode(d)

@@ -8,7 +8,7 @@ var JSONX = require('core-front/jsonx/jsonx')
 var PG = require('kg/pagination/2.0.0/index')
 var AD = require('kg/agiledialog/1.0.2/index')
 var CBD = require('core-front/callbackDialog/index')
-var lpTpl = require('./listProjectSubmited-view')
+var lpTpl = require('./../listProjectReturned/listProjectReturned-view')
 var editProject = require('../../editProject/editProject')
 var uploadAttachment = require('../../editProject/uploadAttachment/uploadAttachment')
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
         var refresh = function () {
             IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
                 {
-                    phase: 'submited'
+                    phase: 'returned'
                 },
                 function (d) {
                     d = JSONX.decode(d)
@@ -122,7 +122,7 @@ module.exports = {
         }
         var renderPage = function (p) {
             initListProjectButton()
-            projectPagination = new PG($('#projectPaginationSubmitedContainer'), {
+            projectPagination = new PG($('#projectPaginationReturnedContainer'), {
                 currentPage: p.pageNo, // 默认选中第?页
                 totalPage: p.maxPageNum, // 一共有?页
                 firstPagesCount: 0, // 显示最前面的?页
@@ -137,7 +137,7 @@ module.exports = {
                     , computeAttachmentCapacity: computeAttachmentCapacity
                     , dealSelectedProject: dealSelectedProject
                 })
-                $('#listProjectSubmitedContainer').html(html)
+                $('#listProjectReturnedContainer').html(html)
                 renderAction()
             }
             var reRenderPage2 = function (p) {
@@ -150,7 +150,7 @@ module.exports = {
             projectPagination.on('switch', function (e) {
                 IO.post(SP.resolvedIOPath('project/listProject?_content=json'), {
                     pageNo: e.toPage
-                    , phase: 'submited'
+                    , phase: 'returned'
                 }, function (d) {
                     d = JSONX.decode(d);
                     renderProject(d.data)
@@ -169,48 +169,51 @@ module.exports = {
                 , computeAttachmentCapacity: computeAttachmentCapacity
                 , dealSelectedProject: dealSelectedProject
             })
-            $('#listProjectSubmitedContainer').html(html)
+            $('#listProjectReturnedContainer').html(html)
             initListProjectButton()
             renderAction()
         }
-        IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
-            {
-                phase: 'submited'
-            },
-            function (d) {
-                d = JSONX.decode(d)
-                var lpHtml = xtpl.render({
-                    data: d.data
-                    , computeAttachmentCapacity: computeAttachmentCapacity
-                    , dealSelectedProject: dealSelectedProject
-                })
-                var ol = new OVL({
-                    effect: 'slide',
-                    easing: 'linear',
-                    duration: 10,
-                    target: '',
-                    content: lpHtml,
-                    xy: [880, 155],
-                    width: '0px',
-                    height: '0px',
-                    closable: false,
-                    zIndex: -1,
-                    visible: true,
-                    prefixCls: 'fixed-',
-                    closeAction: 'hide'
-                })
-                ol.render()
-                renderPage(d.data)
-            }, "json")
         this.refresh = function () {
             refresh()
         }
         this.hide = function () {
-            $('#listProjectSubmitedContainer').remove()
-            $('#projectPaginationSubmitedContainer').remove()
+            if ($('#listProjectReturnedContainer')) {
+                $('#listProjectReturnedContainer').remove()
+            }
+            if ($('#projectPaginationReturnedContainer')) {
+                $('#projectPaginationReturnedContainer').remove()
+            }
         }
         this.show = function () {
-            $('#listProjectSubmitedContainer').show()
+            IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
+                {
+                    phase: 'returned'
+                },
+                function (d) {
+                    d = JSONX.decode(d)
+                    var lpHtml = xtpl.render({
+                        data: d.data
+                        , computeAttachmentCapacity: computeAttachmentCapacity
+                        , dealSelectedProject: dealSelectedProject
+                    })
+                    var ol = new OVL({
+                        effect: 'slide',
+                        easing: 'linear',
+                        duration: 10,
+                        target: '',
+                        content: lpHtml,
+                        xy: [880, 155],
+                        width: '0px',
+                        height: '0px',
+                        closable: false,
+                        zIndex: -1,
+                        visible: true,
+                        prefixCls: 'fixed-',
+                        closeAction: 'hide'
+                    })
+                    ol.render()
+                    renderPage(d.data)
+                }, "json")
         }
         editProject.setListProjectCallback(this.refresh)
     }
