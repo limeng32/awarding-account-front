@@ -7,7 +7,7 @@
             <p><span>附件数量 {{this.attachment.length}}，附件大小 {{root.computeAttachmentCapacity(this.attachment)}}</span></p>
         </div>
         <div id="listProject_u99_{{this.id}}"
-             class="ax_image listProject_button listProject_u99_button J_listProjectOpener" data-id="{{this.id}}">
+             class="ax_image listProject_button listProject_u99_button J_listProjectEditer" data-id="{{this.id}}">
             <img id="listProject_u99_img_{{this.id}}" class="img listProject_u99_img"
                  src="./account/images/listProject/listProject_u22.png"/>
 

@@ -51,7 +51,7 @@ module.exports = {
             }
         }
         var renderAction = function () {
-            $('.J_listProjectOpener').on('click', function (e) {
+            $('.J_listProjectEditer').on('click', function (e) {
                 var id = $(e.currentTarget).attr('data-id')
                 editProject.render(id, true)
                 dealSelectedProject(e)
