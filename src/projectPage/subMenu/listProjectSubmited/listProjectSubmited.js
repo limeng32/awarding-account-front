@@ -161,6 +161,5 @@ module.exports = {
                     renderPage(d.data)
                 }, "json")
         }
-        editProject.setListProjectCallback(this.refresh)
     }
 }
