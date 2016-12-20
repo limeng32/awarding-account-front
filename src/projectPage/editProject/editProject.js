@@ -21,6 +21,16 @@ module.exports = {
         var epHtml = epTpl.render({
             account: p.account
             , editAble: true
+            , project: {
+                name: '点击右方“编辑”按钮即可编辑项目名称'
+                , projectBucket: [{
+                    background: '保存项目名称后点击右方“编辑”按钮即可编辑立项背景'
+                    , innovation: '保存项目名称后点击右方“编辑”按钮即可编辑创新亮点'
+                    , synthesize: '保存项目名称后点击右方“编辑”按钮即可编辑综合背景'
+                    , application: '保存项目名称后点击右方“编辑”按钮即可编辑应用情况'
+                    , recommendition: '保存项目名称后点击右方“编辑”按钮即可编辑推荐意见'
+                }]
+            }
         })
         var ol = new OVL({
             effect: 'slide',

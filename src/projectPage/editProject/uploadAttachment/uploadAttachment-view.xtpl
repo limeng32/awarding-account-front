@@ -12,7 +12,7 @@
                         <div class="g-u sprite file-icon"></div>
                         <div class="g-u"><a class="g-u-download J_Download_{id}" target="_blank">{name}</a></div>
                         <div class="g-u status-wrapper grid">
-                            <div class="status waiting-status">正在上传，请您等待</div>
+                            <div class="status waiting-status">正在上传请您等待，上传结束前请不要离开此项目</div>
                             <div class="status start-status progress-status success-status clearfix">
                                 <div class="J_ProgressBar_{id} g-u uploader-progress"><img class="loading" src="http://img01.taobaocdn.com/tps/i1/T1F5tVXjRfXXXXXXXX-16-16.gif" alt="loading" /></div>
                                 <a class="J_Cancel_{id} g-u upload-cancel" href="#uploadCancel">取消</a>
