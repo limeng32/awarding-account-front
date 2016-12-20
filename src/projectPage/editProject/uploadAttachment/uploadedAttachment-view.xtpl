@@ -3,8 +3,10 @@
     <div class="g-u sprite file-icon"></div>
     <div class="g-u"><a class="g-u-download J_uploaded_Download" target="_blank" data-id="{{this.id}}">{{this.name}}{{this.affix}}
         {{root.formatSize(this.size)}}</a>&nbsp;</div>
+    {{#if( editAble )}}
     <div class="g-u status-wrapper grid">
         <a class="J_uploaded_Del" data-id="{{this.id}}">删除</a>
     </div>
+    {{/if}}
 </li>
 {{/each}}

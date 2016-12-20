@@ -20,6 +20,7 @@ module.exports = {
         var listProjectCallback = null;
         var epHtml = epTpl.render({
             account: p.account
+            , editAble: true
         })
         var ol = new OVL({
             effect: 'slide',
@@ -70,7 +71,7 @@ module.exports = {
             $('#editProject_u98').on('click', handleTjyjButton)
             stepBar.step(project.phase)
             uploadAttachment.setProjectId(project.id)
-            uploadAttachment.reRender(project)
+            uploadAttachment.reRender(project, editAble)
         }
         var auth_name = new Auth('#project_name', {
             fnFilter: function ($field) {

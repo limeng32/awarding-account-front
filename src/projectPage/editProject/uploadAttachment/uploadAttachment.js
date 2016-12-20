@@ -138,7 +138,12 @@ module.exports = {
                 projectId: encodeURIComponent(_projectId)
             })
         }
-        this.reRender = function (project) {
+        this.reRender = function (project, editAble) {
+            if (!editAble) {
+                uploader.set('disabled', true)
+            } else {
+                uploader.set('disabled', false)
+            }
             var getTheAttachment = function (o) {
                 var ret = null
                 for (var i = 0; i < project.attachment.length; i++) {
@@ -179,6 +184,7 @@ module.exports = {
             uedaHtml = uedaTpl.render({
                 project: project
                 , formatSize: formatSize
+                , editAble: editAble
             })
             $('#J_UploaderQueue_uploadAtta').html(uedaHtml)
             $('.J_uploaded_Del').on('click', function (e) {
