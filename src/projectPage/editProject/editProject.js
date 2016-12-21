@@ -86,6 +86,13 @@ module.exports = {
                 onValueChange: function (e) {
                 }
             })
+            new DTP({
+                start: '#editProject_u121'
+                , timepicker: false
+                , closeOnDateSelect: true
+                , yearStart: 2010
+                , yearEnd: yearNum
+            })
             auth_name.render()
             $('#editProject_u102').on('click', handleNameButton)
             auth_lxbj.render()
@@ -197,6 +204,23 @@ module.exports = {
             }
         }
         $('#editProject_u102').on('click', handleNameButton)
+
+        var auth_basic = new Auth('#project_basic', {
+            fnFilter: function ($field) {
+                return $field.attr('type') == 'hidden';
+            }
+        })
+        var authMsgs_basic = new AuthMsgs()
+        auth_basic.plug(authMsgs_basic)
+        auth_basic.set('stopOnError', true)
+        auth_basic.render()
+        var handleBasicButton = function () {
+            console.log($('#editProject_u116').val())
+            console.log($('#editProject_u119').val())
+            console.log($('#editProject_u121').val())
+        }
+        $('#editProject_u123').on('click',handleBasicButton)
+
         var auth_lxbj = new Auth('#project_lxbj', {
             fnFilter: function ($field) {
                 return $field.attr('type') == 'hidden';

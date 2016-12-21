@@ -45,6 +45,7 @@
     <div id="editProject_v1" class="ax_paragraph "></div>
 </form>
 
+<form class="form-horizontal" id="project_basic" method="post" action="f">
 <!-- Unnamed (Shape) -->
 <div id="editProject_u110" class="ax_paragraph">
     <img id="editProject_u110_img" class="img " src="./account/images/transparent.gif"/>
@@ -71,11 +72,23 @@
                    data-max="999" data-min="0"
                    data-hasdecimal="false"></span>
 
-            <span id="editProject_u120">使用时间：</span>
-            <input type="text" value="" id="editProject_u121" />
+            <span id="editProject_u120">应用时间：</span>
+            <input type="text" value="2012-06-06" id="editProject_u121"/>
         </p>
     </div>
 </div>
+
+{{#if( editAble )}}
+<div id="editProject_u122" class="ax_shape">
+    <img id="editProject_u122_img" class="img "
+         src="./account/images/editProject/add_project_button_u73.png"/>
+    <!-- Unnamed () -->
+    <div id="editProject_u123" class="text">
+        <p><span id="editProject_u123_txt">编辑</span></p>
+    </div>
+</div>
+{{/if}}
+</form>
 
 <form class="form-horizontal" id="project_lxbj" method="post" action="b">
 <!-- Unnamed (Shape) -->
