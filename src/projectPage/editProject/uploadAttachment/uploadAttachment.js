@@ -58,7 +58,7 @@ module.exports = {
             duration: 10,
             target: '',
             content: uaHtml,
-            xy: [150, 1010],
+            xy: [150, 1163],
             width: '0',
             height: '0',
             closable: false,

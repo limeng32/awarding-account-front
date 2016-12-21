@@ -44,6 +44,24 @@
 
     <div id="editProject_v1" class="ax_paragraph "></div>
 </form>
+
+<!-- Unnamed (Shape) -->
+<div id="editProject_u110" class="ax_paragraph">
+    <img id="editProject_u110_img" class="img " src="./account/images/transparent.gif"/>
+    <!-- Unnamed () -->
+    <div id="editProject_u111" class="text">
+        <p><span>基本信息</span></p>
+    </div>
+</div>
+
+<div id="editProject_u112" class="ax_shape" data-label="yyqk_border">
+    <img id="editProject_u112_img" class="img " width="" src="./account/images/editProject/yyqk_border_u3.png"/>
+    <!-- Unnamed () -->
+    <div id="editProject_u113" class="text">
+        <p><span></span></p>
+    </div>
+</div>
+
 <form class="form-horizontal" id="project_lxbj" method="post" action="b">
 <!-- Unnamed (Shape) -->
 <div id="editProject_u43" class="ax_paragraph">
