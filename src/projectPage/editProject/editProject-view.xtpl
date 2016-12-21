@@ -58,7 +58,19 @@
     <img id="editProject_u112_img" class="img " width="" src="./account/images/editProject/yyqk_border_u3.png"/>
     <!-- Unnamed () -->
     <div id="editProject_u113" class="text">
-        <p><span></span></p>
+        <p>
+            <span id="awardCountLabel">获奖励数：</span>
+            <span id="awardCount_span">
+            <input type="text" value="0" class="ks-spinbox" id="awardCount" data-range="1"
+                   data-max="999" data-min="0"
+                   data-hasdecimal="false"></span>
+
+            <span id="patentCountLabel">专利数：</span>
+            <span id="patentCount_span">
+            <input type="text" value="0" class="ks-spinbox" id="patentCount" data-range="1"
+                   data-max="999" data-min="0"
+                   data-hasdecimal="false"></span>
+        </p>
     </div>
 </div>
 

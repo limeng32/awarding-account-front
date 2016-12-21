@@ -11,6 +11,7 @@ var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/');
 var RAN = require('core-front/random/index');
 var SP = require('core-front/smartPath/smartPath');
 var AD = require('kg/agiledialog/1.0.2/index');
+var SPB = require('spinbox-by-limeng32/index')
 var epView = require('./editProject-view');
 var uploadAttachment = require('./uploadAttachment/uploadAttachment');
 var stepBar = require('../stepBar/stepBar')
@@ -49,6 +50,10 @@ module.exports = {
             closeAction: 'hide'
         })
         ol.render()
+        new SPB('.ks-spinbox', {
+            onValueChange: function (e) {
+            }
+        })
         var allFieLdsReadonly = function () {
             var ret = true
             var editProjectFields = $('.J_editProject_textaera')
@@ -67,6 +72,10 @@ module.exports = {
                 , editAble: editAble
             })
             ol.set('content', epHtml, {force: true})
+            new SPB('.ks-spinbox', {
+                onValueChange: function (e) {
+                }
+            })
             auth_name.render()
             $('#editProject_u102').on('click', handleNameButton)
             auth_lxbj.render()
