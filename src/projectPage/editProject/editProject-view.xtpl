@@ -59,17 +59,20 @@
     <!-- Unnamed () -->
     <div id="editProject_u113" class="text">
         <p>
-            <span id="awardCountLabel">获奖励数：</span>
-            <span id="awardCount_span">
-            <input type="text" value="0" class="ks-spinbox" id="awardCount" data-range="1"
+            <span id="editProject_u114">获奖励数：</span>
+            <span id="editProject_u115">
+            <input type="text" value="0" class="ks-spinbox" id="editProject_u116" data-range="1"
                    data-max="999" data-min="0"
                    data-hasdecimal="false"></span>
 
-            <span id="patentCountLabel">专利数：</span>
-            <span id="patentCount_span">
-            <input type="text" value="0" class="ks-spinbox" id="patentCount" data-range="1"
+            <span id="editProject_u117">专利数：</span>
+            <span id="editProject_u118">
+            <input type="text" value="0" class="ks-spinbox" id="editProject_u119" data-range="1"
                    data-max="999" data-min="0"
                    data-hasdecimal="false"></span>
+
+            <span id="editProject_u120">使用时间：</span>
+            <input type="text" value="" id="editProject_u121" />
         </p>
     </div>
 </div>

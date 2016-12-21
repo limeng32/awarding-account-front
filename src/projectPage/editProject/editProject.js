@@ -11,6 +11,7 @@ var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/');
 var RAN = require('core-front/random/index');
 var SP = require('core-front/smartPath/smartPath');
 var AD = require('kg/agiledialog/1.0.2/index');
+var DTP = require('kg/datetimepicker/2.0.3/index')
 var SPB = require('spinbox-by-limeng32/index')
 var epView = require('./editProject-view');
 var uploadAttachment = require('./uploadAttachment/uploadAttachment');
@@ -18,7 +19,9 @@ var stepBar = require('../stepBar/stepBar')
 module.exports = {
     init: function (p) {
         var epTpl = new XTemplate(epView)
-        var listProjectCallback = null;
+        var listProjectCallback = null
+        var yearNum = (new Date()).getYear()
+        yearNum = yearNum < 1900 ? (yearNum + 1900) : yearNum
         var epHtml = epTpl.render({
             account: p.account
             , editAble: true
@@ -53,6 +56,13 @@ module.exports = {
         new SPB('.ks-spinbox', {
             onValueChange: function (e) {
             }
+        })
+        new DTP({
+            start: '#editProject_u121'
+            , timepicker: false
+            , closeOnDateSelect: true
+            , yearStart: 2010
+            , yearEnd: yearNum
         })
         var allFieLdsReadonly = function () {
             var ret = true
