@@ -95,6 +95,8 @@ module.exports = {
             })
             auth_name.render()
             $('#editProject_u102').on('click', handleNameButton)
+            auth_basic.render()
+            $('#editProject_u123').on('click', handleBasicButton)
             auth_lxbj.render()
             $('#editProject_u77').on('click', handleLxbjButton)
             auth_cxd.render()
@@ -213,11 +215,33 @@ module.exports = {
         var authMsgs_basic = new AuthMsgs()
         auth_basic.plug(authMsgs_basic)
         auth_basic.set('stopOnError', true)
+        auth_basic.register('updateProjectBasic-confirm', function (value, attr, defer, field) {
+            var self = this;
+            IO.post(SP.resolvedIOPath('submitProject/updateBasic?_content=json&awardCount=' + encodeURIComponent($('#editProject_u116').val()) + '&patentCount=' + encodeURIComponent($('#editProject_u119').val()) + '&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs_basic.getMsg(field.get('name')).show('success', data[0].message);
+                        } else {
+                            authMsgs_basic.getMsg(field.get('name')).show('success', '基本信息修改成功');
+                        }
+                        $('#editProject_u123_txt').html('编辑')
+                        //$('#editProject_u45_input').attr('readonly', 'readonly')
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs_basic.getMsg(field.get('name')).show('error', data[0].message)
+                        }
+                    }
+                })
+            defer.reject(self)
+            return defer.promise
+        })
         auth_basic.render()
         var handleBasicButton = function () {
-            console.log($('#editProject_u116').val())
-            console.log($('#editProject_u119').val())
-            console.log($('#editProject_u121').val())
+            //console.log($('#editProject_u116').val())
+            //console.log($('#editProject_u119').val())
+            //console.log($('#editProject_u121').val())
+            auth_basic.test()
         }
         $('#editProject_u123').on('click',handleBasicButton)
 
