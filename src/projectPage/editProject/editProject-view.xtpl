@@ -73,7 +73,7 @@
                    data-hasdecimal="false"></span>
 
             <span id="editProject_u120">应用时间：</span>
-            <input type="text" value="2012-06-06" id="editProject_u121"/>
+            <input type="text" value="{{project.serviceDate}}" id="editProject_u121"/>
         </p>
         <input hidden="hidden" id="editProject_basic_hidden" name="editProject_basic_hidden"
                updateProjectBasic-cancel="updateProjectBasic-cancel"

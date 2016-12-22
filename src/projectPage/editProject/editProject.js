@@ -63,6 +63,8 @@ module.exports = {
             , closeOnDateSelect: true
             , yearStart: 2010
             , yearEnd: yearNum
+            , todayButton: false
+            , showDateLen: false
         })
         var allFieLdsReadonly = function () {
             var ret = true
@@ -92,6 +94,8 @@ module.exports = {
                 , closeOnDateSelect: true
                 , yearStart: 2010
                 , yearEnd: yearNum
+                , todayButton: false
+                , showDateLen: false
             })
             auth_name.render()
             $('#editProject_u102').on('click', handleNameButton)
@@ -217,7 +221,7 @@ module.exports = {
         auth_basic.set('stopOnError', true)
         auth_basic.register('updateProjectBasic-confirm', function (value, attr, defer, field) {
             var self = this;
-            IO.post(SP.resolvedIOPath('submitProject/updateBasic?_content=json&awardCount=' + encodeURIComponent($('#editProject_u116').val()) + '&patentCount=' + encodeURIComponent($('#editProject_u119').val()) + '&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+            IO.post(SP.resolvedIOPath('submitProject/updateBasic?_content=json&awardCount=' + encodeURIComponent($('#editProject_u116').val()) + '&patentCount=' + encodeURIComponent($('#editProject_u119').val()) + '&serviceDate=' + encodeURIComponent($('#editProject_u121').val()) + '&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
                 .then(function (data) {
                     if (data[0].flag) {
                         if (data[0].message != null) {
