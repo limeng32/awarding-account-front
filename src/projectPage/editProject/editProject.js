@@ -225,12 +225,35 @@ module.exports = {
                 .then(function (data) {
                     if (data[0].flag) {
                         if (data[0].message != null) {
-                            authMsgs_basic.getMsg(field.get('name')).show('success', data[0].message);
+                            authMsgs_basic.getMsg(field.get('name')).show('success', data[0].message)
                         } else {
-                            authMsgs_basic.getMsg(field.get('name')).show('success', '基本信息修改成功');
+                            authMsgs_basic.getMsg(field.get('name')).show('success', '基本信息修改成功')
                         }
+                        $('#editProject_u121').val(data[0].data.serviceDate)
                         $('#editProject_u123_txt').html('编辑')
                         //$('#editProject_u45_input').attr('readonly', 'readonly')
+                    } else {
+                        if (data[0].message != null) {
+                            authMsgs_basic.getMsg(field.get('name')).show('error', data[0].message)
+                        }
+                    }
+                })
+            defer.reject(self)
+            return defer.promise
+        }).register('updateProjectBasic-cancel', function (value, attr, defer, field) {
+            field.set('exclude', 'updateProjectBasic-cancel')
+            var self = this;
+            IO.post(SP.resolvedIOPath('submitProject/resumeBasic?_content=json&id=' + encodeURIComponent($('#editProject_id').val())), 'json')
+                .then(function (data) {
+                    if (data[0].flag) {
+                        if (data[0].message != null) {
+                            authMsgs_basic.getMsg(field.get('name')).show('success', data[0].message)
+                        } else {
+                            authMsgs_basic.getMsg(field.get('name')).show('success', '基本信息没有改变')
+                        }
+                        $('#editProject_u116_input').val(data[0].data.awardCount)
+                        $('#editProject_u119_input').val(data[0].data.patentCount)
+                        $('#editProject_u121_input').val(data[0].data.serviceDate)
                     } else {
                         if (data[0].message != null) {
                             authMsgs_basic.getMsg(field.get('name')).show('error', data[0].message)
