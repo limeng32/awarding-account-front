@@ -58,22 +58,26 @@
 <div id="editProject_u112" class="ax_shape" data-label="yyqk_border">
     <img id="editProject_u112_img" class="img " width="" src="./account/images/editProject/yyqk_border_u3.png"/>
     <!-- Unnamed () -->
-    <div id="editProject_u113" class="text">
+    <div id="editProject_u113" class="text editProject_u113_disabled">
         <p>
             <span id="editProject_u114">获奖励数：</span>
             <span id="editProject_u115">
-            <input type="text" value="{{project.awardCount}}" class="ks-spinbox" id="editProject_u116" data-range="1"
-                   data-max="999" data-min="0"
+            <input type="text" value="{{project.awardCount}}" class="ks-spinbox J_editProject_textaera"
+                   id="editProject_u116" data-range="1"
+                   data-max="999" data-min="0" disabled="disabled" readonly="readonly"
                    data-hasdecimal="false"></span>
 
             <span id="editProject_u117">专利数：</span>
             <span id="editProject_u118">
-            <input type="text" value="{{project.patentCount}}" class="ks-spinbox" id="editProject_u119" data-range="1"
-                   data-max="999" data-min="0"
+            <input type="text" value="{{project.patentCount}}" class="ks-spinbox J_editProject_textaera"
+                   id="editProject_u119" data-range="1"
+                   data-max="999" data-min="0" disabled="disabled" readonly="readonly"
                    data-hasdecimal="false"></span>
 
             <span id="editProject_u120">应用时间：</span>
-            <input type="text" value="{{project.serviceDate}}" id="editProject_u121"/>
+            <input type="text" value="{{project.serviceDate}}" id="editProject_u121" readonly="readonly"
+                   class="J_editProject_textaera"
+                   disabled="disabled"/>
         </p>
         <input hidden="hidden" id="editProject_basic_hidden" name="editProject_basic_hidden"
                updateProjectBasic-cancel="updateProjectBasic-cancel"

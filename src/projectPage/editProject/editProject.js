@@ -231,7 +231,13 @@ module.exports = {
                         }
                         $('#editProject_u121').val(data[0].data.serviceDate)
                         $('#editProject_u123_txt').html('编辑')
-                        //$('#editProject_u45_input').attr('readonly', 'readonly')
+                        $('#editProject_u113').replaceClass('editProject_u113_enabled', 'editProject_u113_disabled')
+                        $('#editProject_u116').attr('readonly', 'readonly')
+                        $('#editProject_u116').attr('disabled', 'disabled')
+                        $('#editProject_u119').attr('readonly', 'readonly')
+                        $('#editProject_u119').attr('disabled', 'disabled')
+                        $('#editProject_u121').attr('readonly', 'readonly')
+                        $('#editProject_u121').attr('disabled', 'disabled')
                     } else {
                         if (data[0].message != null) {
                             authMsgs_basic.getMsg(field.get('name')).show('error', data[0].message)
@@ -251,9 +257,9 @@ module.exports = {
                         } else {
                             authMsgs_basic.getMsg(field.get('name')).show('success', '基本信息没有改变')
                         }
-                        $('#editProject_u116_input').val(data[0].data.awardCount)
-                        $('#editProject_u119_input').val(data[0].data.patentCount)
-                        $('#editProject_u121_input').val(data[0].data.serviceDate)
+                        $('#editProject_u116').val(data[0].data.awardCount)
+                        $('#editProject_u119').val(data[0].data.patentCount)
+                        $('#editProject_u121').val(data[0].data.serviceDate)
                     } else {
                         if (data[0].message != null) {
                             authMsgs_basic.getMsg(field.get('name')).show('error', data[0].message)
@@ -265,10 +271,43 @@ module.exports = {
         })
         auth_basic.render()
         var handleBasicButton = function () {
-            //console.log($('#editProject_u116').val())
-            //console.log($('#editProject_u119').val())
-            //console.log($('#editProject_u121').val())
-            auth_basic.test()
+            if (!judgeProjectId()) {
+                return
+            }
+            var awardCount = $('#editProject_u116')
+            var patentCount = $('#editProject_u119')
+            var serviceDate = $('#editProject_u121')
+            if (serviceDate.hasAttr('readonly')) {
+                $('#editProject_u123_txt').html('保存')
+                $('#editProject_u113').replaceClass('editProject_u113_disabled', 'editProject_u113_enabled')
+                awardCount.removeAttr('readonly')
+                awardCount.removeAttr('disabled')
+                patentCount.removeAttr('readonly')
+                patentCount.removeAttr('disabled')
+                serviceDate.removeAttr('readonly')
+                serviceDate.removeAttr('disabled')
+            } else {
+                new AD({
+                    title: '温馨提示',
+                    content: '您确定要保存基本信息？',
+                    onConfirm: function () {
+                        auth_basic.field('editProject_basic_hidden').set('exclude', 'updateProjectBasic-cancel')
+                        auth_basic.test()
+                    }
+                    , onCancel: function () {
+                        auth_basic.field('editProject_basic_hidden').set('exclude', '')
+                        auth_basic.field('editProject_basic_hidden').test('updateProjectBasic-cancel')
+                        $('#editProject_u123_txt').html('编辑')
+                        $('#editProject_u113').replaceClass('editProject_u113_enabled', 'editProject_u113_disabled')
+                        awardCount.attr('readonly', 'readonly')
+                        awardCount.attr('disabled', 'disabled')
+                        patentCount.attr('readonly', 'readonly')
+                        patentCount.attr('disabled', 'disabled')
+                        serviceDate.attr('readonly', 'readonly')
+                        serviceDate.attr('disabled', 'disabled')
+                    }
+                })
+            }
         }
         $('#editProject_u123').on('click',handleBasicButton)
 
