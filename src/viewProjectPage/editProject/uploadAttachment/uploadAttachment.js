@@ -9,6 +9,7 @@ var Uploader = require('kg/uploader/2.0.3/index')
 var DefaultTheme = require('kg/uploader/2.0.3/themes/default/index')
 var SP = require('core-front/smartPath/smartPath')
 var uploadAttachmentVW = require('../../../projectPage/editProject/uploadAttachment/uploadAttachment-view')
+var uploadedAttachmentVW = require('../../../projectPage/editProject/uploadAttachment/uploadedAttachment-view')
 module.exports = {
     init: function (p) {
         var formatSize = function (fileSize) {
@@ -38,6 +39,12 @@ module.exports = {
             }
             return ret
         }
+        var uploadedAttachmentTpl = new XTemplate(uploadedAttachmentVW)
+        var uploadedAttachmentHtml = uploadedAttachmentTpl.render({
+            project: p.project
+            , formatSize: formatSize
+            , editAble: false
+        })
         var uploadAttachmentTpl = new XTemplate(uploadAttachmentVW)
         var uploadAttachmentHtml = uploadAttachmentTpl.render({
             p: {
@@ -46,6 +53,7 @@ module.exports = {
             }
         })
         p.node.html(uploadAttachmentHtml)
+        $('#J_UploaderQueue_uploadAtta').html(uploadedAttachmentHtml)
         var uploader = new Uploader('#J_UploaderBtn_uploadAtta', {
             action: SP.resolvedIOPath('project/uploadAttachment?_content=json&')
             , type: 'ajax'
@@ -60,11 +68,6 @@ module.exports = {
             queueTarget: '#J_UploaderQueue_uploadAtta'
             , fileTpl: ''
         }))
-        uploader.plug(new UploaderAuth({
-            maxSize: 102400
-            , required: true
-        })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
-            .plug(new ProBars())
         $('.J_uploaded_Download').on('click', function (e) {
             var _attachment = getTheAttachment($(e.currentTarget))
             window.location.assign(SP.resolvedPath('project/downloadAttachment?attachmentId=' + _attachment.id));
