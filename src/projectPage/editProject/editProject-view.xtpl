@@ -2,7 +2,8 @@
 <form class="form-horizontal" id="project_name" method="post" action="a">
     <!-- project_name (Text Field) -->
     <div id="editProject_u40" class="ax_text_field" data-label="project_name">
-        <input id="editProject_u40_input" type="text" readonly="readonly" disabled="disabled" value="{{project.name}}"
+        <input id="editProject_u40_input" type="text" readonly="readonly" {{#if(editAble )}}disabled="disabled" {{/if}}
+        value="{{project.name}}"
                placeholder="请输入项目名称"
                msg-wrapper="#editProject_v1" max-len="48" max-len-msg="项目名称不能多于48个字符" required="required"
                required-msg="项目名称不能为空" class="J_editProject_textaera"/>
@@ -64,20 +65,20 @@
             <span id="editProject_u115">
             <input type="text" value="{{project.awardCount}}" class="ks-spinbox J_editProject_textaera"
                    id="editProject_u116" data-range="1"
-                   data-max="999" data-min="0" disabled="disabled" readonly="readonly"
+                   data-max="999" data-min="0" {{#if(editAble )}}disabled="disabled" {{/if}} readonly="readonly"
                    data-hasdecimal="false"></span>
 
             <span id="editProject_u117">专利数：</span>
             <span id="editProject_u118">
             <input type="text" value="{{project.patentCount}}" class="ks-spinbox J_editProject_textaera"
                    id="editProject_u119" data-range="1"
-                   data-max="999" data-min="0" disabled="disabled" readonly="readonly"
+                   data-max="999" data-min="0" {{#if(editAble )}}disabled="disabled" {{/if}} readonly="readonly"
                    data-hasdecimal="false"></span>
 
             <span id="editProject_u120">应用时间：</span>
             <input type="text" value="{{project.serviceDate}}" id="editProject_u121" readonly="readonly"
                    class="J_editProject_textaera"
-                   disabled="disabled"/>
+                   {{#if(editAble )}}disabled="disabled" {{/if}}/>
         </p>
         <input hidden="hidden" id="editProject_basic_hidden" name="editProject_basic_hidden"
                updateProjectBasic-cancel="updateProjectBasic-cancel"
@@ -131,7 +132,8 @@
 
 <!-- lxbj (Text Area) -->
 <div id="editProject_u45" class="ax_text_area" data-label="lxbj">
-    <textarea type="text" id="editProject_u45_input" readonly="readonly" disabled="disabled" placeholder="请输入立项背景"
+    <textarea type="text" id="editProject_u45_input" readonly="readonly" {{#if(editAble )}}disabled="disabled" {{/if}}
+    placeholder="请输入立项背景"
               msg-wrapper="#editProject_v2" required="required" required-msg="立项背景不能为空" max-len="5000"
               max-len-msg="立项背景不能多于5000个字符"
               class="J_editProject_textaera">{{project.projectBucket[0].background}}</textarea>
@@ -165,7 +167,7 @@
     <!-- cxd (Text Area) -->
     <div id="editProject_u48" class="ax_text_area" data-label="cxd">
         <textarea id="editProject_u48_input" placeholder="请输入创新亮点" msg-wrapper="#editProject_v3" readonly="readonly"
-                  disabled="disabled"
+                  {{#if(editAble )}}disabled="disabled" {{/if}}
                   required="required"
                   required-msg="创新亮点不能为空" max-len="5000" max-len-msg="创新亮点不能多于5000个字符" class="J_editProject_textaera">{{project.projectBucket[0].innovation}}</textarea>
         <input hidden="hidden" id="editProject_cxd_hidden" name="editProject_cxd_hidden"
@@ -236,7 +238,7 @@
     <!-- zhbj (Text Area) -->
     <div id="editProject_u10" class="ax_text_area" data-label="zhbj">
         <textarea id="editProject_u10_input" placeholder="请输入综合背景" msg-wrapper="#editProject_v4" readonly="readonly"
-                  disabled="disabled"
+                  {{#if(editAble )}}disabled="disabled" {{/if}}
                   required="required"
                   required-msg="综合背景不能为空" max-len="5000" max-len-msg="综合背景不能多于5000个字符" class="J_editProject_textaera">{{project.projectBucket[0].synthesize}}</textarea>
         <input hidden="hidden" id="editProject_zhbj_hidden" name="editProject_zhbj_hidden"
@@ -285,7 +287,7 @@
     <!-- yyqk (Text Area) -->
     <div id="editProject_u7" class="ax_text_area" data-label="yyqk">
     <textarea id="editProject_u7_input" placeholder="请输入应用情况" msg-wrapper="#editProject_v5" readonly="readonly"
-              disabled="disabled"
+              {{#if(editAble )}}disabled="disabled" {{/if}}
               required="required"
               required-msg="应用情况不能为空" max-len="5000" max-len-msg="应用情况不能多于5000个字符" class="J_editProject_textaera">{{project.projectBucket[0].application}}</textarea>
         <input hidden="hidden" id="editProject_yyqk_hidden" name="editProject_yyqk_hidden"
@@ -336,7 +338,7 @@
     <!-- tjyj (Text Area) -->
     <div id="editProject_u2" class="ax_text_area" data-label="tjyj">
     <textarea id="editProject_u2_input" placeholder="请输入推荐意见" msg-wrapper="#editProject_v6" readonly="readonly"
-              disabled="disabled"
+              {{#if(editAble )}}disabled="disabled" {{/if}}
               required="required"
               required-msg="推荐意见不能为空" max-len="5000" max-len-msg="推荐意见不能多于5000个字符" class="J_editProject_textaera">{{project.projectBucket[0].recommendition}}</textarea>
         <input hidden="hidden" id="editProject_tjyj_hidden" name="editProject_tjyj_hidden"
