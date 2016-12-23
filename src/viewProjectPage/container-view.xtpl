@@ -1,5 +1,12 @@
 <div id="base">
     <div class="container">
-        asdf
+        <div class="stepBarContainer">
+            <ol id="projectPhase">
+                <li>编辑中</li>
+                <li>已提交</li>
+                <li>审核中</li>
+                <li>审核通过</li>
+            </ol>
+        </div>
     </div>
 </div>
