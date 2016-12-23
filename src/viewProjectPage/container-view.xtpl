@@ -1,5 +1,5 @@
 <div id="base">
-    <div class="container">
+    <div class="articleAontainer">
         <div class="stepBarContainer"></div>
         <div class="editProjectContainer"></div>
     </div>

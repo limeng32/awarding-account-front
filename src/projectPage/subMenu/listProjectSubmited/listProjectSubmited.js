@@ -56,6 +56,33 @@ module.exports = {
                 editProject.render(id)
                 dealSelectedProject(e)
             })
+            $('.J_listProjectReediter').on('click', function (e) {
+                var id = $(e.currentTarget).attr('data-id')
+                $('#listProject_u99_' + id).getDOMNode().click()
+                new AD({
+                    title: '温馨提示',
+                    content: '您确定要重新编辑此退回项目？',
+                    onConfirm: function () {
+                        IO.post(SP.resolvedIOPath('submitProject/reeditProject?_content=json'),
+                            {
+                                id: id
+                            },
+                            function (d) {
+                                d = JSONX.decode(d)
+                                new CBD(d, function () {
+                                    new AD({
+                                        type: 'alert',
+                                        content: '项目 ' + d.data.name + ' 已经加入到 本届编辑项目列表 中'
+                                    })
+                                    refresh()
+                                    editProject.render()
+                                })
+                            }, "json")
+                    }
+                    , onCancel: function () {
+                    }
+                })
+            })
         }
         var initListProjectButton = function () {
             $('.listProject_u20').on('mouseover', function (e) {

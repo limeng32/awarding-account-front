@@ -16,6 +16,16 @@
                     <p><span>打开</span></p>
                 </div>
             </div>
+            <div id="listProject_u203_{{this.id}}"
+                 class="ax_image listProject_button listProject_u203_button J_listProjectReediter"
+                 data-id="{{this.id}}">
+                <img id="listProject_u203_img_{{this.id}}" class="img listProject_u203_img"
+                     src="./account/images/listProject/listProject_u26.png"/>
+
+                <div id="listProject_u204_{{this.id}}" class="text listProject_u204_txt">
+                    <p><span>重编辑</span></p>
+                </div>
+            </div>
             <div id="listProject_u101_{{this.id}}"
                  class="ax_image listProject_button listProject_u101_button J_listProjectViewer" data-id="{{this.id}}">
                 <img id="listProject_u101_img_{{this.id}}" class="img listProject_u101_img"

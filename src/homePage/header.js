@@ -231,7 +231,7 @@ module.exports = {
                     $('#' + focusId).replaceClass('menu-unfocus', 'menu-focus')
                 }
                 personConfig.init({account: account});
-                searchBar.init({})
+                //searchBar.init({})
                 SP.resolveImgSrc('.img');
             });
         }
