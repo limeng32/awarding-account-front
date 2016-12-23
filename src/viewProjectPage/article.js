@@ -9,6 +9,7 @@ var AI = require('core-front/authIdentify/index')
 var STB = require('kg/stepbar/2.1.0/index')
 var containerView = require('./container-view')
 var stepBar = require('./stepBar/stepBar')
+var editProject = require('./editProject/editProject')
 module.exports = {
     init: function () {
         var ai = new AI(token);
@@ -19,10 +20,13 @@ module.exports = {
                 var containerTpl = new XTemplate(containerView)
                 var containerHtml = containerTpl.render({})
                 $('article').html(containerHtml)
-
                 stepBar.init({
                     node: $('.stepBarContainer')
                     , phase: cb.data.phase
+                })
+                editProject.init({
+                    node: $('.editProjectContainer')
+                    , project: cb.data
                 })
             }, "json")
         }

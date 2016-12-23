@@ -8,13 +8,21 @@ body {
   width: 780px;
   height: 350px;
   position: relative;
+  z-index: -1;
 }
 
 .stepBarContainer {
   position: absolute;
-  margin-top: 60px;
+  top: 55px;
+}
+
+.editProjectContainer {
+  position: absolute;
+  top: -10px;
+  left: 5px;
 }
 @import '../common/styles';
 @import '../overlay/overlay';
 @import '../homePage/header';
 @import '../article/base.less';
+@import '../projectPage/editProject/editProject';
