@@ -15,6 +15,7 @@ module.exports = {
     init: function (p) {
         var projectPagination = null
         var xtpl = new XTemplate(lpTpl)
+        var offsetLeft = p.criterionLeft + $('#listProjectAndPaginationContainer').offset().left
         var refresh = function () {
             IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
                 {
@@ -200,22 +201,10 @@ module.exports = {
                         , computeAttachmentCapacity: computeAttachmentCapacity
                         , dealSelectedProject: dealSelectedProject
                     })
-                    var ol = new OVL({
-                        effect: 'slide',
-                        easing: 'linear',
-                        duration: 10,
-                        target: '',
-                        content: lpHtml,
-                        xy: [$('#subMenu_u22').offset().left, $('#subMenu_u22').offset().top - 32],
-                        width: '0px',
-                        height: '0px',
-                        closable: false,
-                        zIndex: -1,
-                        visible: true,
-                        prefixCls: 'fixed-',
-                        closeAction: 'hide'
+                    p.node.html(lpHtml)
+                    $('#listProjectAndPaginationContainer').offset({
+                        left: offsetLeft
                     })
-                    ol.render()
                     renderPage(d.data)
                 }, "json")
         }

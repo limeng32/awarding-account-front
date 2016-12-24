@@ -45,9 +45,18 @@ module.exports = {
             }
         })
         $('.J_newProject').on('click', handleNewProject)
-        listProject.init({})
+        listProject.init({
+            node: $('#listProjectAndPaginationContainer')
+            , criterionLeft: $('.articleContainer').offset().left
+        })
         listProject.show()
-        listProjectSubmited.init({})
-        listProjectReturned.init({})
+        listProjectSubmited.init({
+            node: $('#listProjectAndPaginationContainer')
+            , criterionLeft: $('.articleContainer').offset().left
+        })
+        listProjectReturned.init({
+            node: $('#listProjectAndPaginationContainer')
+            , criterionLeft: $('.articleContainer').offset().left
+        })
     }
 }
