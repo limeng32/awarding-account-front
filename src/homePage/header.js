@@ -42,13 +42,9 @@ module.exports = {
                 });
                 $('header').html(html);
                 var ol = new OVL({
-                    effect: 'slide',    // {String} - 可选, 默认为'none', 'none'(无特效), 'fade'(渐隐显示), 'slide'(滑动显示).
-                    easing: 'linear',        // {String} - 可选, 同 KISSY.Anim 的 easing 参数配置.
-                    duration: 10,        // {Number} - 可选, 动画持续时间, 以秒为单位.
-                    target: '#home_u28',
                     content: ccHtml,
                     visible: true,
-                    xy: [1070, 50],
+                    xy: [$('#u40').offset().left + 930, 50],
                     width: '90px',
                     height: '135px',
                     zIndex: 10,
@@ -231,7 +227,7 @@ module.exports = {
                     $('#' + focusId).replaceClass('menu-unfocus', 'menu-focus')
                 }
                 personConfig.init({account: account});
-                //searchBar.init({})
+                searchBar.init({})
                 SP.resolveImgSrc('.img');
             });
         }
