@@ -33,6 +33,7 @@ module.exports = {
         KISSY.use('kg/stepbar/2.1.0/stepbar.css', function (KISSY) {
             KISSY.use('awarding-account-front/projectPage/stepBar/stepBar.css', function (KISSY) {
                 renderStep()
+                p.node.show()
             })
         })
     }
