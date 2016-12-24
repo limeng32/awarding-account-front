@@ -18,11 +18,11 @@ var editProject = require('./editProject/editProject')
 var sideBar = require('../homePage/sideBar/sideBar')
 var subMenu = require('./subMenu/subMenu')
 var stepBar = require('../viewProjectPage/stepBar/stepBar')
+var editProject = require('../viewProjectPage/editProject/editProject')
 module.exports = {
     init: function () {
         //editProject.init({account:null})
         //subMenu.init({})
-        //stepBar.init({})
         var ai = new AI(token);
         if (ai.existChecked()) {
             var containerTpl = new XTemplate(containerView)
@@ -34,6 +34,9 @@ module.exports = {
             })
             stepBar.init({
                 node: $('.stepBarContainer')
+            })
+            editProject.init({
+                node: $('.editProjectContainer')
             })
         }
     }
