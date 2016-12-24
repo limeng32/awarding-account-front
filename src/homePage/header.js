@@ -44,7 +44,7 @@ module.exports = {
                 var ol = new OVL({
                     content: ccHtml,
                     visible: true,
-                    xy: [$('#u40').offset().left + 930, 50],
+                    xy: [$('#headerContainer').offset().left + 930, 50],
                     width: '90px',
                     height: '135px',
                     zIndex: 10,

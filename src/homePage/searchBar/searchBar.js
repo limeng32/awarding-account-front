@@ -24,7 +24,7 @@ module.exports = {
             target: '',
             content: sbHtml,
             visible: true,
-            xy: [$('#u40').offset().left + 200, 18],
+            xy: [$('#headerContainer').offset().left + 220, 18],
             width: '296px',
             height: '21px',
             zIndex: 4,

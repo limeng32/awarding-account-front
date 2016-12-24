@@ -1,5 +1,5 @@
 <div id="base">
-    <div class="headerContainer">
+    <div class="headerContainer" id="headerContainer">
         <div id="u40" class="ax_image">
             <img id="u40_img" class="img " src="./account/images/index/u40.png"/>
 
