@@ -83,6 +83,10 @@ module.exports = {
                     }
                 })
             })
+            $('.J_listProjectViewer').on('click', function (e) {
+                var id = $(e.currentTarget).attr('data-id')
+                window.open(SP.resolvedPath('viewProject/' + id))
+            })
             $('.J_listProjectDeleter').on('click', function (e) {
                 var id = $(e.currentTarget).attr('data-id')
                 $('#listProject_u99_' + id).getDOMNode().click()
