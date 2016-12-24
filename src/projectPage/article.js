@@ -17,7 +17,7 @@ var containerView = require('./container-view')
 var editProject = require('./editProject/editProject')
 var sideBar = require('../homePage/sideBar/sideBar')
 var subMenu = require('./subMenu/subMenu')
-var stepBar = require('./stepBar/stepBar')
+var stepBar = require('../viewProjectPage/stepBar/stepBar')
 module.exports = {
     init: function () {
         //editProject.init({account:null})
@@ -31,6 +31,9 @@ module.exports = {
             sideBar.init({
                 node: $('.sideBarContainer')
                 , criterionLeft: $('.articleContainer').offset().left
+            })
+            stepBar.init({
+                node: $('.stepBarContainer')
             })
         }
     }
