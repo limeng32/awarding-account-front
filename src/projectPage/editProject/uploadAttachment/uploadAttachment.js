@@ -1,6 +1,6 @@
-var uaView = require('./uploadAttachment-view');
+var uploadAttachmentVW = require('./uploadAttachment-view');
 var uamView = require('./uploadAuthMsg-view')
-var uedaView = require('./uploadedAttachment-view')
+var uploadedAttachmentVW = require('./uploadedAttachment-view')
 var $ = require('node').all;
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Node = require('node');
@@ -38,36 +38,25 @@ module.exports = {
                 return temp + 'GB';
             }
         }
+
         var uamTpl = new XTemplate(uamView)
         var uamHtml = uamTpl.render({
             projectRemainNumber: p.projectRemainNumber
             , accountRemainCapacity: formatSize(p.accountRemainCapacity)
         })
-        var uedaTpl = new XTemplate(uedaView)
-        var uedaHtml = null
-        var uaTpl = new XTemplate(uaView)
-        var uaHtml = uaTpl.render({
+        var uploadedAttachmentTpl = new XTemplate(uploadedAttachmentVW)
+        var uploadedAttachmentHtml = uploadedAttachmentTpl.render({
+            project: p.project
+            , formatSize: formatSize
+        })
+        var uploadAttachmentTpl = new XTemplate(uploadAttachmentVW)
+        var uploadAttachmentHtml = uploadAttachmentTpl.render({
             p: {
                 uamHtml: uamHtml
-                , uedaHtml: uedaHtml
             }
         })
-        var ol = new OVL({
-            effect: 'slide',
-            easing: 'linear',
-            duration: 10,
-            target: '',
-            content: uaHtml,
-            xy: [150, 1163],
-            width: '0',
-            height: '0',
-            closable: false,
-            zIndex: -1,
-            prefixCls: 'absolute-',
-            visible: true,
-            closeAction: 'hide'
-        })
-        ol.render()
+        p.node.html(uploadAttachmentHtml)
+        $('#J_UploaderQueue_uploadAtta').html(uploadedAttachmentHtml)
         var projectId = null
         var uploader = new Uploader('#J_UploaderBtn_uploadAtta', {
             action: SP.resolvedIOPath('project/uploadAttachment?_content=json&')
@@ -91,6 +80,7 @@ module.exports = {
         })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
             .plug(new ProBars())
         uploader.on('success', function (ev) {
+            alert('a')
             $('.uploadAuthMsg').html(uamTpl.render({
                 projectRemainNumber: ev.result.data.uploadAuth.projectRemainNumber
                 , accountRemainCapacity: formatSize(ev.result.data.uploadAuth.accountRemainCapacity)
@@ -131,7 +121,7 @@ module.exports = {
             })
         })
         this.ol = function () {
-            return ol;
+            return p.node
         }
         this.setProjectId = function (_projectId) {
             uploader.set('data', {
@@ -181,12 +171,12 @@ module.exports = {
                     }
                 })
             }
-            uedaHtml = uedaTpl.render({
+            uploadedAttachmentHtml = uploadedAttachmentTpl.render({
                 project: project
                 , formatSize: formatSize
                 , editAble: editAble
             })
-            $('#J_UploaderQueue_uploadAtta').html(uedaHtml)
+            $('#J_UploaderQueue_uploadAtta').html(uploadedAttachmentHtml)
             $('.J_uploaded_Del').on('click', function (e) {
                 handleDelete($(e.currentTarget))
             })

@@ -15,7 +15,6 @@ var DTP = require('kg/datetimepicker/2.0.3/index')
 var SPB = require('spinbox-by-limeng32/index')
 var editProjectVW = require('./editProject-view');
 var uploadAttachment = require('./uploadAttachment/uploadAttachment')
-var uploadAttachment1 = require('../../viewProjectPage/editProject/uploadAttachment/uploadAttachment')
 var stepBar = require('../stepBar/stepBar')
 module.exports = {
     init: function (p) {
@@ -38,7 +37,7 @@ module.exports = {
             }
         })
         p.node.html(epHtml)
-        uploadAttachment1.init({
+        uploadAttachment.init({
             node: $('#editProject_u4')
             , project: p.project
         })
@@ -73,6 +72,7 @@ module.exports = {
                 , editAble: editAble
             })
             //ol.set('content', epHtml, {force: true})
+            p.node.html(epHtml)
             new SPB('.ks-spinbox', {
                 onValueChange: function (e) {
                 }
@@ -101,8 +101,8 @@ module.exports = {
             auth_tjyj.render()
             $('#editProject_u98').on('click', handleTjyjButton)
             stepBar.step(project.phase)
-            //uploadAttachment.setProjectId(project.id)
-            //uploadAttachment.reRender(project, editAble)
+            uploadAttachment.setProjectId(project.id)
+            uploadAttachment.reRender(project, editAble)
         }
         var auth_name = new Auth('#project_name', {
             fnFilter: function ($field) {
@@ -134,7 +134,7 @@ module.exports = {
                         $('#editProject_id').val(data[0].data.id)
                         $('#editProject_u103_txt').html('编辑')
                         $('#editProject_u40_input').attr('readonly', 'readonly')
-                        //uploadAttachment.setProjectId($('#editProject_id').val())
+                        uploadAttachment.setProjectId($('#editProject_id').val())
                         enableTextarea()
                         //刷新右边的项目列表
                         listProjectCallback();
@@ -704,7 +704,10 @@ module.exports = {
                 projectId: $('#editProject_id').val()
             },
             function (d) {
-                //uploadAttachment.init(d.data)
+                uploadAttachment.init({
+                    project: d.data
+                    , node: $('#editProject_u4')
+                })
             }, "json")
         this.ol = function () {
             return p.node
