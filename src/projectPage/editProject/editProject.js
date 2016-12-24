@@ -14,17 +14,11 @@ var AD = require('kg/agiledialog/1.0.2/index');
 var DTP = require('kg/datetimepicker/2.0.3/index')
 var SPB = require('spinbox-by-limeng32/index')
 var editProjectVW = require('./editProject-view');
-var uploadAttachment = require('./uploadAttachment/uploadAttachment');
+var uploadAttachment = require('./uploadAttachment/uploadAttachment')
+var uploadAttachment1 = require('../../viewProjectPage/editProject/uploadAttachment/uploadAttachment')
 var stepBar = require('../stepBar/stepBar')
 module.exports = {
     init: function (p) {
-
-        //p.node.html(html)
-        //uploadAttachment.init({
-        //    node: $('#editProject_u4')
-        //    , project: p.project
-        //})
-
         var epTpl = new XTemplate(editProjectVW)
         var listProjectCallback = null
         var yearNum = (new Date()).getYear()
@@ -43,24 +37,11 @@ module.exports = {
                 }]
             }
         })
-        //var ol = new OVL({
-        //    effect: 'slide',
-        //    easing: 'linear',
-        //    duration: 10,
-        //    target: '',
-        //    content: epHtml,
-        //    visible: true,
-        //    xy: [0, 60],
-        //    width: '0px',
-        //    height: '0px',
-        //    closable: false,
-        //    zIndex: -1,
-        //    visible: true,
-        //    prefixCls: 'absolute-',
-        //    closeAction: 'hide'
-        //})
-        //ol.render()
         p.node.html(epHtml)
+        uploadAttachment1.init({
+            node: $('#editProject_u4')
+            , project: p.project
+        })
         new SPB('.ks-spinbox', {
             onValueChange: function (e) {
             }
@@ -120,8 +101,8 @@ module.exports = {
             auth_tjyj.render()
             $('#editProject_u98').on('click', handleTjyjButton)
             stepBar.step(project.phase)
-            uploadAttachment.setProjectId(project.id)
-            uploadAttachment.reRender(project, editAble)
+            //uploadAttachment.setProjectId(project.id)
+            //uploadAttachment.reRender(project, editAble)
         }
         var auth_name = new Auth('#project_name', {
             fnFilter: function ($field) {
@@ -153,7 +134,7 @@ module.exports = {
                         $('#editProject_id').val(data[0].data.id)
                         $('#editProject_u103_txt').html('编辑')
                         $('#editProject_u40_input').attr('readonly', 'readonly')
-                        uploadAttachment.setProjectId($('#editProject_id').val())
+                        //uploadAttachment.setProjectId($('#editProject_id').val())
                         enableTextarea()
                         //刷新右边的项目列表
                         listProjectCallback();
@@ -723,7 +704,7 @@ module.exports = {
                 projectId: $('#editProject_id').val()
             },
             function (d) {
-                uploadAttachment.init(d.data)
+                //uploadAttachment.init(d.data)
             }, "json")
         this.ol = function () {
             return p.node
