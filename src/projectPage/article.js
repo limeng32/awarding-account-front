@@ -21,7 +21,6 @@ var stepBar = require('../viewProjectPage/stepBar/stepBar')
 var editProject = require('./editProject/editProject')
 module.exports = {
     init: function () {
-        //subMenu.init({})
         var ai = new AI(token);
         if (ai.existChecked()) {
             var containerTpl = new XTemplate(containerView)
@@ -37,6 +36,10 @@ module.exports = {
             editProject.init({
                 node: $('.editProjectContainer')
                 , account: null
+            })
+            subMenu.init({
+                node: $('.subMenuContainer')
+                , criterionLeft: $('.articleContainer').offset().left
             })
         }
     }

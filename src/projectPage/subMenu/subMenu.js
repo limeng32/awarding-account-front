@@ -13,23 +13,19 @@ module.exports = {
             editProject.render(null, true)
         }
         var sbHtml = new XTemplate(sbTpl).render({})
-        var ol = new OVL({
-            effect: 'slide',
-            easing: 'linear',
-            duration: 10,
-            target: '',
-            content: sbHtml,
-            visible: true,
-            xy: [50, 40],
-            width: '0px',
-            height: '0px',
-            closable: false,
-            zIndex: -1,
-            visible: true,
-            prefixCls: 'fixed-',
-            closeAction: 'hide'
+        p.node.html(sbHtml)
+        $('#subMenu_u106').offset({
+            left: p.criterionLeft + $('#subMenu_u106').offset().left
         })
-        ol.render()
+        $('#subMenu_u108').offset({
+            left: p.criterionLeft + $('#subMenu_u108').offset().left
+        })
+        $('#subMenu_u17').offset({
+            left: p.criterionLeft + $('#subMenu_u17').offset().left
+        })
+        $('#subMenu_u22').offset({
+            left: p.criterionLeft + $('#subMenu_u22').offset().left
+        })
         $('.subMenu_txt').on('click', function (e) {
             $('.subMenu_txt').replaceClass('subMenuFocus', 'subMenuUnfocus')
             $(e.currentTarget).replaceClass('subMenuUnfocus', 'subMenuFocus')

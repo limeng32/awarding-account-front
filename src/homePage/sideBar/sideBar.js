@@ -8,7 +8,7 @@ module.exports = {
         var sbHtml = new XTemplate(sbTpl).render({})
         p.node.html(sbHtml)
         $('#aside_u14').offset({
-            left: p.criterionLeft + 300
+            left: p.criterionLeft + $('#aside_u14').offset().left
         })
     }
 }
