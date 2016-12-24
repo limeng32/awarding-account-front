@@ -18,10 +18,9 @@ var editProject = require('./editProject/editProject')
 var sideBar = require('../homePage/sideBar/sideBar')
 var subMenu = require('./subMenu/subMenu')
 var stepBar = require('../viewProjectPage/stepBar/stepBar')
-var editProject = require('../viewProjectPage/editProject/editProject')
+var editProject = require('./editProject/editProject')
 module.exports = {
     init: function () {
-        //editProject.init({account:null})
         //subMenu.init({})
         var ai = new AI(token);
         if (ai.existChecked()) {
@@ -37,6 +36,7 @@ module.exports = {
             })
             editProject.init({
                 node: $('.editProjectContainer')
+                , account: null
             })
         }
     }

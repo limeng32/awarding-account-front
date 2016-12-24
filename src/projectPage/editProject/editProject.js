@@ -13,12 +13,19 @@ var SP = require('core-front/smartPath/smartPath');
 var AD = require('kg/agiledialog/1.0.2/index');
 var DTP = require('kg/datetimepicker/2.0.3/index')
 var SPB = require('spinbox-by-limeng32/index')
-var epView = require('./editProject-view');
+var editProjectVW = require('./editProject-view');
 var uploadAttachment = require('./uploadAttachment/uploadAttachment');
 var stepBar = require('../stepBar/stepBar')
 module.exports = {
     init: function (p) {
-        var epTpl = new XTemplate(epView)
+
+        //p.node.html(html)
+        //uploadAttachment.init({
+        //    node: $('#editProject_u4')
+        //    , project: p.project
+        //})
+
+        var epTpl = new XTemplate(editProjectVW)
         var listProjectCallback = null
         var yearNum = (new Date()).getYear()
         yearNum = yearNum < 1900 ? (yearNum + 1900) : yearNum
@@ -36,23 +43,24 @@ module.exports = {
                 }]
             }
         })
-        var ol = new OVL({
-            effect: 'slide',
-            easing: 'linear',
-            duration: 10,
-            target: '',
-            content: epHtml,
-            visible: true,
-            xy: [0, 60],
-            width: '0px',
-            height: '0px',
-            closable: false,
-            zIndex: -1,
-            visible: true,
-            prefixCls: 'absolute-',
-            closeAction: 'hide'
-        })
-        ol.render()
+        //var ol = new OVL({
+        //    effect: 'slide',
+        //    easing: 'linear',
+        //    duration: 10,
+        //    target: '',
+        //    content: epHtml,
+        //    visible: true,
+        //    xy: [0, 60],
+        //    width: '0px',
+        //    height: '0px',
+        //    closable: false,
+        //    zIndex: -1,
+        //    visible: true,
+        //    prefixCls: 'absolute-',
+        //    closeAction: 'hide'
+        //})
+        //ol.render()
+        p.node.html(epHtml)
         new SPB('.ks-spinbox', {
             onValueChange: function (e) {
             }
@@ -83,7 +91,7 @@ module.exports = {
                 , project: project
                 , editAble: editAble
             })
-            ol.set('content', epHtml, {force: true})
+            //ol.set('content', epHtml, {force: true})
             new SPB('.ks-spinbox', {
                 onValueChange: function (e) {
                 }
@@ -718,7 +726,7 @@ module.exports = {
                 uploadAttachment.init(d.data)
             }, "json")
         this.ol = function () {
-            return ol
+            return p.node
         }
         this.render = function (id, editAble) {
             if (editAble == null) {
