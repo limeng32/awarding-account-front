@@ -48,7 +48,7 @@ module.exports = {
                     target: '#home_u28',
                     content: ccHtml,
                     visible: true,
-                    xy: [990, 10],
+                    xy: [1020, 10],
                     width: '0px',
                     height: '0px',
                     zIndex: 10,
