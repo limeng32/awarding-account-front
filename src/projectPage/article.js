@@ -12,6 +12,7 @@ var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/')
 var RAN = require('core-front/random/index')
 var SP = require('core-front/smartPath/smartPath')
 var AD = require('kg/agiledialog/1.0.2/index')
+var AI = require('core-front/authIdentify/index')
 var containerView = require('./container-view')
 var editProject = require('./editProject/editProject')
 var sideBar = require('../homePage/sideBar/sideBar')
@@ -20,9 +21,17 @@ var stepBar = require('./stepBar/stepBar')
 module.exports = {
     init: function () {
         //editProject.init({account:null})
-        //sideBar.init({})
         //subMenu.init({})
         //stepBar.init({})
-
+        var ai = new AI(token);
+        if (ai.existChecked()) {
+            var containerTpl = new XTemplate(containerView)
+            var containerHtml = containerTpl.render({})
+            $('article').html(containerHtml)
+            sideBar.init({
+                node: $('.sideBarContainer')
+                , criterionLeft: $('.articleContainer').offset().left
+            })
+        }
     }
 }

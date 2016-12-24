@@ -6,22 +6,9 @@ var sbTpl = require('./sideBar-view');
 module.exports = {
     init: function (p) {
         var sbHtml = new XTemplate(sbTpl).render({})
-        var ol = new OVL({
-            effect: 'slide',
-            easing: 'linear',
-            duration: 10,
-            target: '',
-            content: sbHtml,
-            visible: true,
-            xy: [800, 60],
-            width: '0px',
-            height: '0px',
-            closable: false,
-            zIndex: -1,
-            visible: true,
-            prefixCls: 'fixed-',
-            closeAction: 'hide'
+        p.node.html(sbHtml)
+        $('#aside_u14').offset({
+            left: p.criterionLeft + 300
         })
-        ol.render()
     }
 }
