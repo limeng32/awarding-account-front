@@ -12,17 +12,16 @@ var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/')
 var RAN = require('core-front/random/index')
 var SP = require('core-front/smartPath/smartPath')
 var AD = require('kg/agiledialog/1.0.2/index')
-var containerView = require('./container-view')
+var epTpl = require('./editProject/editProject-view')
 var editProject = require('./editProject/editProject')
 var sideBar = require('../homePage/sideBar/sideBar')
 var subMenu = require('./subMenu/subMenu')
 var stepBar = require('./stepBar/stepBar')
 module.exports = {
     init: function () {
-        //editProject.init({account:null})
-        //sideBar.init({})
-        //subMenu.init({})
-        //stepBar.init({})
-
+        editProject.init({account:null})
+        sideBar.init({})
+        subMenu.init({})
+        stepBar.init({})
     }
 }
