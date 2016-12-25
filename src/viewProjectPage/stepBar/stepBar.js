@@ -36,5 +36,14 @@ module.exports = {
                 p.node.show()
             })
         })
+        this.step = function (n) {
+            var a = _relation.prop(n)
+            if (a == null) {
+                _step.set('act', -1)
+            }
+            else if (_step.get('act') != a) {
+                _step.set('act', a);
+            }
+        }
     }
 }

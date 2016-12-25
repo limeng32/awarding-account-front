@@ -15,7 +15,7 @@ var DTP = require('kg/datetimepicker/2.0.3/index')
 var SPB = require('spinbox-by-limeng32/index')
 var editProjectVW = require('./editProject-view');
 var uploadAttachment = require('./uploadAttachment/uploadAttachment')
-var stepBar = require('../stepBar/stepBar')
+var stepBar = require('../../viewProjectPage/stepBar/stepBar')
 module.exports = {
     init: function (p) {
         var epTpl = new XTemplate(editProjectVW)
