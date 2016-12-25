@@ -38,7 +38,43 @@ module.exports = {
                 return temp + 'GB';
             }
         }
-
+        var getTheAttachment = function (o, project) {
+            var ret = null
+            for (var i = 0; i < project.attachment.length; i++) {
+                if (project.attachment[i].id == o.attr('data-id')) {
+                    ret = project.attachment[i]
+                    break
+                }
+            }
+            return ret
+        }
+        var handleDelete = function (o, project) {
+            var _attachment = getTheAttachment(o, project)
+            new AD({
+                title: '温馨提示',
+                content: '您确定要删除附件 ' + _attachment.name + ' ？',
+                onConfirm: function () {
+                    IO.post(SP.resolvedIOPath('project/deleteAttachment?_content=json'),
+                        {
+                            attachmentId: _attachment.id
+                        },
+                        function (d) {
+                            var deleteSuccess = function () {
+                                $('#queue-file-' + _attachment.id).fadeOut(0.4, function () {
+                                    $('#queue-file-' + _attachment.id).remove()
+                                })
+                                $('.uploadAuthMsg').html(uamTpl.render({
+                                    projectRemainNumber: d.data.projectRemainNumber
+                                    , accountRemainCapacity: formatSize(d.data.accountRemainCapacity)
+                                }))
+                            }
+                            new CBD(d, deleteSuccess)
+                        }, "json")
+                }
+                , onCancel: function () {
+                }
+            })
+        }
         var uamTpl = new XTemplate(uamView)
         var uamHtml = uamTpl.render({
             projectRemainNumber: p.uploadAuth.projectRemainNumber
@@ -73,43 +109,6 @@ module.exports = {
             })
         }
         this.reRender = function (project, editAble) {
-            var getTheAttachment = function (o) {
-                var ret = null
-                for (var i = 0; i < project.attachment.length; i++) {
-                    if (project.attachment[i].id == o.attr('data-id')) {
-                        ret = project.attachment[i]
-                        break
-                    }
-                }
-                return ret
-            }
-            var handleDelete = function (o) {
-                var _attachment = getTheAttachment(o)
-                new AD({
-                    title: '温馨提示',
-                    content: '您确定要删除附件 ' + _attachment.name + ' ？',
-                    onConfirm: function () {
-                        IO.post(SP.resolvedIOPath('project/deleteAttachment?_content=json'),
-                            {
-                                attachmentId: _attachment.id
-                            },
-                            function (d) {
-                                var deleteSuccess = function () {
-                                    $('#queue-file-' + _attachment.id).fadeOut(0.4, function () {
-                                        $('#queue-file-' + _attachment.id).remove()
-                                    })
-                                    $('.uploadAuthMsg').html(uamTpl.render({
-                                        projectRemainNumber: d.data.projectRemainNumber
-                                        , accountRemainCapacity: formatSize(d.data.accountRemainCapacity)
-                                    }))
-                                }
-                                new CBD(d, deleteSuccess)
-                            }, "json")
-                    }
-                    , onCancel: function () {
-                    }
-                })
-            }
             uploadedAttachmentHtml = uploadedAttachmentTpl.render({
                 project: project
                 , formatSize: formatSize
@@ -188,7 +187,7 @@ module.exports = {
             $('#J_UploaderQueue_uploadAtta').html(uploadedAttachmentHtml)
 
             $('.J_uploaded_Del').on('click', function (e) {
-                handleDelete($(e.currentTarget))
+                handleDelete($(e.currentTarget), project)
             })
             $('.J_uploaded_Download').on('click', function (e) {
                 var _attachment = getTheAttachment($(e.currentTarget))
