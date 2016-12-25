@@ -37,10 +37,6 @@ module.exports = {
             }
         })
         p.node.html(epHtml)
-        uploadAttachment.init({
-            node: $('#editProject_u4')
-            , project: p.project
-        })
         new SPB('.ks-spinbox', {
             onValueChange: function (e) {
             }
@@ -101,8 +97,8 @@ module.exports = {
             auth_tjyj.render()
             $('#editProject_u98').on('click', handleTjyjButton)
             stepBar.step(project.phase)
-            uploadAttachment.setProjectId(project.id)
             uploadAttachment.reRender(project, editAble)
+            uploadAttachment.setProjectId(project.id)
         }
         var auth_name = new Auth('#project_name', {
             fnFilter: function ($field) {
@@ -134,6 +130,7 @@ module.exports = {
                         $('#editProject_id').val(data[0].data.id)
                         $('#editProject_u103_txt').html('编辑')
                         $('#editProject_u40_input').attr('readonly', 'readonly')
+                        uploadAttachment.reRender({}, true)
                         uploadAttachment.setProjectId($('#editProject_id').val())
                         enableTextarea()
                         //刷新右边的项目列表
@@ -693,7 +690,7 @@ module.exports = {
             if ($('#editProject_id').val() == '') {
                 new AD({
                     type: 'alert',
-                    content: '项目还没有建立'
+                    content: '请您先编辑并保存项目名称'
                 });
                 ret = false;
             }
@@ -705,7 +702,7 @@ module.exports = {
             },
             function (d) {
                 uploadAttachment.init({
-                    project: d.data
+                    uploadAuth: d.data
                     , node: $('#editProject_u4')
                 })
             }, "json")

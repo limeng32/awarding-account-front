@@ -41,8 +41,8 @@ module.exports = {
 
         var uamTpl = new XTemplate(uamView)
         var uamHtml = uamTpl.render({
-            projectRemainNumber: p.projectRemainNumber
-            , accountRemainCapacity: formatSize(p.accountRemainCapacity)
+            projectRemainNumber: p.uploadAuth.projectRemainNumber
+            , accountRemainCapacity: formatSize(p.uploadAuth.accountRemainCapacity)
         })
         var uploadedAttachmentTpl = new XTemplate(uploadedAttachmentVW)
         var uploadedAttachmentHtml = uploadedAttachmentTpl.render({
@@ -57,69 +57,13 @@ module.exports = {
         })
         p.node.html(uploadAttachmentHtml)
         $('#J_UploaderQueue_uploadAtta').html(uploadedAttachmentHtml)
-        var projectId = null
         var uploader = new Uploader('#J_UploaderBtn_uploadAtta', {
-            action: SP.resolvedIOPath('project/uploadAttachment?_content=json&')
-            , type: 'ajax'
-            , data: {
-                projectId: p == null ? null : p.projectId
-            }
-            , name: 'Filedata'
+            disabled: true
         });
-        uploader.set('filter', function (data) {
-            data.success = 1;
-            return data;
-        })
         uploader.theme(new DefaultTheme({
             queueTarget: '#J_UploaderQueue_uploadAtta'
             , fileTpl: ''
         }))
-        uploader.plug(new UploaderAuth({
-            maxSize: 102400
-            , required: true
-        })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
-            .plug(new ProBars())
-        uploader.on('success', function (ev) {
-            alert('a')
-            $('.uploadAuthMsg').html(uamTpl.render({
-                projectRemainNumber: ev.result.data.uploadAuth.projectRemainNumber
-                , accountRemainCapacity: formatSize(ev.result.data.uploadAuth.accountRemainCapacity)
-            }))
-            $('.J_Download_' + ev.file.id).append('&nbsp;').append(formatSize(ev.file.size)).on('click', function () {
-                window.location.assign(SP.resolvedPath('project/downloadAttachment?attachmentId=' + ev.result.data.id));
-            })
-            $('.J_Del_' + ev.file.id).detach('click', {
-                '': {
-                    deep: true
-                }
-            }).on('click', function () {
-                new AD({
-                    title: '温馨提示',
-                    content: '您确定要删除附件 ' + ev.file.name + ' ？',
-                    onConfirm: function () {
-                        IO.post(SP.resolvedIOPath('project/deleteAttachment?_content=json'),
-                            {
-                                attachmentId: ev.result.data.id
-                            },
-                            function (d) {
-                                var deleteSuccess = function () {
-                                    ev.preventDefault()
-                                    var index = ev.file.id
-                                    uploader.get('queue').remove(index)
-                                    $('.uploadAuthMsg').html(uamTpl.render({
-                                        projectRemainNumber: d.data.projectRemainNumber
-                                        ,
-                                        accountRemainCapacity: formatSize(d.data.accountRemainCapacity)
-                                    }))
-                                }
-                                new CBD(d, deleteSuccess)
-                            }, "json")
-                    }
-                    , onCancel: function () {
-                    }
-                })
-            })
-        })
         this.ol = function () {
             return p.node
         }
@@ -129,11 +73,6 @@ module.exports = {
             })
         }
         this.reRender = function (project, editAble) {
-            if (!editAble) {
-                uploader.set('disabled', true)
-            } else {
-                uploader.set('disabled', false)
-            }
             var getTheAttachment = function (o) {
                 var ret = null
                 for (var i = 0; i < project.attachment.length; i++) {
@@ -176,7 +115,78 @@ module.exports = {
                 , formatSize: formatSize
                 , editAble: editAble
             })
+            uploadAttachmentHtml = uploadAttachmentTpl.render({
+                p: {
+                    uamHtml: uamHtml
+                }
+            })
+            $('#editProject_u4').html(uploadAttachmentHtml)
+            uploader = new Uploader('#J_UploaderBtn_uploadAtta', {
+                action: SP.resolvedIOPath('project/uploadAttachment?_content=json&')
+                , type: 'ajax'
+                , data: {}
+                , name: 'Filedata'
+            });
+            uploader.set('filter', function (data) {
+                data.success = 1;
+                return data;
+            })
+            uploader.theme(new DefaultTheme({
+                queueTarget: '#J_UploaderQueue_uploadAtta'
+                , fileTpl: ''
+            }))
+            uploader.plug(new UploaderAuth({
+                maxSize: 102400
+                , required: true
+            })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
+                .plug(new ProBars())
+            uploader.on('success', function (ev) {
+                $('.uploadAuthMsg').html(uamTpl.render({
+                    projectRemainNumber: ev.result.data.uploadAuth.projectRemainNumber
+                    , accountRemainCapacity: formatSize(ev.result.data.uploadAuth.accountRemainCapacity)
+                }))
+                $('.J_Download_' + ev.file.id).append('&nbsp;').append(formatSize(ev.file.size)).on('click', function () {
+                    window.location.assign(SP.resolvedPath('project/downloadAttachment?attachmentId=' + ev.result.data.id));
+                })
+                $('.J_Del_' + ev.file.id).detach('click', {
+                    '': {
+                        deep: true
+                    }
+                }).on('click', function () {
+                    new AD({
+                        title: '温馨提示',
+                        content: '您确定要删除附件 ' + ev.file.name + ' ？',
+                        onConfirm: function () {
+                            IO.post(SP.resolvedIOPath('project/deleteAttachment?_content=json'),
+                                {
+                                    attachmentId: ev.result.data.id
+                                },
+                                function (d) {
+                                    var deleteSuccess = function () {
+                                        ev.preventDefault()
+                                        var index = ev.file.id
+                                        uploader.get('queue').remove(index)
+                                        $('.uploadAuthMsg').html(uamTpl.render({
+                                            projectRemainNumber: d.data.projectRemainNumber
+                                            ,
+                                            accountRemainCapacity: formatSize(d.data.accountRemainCapacity)
+                                        }))
+                                    }
+                                    new CBD(d, deleteSuccess)
+                                }, "json")
+                        }
+                        , onCancel: function () {
+                        }
+                    })
+                })
+            })
+            if (!editAble) {
+                uploader.set('disabled', true)
+            } else {
+                uploader.set('disabled', false)
+            }
             $('#J_UploaderQueue_uploadAtta').html(uploadedAttachmentHtml)
+
             $('.J_uploaded_Del').on('click', function (e) {
                 handleDelete($(e.currentTarget))
             })
