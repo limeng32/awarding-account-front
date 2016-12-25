@@ -3,7 +3,7 @@
         <input style="width:600px;height:12px;" aria-haspopup="true"
                aria-combobox="list" role="combobox" combobox="off"
                class="ks-combobox-input" tabindex="0"
-               placeholder=" 多个关键字可用空格分隔"
+               placeholder="试着输入“a”看看"
                 />
     </div>
 </span>

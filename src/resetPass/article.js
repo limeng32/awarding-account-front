@@ -12,7 +12,7 @@ var Auth = require('kg/auth/2.0.6/');
 var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/');
 var RAN = require('core-front/random/index');
 var SP = require('core-front/smartPath/smartPath');
-var AD = require('kg/agiledialog/1.0.2/index');
+var AD = require('kg/agiledialog/5.0.2/index');
 var AI = require('core-front/authIdentify/index');
 module.exports = {
     init: function () {
