@@ -122,6 +122,14 @@ module.exports = {
                         .plug(new ProBars())
                         .plug(new Filedrop())
                         .plug(imgCrop);
+                    uploader.on('select', function (e) {
+                        if (UA.ie < 10) {
+                            new AD({
+                                type: 'alert',
+                                content: '很抱歉，IE9及更低版本浏览器目前还无法上传'
+                            })
+                        }
+                    })
                     uploader.on('error', function (ev) {
                         new AD({
                             type: 'alert',

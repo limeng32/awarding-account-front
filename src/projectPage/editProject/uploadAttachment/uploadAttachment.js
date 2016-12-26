@@ -5,6 +5,7 @@ var $ = require('node').all;
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Node = require('node');
 var IO = require('io');
+var UA = require('ua');
 var JSONX = require('core-front/jsonx/jsonx');
 var CBD = require('core-front/callbackDialog/index')
 var OVL = require('overlay');
@@ -140,6 +141,14 @@ module.exports = {
                 , required: true
             })).plug(new UrlsInput({target: '#J_Urls_uploadAtta'}))
                 .plug(new ProBars())
+            uploader.on('select', function (e) {
+                if (UA.ie < 10) {
+                    new AD({
+                        type: 'alert',
+                        content: '很抱歉，IE9及更低版本浏览器目前还无法上传'
+                    })
+                }
+            })
             uploader.on('success', function (ev) {
                 $('.uploadAuthMsg').html(uamTpl.render({
                     projectRemainNumber: ev.result.data.uploadAuth.projectRemainNumber
