@@ -20,7 +20,7 @@
     <img id="subMenu_u17_img" class="img " src="./account/images/transparent.gif"/>
     <!-- Unnamed () -->
     <div id="subMenu_u18" class="text subMenu_txt subMenuFocus" data-show="editing">
-        <p><span>本届编辑项目列表</span></p>
+        <p><span>本届申报项目列表</span></p>
     </div>
 </div>
 

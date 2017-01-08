@@ -135,7 +135,7 @@ module.exports = {
                         enableTextarea()
                         //刷新右边的项目列表
                         listProjectCallback();
-                        //进度条变为“编辑中”
+                        //进度条变为“申报中”
                         stepBar.step('editing')
                     } else {
                         if (data[0].message != null) {
