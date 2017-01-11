@@ -10,5 +10,15 @@ module.exports = {
         $('#aside_u14').offset({
             left: p.criterionLeft + $('#aside_u14').offset().left
         })
+        var offset = null
+        var currnetOffset = $('#aside_u14').offset().left
+        $(window).on('resize', function () {
+            if (offset == null) {
+                offset = $('#headerContainer').offset()
+            }
+            $('#aside_u14').offset({
+                left: currnetOffset - offset.left + $('#headerContainer').offset().left
+            })
+        })
     }
 }

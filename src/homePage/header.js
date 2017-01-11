@@ -53,6 +53,9 @@ module.exports = {
                     closeAction: 'hide'
                 });
                 ol.render();
+                $(window).on('resize', function () {
+                    ol.set('xy', [$('#headerContainer').offset().left + 930, 50])
+                })
                 $('#home_u28').on('mouseover', function () {
                     ol.show();
                 }).on('mouseout', function () {

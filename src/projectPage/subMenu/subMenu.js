@@ -26,6 +26,16 @@ module.exports = {
         $('#subMenu_u22').offset({
             left: p.criterionLeft + $('#subMenu_u22').offset().left
         })
+        var offset = null
+        var subMenuOffset = $('#subMenu_u106').offset().left
+        $(window).on('resize', function () {
+            if (offset == null) {
+                offset = $('#headerContainer').offset()
+            }
+            $('.subMenu_u').offset({
+                left: subMenuOffset - offset.left + $('#headerContainer').offset().left
+            })
+        })
         $('.subMenu_txt').on('click', function (e) {
             $('.subMenu_txt').replaceClass('subMenuFocus', 'subMenuUnfocus')
             $(e.currentTarget).replaceClass('subMenuUnfocus', 'subMenuFocus')

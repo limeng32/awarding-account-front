@@ -1,4 +1,4 @@
-<div id="subMenu_u106" class="ax_paragraph" selectiongroup="projectSubMenu">
+<div id="subMenu_u106" class="ax_paragraph subMenu_u" selectiongroup="projectSubMenu">
     <img id="subMenu_u106_img" class="img " src="./account/images/transparent.gif"/>
     <!-- Unnamed () -->
     <div id="subMenu_u107" class="text subMenu_txt subMenuUnfocus" data-show="submited">
@@ -7,7 +7,7 @@
 </div>
 
 <!-- Unnamed (Shape) -->
-<div id="subMenu_u108" class="ax_paragraph" selectiongroup="projectSubMenu">
+<div id="subMenu_u108" class="ax_paragraph subMenu_u" selectiongroup="projectSubMenu">
     <img id="subMenu_u108_img" class="img " src="./account/images/transparent.gif"/>
     <!-- Unnamed () -->
     <div id="subMenu_u109" class="text subMenu_txt subMenuUnfocus" data-show="returned">
@@ -16,7 +16,7 @@
 </div>
 
 <!-- projectInitMenu (Shape) -->
-<div id="subMenu_u17" class="ax_paragraph" data-label="projectInitMenu" selectiongroup="projectSubMenu">
+<div id="subMenu_u17" class="ax_paragraph subMenu_u" data-label="projectInitMenu" selectiongroup="projectSubMenu">
     <img id="subMenu_u17_img" class="img " src="./account/images/transparent.gif"/>
     <!-- Unnamed () -->
     <div id="subMenu_u18" class="text subMenu_txt subMenuFocus" data-show="editing">
@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<div id="subMenu_u22" class="ax_shape J_newProject">
+<div id="subMenu_u22" class="ax_shape J_newProject subMenu_u">
     <img id="subMenu_u22_img" class="img " src="./account/images/editProject/subMenu_u22.png"/>
     <!-- Unnamed () -->
     <div id="subMenu_u23" class="text">
@@ -32,5 +32,5 @@
     </div>
 </div>
 
-<div id="listProjectAndPaginationContainer">
+<div id="listProjectAndPaginationContainer" class="subMenu_u">
 </div>
