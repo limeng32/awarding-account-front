@@ -8,16 +8,11 @@ module.exports = {
         var sbHtml = new XTemplate(sbTpl).render({})
         p.node.html(sbHtml)
         $('#aside_u14').offset({
-            left: p.criterionLeft + $('#aside_u14').offset().left
+            left: $('#headerContainer').offset().left + 280
         })
-        var offset = null
-        var currnetOffset = $('#aside_u14').offset().left
         $(window).on('resize', function () {
-            if (offset == null) {
-                offset = $('#headerContainer').offset()
-            }
             $('#aside_u14').offset({
-                left: currnetOffset - offset.left + $('#headerContainer').offset().left
+                left: $('#headerContainer').offset().left + 280
             })
         })
     }

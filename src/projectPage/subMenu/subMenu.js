@@ -14,24 +14,12 @@ module.exports = {
         }
         var sbHtml = new XTemplate(sbTpl).render({})
         p.node.html(sbHtml)
-        $('#subMenu_u106').offset({
-            left: $('#headerContainer').offset().left + 20
-        })
-        $('#subMenu_u108').offset({
-            left: $('#headerContainer').offset().left + 20
-        })
-        $('#subMenu_u17').offset({
-            left: $('#headerContainer').offset().left + 20
-        })
-        $('#subMenu_u22').offset({
-            left: $('#headerContainer').offset().left + 20
-        })
-        $('#listProjectAndPaginationContainer').offset({
-            left: $('#headerContainer').offset().left + 20
+        $('#subMenu_u').offset({
+            left: $('#headerContainer').offset().left + 15
         })
         $(window).on('resize', function () {
-            $('.subMenu_u').offset({
-                left: $('#headerContainer').offset().left + 20
+            $('#subMenu_u').offset({
+                left: $('#headerContainer').offset().left + 15
             })
         })
         $('.subMenu_txt').on('click', function (e) {

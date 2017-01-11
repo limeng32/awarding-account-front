@@ -29,7 +29,6 @@ module.exports = {
             $('article').html(containerHtml)
             sideBar.init({
                 node: $('.sideBarContainer')
-                , criterionLeft: $('.articleContainer').offset().left
             })
             stepBar.init({
                 node: $('.stepBarContainer')
@@ -40,7 +39,6 @@ module.exports = {
             })
             subMenu.init({
                 node: $('.subMenuContainer')
-                , criterionLeft: $('.articleContainer').offset().left
             })
         }
     }
