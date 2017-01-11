@@ -21,6 +21,7 @@ var stepBar = require('../viewProjectPage/stepBar/stepBar')
 var editProject = require('./editProject/editProject')
 module.exports = {
     init: function () {
+        var offset = $('#headerContainer').offset()
         var ai = new AI(token);
         if (ai.existChecked()) {
             var containerTpl = new XTemplate(containerView)

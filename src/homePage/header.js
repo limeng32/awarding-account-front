@@ -22,6 +22,8 @@ var personConfig = require('./personConfig/personConfig');
 var searchBar = require('./searchBar/searchBar');
 module.exports = {
     init: function (focusId) {
+        var ohtml = new XTemplate(tpl).render({});
+        $('header').html(ohtml);
         var ai = new AI(token);
         var portraitUrl = function (account) {
             if (account.accountBucket[0].originalPortrait == null) {

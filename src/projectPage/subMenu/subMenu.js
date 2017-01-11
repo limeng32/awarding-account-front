@@ -15,25 +15,23 @@ module.exports = {
         var sbHtml = new XTemplate(sbTpl).render({})
         p.node.html(sbHtml)
         $('#subMenu_u106').offset({
-            left: p.criterionLeft + $('#subMenu_u106').offset().left
+            left: $('#headerContainer').offset().left + 20
         })
         $('#subMenu_u108').offset({
-            left: p.criterionLeft + $('#subMenu_u108').offset().left
+            left: $('#headerContainer').offset().left + 20
         })
         $('#subMenu_u17').offset({
-            left: p.criterionLeft + $('#subMenu_u17').offset().left
+            left: $('#headerContainer').offset().left + 20
         })
         $('#subMenu_u22').offset({
-            left: p.criterionLeft + $('#subMenu_u22').offset().left
+            left: $('#headerContainer').offset().left + 20
         })
-        var offset = null
-        var subMenuOffset = $('#subMenu_u106').offset().left
+        $('#listProjectAndPaginationContainer').offset({
+            left: $('#headerContainer').offset().left + 20
+        })
         $(window).on('resize', function () {
-            if (offset == null) {
-                offset = $('#headerContainer').offset()
-            }
             $('.subMenu_u').offset({
-                left: subMenuOffset - offset.left + $('#headerContainer').offset().left
+                left: $('#headerContainer').offset().left + 20
             })
         })
         $('.subMenu_txt').on('click', function (e) {
@@ -57,16 +55,13 @@ module.exports = {
         $('.J_newProject').on('click', handleNewProject)
         listProject.init({
             node: $('#listProjectAndPaginationContainer')
-            , criterionLeft: $('.articleContainer').offset().left
         })
         listProject.show()
         listProjectSubmited.init({
             node: $('#listProjectAndPaginationContainer')
-            , criterionLeft: $('.articleContainer').offset().left
         })
         listProjectReturned.init({
             node: $('#listProjectAndPaginationContainer')
-            , criterionLeft: $('.articleContainer').offset().left
         })
     }
 }
