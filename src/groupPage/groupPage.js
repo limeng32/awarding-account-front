@@ -1,4 +1,4 @@
-KISSY.use('awarding-account-front/projectPage/projectPage.css', function (S) {
+KISSY.use('awarding-account-front/groupPage/groupPage.css', function (S) {
     var header = require('../homePage/header');
     header.init('home_u22');
 

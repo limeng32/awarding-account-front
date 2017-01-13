@@ -16,7 +16,7 @@ var AI = require('core-front/authIdentify/index')
 var containerView = require('./container-view')
 //var editProject = require('../projectPage/editProject/editProject')
 var sideBar = require('../groupPage/sideBar/sideBar')
-//var subMenu = require('../projectPage/subMenu/subMenu')
+var subMenu = require('./subMenu/subMenu')
 //var stepBar = require('../viewProjectPage/stepBar/stepBar')
 module.exports = {
     init: function () {
@@ -36,9 +36,9 @@ module.exports = {
             //    node: $('.editProjectContainer')
             //    , account: null
             //})
-            //subMenu.init({
-            //    node: $('.subMenuContainer')
-            //})
+            subMenu.init({
+                node: $('.subMenuContainer')
+            })
         }
     }
 }
