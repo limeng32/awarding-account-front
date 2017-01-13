@@ -22,6 +22,10 @@ module.exports = {
                 left: $('#headerContainer').offset().left + 15
             })
         })
+        $('.subMenu_txt').on('click', function (e) {
+            $('.subMenu_txt').replaceClass('subMenuFocus', 'subMenuUnfocus')
+            $(e.currentTarget).replaceClass('subMenuUnfocus', 'subMenuFocus')
+        })
         //$('.J_newProject').on('click', handleNewProject)
         //listProject.init({
         //    node: $('#listProjectAndPaginationContainer')
