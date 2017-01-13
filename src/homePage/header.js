@@ -238,6 +238,9 @@ module.exports = {
                 $('#home_u12').on('click',function(){
                     window.location.assign(SP.resolvedPath('project'))
                 })
+                $('#home_u22').on('click',function(){
+                    window.location.assign(SP.resolvedPath('group'))
+                })
                 if (focusId != null) {
                     $('#' + focusId).replaceClass('menu-unfocus', 'menu-focus')
                 }
