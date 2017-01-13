@@ -1,8 +1,8 @@
 <div id="base">
     <div class="articleContainer">
-        <div class="editProjectContainer"></div>
+        <div class="detectorContainer"></div>
+        <div class="reviewedContainer"></div>
         <div class="sideBarContainer"></div>
-        <div class="stepBarContainer"></div>
         <div class="subMenuContainer"></div>
     </div>
 </div>
