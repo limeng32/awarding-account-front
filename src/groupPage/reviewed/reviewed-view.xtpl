@@ -21,10 +21,10 @@
             <option value="河南">河南</option>
         </select>
     </div>
-    <div id="listProjectContainer">1
+    <div id="listProjectContainer">
         {{#each(data.pageItems)}}
         <div id="reviewed_u19_{{xindex}}" class="ax_repeater">
-            <div id="reviewed_u20" class="ax_shape reviewed_u20 {{root.dealSelectedProject(null,this.id)}}"
+            <div id="reviewed_u20" class="ax_shape reviewed_u20 "
                  selectiongroup="projects" data-id="{{this.id}}">
                 <div id="reviewed_u98_{{this.id}}" class="text reviewed_button reviewed_u98_txt">
                     <p>

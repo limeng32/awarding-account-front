@@ -4,7 +4,16 @@ var Node = require('node');
 var view = require('./reviewed-view');
 module.exports = {
     init: function (p) {
-        var html = new XTemplate(view).render({})
+        var tpl = new XTemplate(view)
+        var html = tpl.render({
+            data: {
+                maxPageNum: 11
+                , pageItems: [{
+                    name: "新1"
+                }, {name: "新2"}, {name: "新3"}, {name: "新4"}, {name: "新5"}]
+                , pageNo: 1
+            }
+        })
         p.node.html(html)
     }
 }
