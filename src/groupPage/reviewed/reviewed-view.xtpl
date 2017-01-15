@@ -3,22 +3,15 @@
         <img id="reviewed_u2_img" class="img " src="./account/images/transparent.gif"/>
         <!-- Unnamed () -->
         <div id="reviewed_u3" class="text">
-            <p><span>待审查项目：</span></p>
+            <p><span>待审查项目</span></p>
         </div>
     </div>
     <!-- Unnamed (Droplist) -->
     <div id="reviewed_u11" class="ax_droplist">
         <select id="reviewed_u11_input">
-            <option value="全部">全部</option>
-            <option value="北京">北京</option>
-            <option value="安徽">安徽</option>
-            <option value="福建">福建</option>
-            <option value="广东">广东</option>
-            <option value="湖北">湖北</option>
-            <option value="湖南">湖南</option>
-            <option value="黑龙江">黑龙江</option>
-            <option value="河北">河北</option>
-            <option value="河南">河南</option>
+            {{#each(companyTypes,"value","key")}}
+            <option value="{{value.flag}}">{{value.text}}</option>
+            {{/each}}
         </select>
     </div>
     <div id="listProjectContainer">{{{projectHtml}}}</div>

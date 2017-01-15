@@ -13,6 +13,13 @@ module.exports = {
             {},
             function (d) {
                 d = JSONX.decode(d)
+                var companyDictionary = $({}), companyTypeDictionary = $({})
+                for (var i = 0; i < d.data.length; i++) {
+                    if (d.data[i].length > 0) {
+                        companyTypeDictionary.prop(d.data[i][0].companyTypeBean.flag, d.data[i][0].companyTypeBean)
+                        companyDictionary.prop(d.data[i][0].companyTypeBean.flag, d.data[i])
+                    }
+                }
                 IO.post(SP.resolvedIOPath('group/listProject?_content=json'),
                     {
                         phase: 'submited'
@@ -23,9 +30,12 @@ module.exports = {
                         })
                         p.node.html(tpl.render({
                             projectHtml: projectHtml
+                            , companyTypes: companyTypeDictionary[0]
+                            , companies: d.data
                         }))
                     }, "json")
-                console.log(d.data)
+                //console.log(companyTypeDictionary[0])
+                //console.log(companyDictionary[0])
             }, "json")
     }
 }
