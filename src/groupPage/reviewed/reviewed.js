@@ -13,13 +13,12 @@ module.exports = {
             {},
             function (d) {
                 d = JSONX.decode(d)
-                var projectHtml
                 IO.post(SP.resolvedIOPath('group/listProject?_content=json'),
                     {
                         phase: 'submited'
                     },
                     function (d2) {
-                        projectHtml = projectTpl.render({
+                        var projectHtml = projectTpl.render({
                             data: d2.data
                         })
                         p.node.html(tpl.render({
