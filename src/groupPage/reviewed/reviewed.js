@@ -26,6 +26,7 @@ module.exports = {
                         phase: 'submited'
                     },
                     function (d2) {
+                        d2 = JSONX.decode(d2)
                         var projectHtml = projectTpl.render({
                             data: d2.data
                         })
@@ -47,11 +48,12 @@ module.exports = {
                             $('#reviewed_u11').html(selectorHtml)
                             IO.post(SP.resolvedIOPath('group/listProject?_content=json'),
                                 {
-                                    phase: 'editing'
+                                    phase: 'submited'
                                     , company: $('#reviewed_u12_input')[0].value
                                     , companyType: $('#reviewed_u11_input')[0].value
                                 },
                                 function (_d2) {
+                                    _d2 = JSONX.decode(_d2)
                                     var projectHtml = projectTpl.render({
                                         data: _d2.data
                                     })
@@ -64,11 +66,12 @@ module.exports = {
                         var reloadProject = function (e) {
                             IO.post(SP.resolvedIOPath('group/listProject?_content=json'),
                                 {
-                                    phase: 'editing'
+                                    phase: 'submited'
                                     , company: $('#reviewed_u12_input')[0].value
                                     , companyType: $('#reviewed_u11_input')[0].value
                                 },
                                 function (_d2) {
+                                    _d2 = JSONX.decode(_d2)
                                     var projectHtml = projectTpl.render({
                                         data: _d2.data
                                     })
