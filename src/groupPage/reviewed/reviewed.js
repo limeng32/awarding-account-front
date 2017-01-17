@@ -17,8 +17,8 @@ module.exports = {
                 var companyDictionary = $({}), companyTypeDictionary = $({})
                 for (var i = 0; i < d.data.length; i++) {
                     if (d.data[i].length > 0) {
-                        companyTypeDictionary.prop(d.data[i][0].companyTypeBean.flag, d.data[i][0].companyTypeBean)
-                        companyDictionary.prop(d.data[i][0].companyTypeBean.flag, d.data[i])
+                        companyTypeDictionary.prop(d.data[i][0].companyTypeBean.name, d.data[i][0].companyTypeBean)
+                        companyDictionary.prop(d.data[i][0].companyTypeBean.name, d.data[i])
                     }
                 }
                 IO.post(SP.resolvedIOPath('group/listProject?_content=json'),
@@ -45,7 +45,6 @@ module.exports = {
                                 , currentValue: e.currentTarget.value
                             })
                             $('#reviewed_u11').html(selectorHtml)
-                            console.log($('#reviewed_u11_input')[0].value)
                             IO.post(SP.resolvedIOPath('group/listProject?_content=json'),
                                 {
                                     phase: 'editing'
@@ -59,8 +58,26 @@ module.exports = {
                                     $('#listProjectContainer').html(projectHtml)
                                 }, "json")
                             $('#reviewed_u11_input').on('change', reloadSelector)
+                            $('#reviewed_u12_input').on('change', reloadProject)
                         }
                         $('#reviewed_u11_input').on('change', reloadSelector)
+                        var reloadProject = function (e) {
+                            IO.post(SP.resolvedIOPath('group/listProject?_content=json'),
+                                {
+                                    phase: 'editing'
+                                    , company: $('#reviewed_u12_input')[0].value
+                                    , companyType: $('#reviewed_u11_input')[0].value
+                                },
+                                function (_d2) {
+                                    var projectHtml = projectTpl.render({
+                                        data: _d2.data
+                                    })
+                                    $('#listProjectContainer').html(projectHtml)
+                                }, "json")
+                            $('#reviewed_u11_input').on('change', reloadSelector)
+                            $('#reviewed_u12_input').on('change', reloadProject)
+                        }
+                        $('#reviewed_u12_input').on('change', reloadProject)
                     }, "json")
             }, "json")
     }

@@ -2,14 +2,13 @@
     <select id="reviewed_u11_input">
         <option value="">全部</option>
         {{#each(companyTypes,"value","key")}}
-        <option value="{{value.flag}}" {{#if( root.currentValue===value.flag )}}selected="selected" {{
-        /if}}>{{value.text}}</option>
+        <option value="{{value.name}}" {{#if( root.currentValue===value.name )}}selected="selected" {{/if}}>{{value.text}}</option>
         {{/each}}
     </select>
     <select id="reviewed_u12_input">
         <option value="">全部</option>
         {{#each(companies,"value","key")}}
-        <option value="{{value.flag}}">{{value.textShort}}</option>
+        <option value="{{value.name}}">{{value.textShort}}</option>
         {{/each}}
     </select>
 </div>
