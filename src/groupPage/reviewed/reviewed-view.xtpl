@@ -9,5 +9,5 @@
     <!-- Unnamed (Droplist) -->
     <div id="reviewed_u11" class="ax_droplist">{{{selectorHtml}}}</div>
     <div id="listProjectContainer">{{{projectHtml}}}</div>
-    <div class="demo-con skin-tb projectPaginationContainer" id="projectPaginationContainer"></div>
+    <div class="demo-con skin-tb reviewedProjectPaginationContainer" id="reviewedProjectPaginationContainer">1</div>
 </div>
