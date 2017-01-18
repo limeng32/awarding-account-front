@@ -40,6 +40,7 @@ module.exports = {
                             , selectorHtml: selectorHtml
                             , currentValue: ''
                         }))
+                        $('#listProjectCount').html(d2.data.totalCount)
                         projectPagination = new PG($('#reviewedProjectPaginationContainer'), {
                             currentPage: d2.data.pageNo, // 默认选中第?页
                             totalPage: d2.data.maxPageNum, // 一共有?页
@@ -87,6 +88,7 @@ module.exports = {
                                         data: _d2.data
                                     })
                                     $('#listProjectContainer').html(projectHtml)
+                                    $('#listProjectCount').html(_d2.data.totalCount)
                                     projectPagination.set('currentPage', _d2.data.pageNo)
                                     projectPagination.set('totalPage', _d2.data.maxPageNum < e.toPage ? e.toPage : _d2.data.maxPageNum)
                                     projectPagination.renderUI()
@@ -108,6 +110,7 @@ module.exports = {
                                         data: _d2.data
                                     })
                                     $('#listProjectContainer').html(projectHtml)
+                                    $('#listProjectCount').html(_d2.data.totalCount)
                                     projectPagination.set('currentPage', _d2.data.pageNo)
                                     projectPagination.set('totalPage', _d2.data.maxPageNum < e.toPage ? e.toPage : _d2.data.maxPageNum)
                                     projectPagination.renderUI()

@@ -7,7 +7,7 @@
             <p><span>待审查项目：</span></p>
         </div>
         <div id="reviewed_u4" class="text">
-            <p><span>共 100 项</span></p>
+            <p><span>共 </span><span id="listProjectCount"></span><span></span> 项</span></p>
         </div>
     </div>
     <div id="listProjectContainer">{{{projectHtml}}}</div>
