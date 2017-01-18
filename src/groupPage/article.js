@@ -14,10 +14,10 @@ var SP = require('core-front/smartPath/smartPath')
 var AD = require('kg/agiledialog/5.0.2/index')
 var AI = require('core-front/authIdentify/index')
 var containerView = require('./container-view')
-var editProject = require('./editProject/editProject')
-var sideBar = require('../homePage/sideBar/sideBar')
+var detector = require('./detector/detector')
+var reviewed = require('./reviewed/reviewed')
+var sideBar = require('../groupPage/sideBar/sideBar')
 var subMenu = require('./subMenu/subMenu')
-var stepBar = require('../viewProjectPage/stepBar/stepBar')
 module.exports = {
     init: function () {
         var offset = $('#headerContainer').offset()
@@ -26,15 +26,15 @@ module.exports = {
             var containerTpl = new XTemplate(containerView)
             var containerHtml = containerTpl.render({})
             $('article').html(containerHtml)
+            detector.init({
+                node: $('.detectorContainer')
+            })
+            reviewed.init({
+                node: $('.reviewedContainer')
+                , account: null
+            })
             sideBar.init({
                 node: $('.sideBarContainer')
-            })
-            stepBar.init({
-                node: $('.stepBarContainer')
-            })
-            editProject.init({
-                node: $('.editProjectContainer')
-                , account: null
             })
             subMenu.init({
                 node: $('.subMenuContainer')

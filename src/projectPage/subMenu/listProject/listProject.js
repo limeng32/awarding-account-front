@@ -15,7 +15,6 @@ module.exports = {
     init: function (p) {
         var projectPagination = null
         var xtpl = new XTemplate(lpTpl)
-        var offsetLeft = p.criterionLeft + $('#listProjectAndPaginationContainer').offset().left
         var refresh = function () {
             IO.post(SP.resolvedIOPath('project/listProject?_content=json'),
                 {
@@ -203,7 +202,6 @@ module.exports = {
                     })
                     p.node.html(lpHtml)
                     $('#listProjectAndPaginationContainer').offset({
-                        left: offsetLeft
                     })
                     renderPage(d.data)
                 }, "json")

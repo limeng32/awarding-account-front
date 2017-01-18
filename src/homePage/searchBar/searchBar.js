@@ -33,6 +33,9 @@ module.exports = {
             closeAction: 'hide'
         })
         ol.render()
+        $(window).on('resize', function () {
+            ol.set('xy', [$('#headerContainer').offset().left + 220, 18])
+        })
         var combo = new CB({
             dataSource: new CB.LocalDataSource({
                 data: ['asd']

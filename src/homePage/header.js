@@ -22,6 +22,8 @@ var personConfig = require('./personConfig/personConfig');
 var searchBar = require('./searchBar/searchBar');
 module.exports = {
     init: function (focusId) {
+        var ohtml = new XTemplate(tpl).render({});
+        $('header').html(ohtml);
         var ai = new AI(token);
         var portraitUrl = function (account) {
             if (account.accountBucket[0].originalPortrait == null) {
@@ -53,6 +55,9 @@ module.exports = {
                     closeAction: 'hide'
                 });
                 ol.render();
+                $(window).on('resize', function () {
+                    ol.set('xy', [$('#headerContainer').offset().left + 930, 50])
+                })
                 $('#home_u28').on('mouseover', function () {
                     ol.show();
                 }).on('mouseout', function () {
@@ -232,6 +237,9 @@ module.exports = {
 
                 $('#home_u12').on('click',function(){
                     window.location.assign(SP.resolvedPath('project'))
+                })
+                $('#home_u22').on('click',function(){
+                    window.location.assign(SP.resolvedPath('group'))
                 })
                 if (focusId != null) {
                     $('#' + focusId).replaceClass('menu-unfocus', 'menu-focus')

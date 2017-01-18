@@ -14,17 +14,13 @@ module.exports = {
         }
         var sbHtml = new XTemplate(sbTpl).render({})
         p.node.html(sbHtml)
-        $('#subMenu_u106').offset({
-            left: p.criterionLeft + $('#subMenu_u106').offset().left
+        $('#subMenu_u').offset({
+            left: $('#headerContainer').offset().left + 15
         })
-        $('#subMenu_u108').offset({
-            left: p.criterionLeft + $('#subMenu_u108').offset().left
-        })
-        $('#subMenu_u17').offset({
-            left: p.criterionLeft + $('#subMenu_u17').offset().left
-        })
-        $('#subMenu_u22').offset({
-            left: p.criterionLeft + $('#subMenu_u22').offset().left
+        $(window).on('resize', function () {
+            $('#subMenu_u').offset({
+                left: $('#headerContainer').offset().left + 15
+            })
         })
         $('.subMenu_txt').on('click', function (e) {
             $('.subMenu_txt').replaceClass('subMenuFocus', 'subMenuUnfocus')
@@ -47,16 +43,13 @@ module.exports = {
         $('.J_newProject').on('click', handleNewProject)
         listProject.init({
             node: $('#listProjectAndPaginationContainer')
-            , criterionLeft: $('.articleContainer').offset().left
         })
         listProject.show()
         listProjectSubmited.init({
             node: $('#listProjectAndPaginationContainer')
-            , criterionLeft: $('.articleContainer').offset().left
         })
         listProjectReturned.init({
             node: $('#listProjectAndPaginationContainer')
-            , criterionLeft: $('.articleContainer').offset().left
         })
     }
 }

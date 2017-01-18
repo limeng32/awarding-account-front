@@ -1,0 +1,15 @@
+<div id="reviewed" class="ax_shape">
+    <div id="reviewed_u11" class="ax_droplist">{{{selectorHtml}}}</div>
+    <div id="reviewed_u2" class="ax_paragraph">
+        <img id="reviewed_u2_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="reviewed_u3" class="text">
+            <p><span>待审查项目：</span></p>
+        </div>
+        <div id="reviewed_u4" class="text">
+            <p><span>共 </span><span id="listProjectCount"></span><span></span> 项</span></p>
+        </div>
+    </div>
+    <div id="listProjectContainer">{{{projectHtml}}}</div>
+    <div class="demo-con skin-tb reviewedProjectPaginationContainer" id="reviewedProjectPaginationContainer"></div>
+</div>
