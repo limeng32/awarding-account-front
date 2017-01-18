@@ -29,19 +29,19 @@ module.exports = {
             } else {
                 return account.accountBucket[0].px40Portrait;
             }
-        }
+        };
         if (ai.existChecked()) {
             ai.acquireAccount(SP.resolvedIOPath('getAccountWithBucket?_content=json'), function (account) {
                 var html = new XTemplate(tpl).render({
-                    account: account,
+                account: account,
                     portraitUrl: portraitUrl(account)
-                });
+            });
                 var ccHtml = new XTemplate(ccTpl).render({});
                 var cpHtml = new XTemplate(cpTpl).render({
                     account: account
                 });
                 $('header').html(html);
-                var ol = new OVL({
+                var ol = new OVL({              //弹出层组件
                     content: ccHtml,
                     visible: true,
                     xy: [$('#headerContainer').offset().left + 930, 50],
