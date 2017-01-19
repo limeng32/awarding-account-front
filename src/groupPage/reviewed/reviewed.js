@@ -16,6 +16,11 @@ module.exports = {
             function (d) {
                 d = JSONX.decode(d)
                 var companyDictionary = $({}), companyTypeDictionary = $({}), projectPagination = null
+                var renderProjectPagination = function (data, e) {
+                    projectPagination.set('currentPage', data.pageNo)
+                    projectPagination.set('totalPage', data.maxPageNum < e.toPage ? e.toPage : data.maxPageNum)
+                    projectPagination.renderUI()
+                }
                 for (var i = 0; i < d.data.length; i++) {
                     if (d.data[i].length > 0) {
                         companyTypeDictionary.prop(d.data[i][0].companyTypeBean.name, d.data[i][0].companyTypeBean)
@@ -64,9 +69,7 @@ module.exports = {
                                         data: _d2.data
                                     })
                                     $('#listProjectContainer').html(projectHtml)
-                                    projectPagination.set('currentPage', _d2.data.pageNo)
-                                    projectPagination.set('totalPage', _d2.data.maxPageNum < e.toPage ? e.toPage : _d2.data.maxPageNum)
-                                    projectPagination.renderUI()
+                                    renderProjectPagination(_d2.data, e)
                                 }, "json")
                         })
                         var reloadSelector = function (e) {
@@ -89,9 +92,7 @@ module.exports = {
                                     })
                                     $('#listProjectContainer').html(projectHtml)
                                     $('#listProjectCount').html(_d2.data.totalCount)
-                                    projectPagination.set('currentPage', _d2.data.pageNo)
-                                    projectPagination.set('totalPage', _d2.data.maxPageNum < e.toPage ? e.toPage : _d2.data.maxPageNum)
-                                    projectPagination.renderUI()
+                                    renderProjectPagination(_d2.data, e)
                                 }, "json")
                             $('#reviewed_u11_input').on('change', reloadSelector)
                             $('#reviewed_u12_input').on('change', reloadProject)
@@ -111,9 +112,7 @@ module.exports = {
                                     })
                                     $('#listProjectContainer').html(projectHtml)
                                     $('#listProjectCount').html(_d2.data.totalCount)
-                                    projectPagination.set('currentPage', _d2.data.pageNo)
-                                    projectPagination.set('totalPage', _d2.data.maxPageNum < e.toPage ? e.toPage : _d2.data.maxPageNum)
-                                    projectPagination.renderUI()
+                                    renderProjectPagination(_d2.data, e)
                                 }, "json")
                             $('#reviewed_u11_input').on('change', reloadSelector)
                             $('#reviewed_u12_input').on('change', reloadProject)
