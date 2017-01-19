@@ -16,10 +16,20 @@ module.exports = {
             function (d) {
                 d = JSONX.decode(d)
                 var companyDictionary = $({}), companyTypeDictionary = $({}), projectPagination = null
+                var initListProjectButton = function () {
+                    $('.reviewed_u20').on('mouseover', function (e) {
+                        $(e.currentTarget).one('.reviewed_u21_txt').hide()
+                        $(e.currentTarget).all('.reviewed_button').show()
+                    }).on('mouseout', function (e) {
+                        $(e.currentTarget).one('.reviewed_u21_txt').show()
+                        $(e.currentTarget).all('.reviewed_button').hide()
+                    })
+                }
                 var renderProjectPagination = function (data, e) {
                     projectPagination.set('currentPage', data.pageNo)
                     projectPagination.set('totalPage', data.maxPageNum < e.toPage ? e.toPage : data.maxPageNum)
                     projectPagination.renderUI()
+                    initListProjectButton()
                 }
                 for (var i = 0; i < d.data.length; i++) {
                     if (d.data[i].length > 0) {
@@ -55,6 +65,7 @@ module.exports = {
                             lastPagesCount: 0, // 显示最后面的?页
                             render: true
                         })
+                        initListProjectButton()
                         projectPagination.on('switch', function (e) {
                             IO.post(SP.resolvedIOPath('group/listProject?_content=json'),
                                 {
