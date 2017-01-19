@@ -29,16 +29,17 @@ module.exports = {
             detector.init({
                 node: $('.detectorContainer')
             })
-            reviewed.init({
+            /*reviewed.init({
                 node: $('.reviewedContainer')
                 , account: null
-            })
+            })*/
             sideBar.init({
                 node: $('.sideBarContainer')
             })
             subMenu.init({
                 node: $('.subMenuContainer')
             })
+
         }
     }
 }

@@ -1,8 +1,10 @@
 var $ = require('node').all
-var XTemplate = require("kg/xtemplate/3.3.3/runtime")
+var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var Node = require('node')
 var OVL = require('overlay')
-var sbTpl = require('./subMenu-view')
+var sbTpl = require('./subMenu-view');
+var reviewed = require('../reviewed/reviewed');
+var reviewedExport= require('../reviewedExport/reviewedExport');
 //var listProject = require('./listProject/listProject')
 //var listProjectSubmited = require('./listProjectSubmited/listProjectSubmited')
 //var listProjectReturned = require('./listProjectReturned/listProjectReturned')
@@ -25,7 +27,27 @@ module.exports = {
         $('.subMenu_txt').on('click', function (e) {
             $('.subMenu_txt').replaceClass('subMenuFocus', 'subMenuUnfocus')
             $(e.currentTarget).replaceClass('subMenuUnfocus', 'subMenuFocus')
-        })
+            var view = $(e.currentTarget).attr('data-show')
+            console.log(view)
+            if ('allot' == view) {
+                reviewed.show()
+                reviewedExport.hide()
+            } else if ('export' == view) {
+                reviewedExport.show()
+                reviewed.hide()
+            }
+        });
+
+        reviewed.init({
+         node: $('.reviewedContainer')
+         , account: null
+         });
+        reviewed.show();
+        reviewedExport.init({
+            node: $('.reviewedContainer')
+        });
+
+        //reviewedExport.show();
         //$('.J_newProject').on('click', handleNewProject)
         //listProject.init({
         //    node: $('#listProjectAndPaginationContainer')
