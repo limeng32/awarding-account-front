@@ -81,7 +81,7 @@ S.extend(SpinBox, Base,  /** @lends SpinBox.prototype*/{
         //创建元素
         $target.each(function(item){
             var isHide='none'
-            if(item.hasAttr('disabled')){
+            if(item.attr('disabled')=='disabled' || item.attr('readonly')=='readonly'){
                 isHide='hidden'
             }
             var $parent = item.parent(),

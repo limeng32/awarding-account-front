@@ -1,3 +1,17 @@
 <div id="detector" class="ax_shape">
-    qwe
+    <div id="detector_u12" class="ax_paragraph">
+        <img id="detector_u12_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="detector_u13" class="text">
+            <p><span>审查人员一：</span></p>
+        </div>
+    </div>
+    <div id="detector_u16" class="ax_shape" data-label="lxbj_border">
+        <img id="detector_u16_img" class="img " src="./account/images/group/lxbj_border_u721.png"/>
+        <!-- Unnamed () -->
+        <div id="detector_u17" class="text">
+            <p><span></span></p>
+        </div>
+    </div>
+    <div id="listDetectotProjectContainer">{{{projectHtml}}}</div>
 </div>
