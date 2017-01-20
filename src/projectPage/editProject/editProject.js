@@ -12,10 +12,14 @@ var RAN = require('core-front/random/index');
 var SP = require('core-front/smartPath/smartPath');
 var AD = require('kg/agiledialog/5.0.2/index');
 var DTP = require('kg/datetimepicker/2.0.3/index')
-var SPB = require('spinbox-by-limeng32/index')
+//var SPB = require('spinbox-by-limeng32/index')
+var SPB = require('./spinbox/spinboxE')
 var editProjectVW = require('./editProject-view');
 var uploadAttachment = require('./uploadAttachment/uploadAttachment')
 var stepBar = require('../../viewProjectPage/stepBar/stepBar')
+
+
+
 module.exports = {
     init: function (p) {
         var epTpl = new XTemplate(editProjectVW)
@@ -36,11 +40,12 @@ module.exports = {
                 }]
             }
         })
-        p.node.html(epHtml)
-        new SPB('.ks-spinbox', {
+        p.node.html(epHtml);
+        //console.log(SPB);
+        var spb=new SPB('.ks-spinbox', {
             onValueChange: function (e) {
             }
-        })
+        });
         new DTP({
             start: '#editProject_u121'
             , timepicker: false
@@ -272,6 +277,8 @@ module.exports = {
                 patentCount.removeAttr('disabled')
                 serviceDate.removeAttr('readonly')
                 serviceDate.removeAttr('disabled')
+                spb.enable();
+
             } else {
                 new AD({
                     title: '温馨提示',
@@ -279,6 +286,7 @@ module.exports = {
                     onConfirm: function () {
                         auth_basic.field('editProject_basic_hidden').set('exclude', 'updateProjectBasic-cancel')
                         auth_basic.test()
+                        spb.disable()
                     }
                     , onCancel: function () {
                         auth_basic.field('editProject_basic_hidden').set('exclude', '')
@@ -291,6 +299,7 @@ module.exports = {
                         patentCount.attr('disabled', 'disabled')
                         serviceDate.attr('readonly', 'readonly')
                         serviceDate.attr('disabled', 'disabled')
+                        spb.disable();
                     }
                 })
             }
