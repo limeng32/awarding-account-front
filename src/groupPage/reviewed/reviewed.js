@@ -24,6 +24,10 @@ module.exports = {
                         $(e.currentTarget).one('.reviewed_u21_txt').show()
                         $(e.currentTarget).all('.reviewed_button').hide()
                     })
+                    $('.J_listProjectViewer').on('click', function (e) {
+                        var id = $(e.currentTarget).attr('data-id')
+                        window.open(SP.resolvedPath('viewProject/' + id))
+                    })
                 }
                 var renderProjectPagination = function (data, e) {
                     projectPagination.set('currentPage', data.pageNo)
