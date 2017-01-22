@@ -5,6 +5,7 @@ var OVL = require('overlay')
 var sbTpl = require('./subMenu-view');
 var reviewed = require('../reviewed/reviewed');
 var reviewedExport= require('../reviewedExport/reviewedExport');
+var reviewedReport = require('../reviewedReport/reviewedReport')
 //var listProject = require('./listProject/listProject')
 //var listProjectSubmited = require('./listProjectSubmited/listProjectSubmited')
 //var listProjectReturned = require('./listProjectReturned/listProjectReturned')
@@ -14,6 +15,7 @@ module.exports = {
         //var handleNewProject = function () {
         //    editProject.render(null, true)
         //}
+
         var sbHtml = new XTemplate(sbTpl).render({})
         p.node.html(sbHtml)
         $('#subMenu_u').offset({
@@ -30,22 +32,38 @@ module.exports = {
             var view = $(e.currentTarget).attr('data-show')
             console.log(view)
             if ('allot' == view) {
-                reviewed.show()
-                reviewedExport.hide()
+                reviewedExport.hide();
+                reviewedReport.hide();
+                //渲染待分配列表到$('.reviewedContainer')
+                reviewed.init({
+                    node: $('.reviewedContainer')
+                    , account: null
+                })
+
             } else if ('export' == view) {
-                reviewedExport.show()
-                reviewed.hide()
+                reviewed.hide();
+                reviewedReport.hide();
+                reviewedExport.init({
+                    node: $('.reviewedContainer')
+                });
+
+            }else if('report' == view){
+                reviewed.hide();
+                reviewedExport.hide();
+                reviewedReport.init({
+                    node: $('.reviewedContainer')
+
+                })
             }
-        });
+        })
+
 
         reviewed.init({
          node: $('.reviewedContainer')
          , account: null
          });
-        reviewed.show();
-        reviewedExport.init({
-            node: $('.reviewedContainer')
-        });
+
+
 
         //reviewedExport.show();
         //$('.J_newProject').on('click', handleNewProject)
