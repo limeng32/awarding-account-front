@@ -1,0 +1,55 @@
+{{#each(data.pageItems)}}
+<div id="detector_u19_{{xindex}}" class="ax_repeater">
+    <div id="detector_u20" class="ax_shape detector_u20 "
+         selectiongroup="projects" data-id="{{this.id}}">
+        <div id="detector_u98_{{this.id}}" class="text detector_button detector_u98_txt">
+            <p><span>申报单位：{{this.account.companyName}}</span></p>
+        </div>
+        <div id="detector_u99_{{this.id}}"
+             class="ax_image detector_button detector_u99_button J_listProjectEditer"
+             data-id="{{this.id}}">
+            <img id="detector_u99_img_{{this.id}}" class="img detector_u99_img"
+                 src="./account/images/listProject/listProject_u22.png"/>
+
+            <div id="detector_u100_{{this.id}}" class="text detector_u100_txt">
+                <p><span>打开</span></p>
+            </div>
+        </div>
+        <div id="detector_u101_{{this.id}}"
+             class="ax_image detector_button detector_u101_button J_listProjectViewer"
+             data-id="{{this.id}}">
+            <img id="detector_u101_img_{{this.id}}" class="img detector_u101_img"
+                 src="./account/images/listProject/listProject_u15.png"/>
+
+            <div id="detector_u102_{{this.id}}" class="text detector_u102_txt">
+                <p><span>预览</span></p>
+            </div>
+        </div>
+        <div id="detector_u103_{{this.id}}"
+             class="ax_image detector_button detector_u103_button J_listProjectSubmiter"
+             data-id="{{this.id}}">
+            <img id="detector_u103_img_{{this.id}}" class="img detector_u103_img"
+                 src="./account/images/listProject/listProject_u26.png"/>
+
+            <div id="detector_u104_{{this.id}}" class="text detector_u104_txt">
+                <p><span>提交</span></p>
+            </div>
+        </div>
+        <div id="detector_u105_{{this.id}}"
+             class="ax_image detector_button detector_u105_button J_listProjectDeleter"
+             data-id="{{this.id}}">
+            <img id="detector_u105_img_{{this.id}}" class="img detector_u105_img"
+                 src="./account/images/listProject/listProject_u30.png"/>
+
+            <div id="detector_u106_{{this.id}}" class="text detector_u106_txt">
+                <p><span>删除</span></p>
+            </div>
+        </div>
+        <div id="detector_u21_{{this.id}}" class="detector_u21 text">
+            <div class="detector_u21_txt">
+                <span class="detector_u21_span">{{this.name}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
