@@ -1,0 +1,20 @@
+<div class="bidi-viewer reportListWrap"  data-view="reportList" id='reportListWrap' >
+
+{{%
+    {{#watch "list: reportData"}}
+        <div class="reportList">
+            <h5>{{pType}}({{pCount}}项)</h5>
+            <ul>
+            {{#watch "list: pData"}}
+                <li>{{this}}</li>
+            {{/watch}}
+            </ul>
+        </div>
+    {{/watch}}
+
+
+%}}
+
+
+</div>
+
