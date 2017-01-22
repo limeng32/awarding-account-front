@@ -1,8 +1,8 @@
 <div id="reExport">
-    <div>
-        导出《报奖项目信息汇总表》： <button type="button">导出</button>
-    </div>
-    <div>
-        导出《各公司接口人汇总表》：<button type="button">导出</button>
-    </div>
+    {{#each(exportData)}}
+        <div>
+            导出：《{{exportName}}： <button type="button" class="exportProjectList" resUrl={{exportUrl}}>导出</button>
+        </div>
+    {{/each}}
+
 </div>

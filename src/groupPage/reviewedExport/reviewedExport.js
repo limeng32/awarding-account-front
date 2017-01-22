@@ -7,17 +7,19 @@ var view = require('./reviewedExport-view');
 
 module.exports = {
     init:function(p){
-        var tpl = new XTemplate(view).render({});
+        var tpl = new XTemplate(view).render({
+            exportData:[{exportName:'报奖项目信息汇总表',exportUrl:'1111111'},{exportName:'各公司接口人汇总表',exportUrl:'2222222'}]
+        });
+        p.node.html(tpl)
+        p.node.all('.exportButton').on('click',function(e){
+            //alert(e.target.attr.resUrl)
+            console.log(e.target.getAttribute('resUrl'))
+        })
 
-        this.hide = function () {
-            if ($('#reExport')) {
-                $('#reExport').remove()
-            }
-        };
-        this.show = function (){
-            if ($('#reExport')) {
-                p.node.html(tpl)
-            }
+    },
+    hide : function (p) {
+        if ($('#reExport')) {
+            $('#reExport').remove()
         }
     }
 };

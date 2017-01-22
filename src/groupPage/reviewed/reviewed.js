@@ -10,6 +10,7 @@ var projectView = require('./reviewedProject-view')
 var selectorView = require('./reviewedSelector-view')
 module.exports = {
     init: function (p) {
+
         var tpl = new XTemplate(view), projectTpl = new XTemplate(projectView), selectorTpl = new XTemplate(selectorView)
         IO.post(SP.resolvedIOPath('group/listCompanyType?_content=json'),
             {},
@@ -135,5 +136,11 @@ module.exports = {
                         $('#reviewed_u12_input').on('change', reloadProject)
                     }, "json")
             }, "json")
+    },
+
+    hide:function(){
+        if ($('#reviewed')) {
+            $('#reviewed').remove()
+        }
     }
 }
