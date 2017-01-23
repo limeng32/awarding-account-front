@@ -25,13 +25,7 @@
 
         </ul>
     </div>
-    <div id="aside_u14" class="ax_shape">
-        <img id="aside_u14_img" class="img " src="./account/images/aside/aside_u14.png"/>
-        <!-- Unnamed () -->
-        <div id="aside_u15" class="text">
-            <p><span></span></p>
-        </div>
-    </div>
+
     <div class="addExpertForm " {{watch "class: openWindow == 1: isOpenWindow"}}>
         <form class="form-horizontal" id="J_Auth">
             <div class="control-group">

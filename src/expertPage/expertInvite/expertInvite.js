@@ -1,30 +1,15 @@
 var $ = require('node').all
 var XTemplate = require("kg/xtemplate/3.3.3/runtime")
 var inviteView = require('./expertInvite-view')
-var addExpertView = require('./addExpert')
+
 var Bidi = require('gallery/bidi/1.3/');
-var OverLay = require('overlay')
+
 var Auth = require('kg/auth/2.0.6/')
 var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/')
 require('kg/auth/2.0.6/plugin/msgs/style.css')
 require('./expertInvite.css')
 
 
-
-
-var addTpl= new XTemplate(addExpertView).render()
-
-var overlay = new OverLay({
-    effect: 'slide',    // {String} - 可选, 默认为'none', 'none'(无特效), 'fade'(渐隐显示), 'slide'(滑动显示).
-    easing: 'linear',        // {String} - 可选, 同 KISSY.Anim 的 easing 参数配置.
-    duration: 10,        // {Number} - 可选, 动画持续时间, 以秒为单位.
-    target: '.expertInviteWrap',
-    content: addTpl,
-    visible: true,
-    closeAction: 'hide',
-    mask:true,
-    elCls:{"class":"absCenter"},
-})
 
 module.exports = {
     init: function (p) {
