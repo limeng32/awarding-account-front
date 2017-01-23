@@ -1,4 +1,4 @@
-<div class="bidi-viewer expertInviteWrap" data-view="expertInviteList">
+<div class="bidi-viewer expertInviteWrap" data-view="expertInviteList" id="expertInviteWrap">
 {{%
     <div>
         <p>往届专家参与情况：</p>
