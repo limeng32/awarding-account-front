@@ -2,6 +2,7 @@ var $ = require('node').all
 var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var sbTpl = require('./subMenu-view');
 var inviteView = require('../expertInvite/expertInvite')
+var manageView = require('../expertManage/expertManage')
 //var listProject = require('./listProject/listProject')
 //var listProjectSubmited = require('./listProjectSubmited/listProjectSubmited')
 //var listProjectReturned = require('./listProjectReturned/listProjectReturned')
@@ -28,17 +29,16 @@ module.exports = {
             var view = $(e.currentTarget).attr('data-show')
             console.log(view)
             if ('invite' == view) {
-
+                manageView.hide()
                 //渲染待分配列表到$('.reviewedContainer')
                 inviteView.init({
                     node: $('.reviewedContainer')
                     , account: null
                 })
 
-            } else if ('export' == view) {
-                reviewed.hide();
-                reviewedReport.hide();
-                reviewedExport.init({
+            } else if ('manage' == view) {
+                inviteView.hide()
+                manageView.init({
                     node: $('.reviewedContainer')
                 });
 
