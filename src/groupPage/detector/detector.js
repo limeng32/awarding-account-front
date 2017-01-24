@@ -19,10 +19,10 @@ module.exports = {
                 $(e.currentTarget).one('.detector_u21_txt').show()
                 $(e.currentTarget).all('.detector_button').hide()
             })
-            //$('.J_listProjectViewer').on('click', function (e) {
-            //    var id = $(e.currentTarget).attr('data-id')
-            //    window.open(SP.resolvedPath('viewProject/' + id))
-            //})
+            $('.J_listProjectViewer').on('click', function (e) {
+                var id = $(e.currentTarget).attr('data-id')
+                window.open(SP.resolvedPath('viewProject/' + id))
+            })
         }
         var renderProjectPagination = function (data, e) {
             projectPagination.set('currentPage', data.pageNo)

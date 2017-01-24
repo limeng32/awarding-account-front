@@ -29,6 +29,9 @@ module.exports = {
                         var id = $(e.currentTarget).attr('data-id')
                         window.open(SP.resolvedPath('viewProject/' + id))
                     })
+                    $('.reviewed_u107_select').on('change',function(e){
+                        alert($(e.currentTarget).attr('data-id'))
+                    })
                 }
                 var renderProjectPagination = function (data, e) {
                     projectPagination.set('currentPage', data.pageNo)
