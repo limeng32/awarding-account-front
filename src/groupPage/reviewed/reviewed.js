@@ -11,7 +11,7 @@ var selectorView = require('./reviewedSelector-view')
 module.exports = {
     init: function (p) {
 
-        var tpl = new XTemplate(view), projectTpl = new XTemplate(projectView), selectorTpl = new XTemplate(selectorView)
+        var tpl = new XTemplate(view), projectTpl = new XTemplate(projectView), selectorTpl = new XTemplate(selectorView), focusSelect = false
         IO.post(SP.resolvedIOPath('group/listCompanyType?_content=json'),
             {},
             function (d) {
@@ -22,8 +22,10 @@ module.exports = {
                         $(e.currentTarget).one('.reviewed_u21_txt').hide()
                         $(e.currentTarget).all('.reviewed_button').show()
                     }).on('mouseout', function (e) {
-                        $(e.currentTarget).one('.reviewed_u21_txt').show()
-                        $(e.currentTarget).all('.reviewed_button').hide()
+                        if (!focusSelect) {
+                            $(e.currentTarget).one('.reviewed_u21_txt').show()
+                            $(e.currentTarget).all('.reviewed_button').hide()
+                        }
                     })
                     $('.J_listProjectViewer').on('click', function (e) {
                         var id = $(e.currentTarget).attr('data-id')
@@ -31,6 +33,10 @@ module.exports = {
                     })
                     $('.reviewed_u107_select').on('change',function(e){
                         alert($(e.currentTarget).attr('data-id'))
+                    }).on('focus', function (e) {
+                        focusSelect = true
+                    }).on('blur', function (e) {
+                        focusSelect = false
                     })
                 }
                 var renderProjectPagination = function (data, e) {
