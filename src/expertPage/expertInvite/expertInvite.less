@@ -22,10 +22,10 @@
   height: 25px;
   line-height: 25px;
   margin-top: 10px;
-  div:nth-child(1){
+  div{
     display: block;
   }
-  div:nth-child(2){
+  div+div{
     display: none;
   }
   button{
@@ -35,11 +35,11 @@
   }
 }
 .expertItem:hover{
-  div:nth-child(2){
-    display: block;
-  }
-  div:nth-child(1){
+  div{
     display: none;
+  }
+  div+div{
+    display: block;
   }
 }
 .primary{
@@ -120,6 +120,8 @@ button[disabled]{
   min-height: 200px;
   li{
     display: inline-block;
+    *display:inline;
+    *zoom:1;
     margin-left: 15px;
     font-size: 14px;
     width: 265px;

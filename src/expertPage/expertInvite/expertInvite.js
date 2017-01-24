@@ -91,7 +91,7 @@ module.exports = {
                 },    //打开弹窗
                 overlayHide:function(data){
                     this.set('openWindow', '1', data)
-                },    //关闭弹窗
+                }    //关闭弹窗
             }
         }
 

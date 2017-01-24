@@ -18,7 +18,7 @@
                                     邀请
                                 {{/if}}
                                 </button>
-                                <button type="button" class="danger" {{watch "click:$root.InvitedDel"}}>删除</button>
+                                <button type="button" class="danger" {{watch "click:$root.InvitedDel" "attr:isInvite == 1: disabled"}}>删除</button>
                             </div>
                       </li>
                 {{/watch}}
