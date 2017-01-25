@@ -1,6 +1,6 @@
 {{#each(data.pageItems)}}
 <div id="reviewed_u19_{{xindex}}" class="ax_repeater">
-    <div id="reviewed_u20" class="ax_shape reviewed_u20 "
+    <div id="reviewed_u20" class="ax_shape reviewed_u20 reviewed_u20_{{this.id}}"
          selectiongroup="projects" data-id="{{this.id}}">
         <div id="reviewed_u98_{{this.id}}" class="text reviewed_button reviewed_u98_txt">
             <p><span>申报单位：{{this.account.companyName}}</span></p>
