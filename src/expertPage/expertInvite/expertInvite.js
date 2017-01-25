@@ -19,8 +19,6 @@ module.exports = {
             openWindow:"1",
             handle:{
                 inviteExpert:function(e,data){
-                    console.log(e)
-                    console.log(data)
                     if(data.isInvite=='0'){
                         //发ajax请求回掉函数里执行this.set  到 this.add（添加到右侧列表）
                         this.set('isInvite', '1', data)

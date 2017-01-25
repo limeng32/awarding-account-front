@@ -17,17 +17,42 @@ module.exports = {
             function (d) {
                 d = JSONX.decode(d)
                 var companyDictionary = $({}), companyTypeDictionary = $({}), projectPagination = null
+                var initMouseout = function (o) {
+                    o.one('.reviewed_u21_txt').show()
+                    o.all('.reviewed_button').hide()
+                }
+                var initMouseover = function (o) {
+                    o.one('.reviewed_u21_txt').hide()
+                    o.all('.reviewed_button').show()
+                }
+                var dealMouseover = function (e) {
+                    initMouseover($(e.currentTarget))
+                }
+                var dealMouseout = function (e) {
+                    initMouseout($(e.currentTarget))
+                }
                 var initListProjectButton = function () {
                     $('.reviewed_u20').on('mouseover', function (e) {
-                        $(e.currentTarget).one('.reviewed_u21_txt').hide()
-                        $(e.currentTarget).all('.reviewed_button').show()
+                        initMouseover($(e.currentTarget))
                     }).on('mouseout', function (e) {
-                        $(e.currentTarget).one('.reviewed_u21_txt').show()
-                        $(e.currentTarget).all('.reviewed_button').hide()
+                        initMouseout($(e.currentTarget))
                     })
                     $('.J_listProjectViewer').on('click', function (e) {
                         var id = $(e.currentTarget).attr('data-id')
                         window.open(SP.resolvedPath('viewProject/' + id))
+                    })
+                    $('.reviewed_u107_select').on('change',function(e){
+                        alert($(e.currentTarget).attr('data-id'))
+                    }).on('focus', function (e) {
+                        $('.reviewed_u20_' + $(e.currentTarget).attr('data-id')).detach('mouseover')
+                        $('.reviewed_u20_' + $(e.currentTarget).attr('data-id')).detach('mouseout')
+                    }).on('blur', function (e) {
+                        $('.reviewed_u20_' + $(e.currentTarget).attr('data-id')).on('mouseover', function (e) {
+                            dealMouseover(e)
+                        }).on('mouseout', function (e) {
+                            dealMouseout(e)
+                        })
+                        initMouseout($('.reviewed_u20_' + $(e.currentTarget).attr('data-id')))
                     })
                 }
                 var renderProjectPagination = function (data, e) {

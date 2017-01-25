@@ -22,7 +22,7 @@ module.exports = {
                 {pType:'网络组',pCount:'4',pData:['001-网络-安徽-巢湖本地网网络拆分技术及应用','002-网络-安徽-HLR和HSS融合的4G网络建设和应用']},
                 {pType:'业务与终端组',pCount:'6',pData:['001-网络-安徽-巢湖本地网网络拆分技术及应用','002-网络-安徽-HLR和HSS融合的4G网络建设和应用','003-网络123dsdfsdfsd用']},
                 {pType:'IT支撑组',pCount:'5'},
-                {pType:'运维与节能减排',pCount:'2'}],
+                {pType:'运维与节能减排',pCount:'2'}]
 
             },{},tpl)
         Bidi.init()

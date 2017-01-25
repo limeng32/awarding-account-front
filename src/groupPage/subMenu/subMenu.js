@@ -30,7 +30,6 @@ module.exports = {
             $('.subMenu_txt').replaceClass('subMenuFocus', 'subMenuUnfocus')
             $(e.currentTarget).replaceClass('subMenuUnfocus', 'subMenuFocus')
             var view = $(e.currentTarget).attr('data-show')
-            console.log(view)
             if ('allot' == view) {
                 reviewedExport.hide();
                 reviewedReport.hide();
