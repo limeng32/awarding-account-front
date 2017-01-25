@@ -8,7 +8,7 @@
     <select id="reviewed_u12_input">
         <option value="">全部</option>
         {{#each(companies,"value","key")}}
-        <option value="{{value.name}}">{{value.textShort}}</option>
+        <option value="{{value.name}}" {{#if( root.currentValue2===value.name )}}selected="selected" {{/if}}>{{value.textShort}}</option>
         {{/each}}
     </select>
 </div>
