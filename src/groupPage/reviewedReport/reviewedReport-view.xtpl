@@ -4,7 +4,7 @@
     {{#watch "list: reportData"}}
         <div class="reportList">
             <h5>{{pType}}({{pCount}}项)</h5>
-            <ul>
+            <ul class='reportItem'>
             {{#watch "list: pData"}}
                 <li>{{this}}</li>
             {{/watch}}

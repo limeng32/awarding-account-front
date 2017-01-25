@@ -26,8 +26,17 @@ module.exports = {
 
             },{},tpl)
         Bidi.init()
+        //js 加隔行变色
+        var item = $('.reportItem');
+        for(var i=0;i<item.length;i++){
+            var lis=item[i].getElementsByTagName('li')
+            for(var k= 0;k<lis.length;k++){
+                if(k%2==0){
+                    lis[k].style.backgroundColor="#edf5ff";
+                }
+            }
 
-
+        }
     },
 
     hide : function (p) {
