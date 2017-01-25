@@ -27,7 +27,6 @@ module.exports = {
             $('.subMenu_txt').replaceClass('subMenuFocus', 'subMenuUnfocus')
             $(e.currentTarget).replaceClass('subMenuUnfocus', 'subMenuFocus')
             var view = $(e.currentTarget).attr('data-show')
-            console.log(view)
             if ('invite' == view) {
                 manageView.hide()
                 //渲染待分配列表到$('.reviewedContainer')

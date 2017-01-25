@@ -13,7 +13,6 @@ module.exports = {
         p.node.html(tpl)
         p.node.all('.exportButton').on('click',function(e){
             //alert(e.target.attr.resUrl)
-            console.log(e.target.getAttribute('resUrl'))
         })
 
     },
