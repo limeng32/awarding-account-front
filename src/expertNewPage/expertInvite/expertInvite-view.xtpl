@@ -24,6 +24,7 @@
                       </li>
                 {{/watch}}
         </ul>
+        <input type="hidden" class="pageSwitchHidden" {{watch "action: click: inviteExpertNew"}}>
     </div>
     <div class="demo-con skin-tb expertInvitePaginationContainer" id="expertInvitePaginationContainer">1</div>
     <div class="addExpertForm " {{watch "class: openWindow == 1: isOpenWindow"}}>

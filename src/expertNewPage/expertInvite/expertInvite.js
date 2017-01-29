@@ -47,8 +47,8 @@ module.exports = {
                                 this.add(data, 'InvitedData')
                             }
 
-                        },
-                        addExpert: function (data) {
+                        }
+                        , addExpert: function (data) {
                             var expertName = $('#expertName').val(),
                                 expertEmail = $('#expertEmail').val(),
                                 expertPart = $('#expertPart').val()
@@ -66,26 +66,26 @@ module.exports = {
                             $('#expertName').val(''), expertEmail = $('#expertEmail').val(''), expertPart = $('#expertPart').val('')
                             this.set('openWindow', '1', data)
 
-                        },
-                        sendEmail: function (e, data) {
+                        }
+                        , sendEmail: function (e, data) {
                             if (data.isEmail == '0') {
                                 //发ajax请求回掉函数里执行this.set   和 e.target.innerText='再发送'
                                 this.set('isEmail', '1', data)
                                 e.target.innerText = '再发送'
                             }
-                        },
-                        confirmExpert: function (e, data) {
+                        }
+                        , confirmExpert: function (e, data) {
                             if (data.isConfirm == '0') {
                                 //发ajax请求回掉函数里执行this.set   和 e.target.innerText='已确认'
                                 this.set('isConfirm', '1', data)
                                 e.target.innerText = '已确认'
                             }
-                        },
-                        InvitedDel: function (data) {
+                        }
+                        , InvitedDel: function (data) {
                             //发ajax请求回掉函数里执行this.remove
                             this.remove(data)
-                        },
-                        overlayShow: function (data) {
+                        }
+                        , overlayShow: function (data) {
                             //overlay.show()
                             //overlay.on('afterRenderUI',function(){
                             //    var auth = new Auth('#J_Auth');
@@ -110,16 +110,25 @@ module.exports = {
                             //$('#subExpertForm').on('click',function(){
                             //    this.attributes.handle.addExpert()
                             //}.bind(this))
-                            this.set('openWindow', '0', data)
-                        },    //打开弹窗
-                        overlayHide: function (data) {
+                            this.set('openWindow', '0')
+                        }    //打开弹窗
+                        , overlayHide: function (data) {
                             this.set('openWindow', '1', data)
                         }    //关闭弹窗
+                        , inviteExpertNew: function (data) {
+                            this.set('experts', [{
+                                account: {
+                                    name: 'a'
+                                }
+                            }])
+                            //this.add([{
+                            //    account: {
+                            //        name: 'a'
+                            //    }
+                            //}], 'experts')
+                        }
                     }
                 }
-
-                EXPERT_INVITE.data.push({expertName: '耿向东', expertPart: '北京分公司', isInvite: "1"})
-                EXPERT_INVITE.data.splice(1, 1)
                 var inviteHtml = new XTemplate(inviteView).render()
                 p.node.html(inviteHtml)
                 Bidi.active(['action', 'class', 'attr', 'text', 'click', 'value'])
@@ -133,6 +142,9 @@ module.exports = {
                     postposePagesCount: 0, // 当前页的紧邻后置页为?页
                     lastPagesCount: 0, // 显示最后面的?页
                     render: true
+                })
+                invitePagination.on('switch', function (e) {
+                    $('.pageSwitchHidden')[0].click()
                 })
                 var auth = new Auth('#J_Auth');
                 auth.plug(new AuthMsgs());
