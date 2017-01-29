@@ -15,12 +15,19 @@ module.exports = {
         IO.post(SP.resolvedIOPath('expert/listExpertWithTask?_content=json'),
             {},
             function (d) {
+                var d = JSONX.decode(d)
+                var task = d.data[0]
+                var experts = d.data[1]
+                //console.log(d)
+                var TASK = task
                 var EXPERT_INVITE = {
+                    task: task,
                     data: [{expertName: '范济安', expertPart: '北京分公司', isInvite: "1"}, {
                         expertName: '陈淑平',
                         expertPart: '天津分公司',
                         isInvite: "0"
                     }, {expertName: '哈特我', expertPart: '北京分公司', isInvite: "0"}],
+                    experts: experts,
                     InvitedData: [{expertName: '范济安', expertPart: '北京分公司', isEmail: '1', isConfirm: '0'}, {
                         expertName: '陈淑平',
                         expertPart: '天津分公司',
@@ -110,7 +117,8 @@ module.exports = {
                     }
                 }
 
-
+                EXPERT_INVITE.data.push({expertName: '耿向东', expertPart: '北京分公司', isInvite: "1"})
+                EXPERT_INVITE.data.splice(1, 1)
                 var inviteHtml = new XTemplate(inviteView).render({})
                 p.node.html(inviteHtml)
                 Bidi.active(['action', 'class', 'attr', 'text', 'click', 'value'])
@@ -119,8 +127,6 @@ module.exports = {
                 var auth = new Auth('#J_Auth');
                 auth.plug(new AuthMsgs());
                 auth.render();
-                var data = JSONX.decode(d.data)
-                console.log(data)
             }, "json")
     },
     hide: function (p) {

@@ -239,7 +239,7 @@ module.exports = {
                     window.location.assign(SP.resolvedPath('project'))
                 })
                 $('#home_u18').on('click', function () {
-                    window.location.assign(SP.resolvedPath('expert'))
+                    window.location.assign(SP.resolvedPath('expertNew'))
                 })
                 $('#home_u22').on('click', function () {
                     window.location.assign(SP.resolvedPath('group'))
