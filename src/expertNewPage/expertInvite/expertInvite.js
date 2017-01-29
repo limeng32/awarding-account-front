@@ -6,36 +6,37 @@ var AuthMsgs = require('kg/auth/2.0.6/plugin/msgs/')
 var overlay = require('overlay')
 var IO = require('io')
 var SP = require('core-front/smartPath/smartPath')
+var PG = require('kg/pagination/2.0.0/index')
 var JSONX = require('core-front/jsonx/jsonx')
 var inviteView = require('./expertInvite-view')
 require('kg/auth/2.0.6/plugin/msgs/style.css')
 require('./expertInvite.css')
 module.exports = {
     init: function (p) {
-        IO.post(SP.resolvedIOPath('expert/listExpertWithTask?_content=json'),
+        IO.post(SP.resolvedIOPath('expert/initExpertInvite?_content=json'),
             {},
             function (d) {
                 var d = JSONX.decode(d)
                 var task = d.data[0]
                 var experts = d.data[1]
-                //console.log(d)
+                //console.log(experts)
                 var TASK = task
                 var EXPERT_INVITE = {
-                    task: task,
-                    data: [{expertName: '范济安', expertPart: '北京分公司', isInvite: "1"}, {
+                    task: task
+                    , data: [{expertName: '范济安', expertPart: '北京分公司', isInvite: "1"}, {
                         expertName: '陈淑平',
                         expertPart: '天津分公司',
                         isInvite: "0"
-                    }, {expertName: '哈特我', expertPart: '北京分公司', isInvite: "0"}],
-                    experts: experts,
+                    }, {expertName: '哈特我', expertPart: '北京分公司', isInvite: "0"}]
+                    , experts: experts.pageItems,
                     InvitedData: [{expertName: '范济安', expertPart: '北京分公司', isEmail: '1', isConfirm: '0'}, {
                         expertName: '陈淑平',
                         expertPart: '天津分公司',
                         isEmail: '0',
                         isConfirm: '1'
-                    }],
-                    openWindow: "1",
-                    handle: {
+                    }]
+                    , openWindow: "1"
+                    , handle: {
                         inviteExpert: function (e, data) {
                             if (data.isInvite == '0') {
                                 //发ajax请求回掉函数里执行this.set  到 this.add（添加到右侧列表）
@@ -119,11 +120,20 @@ module.exports = {
 
                 EXPERT_INVITE.data.push({expertName: '耿向东', expertPart: '北京分公司', isInvite: "1"})
                 EXPERT_INVITE.data.splice(1, 1)
-                var inviteHtml = new XTemplate(inviteView).render({})
+                var inviteHtml = new XTemplate(inviteView).render()
                 p.node.html(inviteHtml)
                 Bidi.active(['action', 'class', 'attr', 'text', 'click', 'value'])
                 Bidi.xbind('expertInviteList', EXPERT_INVITE, EXPERT_INVITE.handle, inviteHtml)
                 Bidi.init()
+                var invitePagination = new PG($('#expertInvitePaginationContainer'), {
+                    currentPage: 1, // 默认选中第?页
+                    totalPage: experts.maxPageNum, // 一共有?页
+                    firstPagesCount: 0, // 显示最前面的?页
+                    preposePagesCount: 0, // 当前页的紧邻前置页为?页
+                    postposePagesCount: 0, // 当前页的紧邻后置页为?页
+                    lastPagesCount: 0, // 显示最后面的?页
+                    render: true
+                })
                 var auth = new Auth('#J_Auth');
                 auth.plug(new AuthMsgs());
                 auth.render();
