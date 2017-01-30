@@ -1,5 +1,5 @@
 <div class="bidi-viewer expertInviteWrap" data-view="expertInviteList" id="expertInviteWrap">
-{{%
+    {{%
     <div>
         <p>往届专家参与情况：</p>
         <p>专家库</p>
@@ -7,7 +7,7 @@
         "click:overlayShow"}} class="addButton">{{task.name}}</button>
         <ul>
             {{#watch "list: experts"}}
-                      <li class="expertItem" {{watch "class: isInvite == 1: isInvite"}}>
+                      <li class="expertItem" {{watch "class: taskExpert.length != 0: isInvite"}}>
             <div>{{account.name}} / {{account.companyName}}</div>
                             <div class="handleWrap">
                                 {{account.name}}
