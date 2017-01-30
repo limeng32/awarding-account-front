@@ -8,7 +8,7 @@
         <ul>
             {{#watch "list: experts"}}
                       <li class="expertItem" {{watch "class: isInvite == 1: isInvite"}}>
-            <div>{{account.name}}/{{account.companyName}}</div>
+            <div>{{account.name}} / {{account.companyName}}</div>
                             <div class="handleWrap">
                                 {{account.name}}
                                 <button type="button"  class="primary"}}>信息</button>
@@ -24,7 +24,7 @@
                       </li>
                 {{/watch}}
         </ul>
-        <input type="hidden" class="pageSwitchHidden" {{watch "action: click: inviteExpertNew"}}>
+        <input type="hidden" class="pageSwitchHidden" {{watch "action: click: reRenderExpert"}}>
     </div>
     <div class="demo-con skin-tb expertInvitePaginationContainer" id="expertInvitePaginationContainer">1</div>
     <div class="addExpertForm " {{watch "class: openWindow == 1: isOpenWindow"}}>

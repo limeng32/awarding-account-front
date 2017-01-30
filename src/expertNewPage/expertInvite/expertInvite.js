@@ -115,12 +115,8 @@ module.exports = {
                         , overlayHide: function (data) {
                             this.set('openWindow', '1', data)
                         }    //关闭弹窗
-                        , inviteExpertNew: function (data) {
-                            this.set('experts', [{
-                                account: {
-                                    name: 'a'
-                                }
-                            }])
+                        , reRenderExpert: function (data) {
+                            this.set('experts', EXPERT_INVITE.experts)
                             //this.add([{
                             //    account: {
                             //        name: 'a'
@@ -144,7 +140,17 @@ module.exports = {
                     render: true
                 })
                 invitePagination.on('switch', function (e) {
-                    $('.pageSwitchHidden')[0].click()
+                    IO.post(SP.resolvedIOPath('expert/listExpert?_content=json'),
+                        {
+                            pageNo: e.toPage
+                        },
+                        function (d) {
+                            d = JSONX.decode(d)
+                            EXPERT_INVITE.experts = d.data.pageItems
+                            $('.pageSwitchHidden')[0].click()
+                            invitePagination.set('totalPage', d.data.maxPageNum < e.toPage ? e.toPage : d.data.maxPageNum)
+                            invitePagination.renderUI()
+                        }, "json")
                 })
                 var auth = new Auth('#J_Auth');
                 auth.plug(new AuthMsgs());
