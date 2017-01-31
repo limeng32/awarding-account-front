@@ -2,6 +2,7 @@
     {{%
     <div>
         <p>往届专家参与情况：</p>
+
         <p>专家库</p>
         <button type="button" {{watch
         "click:overlayShow"}} class="addButton">{{task.name}}</button>
@@ -10,7 +11,7 @@
                       <li class="expertItem" {{watch "class: taskExpert.length != 0: isInvite"}}>
             <div>{{account.name}} / {{account.companyName}}</div>
                             <div class="handleWrap">
-                                {{account.name}}
+                                <span {{{watch "text:taskExpert:getTaskExpertStatus"}}}></span>
                                 <button type="button"  class="primary"}}>信息</button>
                                 <button type="button" class="info" {{watch "action: click: inviteExpert" "attr:isInvite == 1: disabled"}}>
                                 {{#if isInvite==='1'}}

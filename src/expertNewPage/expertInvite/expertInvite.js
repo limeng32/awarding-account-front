@@ -19,7 +19,7 @@ module.exports = {
                 var d = JSONX.decode(d)
                 var task = d.data[0]
                 var experts = d.data[1]
-                console.log(experts)
+                //console.log(task)
                 var TASK = task
                 var EXPERT_INVITE = {
                     task: task
@@ -117,6 +117,7 @@ module.exports = {
                         }    //关闭弹窗
                         , reRenderExpert: function (data) {
                             this.set('experts', EXPERT_INVITE.experts)
+
                             //this.add([{
                             //    account: {
                             //        name: 'a'
@@ -125,12 +126,14 @@ module.exports = {
                         }
                     }
                 }
-                var inviteHtml = new XTemplate(inviteView).render({
-                    s: EXPERT_INVITE.experts
-                })
+                var inviteHtml = new XTemplate(inviteView).render({})
                 p.node.html(inviteHtml)
                 Bidi.active(['action', 'class', 'attr', 'text', 'click', 'value'])
                 Bidi.xbind('expertInviteList', EXPERT_INVITE, EXPERT_INVITE.handle, inviteHtml)
+                var getTaskExpertStatus = function (taskExpert) {
+                    return taskExpert[0].status
+                }
+                Bidi.pipe('getTaskExpertStatus', getTaskExpertStatus);
                 Bidi.init()
                 var invitePagination = new PG($('#expertInvitePaginationContainer'), {
                     currentPage: 1, // 默认选中第?页
