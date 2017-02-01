@@ -23,7 +23,6 @@ module.exports = {
                     {},
                     function (d2) {
                         d2 = JSONX.decode(d2)
-                        //console.log(d2.data)
                         var invitedExperts = d2.data
                         var TASK = task
                         var EXPERT_INVITE = {
@@ -89,7 +88,22 @@ module.exports = {
                                 }
                                 , InvitedDel: function (data) {
                                     //发ajax请求回掉函数里执行this.remove
-                                    this.remove(data)
+                                    //this.remove(data)
+                                    var _this = this
+                                    IO.post(SP.resolvedIOPath('expert/unInviteExpert?_content=json'),
+                                        {
+                                            pageNo: invitePagination2.get('currentPage')
+                                            , expertId: data.id
+                                        },
+                                        function (d) {
+                                            d = JSONX.decode(d)
+                                            EXPERT_INVITE.invitedExperts = d.data.pageItems
+                                            EXPERT_INVITE.handle.reRenderInvitedExpert(data, _this)
+                                            invitePagination2.set('totalPage', d.data.maxPageNum)
+                                            invitePagination2.renderUI()
+                                            //在这里处理experts中的数据，修改相关专家的邀请状态
+                                            //_this.set('experts', null)
+                                        }, "json")
                                 }
                                 , overlayShow: function (data) {
                                     //overlay.show()
@@ -130,8 +144,12 @@ module.exports = {
                                     //    }
                                     //}], 'experts')
                                 }
-                                , reRenderInvitedExpert: function (data) {
-                                    this.set('invitedExperts', EXPERT_INVITE.invitedExperts)
+                                , reRenderInvitedExpert: function (data, _this) {
+                                    if (_this != null) {
+                                        _this.set('invitedExperts', EXPERT_INVITE.invitedExperts)
+                                    } else {
+                                        this.set('invitedExperts', EXPERT_INVITE.invitedExperts)
+                                    }
                                 }
                             }
                         }
@@ -162,7 +180,7 @@ module.exports = {
                                     d = JSONX.decode(d)
                                     EXPERT_INVITE.experts = d.data.pageItems
                                     $('.pageSwitchHidden')[0].click()
-                                    invitePagination.set('totalPage', d.data.maxPageNum < e.toPage ? e.toPage : d.data.maxPageNum)
+                                    invitePagination.set('totalPage', d.data.maxPageNum)
                                     invitePagination.renderUI()
                                 }, "json")
                         })
@@ -182,10 +200,9 @@ module.exports = {
                                 },
                                 function (d) {
                                     d = JSONX.decode(d)
-                                    console.log(d)
                                     EXPERT_INVITE.invitedExperts = d.data.pageItems
                                     $('.pageInvitedSwitchHidden')[0].click()
-                                    invitePagination2.set('totalPage', d.data.maxPageNum < e.toPage ? e.toPage : d.data.maxPageNum)
+                                    invitePagination2.set('totalPage', d.data.maxPageNum)
                                     invitePagination2.renderUI()
                                 }, "json")
                         })
