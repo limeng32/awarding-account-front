@@ -16,7 +16,7 @@
                                 <span {{{watch "text:isInvite :inviteText"}}}></span>
 
                                 </button>
-                                <button type="button" class="danger" {{watch "click:$root.InvitedDel" "attr:isInvite == 1: disabled"}}>删除</button>
+                                <button type="button" class="danger" {{watch "click:$root.expertDel" "attr:isInvite == 1: disabled"}}>删除</button>
                             </div>
                       </li>
                 {{/watch}}

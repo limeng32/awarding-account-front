@@ -60,6 +60,9 @@ module.exports = {
 
                     this.set('isInvite', '0', data)
                 },
+                expertDel:function(data){
+                    this.remove(data)
+                },
                 overlayShow:function(data){
                     /*overlay.show()
                     overlay.on('afterRenderUI',function(){
