@@ -3,6 +3,7 @@ var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var sbTpl = require('./subMenu-view');
 var inviteView = require('../expertInvite/expertInvite')
 var manageView = require('../expertManage/expertManage')
+var avoidViiew = require('../expertAvoid/expertAvoid')
 //var listProject = require('./listProject/listProject')
 //var listProjectSubmited = require('./listProjectSubmited/listProjectSubmited')
 //var listProjectReturned = require('./listProjectReturned/listProjectReturned')
@@ -41,10 +42,10 @@ module.exports = {
                     node: $('.reviewedContainer')
                 });
 
-            }else if('report' == view){
-                reviewed.hide();
-                reviewedExport.hide();
-                reviewedReport.init({
+            }else if('avoid' == view){
+                manageView.hide()
+                inviteView.hide()
+                avoidViiew.init({
                     node: $('.reviewedContainer')
 
                 })

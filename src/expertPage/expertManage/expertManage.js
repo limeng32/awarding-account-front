@@ -29,9 +29,6 @@ module.exports = {
                 doGroup:function(e,data) {
 
                     this.set('group',data.group,data)
-
-
-                    console.log(this.get('groups'))
                     Bidi.init()
                    // this.fire('add:' + 'groups[0].expertData', {obj: {expertName:'范e济安',expertPart:'北京分公司',isConfirm:"0",group:'网络组',expertID:'1'}});
                    // var gName = e.target.value
