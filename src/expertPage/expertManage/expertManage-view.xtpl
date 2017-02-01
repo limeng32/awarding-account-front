@@ -16,15 +16,23 @@
                                     未确认
                                 {{/if}}
                                 </button>
-                                <select {{watch "select: groups" "action: change: doGroup"}}>
-                                    <option value="0" >未分组</option>
-                                                        {{#each ../groups}}
-                                                                {{#if group===name}}
-                                                                <option value="{{name}}" selected="selected">{{name}}</option>
-                                                                {{else}}
-                                                                 <option value="{{name}}">{{name}}</option>
-                                                                {{/if}}
-                                                        {{/each}}
+                                <select {{watch "select: group" "action: change: doGroup"}}>
+                                                        {{#if group==='0'}}
+                                                            <option value="0" selected="selected">未分组</option>
+                                                                {{#each ../groups}}
+                                                                    <option value="{{name}}">{{name}}</option>
+                                                                {{/each}}
+                                                        {{else}}
+                                                            {{#each ../groups}}
+                                                                    {{#if group===name}}
+                                                                    <option value="{{name}}" selected="selected">{{name}}</option>
+                                                                    {{else}}
+                                                                     <option value="{{name}}">{{name}}</option>
+                                                                    {{/if}}
+                                                            {{/each}}
+
+                                                        {{/if}}
+
                                 </select>
 
                             </div>
@@ -35,13 +43,22 @@
     </div>
 
     <div class="groupWrap">
-        {{#watch "list: groups"}}
+        {{#each groups}}
         <div class="group">
             <p>{{name}}</p>
+
+
             <ul>
-                {{#watch "list: expertData"}}
-                <li class='expertItem'>
+
+                {{#each ../data}}
+
+                {{#if group===name}}
+                <li class='expertItem' >
                     <div>{{expertName}}</div>
+
+
+
+
                                             <div class="handleWrap">
                                                 {{expertName}}
                                                 <button type="button"  class="primary"}}>信息</button>
@@ -52,14 +69,18 @@
                                                     未确认
                                                 {{/if}}
                                                 </button>
-                                                <button type="button"  class="danger bigBtn"}}>移除分组</button>
+                                                <button type="button"  class="danger bigBtn removeGroup" name={{expertName}} {{watch "click:$root.removeGroup"}}>移除分组</button>
                                             </div>
 
                 </li>
-                {{/watch}}
+                {{/if}}
+
+                {{/each}}
+
             </ul>
+
         </div>
-        {{/watch}}
+        {{/each}}
 
 
     </div>
