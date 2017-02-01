@@ -54,10 +54,10 @@
         <h4>已邀请专家</h4>
         <div class='invitedExpert'>
         <ul>
-            {{#watch "list: InvitedData"}}
+            {{#watch "list: invitedExperts"}}
 
                                   <li class="expertItem" {{watch "class: isConfirm == 1: isInvite"}}>
-                                        <div>{{expertName}}/{{expertPart}}</div>
+            <div>{{account.name}} / {{account.companyName}}</div>
                                         <div class="handleWrap">
                                             {{expertName}}
                                             <button type="button"  class="primary"}}>信息</button>

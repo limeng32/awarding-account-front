@@ -16,150 +16,172 @@ module.exports = {
         IO.post(SP.resolvedIOPath('expert/initExpertInvite?_content=json'),
             {},
             function (d) {
-                var d = JSONX.decode(d)
+                d = JSONX.decode(d)
                 var task = d.data[0]
                 var experts = d.data[1]
-                //console.log(task)
-                var TASK = task
-                var EXPERT_INVITE = {
-                    task: task
-                    , data: [{expertName: '范济安', expertPart: '北京分公司', isInvite: "1"}, {
-                        expertName: '陈淑平',
-                        expertPart: '天津分公司',
-                        isInvite: "0"
-                    }, {expertName: '哈特我', expertPart: '北京分公司', isInvite: "0"}]
-                    , experts: experts.pageItems,
-                    InvitedData: [{expertName: '范济安', expertPart: '北京分公司', isEmail: '1', isConfirm: '0'}, {
-                        expertName: '陈淑平',
-                        expertPart: '天津分公司',
-                        isEmail: '0',
-                        isConfirm: '1'
-                    }]
-                    , openWindow: "1"
-                    , handle: {
-                        inviteExpert: function (e, data) {
-                            if (data.isInvite == '0') {
-                                //发ajax请求回掉函数里执行this.set  到 this.add（添加到右侧列表）
-                                this.set('isInvite', '1', data)
-                                e.target.innerText = '已邀请'
-                                data.isEmail = '0'
-                                data.isConfirm = '0'
-                                this.add(data, 'InvitedData')
-                            }
-
-                        }
-                        , addExpert: function (data) {
-                            var expertName = $('#expertName').val(),
-                                expertEmail = $('#expertEmail').val(),
-                                expertPart = $('#expertPart').val()
-
-
-                            //发ajax请求回掉函数里执行this.add
-                            this.add({
-                                expertName: expertName,
-                                expertPart: expertPart,
-                                expertEmail: expertEmail,
-                                isEmail: '0',
+                IO.post(SP.resolvedIOPath('expert/initExpertInvite2?_content=json'),
+                    {},
+                    function (d2) {
+                        d2 = JSONX.decode(d2)
+                        console.log(d2.data)
+                        var invitedExperts = d2.data
+                        var TASK = task
+                        var EXPERT_INVITE = {
+                            task: task
+                            , data: [{expertName: '范济安', expertPart: '北京分公司', isInvite: "1"}, {
+                                expertName: '陈淑平',
+                                expertPart: '天津分公司',
+                                isInvite: "0"
+                            }, {expertName: '哈特我', expertPart: '北京分公司', isInvite: "0"}]
+                            , InvitedData: [{
+                                expertName: '范济安',
+                                expertPart: '北京分公司',
+                                isEmail: '1',
                                 isConfirm: '0'
-                            }, 'data')
-                            //清空标签   关闭窗口
-                            $('#expertName').val(''), expertEmail = $('#expertEmail').val(''), expertPart = $('#expertPart').val('')
-                            this.set('openWindow', '1', data)
+                            }, {expertName: '范济安', expertPart: '北京分公司', isEmail: '1', isConfirm: '0'}, {
+                                expertName: '范济安',
+                                expertPart: '北京分公司',
+                                isEmail: '1',
+                                isConfirm: '0'
+                            }, {expertName: '范济安', expertPart: '北京分公司', isEmail: '1', isConfirm: '0'}, {
+                                expertName: '范济安',
+                                expertPart: '北京分公司',
+                                isEmail: '1',
+                                isConfirm: '0'
+                            }, {expertName: '范济安', expertPart: '北京分公司', isEmail: '1', isConfirm: '0'}, {
+                                expertName: '范济安',
+                                expertPart: '北京分公司',
+                                isEmail: '1',
+                                isConfirm: '0'
+                            }]
+                            , openWindow: "1"
+                            , experts: experts.pageItems
+                            , invitedExperts: invitedExperts.pageItems
+                            , handle: {
+                                inviteExpert: function (e, data) {
+                                    if (data.isInvite == '0') {
+                                        //发ajax请求回掉函数里执行this.set  到 this.add（添加到右侧列表）
+                                        this.set('isInvite', '1', data)
+                                        e.target.innerText = '已邀请'
+                                        data.isEmail = '0'
+                                        data.isConfirm = '0'
+                                        this.add(data, 'InvitedData')
+                                    }
 
-                        }
-                        , sendEmail: function (e, data) {
-                            if (data.isEmail == '0') {
-                                //发ajax请求回掉函数里执行this.set   和 e.target.innerText='再发送'
-                                this.set('isEmail', '1', data)
-                                e.target.innerText = '再发送'
+                                }
+                                , addExpert: function (data) {
+                                    var expertName = $('#expertName').val(),
+                                        expertEmail = $('#expertEmail').val(),
+                                        expertPart = $('#expertPart').val()
+
+
+                                    //发ajax请求回掉函数里执行this.add
+                                    this.add({
+                                        expertName: expertName,
+                                        expertPart: expertPart,
+                                        expertEmail: expertEmail,
+                                        isEmail: '0',
+                                        isConfirm: '0'
+                                    }, 'data')
+                                    //清空标签   关闭窗口
+                                    $('#expertName').val(''), expertEmail = $('#expertEmail').val(''), expertPart = $('#expertPart').val('')
+                                    this.set('openWindow', '1', data)
+
+                                }
+                                , sendEmail: function (e, data) {
+                                    if (data.isEmail == '0') {
+                                        //发ajax请求回掉函数里执行this.set   和 e.target.innerText='再发送'
+                                        this.set('isEmail', '1', data)
+                                        e.target.innerText = '再发送'
+                                    }
+                                }
+                                , confirmExpert: function (e, data) {
+                                    if (data.isConfirm == '0') {
+                                        //发ajax请求回掉函数里执行this.set   和 e.target.innerText='已确认'
+                                        this.set('isConfirm', '1', data)
+                                        e.target.innerText = '已确认'
+                                    }
+                                }
+                                , InvitedDel: function (data) {
+                                    //发ajax请求回掉函数里执行this.remove
+                                    this.remove(data)
+                                }
+                                , overlayShow: function (data) {
+                                    //overlay.show()
+                                    //overlay.on('afterRenderUI',function(){
+                                    //    var auth = new Auth('#J_Auth');
+                                    //    auth.plug(new AuthMsgs());
+                                    //    auth.render();
+                                    //
+                                    //
+                                    //    $('#closeOverlay').on('click',function(){
+                                    //        overlay.hide()
+                                    //    })
+                                    //    $('#subExpertForm').on('click',function(){
+                                    //        var expertName=$('#expertName').val(),
+                                    //            expertEmail=$('#expertEmail').val(),
+                                    //            expertPart=$('#expertPart').val()
+                                    //        this.addExpert(expertName)
+                                    //    })
+                                    //
+                                    //})
+                                    //$('#closeOverlay').on('click',function(){
+                                    //    overlay.hide()
+                                    //})
+                                    //$('#subExpertForm').on('click',function(){
+                                    //    this.attributes.handle.addExpert()
+                                    //}.bind(this))
+                                    this.set('openWindow', '0')
+                                }    //打开弹窗
+                                , overlayHide: function (data) {
+                                    this.set('openWindow', '1', data)
+                                }    //关闭弹窗
+                                , reRenderExpert: function (data) {
+                                    this.set('experts', EXPERT_INVITE.experts)
+
+                                    //this.add([{
+                                    //    account: {
+                                    //        name: 'a'
+                                    //    }
+                                    //}], 'experts')
+                                }
                             }
                         }
-                        , confirmExpert: function (e, data) {
-                            if (data.isConfirm == '0') {
-                                //发ajax请求回掉函数里执行this.set   和 e.target.innerText='已确认'
-                                this.set('isConfirm', '1', data)
-                                e.target.innerText = '已确认'
-                            }
+                        var inviteHtml = new XTemplate(inviteView).render({})
+                        p.node.html(inviteHtml)
+                        Bidi.active(['action', 'class', 'attr', 'text', 'click', 'value'])
+                        Bidi.xbind('expertInviteList', EXPERT_INVITE, EXPERT_INVITE.handle, inviteHtml)
+                        var getTaskExpertStatus = function (taskExpert) {
+                            return taskExpert[0].status
                         }
-                        , InvitedDel: function (data) {
-                            //发ajax请求回掉函数里执行this.remove
-                            this.remove(data)
-                        }
-                        , overlayShow: function (data) {
-                            //overlay.show()
-                            //overlay.on('afterRenderUI',function(){
-                            //    var auth = new Auth('#J_Auth');
-                            //    auth.plug(new AuthMsgs());
-                            //    auth.render();
-                            //
-                            //
-                            //    $('#closeOverlay').on('click',function(){
-                            //        overlay.hide()
-                            //    })
-                            //    $('#subExpertForm').on('click',function(){
-                            //        var expertName=$('#expertName').val(),
-                            //            expertEmail=$('#expertEmail').val(),
-                            //            expertPart=$('#expertPart').val()
-                            //        this.addExpert(expertName)
-                            //    })
-                            //
-                            //})
-                            //$('#closeOverlay').on('click',function(){
-                            //    overlay.hide()
-                            //})
-                            //$('#subExpertForm').on('click',function(){
-                            //    this.attributes.handle.addExpert()
-                            //}.bind(this))
-                            this.set('openWindow', '0')
-                        }    //打开弹窗
-                        , overlayHide: function (data) {
-                            this.set('openWindow', '1', data)
-                        }    //关闭弹窗
-                        , reRenderExpert: function (data) {
-                            this.set('experts', EXPERT_INVITE.experts)
-
-                            //this.add([{
-                            //    account: {
-                            //        name: 'a'
-                            //    }
-                            //}], 'experts')
-                        }
-                    }
-                }
-                var inviteHtml = new XTemplate(inviteView).render({})
-                p.node.html(inviteHtml)
-                Bidi.active(['action', 'class', 'attr', 'text', 'click', 'value'])
-                Bidi.xbind('expertInviteList', EXPERT_INVITE, EXPERT_INVITE.handle, inviteHtml)
-                var getTaskExpertStatus = function (taskExpert) {
-                    return taskExpert[0].status
-                }
-                Bidi.pipe('getTaskExpertStatus', getTaskExpertStatus);
-                Bidi.init()
-                var invitePagination = new PG($('#expertInvitePaginationContainer'), {
-                    currentPage: 1, // 默认选中第?页
-                    totalPage: experts.maxPageNum, // 一共有?页
-                    firstPagesCount: 0, // 显示最前面的?页
-                    preposePagesCount: 0, // 当前页的紧邻前置页为?页
-                    postposePagesCount: 0, // 当前页的紧邻后置页为?页
-                    lastPagesCount: 0, // 显示最后面的?页
-                    render: true
-                })
-                invitePagination.on('switch', function (e) {
-                    IO.post(SP.resolvedIOPath('expert/listExpert?_content=json'),
-                        {
-                            pageNo: e.toPage
-                        },
-                        function (d) {
-                            d = JSONX.decode(d)
-                            EXPERT_INVITE.experts = d.data.pageItems
-                            $('.pageSwitchHidden')[0].click()
-                            invitePagination.set('totalPage', d.data.maxPageNum < e.toPage ? e.toPage : d.data.maxPageNum)
-                            invitePagination.renderUI()
-                        }, "json")
-                })
-                var auth = new Auth('#J_Auth');
-                auth.plug(new AuthMsgs());
-                auth.render();
+                        Bidi.pipe('getTaskExpertStatus', getTaskExpertStatus);
+                        Bidi.init()
+                        var invitePagination = new PG($('#expertInvitePaginationContainer'), {
+                            currentPage: 1, // 默认选中第?页
+                            totalPage: experts.maxPageNum, // 一共有?页
+                            firstPagesCount: 0, // 显示最前面的?页
+                            preposePagesCount: 0, // 当前页的紧邻前置页为?页
+                            postposePagesCount: 0, // 当前页的紧邻后置页为?页
+                            lastPagesCount: 0, // 显示最后面的?页
+                            render: true
+                        })
+                        invitePagination.on('switch', function (e) {
+                            IO.post(SP.resolvedIOPath('expert/listExpert?_content=json'),
+                                {
+                                    pageNo: e.toPage
+                                },
+                                function (d) {
+                                    d = JSONX.decode(d)
+                                    EXPERT_INVITE.experts = d.data.pageItems
+                                    $('.pageSwitchHidden')[0].click()
+                                    invitePagination.set('totalPage', d.data.maxPageNum < e.toPage ? e.toPage : d.data.maxPageNum)
+                                    invitePagination.renderUI()
+                                }, "json")
+                        })
+                        var auth = new Auth('#J_Auth')
+                        auth.plug(new AuthMsgs())
+                        auth.render()
+                    }, "json")
             }, "json")
     },
     hide: function (p) {
