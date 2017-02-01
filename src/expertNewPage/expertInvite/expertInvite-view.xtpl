@@ -59,7 +59,7 @@
                                   <li class="expertItem" {{watch "class: isConfirm == 1: isInvite"}}>
             <div>{{account.name}} / {{account.companyName}}</div>
                                         <div class="handleWrap">
-                                            {{expertName}}
+                                            {{account.name}}
                                             <button type="button"  class="primary"}}>信息</button>
                                             <button type="button" class="warning" {{watch "action: click: sendEmail"}}>
                                                                                         {{#if isEmail==='1'}}
@@ -82,6 +82,7 @@
             {{/watch}}
             </ul>
         </div>
+        <div class="demo-con skin-tb expertInvitePaginationContainer2" id="expertInvitePaginationContainer2">1</div>
     </div>
 %}}
 </div>

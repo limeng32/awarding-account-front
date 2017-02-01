@@ -23,7 +23,7 @@ module.exports = {
                     {},
                     function (d2) {
                         d2 = JSONX.decode(d2)
-                        console.log(d2.data)
+                        //console.log(d2.data)
                         var invitedExperts = d2.data
                         var TASK = task
                         var EXPERT_INVITE = {
@@ -34,21 +34,6 @@ module.exports = {
                                 isInvite: "0"
                             }, {expertName: '哈特我', expertPart: '北京分公司', isInvite: "0"}]
                             , InvitedData: [{
-                                expertName: '范济安',
-                                expertPart: '北京分公司',
-                                isEmail: '1',
-                                isConfirm: '0'
-                            }, {expertName: '范济安', expertPart: '北京分公司', isEmail: '1', isConfirm: '0'}, {
-                                expertName: '范济安',
-                                expertPart: '北京分公司',
-                                isEmail: '1',
-                                isConfirm: '0'
-                            }, {expertName: '范济安', expertPart: '北京分公司', isEmail: '1', isConfirm: '0'}, {
-                                expertName: '范济安',
-                                expertPart: '北京分公司',
-                                isEmail: '1',
-                                isConfirm: '0'
-                            }, {expertName: '范济安', expertPart: '北京分公司', isEmail: '1', isConfirm: '0'}, {
                                 expertName: '范济安',
                                 expertPart: '北京分公司',
                                 isEmail: '1',
