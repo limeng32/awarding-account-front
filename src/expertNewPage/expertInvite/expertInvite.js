@@ -130,6 +130,9 @@ module.exports = {
                                     //    }
                                     //}], 'experts')
                                 }
+                                , reRenderInvitedExpert: function (data) {
+                                    this.set('invitedExperts', EXPERT_INVITE.invitedExperts)
+                                }
                             }
                         }
                         var inviteHtml = new XTemplate(inviteView).render({})
@@ -161,6 +164,29 @@ module.exports = {
                                     $('.pageSwitchHidden')[0].click()
                                     invitePagination.set('totalPage', d.data.maxPageNum < e.toPage ? e.toPage : d.data.maxPageNum)
                                     invitePagination.renderUI()
+                                }, "json")
+                        })
+                        var invitePagination2 = new PG($('#expertInvitePaginationContainer2'), {
+                            currentPage: 1, // 默认选中第?页
+                            totalPage: 2, // 一共有?页
+                            firstPagesCount: 0, // 显示最前面的?页
+                            preposePagesCount: 0, // 当前页的紧邻前置页为?页
+                            postposePagesCount: 0, // 当前页的紧邻后置页为?页
+                            lastPagesCount: 0, // 显示最后面的?页
+                            render: true
+                        })
+                        invitePagination2.on('switch', function (e) {
+                            IO.post(SP.resolvedIOPath('expert/listInvitedExpert?_content=json'),
+                                {
+                                    pageNo: e.toPage
+                                },
+                                function (d) {
+                                    d = JSONX.decode(d)
+                                    console.log(d)
+                                    EXPERT_INVITE.invitedExperts = d.data.pageItems
+                                    $('.pageInvitedSwitchHidden')[0].click()
+                                    invitePagination2.set('totalPage', d.data.maxPageNum < e.toPage ? e.toPage : d.data.maxPageNum)
+                                    invitePagination2.renderUI()
                                 }, "json")
                         })
                         var auth = new Auth('#J_Auth')

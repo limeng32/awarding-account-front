@@ -83,6 +83,7 @@
             </ul>
         </div>
         <div class="demo-con skin-tb expertInvitePaginationContainer2" id="expertInvitePaginationContainer2">1</div>
+        <input type="hidden" class="pageInvitedSwitchHidden" {{watch "action: click: reRenderInvitedExpert"}}>
     </div>
 %}}
 </div>
