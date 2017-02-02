@@ -102,7 +102,13 @@ module.exports = {
                                             invitePagination2.set('totalPage', d.data.maxPageNum)
                                             invitePagination2.renderUI()
                                             //在这里处理experts中的数据，修改相关专家的邀请状态
-                                            //_this.set('experts', null)
+                                            var experts = _this.get('experts')
+                                            for (var i = 0; i < experts.length; i++) {
+                                                if (experts[i].id == data.id) {
+                                                    experts[i].taskExpert = []
+                                                }
+                                            }
+                                            _this.set('experts', experts)
                                         }, "json")
                                 }
                                 , overlayShow: function (data) {
@@ -186,7 +192,7 @@ module.exports = {
                         })
                         var invitePagination2 = new PG($('#expertInvitePaginationContainer2'), {
                             currentPage: 1, // 默认选中第?页
-                            totalPage: 2, // 一共有?页
+                            totalPage: invitedExperts.maxPageNum, // 一共有?页
                             firstPagesCount: 0, // 显示最前面的?页
                             preposePagesCount: 0, // 当前页的紧邻前置页为?页
                             postposePagesCount: 0, // 当前页的紧邻后置页为?页
