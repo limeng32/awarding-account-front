@@ -43,15 +43,44 @@ module.exports = {
                             , invitedExperts: invitedExperts.pageItems
                             , handle: {
                                 inviteExpert: function (e, data) {
-                                    if (data.isInvite == '0') {
-                                        //发ajax请求回掉函数里执行this.set  到 this.add（添加到右侧列表）
-                                        this.set('isInvite', '1', data)
-                                        e.target.innerText = '已邀请'
-                                        data.isEmail = '0'
-                                        data.isConfirm = '0'
-                                        this.add(data, 'InvitedData')
-                                    }
-
+                                    //if (data.isInvite == '0') {
+                                    //    //发ajax请求回掉函数里执行this.set  到 this.add（添加到右侧列表）
+                                    //    this.set('isInvite', '1', data)
+                                    //    e.target.innerText = '已邀请'
+                                    //    data.isEmail = '0'
+                                    //    data.isConfirm = '0'
+                                    //    this.add(data, 'InvitedData')
+                                    //}
+                                    var _this = this
+                                    IO.post(SP.resolvedIOPath('expert/inviteExpert?_content=json'),
+                                        {
+                                            pageNo: invitePagination2.get('currentPage')
+                                            , expertId: data.id
+                                            , taskId: task.id
+                                        },
+                                        function (d) {
+                                            d = JSONX.decode(d)
+                                            EXPERT_INVITE.invitedExperts = d.data.pageItems
+                                            EXPERT_INVITE.handle.reRenderInvitedExpert(data, _this)
+                                            invitePagination2.set('totalPage', d.data.maxPageNum)
+                                            invitePagination2.set('currentPage', d.data.maxPageNum)
+                                            invitePagination2.renderUI()
+                                            //在这里处理experts中的数据，修改相关专家的邀请状态
+                                            var experts = _this.get('experts')
+                                            for (var i = 0; i < experts.length; i++) {
+                                                if (experts[i].id == data.id) {
+                                                    //experts[i].taskExpert = []
+                                                    for (var j = 0; j < EXPERT_INVITE.invitedExperts.length; j++) {
+                                                        if (EXPERT_INVITE.invitedExperts[j].id == experts[i].id) {
+                                                            experts[i].taskExpert = EXPERT_INVITE.invitedExperts[j].taskExpert
+                                                            break
+                                                        }
+                                                    }
+                                                    break
+                                                }
+                                            }
+                                            _this.set('experts', experts)
+                                        }, "json")
                                 }
                                 , addExpert: function (data) {
                                     var expertName = $('#expertName').val(),
@@ -87,8 +116,6 @@ module.exports = {
                                     }
                                 }
                                 , InvitedDel: function (data) {
-                                    //发ajax请求回掉函数里执行this.remove
-                                    //this.remove(data)
                                     var _this = this
                                     IO.post(SP.resolvedIOPath('expert/unInviteExpert?_content=json'),
                                         {
@@ -106,6 +133,7 @@ module.exports = {
                                             for (var i = 0; i < experts.length; i++) {
                                                 if (experts[i].id == data.id) {
                                                     experts[i].taskExpert = []
+                                                    break
                                                 }
                                             }
                                             _this.set('experts', experts)
