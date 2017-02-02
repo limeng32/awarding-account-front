@@ -29,7 +29,7 @@
     <div id="subMenu_u112" class="ax_paragraph " selectiongroup="projectSubMenu">
         <img id="subMenu_u112_img" class="img " src="./account/images/transparent.gif"/>
         <!-- Unnamed () -->
-        <div id="subMenu_u113" class="text subMenu_txt subMenuUnfocus" data-show="chief">
+        <div id="subMenu_u113" class="text subMenu_txt subMenuUnfocus" data-show="master">
             <p><span>指定主审专家</span></p>
         </div>
     </div>

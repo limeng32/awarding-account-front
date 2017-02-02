@@ -3,7 +3,8 @@ var XTemplate = require("kg/xtemplate/3.3.3/runtime");
 var sbTpl = require('./subMenu-view');
 var inviteView = require('../expertInvite/expertInvite')
 var manageView = require('../expertManage/expertManage')
-var avoidViiew = require('../expertAvoid/expertAvoid')
+var avoidView = require('../expertAvoid/expertAvoid')
+var MasterView = require('../expertMaster/expertMaster')
 //var listProject = require('./listProject/listProject')
 //var listProjectSubmited = require('./listProjectSubmited/listProjectSubmited')
 //var listProjectReturned = require('./listProjectReturned/listProjectReturned')
@@ -30,6 +31,8 @@ module.exports = {
             var view = $(e.currentTarget).attr('data-show')
             if ('invite' == view) {
                 manageView.hide()
+                avoidView.hide()
+                MasterView.hide()
                 //渲染待分配列表到$('.reviewedContainer')
                 inviteView.init({
                     node: $('.reviewedContainer')
@@ -38,6 +41,8 @@ module.exports = {
 
             } else if ('manage' == view) {
                 inviteView.hide()
+                avoidView.hide()
+                MasterView.hide()
                 manageView.init({
                     node: $('.reviewedContainer')
                 });
@@ -45,7 +50,16 @@ module.exports = {
             }else if('avoid' == view){
                 manageView.hide()
                 inviteView.hide()
-                avoidViiew.init({
+                MasterView.hide()
+                avoidView.init({
+                    node: $('.reviewedContainer')
+
+                })
+            }else if('master' == view){
+                manageView.hide()
+                inviteView.hide()
+                avoidView.hide()
+                MasterView.init({
                     node: $('.reviewedContainer')
 
                 })
