@@ -7,18 +7,16 @@
         <ul>
                 {{#watch "list: data"}}
                       <li class="expertItem" {{watch "class: isInvite == 1: isInvite"}}>
-                            <div>{{expertName}}/{{expertPart}}</div>
+                            <div><span {{{watch "text:expertName"}}}></span>/<span {{{watch "text:expertPart"}}}></span></div>
                             <div class="handleWrap">
-                                {{expertName}}
-                                <button type="button"  class="primary"}}>信息</button>
+                                <span {{{watch "text:expertName"}}}></span>
+                                <button type="button"  class="primary"  {{watch "action: click: infoEditShow"}}>信息</button>
                                 <button type="button" class="info" {{watch "action: click: inviteExpert" "attr:isInvite == 1: disabled"}}>
-                                {{#if isInvite==='1'}}
-                                    已邀请
-                                {{else}}
-                                    邀请
-                                {{/if}}
+
+                                <span {{{watch "text:isInvite :inviteText"}}}></span>
+
                                 </button>
-                                <button type="button" class="danger" {{watch "click:$root.InvitedDel" "attr:isInvite == 1: disabled"}}>删除</button>
+                                <button type="button" class="danger" {{watch "click:$root.expertDel" "attr:isInvite == 1: disabled"}}>删除</button>
                             </div>
                       </li>
                 {{/watch}}
@@ -31,51 +29,64 @@
             <div class="control-group">
                 <label class="control-label" for="expertName">专家名称：</label>
                     <div class="controls">
-                        <input type="text" class="input-xlarge" name="expertName" placeholder="请输入专家名称" id="expertName" required>
+                        <input type="text" class="input-xlarge" name="expertName" placeholder="请输入专家名称" {{watch "attr:isEdit == 0: readonly"}}  required >
+                        <button type="button" name='expertName' {{watch "action: click: infoEdit" "class:isEdit==1:hide"}}>
+                            修改
+                        </button>
                     </div>
                 <label class="control-label" for="expertEmail">邮箱地址：</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" name="expertEmail" placeholder="请输入邮箱地址" id="expertEmail"  required email>
+                            <input type="text" class="input-xlarge" name="expertEmail" placeholder="请输入邮箱地址" {{watch "attr:isEdit == 0: readonly"}}   required email>
+                            <button type="button" name='expertEmail' {{watch "action: click: infoEdit" "class:isEdit==1:hide"}}>
+                                修改
+                            </button>
                         </div>
                 <label class="control-label" for="expertPart">所属单位：</label>
                             <div class="controls">
-                                <input type="text" class="input-xlarge" name="expertPart" placeholder="请输入所属单位" id="expertPart" required>
+                                <input type="text" class="input-xlarge" name="expertPart" placeholder="请输入所属单位" {{watch "attr:isEdit == 0: readonly"}}  required>
+                                <button type="button" name='expertPart' {{watch "action: click: infoEdit" "class:isEdit==1:hide"}}>
+                                修改
+                                </button>
                             </div>
             </div>
             <div class="form-actions">
-                <button type="button" {{watch "click:addExpert"}} class="ks-button ks-button-primary ks-button-shown">提交</button>
-                <button type="button" {{watch "click:overlayHide"}} class="ks-button ks-button-danger ks-button-shown">取消</button>
+                <button type="button" {{watch "click:addExpert" "class:isEdit==0:hide"}} class="ks-button ks-button-primary ks-button-shown" >提交</button>
+                <button type="button" {{watch "click:overlayHide"}} class="ks-button ks-button-danger ks-button-shown">关闭</button>
             </div>
         </form>
     </div>
+
     <div class="invitedExpertWrap">
         <h4>已邀请专家</h4>
         <div class='invitedExpert'>
         <ul>
-            {{#watch "list: InvitedData"}}
 
-                                  <li class="expertItem" {{watch "class: isConfirm == 1: isInvite"}}>
-                                        <div>{{expertName}}/{{expertPart}}</div>
-                                        <div class="handleWrap">
-                                            {{expertName}}
-                                            <button type="button"  class="primary"}}>信息</button>
-                                            <button type="button" class="warning" {{watch "action: click: sendEmail"}}>
-                                                                                        {{#if isEmail==='1'}}
-                                                                                            再发送
-                                                                                        {{else}}
-                                                                                            发送
-                                                                                        {{/if}}
-                                            </button>
-                                            <button type="button" class="info" {{watch "action: click: confirmExpert" "attr:isConfirm == 1: disabled"}}>
-                                                                                                                                    {{#if isEmail==='1'}}
-                                                                                                                                        已确认
-                                                                                                                                    {{else}}
-                                                                                                                                        确认
-                                                                                                                                    {{/if}}
-                                                                                        </button>
-                                            <button type="button" class="danger" {{watch "click:$root.InvitedDel" "attr:isConfirm == 1: disabled"}}>取消</button>
-                                        </div>
-                                  </li>
+            {{#watch "list: data"}}
+
+                                                            <li class="expertItem" {{watch "class: isConfirm == 1: isInvite" "class: isInvite == 0: hide"}}>
+                                                                  <div><span {{{watch "text:expertName"}}}></span>/<span {{{watch "text:expertPart"}}}></span></div>
+                                                                  <div class="handleWrap">
+                                                                      <span {{{watch "text:expertName"}}}></span>
+                                                                      <button type="button"  class="primary" {{watch "action: click: infoEditShow"}}>信息</button>
+                                                                      <button type="button" class="warning" {{watch "action: click: sendEmail"}}>
+                                                                                                                  {{#if isEmail==='1'}}
+                                                                                                                      再发送
+                                                                                                                  {{else}}
+                                                                                                                      发送
+                                                                                                                  {{/if}}
+                                                                      </button>
+                                                                      <button type="button" class="info" {{watch "action: click: confirmExpert" "attr:isConfirm == 1: disabled"}}>
+                                                                                                                                                              {{#if isEmail==='1'}}
+                                                                                                                                                                  已确认
+                                                                                                                                                              {{else}}
+                                                                                                                                                                  确认
+                                                                                                                                                              {{/if}}
+                                                                                                                  </button>
+                                                                      <button type="button" class="danger" {{watch "click:$root.InvitedDel" "attr:isConfirm == 1: disabled"}}>取消</button>
+                                                                  </div>
+                                                            </li>
+
+
 
             {{/watch}}
             </ul>

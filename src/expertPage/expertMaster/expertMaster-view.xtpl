@@ -1,0 +1,184 @@
+<div class="bidi-viewer expertInviteWrap" data-view="expertManageList" id="expertMasterWrap">
+{{%
+    <div>
+        <p>本届活动已邀请专家：</p>
+        <select {{watch "select: name" "action: change: SelectGroup"}}>
+            <option value="all">全部</option>
+            {{#each groups}}
+                <option value="{{name}}">{{name}}</option>
+            {{/each}}
+        </select>
+        <ul>
+                {{#watch "list: data"}}
+                      <li class="expertItem" {{watch "class: group != 0: isInvite"}}>
+                            <div><span {{{watch "text:expertName"}}}></span>/<span {{{watch "text:expertPart"}}}></span></div>
+                            <div class="handleWrap">
+                                <span {{{watch "text:expertName"}}}></span>
+                                <button type="button"  class="primary" {{watch "action: click: infoEditShow"}}>信息</button>
+                                <button type="button" class="info" disabled>
+                                {{#if isConfirm==='1'}}
+                                    已确认
+                                {{else}}
+                                    未确认
+                                {{/if}}
+                                </button>
+                                <button type="button" class="info" disabled>
+                                     {{#if group==='0'}}
+                                            未分组
+                                     {{else}}
+                                            {{group}}
+                                     {{/if}}
+                                </button>
+
+                            </div>
+                      </li>
+                {{/watch}}
+
+        </ul>
+    </div>
+
+    <div class="groupWrap">
+        {{#each groups}}
+        <div class="group">
+            <p>{{name}}</p>
+
+
+            <ul>
+
+                {{#each ../projectData}}
+
+                {{#if group===name}}
+                <li class='expertItem pItem {{#if master!=='0'}}isMaster{{/if}} ' >
+                    <div>{{pName}}</div>
+
+                                            <div class="handleWrap">
+
+                                                <button type="button"  class="primary" {{watch "action: click: pInfoShow"}} name={{pID}}>信息</button>
+                                                <button type="button" class="info" {{watch "action: click: commentShow"}} name={{pID}}>
+                                                审查意见
+                                                </button>
+                                                申报：{{part}}</br>
+                                                主审:
+
+                                                <select  class='choseMaster' name={{pID}}>
+
+                                                                                                         {{#if master==='0'}}
+                                                                                                             <option value="0" selected="selected">未选择</option>
+                                                                                                                 {{#each ../../data}}
+                                                                                                                     {{#if group===name}}
+                                                                                                                     <option value="{{expertName}}">{{expertName}}</option>
+                                                                                                                     {{/if}}
+                                                                                                                 {{/each}}
+                                                                                                         {{else}}
+                                                                                                             {{#each ../../data}}
+                                                                                                                    {{#if group===name}}
+                                                                                                                     {{#if master===expertName}}
+                                                                                                                     <option value="{{expertName}}" selected="selected">{{expertName}}</option>
+                                                                                                                     {{else}}
+                                                                                                                      <option value="{{expertName}}">{{expertName}}</option>
+                                                                                                                     {{/if}}
+                                                                                                                     {{/if}}
+                                                                                                             {{/each}}
+
+                                                                                                         {{/if}}
+
+                                                </select>
+                                            </div>
+
+                </li>
+                {{/if}}
+
+                {{/each}}
+
+            </ul>
+
+        </div>
+        {{/each}}
+
+
+    </div>
+        <div class="addExpertForm " {{watch "class: openWindow == 1: isOpenWindow"}}>
+            <form class="form-horizontal" id="J_Auth">
+                <div class="control-group">
+                    <label class="control-label" for="expertName">专家名称：</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" name="expertName" placeholder="请输入专家名称" {{watch "attr:isEdit == 0: readonly"}}  required >
+                            <button type="button" name='expertName' {{watch "action: click: eInfoEdit" "class:isEdit==1:hide"}}>
+                                修改
+                            </button>
+                        </div>
+                    <label class="control-label" for="expertEmail">邮箱地址：</label>
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" name="expertEmail" placeholder="请输入邮箱地址" {{watch "attr:isEdit == 0: readonly"}}   required email>
+                                <button type="button" name='expertEmail' {{watch "action: click: eInfoEdit" "class:isEdit==1:hide"}}>
+                                    修改
+                                </button>
+                            </div>
+                    <label class="control-label" for="expertPart">所属单位：</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge" name="expertPart" placeholder="请输入所属单位" {{watch "attr:isEdit == 0: readonly"}}  required>
+                                    <button type="button" name='expertPart' {{watch "action: click: eInfoEdit" "class:isEdit==1:hide"}}>
+                                    修改
+                                    </button>
+                                </div>
+                </div>
+                <div class="form-actions">
+
+                    <button type="button" {{watch "click:overlayHide"}} class="ks-button ks-button-danger ks-button-shown">关闭</button>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="addExpertForm " {{watch "class: openPWindow == 1: isOpenWindow"}}>
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="pName">项目名称：</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge" name="pName"  readonly>
+                                </div>
+                            <label class="control-label" for="pOName">项目原名：</label>
+                                    <div class="controls">
+                                        <input type="text" class="input-xlarge" name="pOName" readonly>
+                                    </div>
+                            <label class="control-label" for="part">申报单位：</label>
+                                        <div class="controls">
+                                            <input type="text" class="input-xlarge" name="part" readonly>
+                                        </div>
+                        </div>
+                        <div class="form-actions">
+
+                            <button type="button" {{watch "click:overlayHide"}} class="ks-button ks-button-danger ks-button-shown">关闭</button>
+                        </div>
+                    </form>
+        </div>
+
+
+        <div class="addExpertForm " {{watch "class: openCWindow == 1: isOpenWindow"}}>
+                    <form class="form-horizontal" id="commentEdit">
+                        <div class="control-group">
+                            <label class="control-label" for="pName">项目名称：</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge" name="pName" readonly >
+
+                                </div>
+                            <label class="control-label" for="comment">审查意见：</label>
+                                    <div class="controls">
+                                        <textarea name="comment" placeholder="请输入审查意见" readonly>
+
+                                        </textarea>
+                                        <button type="button" name='comment' {{watch "action: click: commentEdit" "class:isEdit==1:hide"}}>
+                                            修改
+                                        </button>
+                                    </div>
+
+                        </div>
+                        <div class="form-actions">
+
+                            <button type="button" {{watch "click:overlayHide"}} class="ks-button ks-button-danger ks-button-shown">关闭</button>
+                        </div>
+                    </form>
+                </div>
+
+%}}
+</div>
