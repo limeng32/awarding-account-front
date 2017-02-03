@@ -14,7 +14,8 @@ module.exports = {
             data:[
                 {expertName:'范济安',expertPart:'北京分公司',isConfirm:"0",group:'网络组',expertID:'1',expertEmail:'faf@qq.com'},
                 {expertName:'陈淑平',expertPart:'天津分公司',isConfirm:"1",group:'IT支撑组',expertID:'2',expertEmail:'dfg@qq.com'},
-                {expertName:'哈特我',expertPart:'北京分公司',isConfirm:"0",group:'0',expertID:'3',expertEmail:'asd@qq.com'},
+                {expertName:'哈特我',expertPart:'北京分公司',isConfirm:"0",group:'业务终端组',expertID:'3',expertEmail:'asd@qq.com'},
+                {expertName:'东方红',expertPart:'北京分公司',isConfirm:"0",group:'业务终端组',expertID:'5',expertEmail:'asd@qq.com'},
                 {expertName:'htr',expertPart:'北京分公司',isConfirm:"0",group:'0',expertID:'4',expertEmail:'sdf@qq.com'}
             ],
             groups:[

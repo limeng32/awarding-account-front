@@ -61,19 +61,22 @@
                                                 主审:
 
                                                 <select  class='choseMaster' name={{pID}}>
+
                                                                                                          {{#if master==='0'}}
                                                                                                              <option value="0" selected="selected">未选择</option>
                                                                                                                  {{#each ../../data}}
-
+                                                                                                                     {{#if group===name}}
                                                                                                                      <option value="{{expertName}}">{{expertName}}</option>
-
+                                                                                                                     {{/if}}
                                                                                                                  {{/each}}
                                                                                                          {{else}}
                                                                                                              {{#each ../../data}}
+                                                                                                                    {{#if group===name}}
                                                                                                                      {{#if master===expertName}}
                                                                                                                      <option value="{{expertName}}" selected="selected">{{expertName}}</option>
                                                                                                                      {{else}}
                                                                                                                       <option value="{{expertName}}">{{expertName}}</option>
+                                                                                                                     {{/if}}
                                                                                                                      {{/if}}
                                                                                                              {{/each}}
 
