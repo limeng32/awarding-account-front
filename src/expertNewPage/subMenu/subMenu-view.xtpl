@@ -1,0 +1,40 @@
+<div id="subMenu_u">
+    <div id="subMenu_u106" class="ax_paragraph " selectiongroup="projectSubMenu">
+        <img id="subMenu_u106_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="subMenu_u107" class="text subMenu_txt subMenuFocus" data-show="invite">
+            <p><span>邀请专家</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Shape) -->
+    <div id="subMenu_u108" class="ax_paragraph " selectiongroup="projectSubMenu">
+        <img id="subMenu_u108_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="subMenu_u109" class="text subMenu_txt subMenuUnfocus" data-show="manage">
+            <p><span>专家管理</span></p>
+        </div>
+    </div>
+
+    <!-- projectInitMenu (Shape) -->
+    <div id="subMenu_u110" class="ax_paragraph " selectiongroup="projectSubMenu">
+        <img id="subMenu_u110_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="subMenu_u111" class="text subMenu_txt subMenuUnfocus" data-show="avoid">
+            <p><span>项目回避表</span></p>
+        </div>
+    </div>
+
+    <!-- projectInitMenu (Shape) -->
+    <div id="subMenu_u112" class="ax_paragraph " selectiongroup="projectSubMenu">
+        <img id="subMenu_u112_img" class="img " src="./account/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="subMenu_u113" class="text subMenu_txt subMenuUnfocus" data-show="chief">
+            <p><span>指定主审专家</span></p>
+        </div>
+    </div>
+
+        <div id='sidebarL'>
+
+        </div>
+</div>

@@ -1,0 +1,177 @@
+.expertInviteWrap{
+  position: relative;
+  ul{
+    padding: 0;
+  }
+  button{
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
+  }
+  width: 800px;
+  #aside_u14{
+    left: 380px;
+  }
+}
+.expertItem{
+  background-color: #6e9f99;
+  color: #ffffff;
+  text-align: center;
+  width:200px;
+  border-radius: 3px;
+  height: 25px;
+  line-height: 25px;
+  margin-top: 10px;
+  div{
+    display: block;
+  }
+  div+div{
+    display: none;
+  }
+  button{
+
+    padding: 3px 5px;
+
+  }
+}
+.expertItem:hover{
+  div{
+    display: none;
+  }
+  div+div{
+    display: block;
+  }
+}
+.primary{
+  background-color: #4885a6;
+}
+.info{
+  background-color: #56844d;
+}
+.danger{
+  background-color: #ac5150;
+}
+.warning{
+  background-color: #ec9848;
+}
+.isInvite{
+  background-color: #a2bfbc !important;
+}
+.hide{
+  display: none;
+}
+.handleWrap{
+  background-color: #e4e4e4;
+  color: #000000;
+  button{
+    width: 50px;
+  }
+}
+button[disabled]{
+  background-color: #cccccc !important;
+}
+.addButton{
+  background-color: #ff6600;
+  width: 200px;
+  border-radius: 3px;
+  height: 25px;
+}
+.addExpertForm{
+  padding: 30px 50px;
+  font-size: 16px;
+  position: absolute;
+  z-index: 9;
+  top:128px;
+  button{
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
+    padding: 3px 5px;
+  }
+  div{
+    padding-top:10px;
+    input{
+      margin-left: 30px;
+    }
+  }
+  .buttonWrap{
+    padding-left: 110px;
+    margin-top: 20px;
+  }
+}
+.isOpenWindow{
+  display: none;
+}
+.addExpertForm{
+  background-color: #f5f5f5;
+}
+.invitedExpertWrap{
+  position: absolute;
+  right: -50px;
+  top:0;
+  width: 605px;
+}
+.invitedExpert{
+  border:3px solid #cccccc;
+  padding: 0 15px 10px 15px;
+  font-size: 0;
+  -webkit-text-size-adjust:none;
+  border-radius: 5px;
+  min-height: 200px;
+  li{
+    display: inline-block;
+    *display:inline;
+    *zoom:1;
+    margin-left: 15px;
+    font-size: 14px;
+    width: 265px;
+    button{
+      font-size: 12px;
+    }
+  }
+}
+
+.absCenter{
+  position: absolute;
+  left: 50% !important;
+  top:50% !important;
+  transform: translate(-50%,-50%);
+  z-index: 9;
+}
+
+.ks-overlay {
+  position:absolute;
+  left:-9999px;
+  top:-9999px;
+}
+.ks-overlay-hidden {
+  visibility: hidden;
+}
+
+.ks-overlay-mask-hidden {
+  display: none;
+}
+
+.ks-overlay-shown {
+  visibility: visible;
+}
+
+.ks-overlay-mask-shown{
+  display: block;
+}
+
+.expertInvitePaginationContainer {
+  position: absolute;
+  left: 0px;
+  top: 440px;
+  width: 220px;
+}
+
+.expertInvitePaginationContainer2 {
+  position: absolute;
+  left: 200px;
+  top: 233px;
+  width: 220px;
+}
+
+@import '../../pagination/pagination';

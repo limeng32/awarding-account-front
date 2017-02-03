@@ -1,0 +1,89 @@
+<div class="bidi-viewer expertInviteWrap" data-view="expertInviteList" id="expertInviteWrap">
+    {{%
+    <div>
+        <p>往届专家参与情况：</p>
+
+        <p>专家库</p>
+        <button type="button" {{watch
+        "click:overlayShow"}} class="addButton">{{task.name}}</button>
+        <ul>
+            {{#watch "list: experts"}}
+                      <li class="expertItem" {{watch "class: taskExpert.length != 0: isInvite"}}>
+            <div>{{account.name}} / {{account.companyName}}</div>
+                            <div class="handleWrap">
+                                <span {{{watch "text:taskExpert:getTaskExpertStatus"}}}></span>
+                                <button type="button"  class="primary"}}>信息</button>
+                                <button type="button" class="info" {{watch "action: click: inviteExpert" "attr:isInvite == 1: disabled"}}>
+                                {{#if isInvite==='1'}}
+                                    已邀请
+                                {{else}}
+                                    邀请
+                                {{/if}}
+                                </button>
+                                <button type="button" class="danger" {{watch "click:$root.InvitedDel" "attr:isInvite == 1: disabled"}}>删除</button>
+                            </div>
+                      </li>
+                {{/watch}}
+        </ul>
+        <input type="hidden" class="pageSwitchHidden" {{watch "action: click: reRenderExpert"}}>
+    </div>
+    <div class="demo-con skin-tb expertInvitePaginationContainer" id="expertInvitePaginationContainer">1</div>
+    <div class="addExpertForm " {{watch "class: openWindow == 1: isOpenWindow"}}>
+        <form class="form-horizontal" id="J_Auth">
+            <div class="control-group">
+                <label class="control-label" for="expertName">专家名称：</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" name="expertName" placeholder="请输入专家名称" id="expertName" required>
+                    </div>
+                <label class="control-label" for="expertEmail">邮箱地址：</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" name="expertEmail" placeholder="请输入邮箱地址" id="expertEmail"  required email>
+                        </div>
+                <label class="control-label" for="expertPart">所属单位：</label>
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" name="expertPart" placeholder="请输入所属单位" id="expertPart" required>
+                            </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" {{watch "click:addExpert"}} class="ks-button ks-button-primary ks-button-shown">提交</button>
+                <button type="button" {{watch "click:overlayHide"}} class="ks-button ks-button-danger ks-button-shown">取消</button>
+            </div>
+        </form>
+    </div>
+    <div class="invitedExpertWrap">
+        <h4>已邀请专家</h4>
+        <div class='invitedExpert'>
+        <ul>
+            {{#watch "list: invitedExperts"}}
+
+                                  <li class="expertItem" {{watch "class: isConfirm == 1: isInvite"}}>
+            <div>{{account.name}} / {{account.companyName}}</div>
+                                        <div class="handleWrap">
+                                            {{account.name}}
+                                            <button type="button"  class="primary"}}>信息</button>
+                                            <button type="button" class="warning" {{watch "action: click: sendEmail"}}>
+                                                                                        {{#if isEmail==='1'}}
+                                                                                            再发送
+                                                                                        {{else}}
+                                                                                            发送
+                                                                                        {{/if}}
+                                            </button>
+                                            <button type="button" class="info" {{watch "action: click: confirmExpert" "attr:isConfirm == 1: disabled"}}>
+                                                                                                                                    {{#if isEmail==='1'}}
+                                                                                                                                        已确认
+                                                                                                                                    {{else}}
+                                                                                                                                        确认
+                                                                                                                                    {{/if}}
+                                                                                        </button>
+                                            <button type="button" class="danger" {{watch "click:$root.InvitedDel" "attr:isConfirm == 1: disabled"}}>取消</button>
+                                        </div>
+                                  </li>
+
+            {{/watch}}
+            </ul>
+        </div>
+        <div class="demo-con skin-tb expertInvitePaginationContainer2" id="expertInvitePaginationContainer2">1</div>
+        <input type="hidden" class="pageInvitedSwitchHidden" {{watch "action: click: reRenderInvitedExpert"}}>
+    </div>
+%}}
+</div>
