@@ -13,6 +13,35 @@ require('kg/auth/2.0.6/plugin/msgs/style.css')
 require('./expertInvite.css')
 module.exports = {
     init: function (p) {
+        var initExpert = function (expert) {
+            if (expert.taskExpert == null) {
+                expert._showInvite = 1
+                expert._showEmail = 0
+                expert._showConfirm = 0
+                expert._showCancel = 0
+            } else if (expert.taskExpert[0].status == 'invite') {
+                expert._showEmail = 1
+                expert._showCancel = 1
+                expert._showInvite = 0
+                expert._showConfirm = 0
+            } else if (expert.taskExpert[0].status == 'email') {
+                expert._showCancel = 1
+                expert._showConfirm = 1
+                expert._showEmail = 1
+                expert._showInvite = 0
+            } else if (expert.taskExpert[0].status == 'confirm') {
+                expert._showCancel = 1
+                expert._showInvite = 0
+                expert._showEmail = 0
+                expert._showConfirm = 0
+            }
+        }
+        var initExpertFlag = function (experts) {
+            for (var i = 0; i < experts.length; i++) {
+                initExpert(experts[i])
+            }
+            return experts
+        }
         IO.post(SP.resolvedIOPath('expert/initExpertInvite?_content=json'),
             {},
             function (d) {
@@ -40,7 +69,7 @@ module.exports = {
                             }]
                             , openWindow: "1"
                             , experts: experts.pageItems
-                            , invitedExperts: invitedExperts.pageItems
+                            , invitedExperts: initExpertFlag(invitedExperts.pageItems)
                             , handle: {
                                 inviteExpert: function (e, data) {
                                     //if (data.isInvite == '0') {
@@ -104,18 +133,58 @@ module.exports = {
 
                                 }
                                 , sendEmail: function (e, data) {
-                                    if (data.isEmail == '0') {
-                                        //发ajax请求回掉函数里执行this.set   和 e.target.innerText='再发送'
-                                        this.set('isEmail', '1', data)
-                                        e.target.innerText = '再发送'
-                                    }
+                                    var self = this
+                                    IO.post(SP.resolvedIOPath('expert/emailExpert?_content=json'),
+                                        {
+                                            expertId: data.id
+                                            , taskId: task.id
+                                        },
+                                        function (d) {
+                                            if (d.flag) {
+                                                data.taskExpert[0].status = 'email'
+                                                for (var i = 0; i < EXPERT_INVITE.invitedExperts.length; i++) {
+                                                    if (EXPERT_INVITE.invitedExperts[i].id == data.id) {
+                                                        EXPERT_INVITE.invitedExperts[i] = data
+                                                        break
+                                                    }
+                                                }
+                                                self.set('invitedExperts', initExpertFlag(EXPERT_INVITE.invitedExperts))
+                                                for (var i = 0; i < EXPERT_INVITE.experts.length; i++) {
+                                                    if (EXPERT_INVITE.experts[i].id == data.id) {
+                                                        EXPERT_INVITE.experts[i].taskExpert = data.taskExpert
+                                                        break
+                                                    }
+                                                }
+                                                self.set('experts', EXPERT_INVITE.experts)
+                                            }
+                                        }, "json")
                                 }
                                 , confirmExpert: function (e, data) {
-                                    if (data.isConfirm == '0') {
-                                        //发ajax请求回掉函数里执行this.set   和 e.target.innerText='已确认'
-                                        this.set('isConfirm', '1', data)
-                                        e.target.innerText = '已确认'
-                                    }
+                                    var self = this
+                                    IO.post(SP.resolvedIOPath('expert/confirmExpert?_content=json'),
+                                        {
+                                            expertId: data.id
+                                            , taskId: task.id
+                                        },
+                                        function (d) {
+                                            if (d.flag) {
+                                                data.taskExpert[0].status = 'confirm'
+                                                for (var i = 0; i < EXPERT_INVITE.invitedExperts.length; i++) {
+                                                    if (EXPERT_INVITE.invitedExperts[i].id == data.id) {
+                                                        EXPERT_INVITE.invitedExperts[i] = data
+                                                        break
+                                                    }
+                                                }
+                                                self.set('invitedExperts', initExpertFlag(EXPERT_INVITE.invitedExperts))
+                                                for (var i = 0; i < EXPERT_INVITE.experts.length; i++) {
+                                                    if (EXPERT_INVITE.experts[i].id == data.id) {
+                                                        EXPERT_INVITE.experts[i].taskExpert = data.taskExpert
+                                                        break
+                                                    }
+                                                }
+                                                self.set('experts', EXPERT_INVITE.experts)
+                                            }
+                                        }, "json")
                                 }
                                 , InvitedDel: function (data) {
                                     var _this = this
@@ -181,6 +250,7 @@ module.exports = {
                                     //}], 'experts')
                                 }
                                 , reRenderInvitedExpert: function (data, _this) {
+                                    initExpertFlag(EXPERT_INVITE.invitedExperts)
                                     if (_this != null) {
                                         _this.set('invitedExperts', EXPERT_INVITE.invitedExperts)
                                     } else {
@@ -193,10 +263,9 @@ module.exports = {
                         p.node.html(inviteHtml)
                         Bidi.active(['action', 'class', 'attr', 'text', 'click', 'value'])
                         Bidi.xbind('expertInviteList', EXPERT_INVITE, EXPERT_INVITE.handle, inviteHtml)
-                        var getTaskExpertStatus = function (taskExpert) {
+                        Bidi.pipe('getTaskExpertStatus', function (taskExpert) {
                             return taskExpert[0].status
-                        }
-                        Bidi.pipe('getTaskExpertStatus', getTaskExpertStatus);
+                        })
                         Bidi.init()
                         var invitePagination = new PG($('#expertInvitePaginationContainer'), {
                             currentPage: 1, // 默认选中第?页

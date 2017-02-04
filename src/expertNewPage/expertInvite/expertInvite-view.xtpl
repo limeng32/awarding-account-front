@@ -13,13 +13,9 @@
                             <div class="handleWrap">
                                 <span {{{watch "text:taskExpert:getTaskExpertStatus"}}}></span>
                                 <button type="button"  class="primary"}}>信息</button>
-                                <button type="button" class="info" {{watch "action: click: inviteExpert" "attr:isInvite == 1: disabled"}}>
-                                {{#if isInvite==='1'}}
-                                    已邀请
-                                {{else}}
-                                    邀请
-                                {{/if}}
-                                </button>
+                                <button type="button" class="info" {{watch
+                                "action: click: inviteExpert" "attr:isInvite == 1: disabled" "class:
+                                taskExpert.length!=0: _hide"}}>邀请</button>
                                 <button type="button" class="danger" {{watch "click:$root.InvitedDel" "attr:isInvite == 1: disabled"}}>删除</button>
                             </div>
                       </li>
@@ -61,21 +57,15 @@
                                         <div class="handleWrap">
                                             {{account.name}}
                                             <button type="button"  class="primary"}}>信息</button>
-                                            <button type="button" class="warning" {{watch "action: click: sendEmail"}}>
-                                                                                        {{#if isEmail==='1'}}
-                                                                                            再发送
-                                                                                        {{else}}
-                                                                                            发送
-                                                                                        {{/if}}
-                                            </button>
-                                            <button type="button" class="info" {{watch "action: click: confirmExpert" "attr:isConfirm == 1: disabled"}}>
-                                                                                                                                    {{#if isEmail==='1'}}
-                                                                                                                                        已确认
-                                                                                                                                    {{else}}
-                                                                                                                                        确认
-                                                                                                                                    {{/if}}
-                                                                                        </button>
-                                            <button type="button" class="danger" {{watch "click:$root.InvitedDel" "attr:isConfirm == 1: disabled"}}>取消</button>
+                                            <button type="button" class="warning" {{watch
+                                            "action: click: sendEmail" "class:
+                                            _showEmail==0: _hide"}}>发送</button>
+                                            <button type="button" class="info" {{watch
+                                            "action: click: confirmExpert" "attr:isConfirm == 1: disabled"
+                                            "class:_showConfirm==0:_hide"}}>确认</button>
+                                            <button type="button" class="danger" {{watch
+                                            "click:$root.InvitedDel" "attr:isConfirm == 1: disabled"
+                                            "class:_showCancel==0:_hide"}}>取消</button>
                                         </div>
                                   </li>
 
